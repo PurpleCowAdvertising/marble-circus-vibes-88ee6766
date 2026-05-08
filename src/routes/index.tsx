@@ -330,3 +330,148 @@ function HomePage() {
     </>
   );
 }
+
+/* ---------- Artist carousel (under the hero) ---------- */
+
+type CarouselArtist = { name: string; image: string; tag: string };
+const CAROUSEL_ARTISTS: CarouselArtist[] = HEADLINERS.map((h) => ({
+  name: h.name,
+  image: h.image,
+  tag: h.tag,
+}));
+
+function ArtistCarousel() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [maxScroll, setMaxScroll] = useState(0);
+
+  const recompute = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setMaxScroll(max);
+    setProgress(max > 0 ? el.scrollLeft / max : 0);
+  };
+
+  useEffect(() => {
+    recompute();
+    const el = trackRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const max = el.scrollWidth - el.clientWidth;
+      setProgress(max > 0 ? el.scrollLeft / max : 0);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", recompute);
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", recompute);
+    };
+  }, []);
+
+  const nudge = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * Math.max(280, el.clientWidth * 0.7), behavior: "smooth" });
+  };
+
+  const onSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const pct = Number(e.target.value) / 100;
+    el.scrollTo({ left: pct * maxScroll, behavior: "auto" });
+  };
+
+  return (
+    <section
+      aria-label="Featured artists carousel"
+      className="relative z-10 border-y border-foreground/10 bg-white py-10 md:py-14"
+    >
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-6 md:px-10">
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.4em] text-primary">The Roster</p>
+            <h2 className="mt-2 font-display text-3xl font-bold leading-none md:text-5xl">
+              Artists on the bill.
+            </h2>
+          </div>
+          <div className="hidden items-center gap-2 sm:flex">
+            <button
+              type="button"
+              onClick={() => nudge(-1)}
+              aria-label="Previous artists"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 bg-white text-foreground transition-all hover:scale-105 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+            >
+              <ArrowLeft size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={() => nudge(1)}
+              aria-label="Next artists"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 bg-white text-foreground transition-all hover:scale-105 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+            >
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        ref={trackRef}
+        className="no-scrollbar mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-5 pb-2 sm:gap-5 sm:px-6 md:gap-6 md:px-10"
+        tabIndex={0}
+        aria-label="Scroll through featured artists. Use arrow keys or drag."
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight") { e.preventDefault(); nudge(1); }
+          if (e.key === "ArrowLeft")  { e.preventDefault(); nudge(-1); }
+        }}
+      >
+        {CAROUSEL_ARTISTS.map((a) => (
+          <Link
+            key={a.name}
+            to="/music"
+            aria-label={`View ${a.name} on the artists page`}
+            className="group relative block aspect-[3/4] w-[68%] flex-none snap-start overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] transition-shadow hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 sm:w-[42%] md:w-[28%] lg:w-[22%]"
+          >
+            <img
+              src={a.image}
+              alt={a.name}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/10 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-background/80">{a.tag}</p>
+              <h3 className="mt-1 font-display text-xl font-bold leading-tight text-background md:text-2xl">
+                {a.name}
+              </h3>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* Scrubber slider */}
+      <div className="mx-auto mt-6 flex max-w-[1400px] items-center gap-4 px-5 sm:px-6 md:px-10">
+        <div className="relative h-1 flex-1 overflow-hidden rounded-full bg-foreground/10">
+          <div
+            className="absolute inset-y-0 left-0 rounded-full bg-foreground transition-[width] duration-150"
+            style={{ width: `${Math.max(8, progress * 100)}%` }}
+            aria-hidden
+          />
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          value={Math.round(progress * 100)}
+          onChange={onSliderChange}
+          aria-label="Scroll position"
+          className="h-1 w-32 cursor-pointer accent-foreground sm:w-44"
+        />
+        <span className="hidden font-mono text-[11px] uppercase tracking-widest text-foreground/60 sm:inline">
+          {String(Math.round(progress * 100)).padStart(2, "0")}%
+        </span>
+      </div>
+    </section>
+  );
+}
