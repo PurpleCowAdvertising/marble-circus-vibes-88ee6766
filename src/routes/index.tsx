@@ -5,6 +5,7 @@ import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { useSubscribePopup } from "@/components/site/SubscribePopup";
 import heroPoster from "@/assets/hero-poster.jpg";
+import scorpionKings from "@/assets/scorpion-kings.png";
 import majorLeague from "@/assets/artists/major-league.jpg";
 import tyla from "@/assets/artists/tyla.jpg";
 import blackCoffee from "@/assets/artists/black-coffee.jpg";
@@ -51,12 +52,29 @@ function HomePage() {
       <div ref={heroRef} className="relative overflow-hidden bg-background pt-16 md:pt-20">
         <div className="mx-auto grid max-w-[1400px] items-center gap-8 px-5 pb-10 sm:px-6 md:grid-cols-[1.1fr_1fr] md:gap-12 md:px-10 md:pb-20 md:pt-12">
           <motion.div style={{ y, opacity }} className="order-2 md:order-1">
+            <FadeIn delay={0.05}>
+              <div
+                className="relative -ml-2 mb-4 h-32 w-full max-w-[360px] sm:h-40 sm:max-w-[420px] md:mb-5 md:h-44"
+                style={{
+                  WebkitMaskImage:
+                    "radial-gradient(ellipse 70% 80% at 35% 55%, #000 35%, transparent 75%)",
+                  maskImage:
+                    "radial-gradient(ellipse 70% 80% at 35% 55%, #000 35%, transparent 75%)",
+                }}
+              >
+                <img
+                  src={scorpionKings}
+                  alt="The Scorpion Kings — Kabza De Small & DJ Maphorisa"
+                  className="h-full w-full object-cover object-top opacity-95"
+                />
+              </div>
+            </FadeIn>
             <FadeIn delay={0.15}>
-              <p className="text-[10px] uppercase tracking-[0.4em] text-primary sm:text-xs">
-                Sony Music · presents
+              <p className="text-[10px] uppercase tracking-[0.4em] text-accent sm:text-xs">
+                Sony Music · presents · The Scorpion Kings
               </p>
               <h1 className="mt-3 font-display text-4xl font-bold leading-[0.95] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                The biggest amapiano show of <span className="text-primary italic">2026.</span>
+                The biggest amapiano show of <span className="text-accent italic">2026.</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.3}>
@@ -82,7 +100,7 @@ function HomePage() {
                 </button>
                 <Link
                   to="/music"
-                  className="rounded-full border border-border bg-card/40 px-5 py-3 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md hover:border-primary hover:text-primary sm:px-7 sm:py-4 sm:text-sm"
+                  className="rounded-full border border-border bg-card/40 px-5 py-3 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md hover:border-accent hover:text-accent sm:px-7 sm:py-4 sm:text-sm"
                 >
                   Explore the lineup
                 </Link>
@@ -138,7 +156,7 @@ function HomePage() {
               </p>
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 text-foreground hover:text-primary"
+                className="inline-flex items-center gap-2 text-foreground hover:text-accent"
               >
                 Read our story <ArrowRight size={16} />
               </Link>
@@ -159,7 +177,7 @@ function HomePage() {
             </div>
             <Link
               to="/music"
-              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-primary"
+              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-accent"
             >
               All artists <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
@@ -206,7 +224,7 @@ function HomePage() {
           <div className="mt-8">
             <Link
               to="/sponsors"
-              className="inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-primary"
+              className="inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-accent"
             >
               Become a partner <ArrowRight size={16} />
             </Link>
