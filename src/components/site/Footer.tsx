@@ -10,17 +10,17 @@ export function Footer() {
       <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-10 md:py-16">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
           <div className="col-span-2 md:col-span-2">
-            <img src={logo} alt="Scorpion Kings Live" className="h-12 w-auto md:h-20" />
+            <img src={logo} alt="Scorpion Kings Live" className="h-12 w-auto md:h-32" />
             <h3 className="mt-4 font-display text-3xl font-bold tracking-tight md:mt-6 md:text-6xl">
               Stay in the<br />
               <span className="text-primary">loop.</span>
             </h3>
-            <p className="mt-3 max-w-md text-sm text-muted-foreground md:mt-4 md:text-base">
+            <p className="mt-3 max-w-md text-sm text-muted-foreground md:hidden">
               Drops, lineup reveals, ticket waves and exclusive behind-the-scenes — straight to your inbox.
             </p>
             <button
               onClick={() => open("footer")}
-              className="mt-5 rounded-full bg-primary px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 md:mt-6 md:px-6 md:py-3 md:text-sm"
+              className="mt-5 rounded-full bg-primary px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 md:hidden"
             >
               Subscribe
             </button>
