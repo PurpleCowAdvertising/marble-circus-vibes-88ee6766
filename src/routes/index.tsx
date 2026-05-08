@@ -48,17 +48,17 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <div ref={heroRef} className="relative min-h-[100svh] overflow-hidden bg-background">
+      <div ref={heroRef} className="relative overflow-hidden bg-background md:min-h-[100svh]">
         <img
           src={heroPoster}
           alt="Scorpion Kings Live — 19 Sep 2026, FNB Stadium"
-          className="absolute inset-0 h-full w-full object-contain object-top md:object-cover md:object-center"
+          className="block h-auto w-full object-contain md:absolute md:inset-0 md:h-full md:object-cover md:object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background md:from-background/20 md:via-background/30" />
+        <div className="absolute inset-0 hidden bg-gradient-to-b from-background/20 via-background/30 to-background md:block" />
 
         <motion.div
           style={{ y, opacity }}
-          className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-end px-5 pb-10 pt-20 sm:px-6 md:px-10 md:pb-24 md:pt-28"
+          className="relative z-10 mx-auto flex max-w-[1400px] flex-col justify-end px-5 py-8 sm:px-6 md:min-h-[100svh] md:px-10 md:pb-24 md:pt-28"
         >
           <FadeIn delay={0.25}>
             <div className="flex flex-wrap items-center gap-2 text-xs text-foreground sm:gap-4 sm:text-sm">
