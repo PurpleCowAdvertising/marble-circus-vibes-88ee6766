@@ -1,6 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { Play } from "lucide-react";
+import majorLeague from "@/assets/artists/major-league.jpg";
+import tyla from "@/assets/artists/tyla.jpg";
+import blackCoffee from "@/assets/artists/black-coffee.jpg";
+import nastyC from "@/assets/artists/nasty-c.jpg";
+import musaKeys from "@/assets/artists/musa-keys.jpg";
+import uncleWaffles from "@/assets/artists/uncle-waffles.jpg";
+import focalistic from "@/assets/artists/focalistic.jpg";
+import kabza from "@/assets/artists/kabza.jpg";
+import shoMadjozi from "@/assets/artists/sho-madjozi.jpg";
+import aka from "@/assets/artists/aka.jpg";
+import dbnGogo from "@/assets/artists/dbn-gogo.jpg";
+import cassper from "@/assets/artists/cassper.jpg";
 
 export const Route = createFileRoute("/music")({
   head: () => ({
@@ -15,18 +27,18 @@ export const Route = createFileRoute("/music")({
 });
 
 const ARTISTS = [
-  { name: "Major League DJz", genre: "Amapiano" },
-  { name: "Tyla", genre: "Afro-Pop" },
-  { name: "Black Coffee", genre: "House" },
-  { name: "Nasty C", genre: "Hip-Hop" },
-  { name: "Musa Keys", genre: "Amapiano" },
-  { name: "Uncle Waffles", genre: "Amapiano" },
-  { name: "Focalistic", genre: "Pitori-Sound" },
-  { name: "Kabza De Small", genre: "Amapiano" },
-  { name: "Sho Madjozi", genre: "Gqom-Pop" },
-  { name: "AKA", genre: "Hip-Hop" },
-  { name: "DBN Gogo", genre: "Amapiano" },
-  { name: "Cassper Nyovest", genre: "Hip-Hop" },
+  { name: "Major League DJz", genre: "Amapiano", image: majorLeague },
+  { name: "Tyla", genre: "Afro-Pop", image: tyla },
+  { name: "Black Coffee", genre: "House", image: blackCoffee },
+  { name: "Nasty C", genre: "Hip-Hop", image: nastyC },
+  { name: "Musa Keys", genre: "Amapiano", image: musaKeys },
+  { name: "Uncle Waffles", genre: "Amapiano", image: uncleWaffles },
+  { name: "Focalistic", genre: "Pitori-Sound", image: focalistic },
+  { name: "Kabza De Small", genre: "Amapiano", image: kabza },
+  { name: "Sho Madjozi", genre: "Gqom-Pop", image: shoMadjozi },
+  { name: "AKA", genre: "Hip-Hop", image: aka },
+  { name: "DBN Gogo", genre: "Amapiano", image: dbnGogo },
+  { name: "Cassper Nyovest", genre: "Hip-Hop", image: cassper },
 ];
 
 function MusicPage() {
@@ -43,13 +55,15 @@ function MusicPage() {
           {ARTISTS.map((artist, i) => (
             <FadeIn key={artist.name} delay={(i % 4) * 0.05}>
               <div className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-lg border border-border bg-card">
-                <div
-                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
-                  style={{
-                    background: `linear-gradient(${135 + i * 15}deg, oklch(0.68 0.27 ${(12 + i * 25) % 360}) 0%, oklch(0.2 0.04 290) 100%)`,
-                  }}
+                <img
+                  src={artist.image}
+                  alt={artist.name}
+                  width={768}
+                  height={1024}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
                   <p className="text-xs uppercase tracking-widest text-primary">{artist.genre}</p>
                   <h3 className="mt-1 font-display text-2xl font-bold leading-tight">{artist.name}</h3>
