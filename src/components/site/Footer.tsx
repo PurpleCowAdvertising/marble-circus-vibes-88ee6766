@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="relative z-10 border-t border-border bg-background">
       <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-10">
         <div className="grid grid-cols-2 gap-12 md:grid-cols-4">
-          <div className="md:col-span-2">
+          <div className="col-span-2 md:col-span-2">
             <img src={logo} alt="Scorpion Kings Live" className="h-16 w-auto md:h-20" />
             <h3 className="mt-6 font-display text-4xl font-bold tracking-tight md:text-6xl">
               Stay in the<br />
