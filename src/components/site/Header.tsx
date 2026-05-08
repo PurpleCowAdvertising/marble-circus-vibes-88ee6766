@@ -35,7 +35,7 @@ export function Header() {
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-10">
         <Link to="/" aria-label="Scorpion Kings Live" className="flex items-center">
-          <img src={logo} alt="Scorpion Kings Live" className="h-10 w-auto md:h-12" />
+          <img src={logo} alt="Scorpion Kings Live" className="h-16 w-auto md:h-20" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
