@@ -54,28 +54,43 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <div ref={heroRef} className="relative z-0 isolate overflow-hidden bg-orange-rich pt-0 md:pt-0">
+      <section
+        ref={heroRef}
+        aria-labelledby="hero-heading"
+        className="relative z-0 isolate overflow-hidden bg-orange-rich pt-0 md:pt-0"
+      >
+        <h1 id="hero-heading" className="sr-only">
+          Scorpion Kings Live — DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2026
+        </h1>
         <div className="mx-auto max-w-[1400px] px-5 pb-3 sm:px-6 md:px-10 md:pb-5 md:pt-2">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
-              <div className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/20 to-transparent blur-2xl" />
+              <div aria-hidden="true" className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/20 to-transparent blur-2xl" />
 
               {/* Hero poster — desktop / mobile */}
-              <div className="relative w-full overflow-hidden rounded-2xl border border-border shadow-2xl">
+              <figure className="relative w-full overflow-hidden rounded-2xl border border-border shadow-2xl">
                 <picture>
                   <source media="(max-width: 767px)" srcSet={heroPosterMobile} />
                   <img
                     src={heroPoster}
-                    alt="Scorpion Kings Live — 19 Sep 2026, FNB Stadium"
+                    alt="Official Scorpion Kings Live concert poster: DJ Maphorisa and Kabza De Small standing side by side in front of a golden Soweto skyline and FNB Stadium, with bold red-and-yellow ‘Scorpion Kings Live’ lettering and the date 19 September 2026."
+                    width={1920}
+                    height={1080}
+                    fetchPriority="high"
+                    decoding="async"
                     className="h-auto w-full object-cover"
                   />
                 </picture>
-              </div>
+                <figcaption className="sr-only">
+                  Scorpion Kings Live 2026 — headline poster announcing the show on 19 September 2026 at FNB Stadium, Johannesburg.
+                </figcaption>
+              </figure>
             </motion.div>
           </FadeIn>
 
         </div>
-      </div>
+      </section>
+
 
       {/* ARTIST CAROUSEL — folds up over hero */}
       <div className="relative z-10 isolate fold-safe-strong">
