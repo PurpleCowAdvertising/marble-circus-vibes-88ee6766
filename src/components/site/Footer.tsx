@@ -10,8 +10,8 @@ export function Footer() {
       <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-10 md:py-16">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
           <div className="col-span-2 md:col-span-2">
-            <img src={logo} alt="Scorpion Kings Live" className="h-12 w-auto md:h-32" />
-            <h3 className="mt-4 font-display text-3xl font-bold tracking-tight md:mt-6 md:text-6xl">
+            <img src={logo} alt="Scorpion Kings Live" className="h-12 w-auto md:h-56" />
+            <h3 className="mt-4 font-display text-3xl font-bold tracking-tight md:hidden">
               Stay in the<br />
               <span className="text-primary">loop.</span>
             </h3>
