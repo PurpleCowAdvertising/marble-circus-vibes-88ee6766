@@ -248,14 +248,16 @@
   /* Rich animated orange — used for hero + alternating sections */
   .bg-orange-rich {
     position: relative;
-    background:
-      radial-gradient(ellipse 90% 70% at 15% 10%, oklch(0.78 0.17 55 / 0.95), transparent 60%),
-      radial-gradient(ellipse 80% 80% at 85% 30%, oklch(0.62 0.21 35 / 0.95), transparent 65%),
-      radial-gradient(ellipse 100% 90% at 50% 100%, oklch(0.5 0.18 30 / 0.9), transparent 70%),
-      linear-gradient(135deg, oklch(0.7 0.19 50), oklch(0.58 0.2 35) 55%, oklch(0.45 0.16 30));
-    background-size: 200% 200%, 200% 200%, 200% 200%, 200% 200%;
-    background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
-    animation: orange-shift 18s ease-in-out infinite;
+    isolation: isolate;
+    background-color: oklch(0.6 0.18 38);
+    background-image:
+      radial-gradient(ellipse 70% 80% at 20% 15%, oklch(0.74 0.17 55 / 0.55), transparent 60%),
+      radial-gradient(ellipse 75% 85% at 85% 90%, oklch(0.46 0.16 30 / 0.6), transparent 65%),
+      linear-gradient(140deg, oklch(0.66 0.19 48) 0%, oklch(0.56 0.19 35) 60%, oklch(0.48 0.16 30) 100%);
+    background-size: 140% 140%, 140% 140%, 100% 100%;
+    background-position: 0% 0%, 100% 100%, 0% 0%;
+    background-attachment: scroll;
+    animation: orange-shift 32s ease-in-out infinite;
     color: oklch(0.99 0.005 85);
   }
   .bg-orange-rich::after {
@@ -263,17 +265,21 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
+    z-index: -1;
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
-    opacity: 0.08;
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.5'/></svg>");
+    opacity: 0.04;
     mix-blend-mode: overlay;
   }
   @keyframes orange-shift {
     0%, 100% {
-      background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
+      background-position: 0% 0%, 100% 100%, 0% 0%;
     }
     50% {
-      background-position: 30% 20%, 70% 30%, 60% 80%, 100% 100%;
+      background-position: 20% 15%, 80% 85%, 0% 0%;
     }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bg-orange-rich { animation: none; }
   }
 }
