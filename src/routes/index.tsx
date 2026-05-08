@@ -115,7 +115,7 @@ function HomePage() {
       </div>
 
       {/* MUSIC PREVIEW */}
-      <Section className="border-t border-border bg-background">
+      <Section className="border-t border-border surface-light">
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -216,7 +216,7 @@ function HomePage() {
       </div>
 
       {/* CTA */}
-      <Section className="border-t border-border bg-background">
+      <Section className="border-t border-border surface-light">
         <div className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/20 via-card to-card p-6 md:p-12">
           <FadeIn>
             <h2 className="font-display text-[clamp(1.75rem,8vw,4.5rem)] font-bold leading-tight whitespace-nowrap md:text-7xl">
@@ -293,7 +293,7 @@ function ArtistCarousel() {
   return (
     <section
       aria-label="Featured artists carousel"
-      className="relative z-10 border-y border-foreground/10 bg-background py-10 md:py-14"
+      className="relative z-10 border-y border-foreground/10 surface-light py-10 md:py-14"
     >
       <div className="mx-auto max-w-[1400px] px-5 sm:px-6 md:px-10">
         <div className="flex items-end justify-between gap-6">
