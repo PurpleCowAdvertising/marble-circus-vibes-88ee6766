@@ -71,20 +71,20 @@ function HomePage() {
 
           <FadeIn delay={0.2}>
             <div className="mt-5 flex flex-wrap items-center gap-1.5 text-[11px] sm:mt-8 sm:gap-2.5 sm:text-sm md:gap-3">
-              <span className="flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-2.5 py-1.5 backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
-                <Calendar size={12} className="text-accent sm:size-[14px]" />
+              <span className="flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-white backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
+                <Calendar size={12} className="text-white sm:size-[14px]" />
                 <span className="whitespace-nowrap">19 Sep 2026</span>
               </span>
-              <span className="flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-2.5 py-1.5 backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
-                <MapPin size={12} className="text-accent sm:size-[14px]" />
+              <span className="flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-white backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
+                <MapPin size={12} className="text-white sm:size-[14px]" />
                 <span className="whitespace-nowrap">FNB Stadium · Johannesburg</span>
               </span>
               <Link
                 to="/music"
-                className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-2.5 py-1.5 backdrop-blur-md transition-colors hover:border-accent hover:text-accent sm:gap-2 sm:px-4 sm:py-2"
+                className="group inline-flex items-center gap-1.5 rounded-full border border-white/40 bg-white px-2.5 py-1.5 font-semibold text-foreground backdrop-blur-md transition-all hover:scale-[1.03] hover:bg-white sm:gap-2 sm:px-4 sm:py-2"
               >
-                <ArrowRight size={12} className="text-accent transition-transform group-hover:translate-x-1 sm:size-[14px]" />
                 <span className="whitespace-nowrap">Explore the lineup</span>
+                <ArrowRight size={12} className="transition-transform group-hover:translate-x-1 sm:size-[14px]" />
               </Link>
             </div>
           </FadeIn>
