@@ -76,7 +76,7 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-white hover:font-semibold lg:px-4 group-data-[status=active]:font-semibold data-[status=active]:!text-white"
+                className="group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-white hover:font-semibold sm:px-3.5 sm:py-1.5 sm:text-[13px] lg:px-4 group-data-[status=active]:font-semibold data-[status=active]:!text-white"
                 activeProps={{ className: "!text-white !font-semibold" }}
               >
                 <span className="relative z-10">{item.label}</span>
