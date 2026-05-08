@@ -35,21 +35,8 @@ export const Route = createFileRoute("/")({
 });
 
 const ARTISTS = [
-  "MAJOR LEAGUE DJZ", "TYLA", "​", "BLACK COFFEE", "NASTY C",
+  "MAJOR LEAGUE DJZ", "TYLA", "BLACK COFFEE", "NASTY C",
   "MUSA KEYS", "UNCLE WAFFLES", "FOCALISTIC", "KABZA DE SMALL", "SHO MADJOZI",
-];
-
-const ARTIST_COLORS = [
-  "#eaad1f", // signature orange
-  "#ff3d3d", // hot red
-  "#ffffff", // bright white
-  "#22d3ee", // electric cyan
-  "#ec4899", // hot pink
-  "#a3e635", // acid lime
-  "#fbbf24", // amber
-  "#8b5cf6", // violet
-  "#f97316", // tangerine
-  "#10b981", // emerald
 ];
 
 function HomePage() {
