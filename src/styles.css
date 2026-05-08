@@ -284,28 +284,30 @@
   .bg-orange-rich::after {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -10%;
     pointer-events: none;
     z-index: 0;
     background-image:
-      radial-gradient(ellipse 80% 60% at 50% 50%, transparent 40%, oklch(0 0 0 / 0.35) 100%),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    background-size: 100% 100%, 220px 220px;
-    background-repeat: no-repeat, repeat;
-    opacity: 0.85;
-    mix-blend-mode: normal;
-    animation: grain-shift 1.4s steps(5) infinite;
+      radial-gradient(ellipse 80% 60% at 50% 50%, transparent 55%, oklch(0 0 0 / 0.35) 100%),
+      radial-gradient(circle at 12% 18%, oklch(1 0 0 / 0.55) 0.5px, transparent 1.4px),
+      radial-gradient(circle at 78% 32%, oklch(1 0 0 / 0.4) 0.5px, transparent 1.4px),
+      radial-gradient(circle at 34% 76%, oklch(1 0 0 / 0.5) 0.5px, transparent 1.4px),
+      radial-gradient(circle at 88% 84%, oklch(1 0 0 / 0.35) 0.5px, transparent 1.4px),
+      radial-gradient(circle at 56% 8%, oklch(0.7 0.2 48 / 0.45) 0.6px, transparent 1.6px),
+      radial-gradient(circle at 22% 52%, oklch(1 0 0 / 0.3) 0.5px, transparent 1.4px),
+      radial-gradient(circle at 64% 60%, oklch(1 0 0 / 0.45) 0.5px, transparent 1.4px),
+      radial-gradient(circle at 8% 88%, oklch(1 0 0 / 0.35) 0.5px, transparent 1.4px),
+      radial-gradient(circle at 92% 12%, oklch(1 0 0 / 0.4) 0.5px, transparent 1.4px);
+    background-size: 100% 100%, 320px 320px, 380px 380px, 280px 280px, 420px 420px, 360px 360px, 300px 300px, 340px 340px, 400px 400px, 360px 360px;
+    background-repeat: no-repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat;
+    animation: particles-drift 60s linear infinite;
     will-change: background-position;
   }
   .bg-orange-rich > * { position: relative; z-index: 1; }
 
-  @keyframes grain-shift {
-    0%   { background-position: 0 0, 0 0; }
-    20%  { background-position: 0 0, -30px 12px; }
-    40%  { background-position: 0 0, 18px -22px; }
-    60%  { background-position: 0 0, -12px -8px; }
-    80%  { background-position: 0 0, 24px 16px; }
-    100% { background-position: 0 0, 0 0; }
+  @keyframes particles-drift {
+    0%   { background-position: 0 0,   0 0,    0 0,    0 0,    0 0,    0 0,    0 0,    0 0,    0 0,    0 0; }
+    100% { background-position: 0 0, 320px -180px, -260px 220px, 180px 240px, -300px -160px, 220px -200px, -180px 160px, 200px -240px, -240px -180px, 280px 220px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .bg-orange-rich::after { animation: none; }
