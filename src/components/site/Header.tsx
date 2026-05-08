@@ -75,13 +75,18 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-black transition-colors duration-300 hover:text-black lg:px-4"
-                activeProps={{ className: "!text-black" }}
+                className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-black hover:font-semibold lg:px-4 group-data-[status=active]:font-semibold"
+                activeProps={{ className: "!text-black !font-semibold" }}
               >
-                <span className="relative z-10">{item.label}</span>
+                <span
+                  className="relative z-10"
+                  style={{ textShadow: "0 1px 0 rgba(255,255,255,0.5)" }}
+                >
+                  {item.label}
+                </span>
                 <span
                   aria-hidden
-                  className="absolute inset-0 -z-0 rounded-full bg-gradient-to-b from-accent/45 to-accent/25 ring-1 ring-inset ring-white/40 shadow-[0_6px_18px_-4px_color-mix(in_oklab,var(--color-accent)_45%,transparent),inset_0_1px_0_rgba(255,255,255,0.55)] backdrop-blur-md backdrop-saturate-150 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
+                  className="absolute inset-0 -z-0 rounded-full bg-gradient-to-b from-accent/55 to-accent/30 ring-1 ring-inset ring-white/50 shadow-[0_6px_18px_-4px_color-mix(in_oklab,var(--color-accent)_50%,transparent),inset_0_1px_0_rgba(255,255,255,0.6)] backdrop-blur-md backdrop-saturate-150 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
                   style={{ WebkitBackdropFilter: "blur(12px) saturate(1.5)", backdropFilter: "blur(12px) saturate(1.5)" }}
                 />
               </Link>
