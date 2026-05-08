@@ -137,7 +137,7 @@ function HomePage() {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-primary">The Lineup</p>
-              <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-black">
+              <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-white">
                 Headliners.
               </h2>
             </div>
