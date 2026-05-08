@@ -70,13 +70,13 @@ export function Header() {
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
-              className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-foreground/65 transition-colors duration-300 hover:text-foreground lg:px-4"
-              activeProps={{ className: "!text-foreground" }}
+              className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-foreground/65 transition-colors duration-300 hover:text-white lg:px-4"
+              activeProps={{ className: "!text-white" }}
             >
               <span className="relative z-10">{item.label}</span>
               <span
                 aria-hidden
-                className="absolute inset-0 -z-0 rounded-full bg-foreground/[0.06] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
+                className="absolute inset-0 -z-0 rounded-full bg-accent/25 ring-1 ring-inset ring-accent/30 opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
               />
             </Link>
           ))}

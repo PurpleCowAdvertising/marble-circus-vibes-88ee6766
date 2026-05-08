@@ -259,13 +259,53 @@
   }
   .animate-float { animation: float-soft 6s ease-in-out infinite; }
 
-  /* Dark surface (formerly orange/cream) */
+  /* Dark surface — deep warm black with subtle glass sheen */
   .bg-orange-rich {
     position: relative;
     isolation: isolate;
     overflow: hidden;
     background-color: oklch(0.11 0.012 60);
     color: var(--color-foreground);
+  }
+  .bg-orange-rich::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, oklch(1 0 0 / 0.04), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 50% 100%, oklch(0.7 0.2 48 / 0.05), transparent 70%);
+  }
+  .bg-orange-rich > * { position: relative; z-index: 1; }
+
+  /* Light surface — warm off-white with dark text + glass sheen for section contrast */
+  .surface-light {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: oklch(0.96 0.008 85);
+    color: oklch(0.16 0.02 50);
+  }
+  .surface-light::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, oklch(1 0 0 / 0.6), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 90% 100%, oklch(0.7 0.2 48 / 0.06), transparent 70%);
+  }
+  .surface-light > * { position: relative; z-index: 1; }
+  /* Invert token-based colors inside light surface */
+  .surface-light {
+    --background: oklch(0.96 0.008 85);
+    --foreground: oklch(0.16 0.02 50);
+    --muted-foreground: oklch(0.42 0.02 60);
+    --card: oklch(0.99 0.005 85);
+    --card-foreground: oklch(0.16 0.02 50);
+    --border: oklch(0.16 0.02 50 / 0.12);
   }
 }
 
