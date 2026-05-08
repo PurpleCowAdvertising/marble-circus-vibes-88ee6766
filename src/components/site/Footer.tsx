@@ -20,7 +20,7 @@ export function Footer() {
             </p>
             <button
               onClick={() => open("footer")}
-              className="mt-5 rounded-full bg-primary px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 md:hidden"
+              className="mt-5 rounded-full bg-accent px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-accent-foreground transition-transform hover:scale-105 md:hidden"
             >
               Subscribe
             </button>

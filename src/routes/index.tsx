@@ -232,7 +232,7 @@ function HomePage() {
             </p>
             <button
               onClick={() => open("home-cta")}
-              className="mt-6 rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground hover:scale-105 transition-transform"
+              className="mt-6 rounded-full bg-accent px-8 py-4 text-sm font-bold uppercase tracking-widest text-accent-foreground hover:scale-105 transition-transform"
             >
               Subscribe now
             </button>
