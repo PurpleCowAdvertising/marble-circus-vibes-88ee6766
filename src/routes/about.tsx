@@ -4,9 +4,9 @@ import { FadeIn, PageHero, Section } from "@/components/site/Section";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Scorpion Kings" },
-      { name: "description", content: "Scorpion Kings: championing the artists, the sounds and the stories shaping a continent." },
-      { property: "og:title", content: "About — Scorpion Kings" },
+      { title: "About — Scorpion Kings Live" },
+      { name: "description", content: "Scorpion Kings Live: championing the artists, the sounds and the stories shaping a continent." },
+      { property: "og:title", content: "About — Scorpion Kings Live" },
       { property: "og:description", content: "Championing the artists shaping a continent." },
     ],
   }),
@@ -19,7 +19,7 @@ function AboutPage() {
       <PageHero
         eyebrow="About us"
         title="We bet on bold."
-        description="From amapiano to afro-pop, gqom to global crossovers — Scorpion Kings is the home of artists who don't ask for permission."
+        description="From amapiano to afro-pop, gqom to global crossovers — Scorpion Kings Live is the home of artists who don't ask for permission."
       />
 
       <Section className="border-t border-border">
@@ -33,7 +33,7 @@ function AboutPage() {
           <FadeIn delay={0.1}>
             <div className="space-y-5 text-lg text-muted-foreground">
               <p>
-                For decades, Scorpion Kings has been the engine behind the artists who shape culture.
+                For decades, Scorpion Kings Live has been the engine behind the artists who shape culture.
                 In South Africa, we're building something that goes beyond the studio — a stage, a community,
                 and a moment that brings local sound to a global audience.
               </p>

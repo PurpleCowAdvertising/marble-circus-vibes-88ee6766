@@ -17,9 +17,9 @@ import cassper from "@/assets/artists/cassper.jpg";
 export const Route = createFileRoute("/music")({
   head: () => ({
     meta: [
-      { title: "Music & Artists — Scorpion Kings" },
-      { name: "description", content: "Discover the artists, the sounds and the upcoming releases from Scorpion Kings." },
-      { property: "og:title", content: "Music & Artists — Scorpion Kings" },
+      { title: "Music & Artists — Scorpion Kings Live" },
+      { name: "description", content: "Discover the artists, the sounds and the upcoming releases from Scorpion Kings Live." },
+      { property: "og:title", content: "Music & Artists — Scorpion Kings Live" },
       { property: "og:description", content: "The lineup. The sound. The future." },
     ],
   }),

@@ -10,9 +10,9 @@ import {
 export const Route = createFileRoute("/faqs")({
   head: () => ({
     meta: [
-      { title: "FAQs — Scorpion Kings" },
+      { title: "FAQs — Scorpion Kings Live" },
       { name: "description", content: "Everything you need to know — tickets, venue, travel, policies and more." },
-      { property: "og:title", content: "FAQs — Scorpion Kings" },
+      { property: "og:title", content: "FAQs — Scorpion Kings Live" },
       { property: "og:description", content: "Tickets, venue, travel and policies — answered." },
     ],
   }),
