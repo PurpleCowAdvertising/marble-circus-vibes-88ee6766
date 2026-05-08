@@ -76,12 +76,12 @@ function HomePage() {
 
           <FadeIn delay={0.2}>
             <div className="mt-5 flex flex-wrap items-center gap-1.5 text-[11px] sm:mt-8 sm:gap-2.5 sm:text-sm md:gap-3">
-              <span className="flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-white backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
-                <Calendar size={12} className="text-white sm:size-[14px]" />
+              <span className="flex items-center gap-1.5 rounded-full border border-foreground/20 bg-background/60 px-2.5 py-1.5 text-foreground backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
+                <Calendar size={12} className="text-foreground sm:size-[14px]" />
                 <span className="whitespace-nowrap">19 Sep 2026</span>
               </span>
-              <span className="flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-white backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
-                <MapPin size={12} className="text-white sm:size-[14px]" />
+              <span className="flex items-center gap-1.5 rounded-full border border-foreground/20 bg-background/60 px-2.5 py-1.5 text-foreground backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
+                <MapPin size={12} className="text-foreground sm:size-[14px]" />
                 <span className="whitespace-nowrap">FNB Stadium · Johannesburg</span>
               </span>
               <Link
@@ -102,16 +102,16 @@ function HomePage() {
 
       {/* ABOUT TEASER */}
       <div className="relative bg-orange-rich">
-        <Section className="text-white">
+        <Section className="text-foreground">
           <div className="grid gap-10 md:grid-cols-2 md:gap-20">
             <FadeIn>
-              <p className="text-xs uppercase tracking-[0.4em] text-white/80">About</p>
-              <h2 className="mt-4 font-display text-5xl font-bold leading-tight text-white md:text-7xl">
+              <p className="text-xs uppercase tracking-[0.4em] text-foreground/70">About</p>
+              <h2 className="mt-4 font-display text-5xl font-bold leading-tight text-foreground md:text-7xl">
                 Built for the artists, powered by the fans.
               </h2>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <div className="space-y-6 text-lg text-white/85 md:pt-12">
+              <div className="space-y-6 text-lg text-foreground/85 md:pt-12">
                 <p>
                   Scorpion Kings Live champions the bold, the brilliant and the boundary-breaking.
                   From amapiano floors to global pop stages — this is where the next sound starts.
@@ -122,7 +122,7 @@ function HomePage() {
                 </p>
                 <Link
                   to="/about"
-                  className="group inline-flex items-center gap-2 text-white hover:text-white/80"
+                  className="group inline-flex items-center gap-2 text-foreground hover:text-foreground/70"
                 >
                   <span className="story-link">Read our story</span>
                   <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
