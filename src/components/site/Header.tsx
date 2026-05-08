@@ -60,23 +60,23 @@ export function Header() {
         {/* Floating glass pill nav */}
         <nav
           aria-label="Primary"
-          className={`pointer-events-auto hidden items-center gap-1 rounded-full border border-foreground/10 bg-background/40 px-2 py-1.5 backdrop-blur-2xl transition-all duration-500 ease-out md:flex ${
-            scrolled ? "shadow-[0_8px_32px_-12px_rgba(0,0,0,0.5)]" : ""
+          className={`pointer-events-auto hidden items-center gap-1 rounded-full border border-white/40 bg-white/80 px-2 py-1.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] backdrop-blur-2xl transition-all duration-500 ease-out md:flex ${
+            scrolled ? "bg-white/90 shadow-[0_12px_36px_-14px_rgba(0,0,0,0.55)]" : ""
           }`}
-          style={{ WebkitBackdropFilter: "blur(24px) saturate(1.4)", backdropFilter: "blur(24px) saturate(1.4)" }}
+          style={{ WebkitBackdropFilter: "blur(24px) saturate(1.6)", backdropFilter: "blur(24px) saturate(1.6)" }}
         >
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
-              className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-foreground/65 transition-colors duration-300 hover:text-white lg:px-4"
-              activeProps={{ className: "!text-white" }}
+              className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-neutral-700 transition-colors duration-300 hover:text-neutral-950 lg:px-4"
+              activeProps={{ className: "!text-neutral-950" }}
             >
               <span className="relative z-10">{item.label}</span>
               <span
                 aria-hidden
-                className="absolute inset-0 -z-0 rounded-full bg-accent/25 ring-1 ring-inset ring-accent/30 opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
+                className="absolute inset-0 -z-0 rounded-full bg-accent/20 ring-1 ring-inset ring-accent/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
               />
             </Link>
           ))}
