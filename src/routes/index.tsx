@@ -198,9 +198,10 @@ function HomePage() {
           <div className="mt-8">
             <Link
               to="/sponsors"
-              className="inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-accent"
+              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-accent"
             >
-              Become a partner <ArrowRight size={16} />
+              <span className="story-link">Become a partner</span>
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </FadeIn>
