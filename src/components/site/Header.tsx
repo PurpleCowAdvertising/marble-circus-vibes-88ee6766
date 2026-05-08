@@ -65,7 +65,7 @@ export function Header() {
             src={logo}
             alt="Scorpion Kings Live"
             className={`w-auto transition-all duration-500 ease-out ${
-              scrolled ? "h-10 sm:h-11 md:h-12" : "h-12 sm:h-14 md:h-20 lg:h-24"
+              scrolled ? "h-7 sm:h-8 md:h-9" : "h-8 sm:h-9 md:h-10"
             }`}
           />
         </Link>
