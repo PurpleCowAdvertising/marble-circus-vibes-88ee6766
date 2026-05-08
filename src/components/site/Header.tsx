@@ -43,7 +43,7 @@ export function Header() {
             <Link
               key={item.to}
               to={item.to}
-              className="text-sm uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent"
+              className="font-display text-base uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent"
               activeProps={{ className: "text-foreground" }}
               activeOptions={{ exact: item.to === "/" }}
             >
@@ -55,7 +55,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => openSubscribe("header")}
-            className="hidden rounded-full bg-primary px-5 py-2 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 md:block"
+            className="hidden rounded-full bg-accent px-5 py-2 text-xs font-bold uppercase tracking-widest text-accent-foreground transition-transform hover:scale-105 md:block"
           >
             Subscribe
           </button>
