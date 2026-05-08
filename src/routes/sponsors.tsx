@@ -4,6 +4,8 @@ import { z } from "zod";
 import { useMemo } from "react";
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { ArrowUpRight } from "lucide-react";
+import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
+import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
 
 const CATEGORIES = ["all", "platinum", "gold", "silver", "bronze"] as const;
 type Category = (typeof CATEGORIES)[number];
