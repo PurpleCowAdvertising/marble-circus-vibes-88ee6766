@@ -4,13 +4,8 @@ import { useRef } from "react";
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { useSubscribePopup } from "@/components/site/SubscribePopup";
-import heroLogo from "@/assets/hero/logo.png";
-import heroDateVenue from "@/assets/hero/date-venue.png";
-import heroDivider from "@/assets/hero/divider.png";
-import heroPerformers from "@/assets/hero/performers.png";
-import heroStadium from "@/assets/hero/stadium.png";
-import heroTickets from "@/assets/hero/tickets.png";
-import heroSoldBadge from "@/assets/hero/sold-badge.png";
+import heroPoster from "@/assets/hero-poster.jpg";
+import heroPosterMobile from "@/assets/hero-poster-mobile.jpg";
 import majorLeague from "@/assets/artists/major-league.jpg";
 import tyla from "@/assets/artists/tyla.jpg";
 import blackCoffee from "@/assets/artists/black-coffee.jpg";
@@ -73,43 +68,16 @@ function HomePage() {
             <motion.div style={{ y, opacity }} className="relative">
               <div className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/20 to-transparent blur-2xl" />
 
-              {/* Static hero composition */}
-              <div className="relative mx-auto aspect-[4/5] w-full max-w-[900px] overflow-hidden rounded-2xl border border-border bg-[#f5e9d0] shadow-2xl sm:aspect-[5/6] md:aspect-[16/11]">
-                <img
-                  src={heroStadium}
-                  alt="FNB Stadium"
-                  className="absolute inset-0 h-full w-full object-cover object-bottom"
-                />
-                <img
-                  src={heroPerformers}
-                  alt="Scorpion Kings"
-                  className="absolute inset-x-0 bottom-0 mx-auto h-[78%] w-auto object-contain"
-                />
-                <img
-                  src={heroLogo}
-                  alt="Scorpion Kings Live"
-                  className="absolute left-1/2 top-[4%] w-[58%] max-w-[520px] -translate-x-1/2"
-                />
-                <img
-                  src={heroDateVenue}
-                  alt="19 Sep 26 · FNB Stadium"
-                  className="absolute left-1/2 top-[34%] w-[64%] max-w-[560px] -translate-x-1/2"
-                />
-                <img
-                  src={heroDivider}
-                  alt=""
-                  className="absolute left-1/2 top-[44%] w-[62%] max-w-[540px] -translate-x-1/2"
-                />
-                <img
-                  src={heroSoldBadge}
-                  alt="60% sold"
-                  className="absolute right-[3%] top-[6%] w-[22%] max-w-[180px]"
-                />
-                <img
-                  src={heroTickets}
-                  alt="Tickets available from Webtickets and Pick n Pay"
-                  className="absolute inset-x-0 bottom-[3%] mx-auto w-[70%] max-w-[520px]"
-                />
+              {/* Hero poster — desktop / mobile */}
+              <div className="relative mx-auto w-full max-w-[1100px] overflow-hidden rounded-2xl border border-border shadow-2xl">
+                <picture>
+                  <source media="(max-width: 767px)" srcSet={heroPosterMobile} />
+                  <img
+                    src={heroPoster}
+                    alt="Scorpion Kings Live — 19 Sep 2026, FNB Stadium"
+                    className="h-auto w-full object-cover"
+                  />
+                </picture>
               </div>
             </motion.div>
           </FadeIn>
