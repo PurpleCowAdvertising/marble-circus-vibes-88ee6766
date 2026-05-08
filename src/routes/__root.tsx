@@ -130,6 +130,7 @@ function RootComponent() {
           </main>
           <Footer />
         </div>
+        <ConsentBanner />
         <Toaster />
       </SubscribeProvider>
     </QueryClientProvider>
