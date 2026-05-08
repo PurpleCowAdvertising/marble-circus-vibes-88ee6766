@@ -60,18 +60,15 @@ export function Header() {
         {/* Floating glass pill nav — desktop */}
         <nav
           aria-label="Primary"
-          className={`pointer-events-auto hidden items-center gap-1 rounded-full border border-white/40 bg-white/80 px-2 py-1.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] backdrop-blur-2xl transition-all duration-500 ease-out md:flex ${
-            scrolled ? "bg-white/90 shadow-[0_12px_36px_-14px_rgba(0,0,0,0.55)]" : ""
-          }`}
-          style={{ WebkitBackdropFilter: "blur(24px) saturate(1.6)", backdropFilter: "blur(24px) saturate(1.6)" }}
+          className="pointer-events-auto hidden items-center gap-1 rounded-full bg-white px-2 py-1.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-all duration-500 ease-out md:flex"
         >
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
-              className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-neutral-700 transition-colors duration-300 hover:text-neutral-950 lg:px-4"
-              activeProps={{ className: "!text-neutral-950" }}
+              className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-black transition-colors duration-300 hover:text-black lg:px-4"
+              activeProps={{ className: "!text-black" }}
             >
               <span className="relative z-10">{item.label}</span>
               <span
