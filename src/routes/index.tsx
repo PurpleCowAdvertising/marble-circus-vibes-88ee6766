@@ -77,9 +77,10 @@ function HomePage() {
         </div>
       </div>
 
-      {/* ARTIST CAROUSEL — swipeable, with arrows + scrubber */}
-      <ArtistCarousel />
-
+      {/* ARTIST CAROUSEL — folds up over hero */}
+      <div className="relative z-20 -mt-16 md:-mt-32">
+        <ArtistCarousel />
+      </div>
 
       {/* ABOUT TEASER */}
       <div className="relative bg-orange-rich">
