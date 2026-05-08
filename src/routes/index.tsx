@@ -62,13 +62,11 @@ function HomePage() {
         <h1 id="hero-heading" className="sr-only">
           Scorpion Kings Live — DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2026
         </h1>
-        <div className="mx-auto max-w-[1400px] px-5 pb-3 sm:px-6 md:px-10 md:pb-5 md:pt-2">
+        <div className="w-full pb-3 md:pb-5 md:pt-2">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
-              <div aria-hidden="true" className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/20 to-transparent blur-2xl" />
-
               {/* Hero poster — desktop / mobile */}
-              <figure className="relative w-full overflow-hidden rounded-2xl border border-border shadow-2xl">
+              <figure className="relative w-full overflow-hidden">
                 <picture>
                   <source media="(max-width: 767px)" srcSet={heroPosterMobile} />
                   <img
