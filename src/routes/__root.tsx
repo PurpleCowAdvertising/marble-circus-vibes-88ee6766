@@ -13,7 +13,6 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { SubscribeProvider } from "@/components/site/SubscribePopup";
 import { ConsentBanner } from "@/components/site/ConsentBanner";
-import { ScorpionIntro } from "@/components/site/ScorpionIntro";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -132,7 +131,6 @@ function RootComponent() {
           <Footer />
         </div>
         <ConsentBanner />
-        <ScorpionIntro />
         <Toaster />
       </SubscribeProvider>
     </QueryClientProvider>
