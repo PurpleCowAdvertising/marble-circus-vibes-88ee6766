@@ -70,20 +70,18 @@ function HomePage() {
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-              <div className="flex flex-wrap items-center gap-2 text-xs sm:gap-3 sm:text-sm">
-                <span className="flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-2 backdrop-blur-md sm:px-4">
-                  <Calendar size={14} className="text-accent" />
-                  19 Sep 2026
-                </span>
-                <span className="flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-2 backdrop-blur-md sm:px-4">
-                  <MapPin size={14} className="text-accent" />
-                  FNB Stadium · Johannesburg
-                </span>
-              </div>
+            <div className="mt-6 flex flex-wrap items-center gap-2 text-xs sm:mt-8 sm:gap-3 sm:text-sm">
+              <span className="flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-2 backdrop-blur-md sm:px-4">
+                <Calendar size={14} className="text-accent" />
+                19 Sep 2026
+              </span>
+              <span className="flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-2 backdrop-blur-md sm:px-4">
+                <MapPin size={14} className="text-accent" />
+                FNB Stadium · Johannesburg
+              </span>
               <Link
                 to="/music"
-                className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-5 py-3 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md hover:border-accent hover:text-accent sm:px-7 sm:py-4 sm:text-sm"
+                className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-2 font-bold uppercase tracking-widest backdrop-blur-md hover:border-accent hover:text-accent sm:px-4"
               >
                 Explore the lineup
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
