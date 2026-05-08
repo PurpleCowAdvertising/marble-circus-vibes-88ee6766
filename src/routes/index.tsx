@@ -201,7 +201,7 @@ function HomePage() {
       </Section>
 
       {/* CTA */}
-      <Section className="border-t border-border">
+      <Section className="border-t border-border bg-[#f2ac07]">
         <div className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/20 via-card to-card p-10 md:p-20">
           <FadeIn>
             <h2 className="font-display text-5xl font-bold leading-none md:text-8xl">
