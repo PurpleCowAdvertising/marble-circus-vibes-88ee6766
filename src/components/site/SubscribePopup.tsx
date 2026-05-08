@@ -1,11 +1,10 @@
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-const STORAGE_KEY = "sony_sa_subscribe_dismissed";
 
 const schema = z.object({
   email: z.string().trim().email({ message: "Enter a valid email" }).max(255),
