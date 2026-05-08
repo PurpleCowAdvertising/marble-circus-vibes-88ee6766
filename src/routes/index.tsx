@@ -356,7 +356,7 @@ function ArtistCarousel() {
       </div>
 
       {/* Scrubber slider */}
-      <div className="mx-auto mt-3 flex max-w-[1400px] items-center gap-4 px-5 sm:mt-6 sm:px-6 md:px-10">
+      <div className="mx-auto mt-3 flex max-w-[1400px] items-center gap-4 px-5 sm:mt-6 sm:px-6 md:px-10 border-orange-500">
         <div className="relative h-1 flex-1 overflow-hidden rounded-full bg-foreground/10">
           <div
             className="absolute inset-y-0 left-0 rounded-full bg-foreground transition-[width] duration-150"
