@@ -171,8 +171,7 @@ function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent transition-opacity duration-500 group-hover:via-background/30" />
                 <div className="absolute inset-x-0 bottom-0 flex flex-col p-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
-                  <p className="text-xs uppercase tracking-widest text-accent">Headliner {i + 1}</p>
-                  <h3 className="mt-1 font-display text-3xl font-bold">{name}</h3>
+                  <h3 className="font-display text-3xl font-bold">{name}</h3>
                 </div>
               </div>
             </FadeIn>
