@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { ArrowRight, Calendar, MapPin } from "lucide-react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { ArrowRight, Calendar, MapPin, X, Music2 } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { useSubscribePopup } from "@/components/site/SubscribePopup";
 import heroPoster from "@/assets/hero-poster.jpg";
@@ -13,13 +13,21 @@ import nastyC from "@/assets/artists/nasty-c.png";
 import musaKeys from "@/assets/artists/musa-keys.png";
 import uncleWaffles from "@/assets/artists/uncle-waffles.png";
 
-const HEADLINERS = [
-  { name: "MAJOR LEAGUE DJZ", image: majorLeague },
-  { name: "TYLA", image: tyla },
-  { name: "BLACK COFFEE", image: blackCoffee },
-  { name: "NASTY C", image: nastyC },
-  { name: "MUSA KEYS", image: musaKeys },
-  { name: "UNCLE WAFFLES", image: uncleWaffles },
+type Headliner = {
+  name: string;
+  image: string;
+  tag: string;
+  bio: string;
+  set: string;
+};
+
+const HEADLINERS: Headliner[] = [
+  { name: "MAJOR LEAGUE DJZ", image: majorLeague, tag: "Amapiano · Twin Force", bio: "Twin brothers Banele and Bandile have taken Balcony Mix global, turning amapiano into the soundtrack of the diaspora.", set: "Main Stage · Closing Set" },
+  { name: "TYLA", image: tyla, tag: "Pop · Afrobeats", bio: "Grammy-winning sensation behind ‘Water’. A new generation of South African pop, built for arenas and TikTok feeds alike.", set: "Main Stage · Headline" },
+  { name: "BLACK COFFEE", image: blackCoffee, tag: "Deep House · Icon", bio: "The architect of South African house. Decades of craft, residencies from Ibiza to NYC, and a sound that has shaped a continent.", set: "Main Stage · Sunset" },
+  { name: "NASTY C", image: nastyC, tag: "Hip-Hop · Lyricist", bio: "The Coolest Kid in Africa. Sharp pen, world-class delivery and a catalogue that bridges Durban and the Billboard charts.", set: "Main Stage · Prime Time" },
+  { name: "MUSA KEYS", image: musaKeys, tag: "Amapiano · Producer", bio: "From Selema to Unite The World — Musa Keys turns log-drum grooves into stadium-sized choruses.", set: "Second Stage · Headline" },
+  { name: "UNCLE WAFFLES", image: uncleWaffles, tag: "Amapiano · DJ", bio: "The face of new amapiano. Sold-out tours from London to Lagos and a stage presence that turns clubs into cathedrals.", set: "Second Stage · Late Night" },
 ];
 
 export const Route = createFileRoute("/")({
