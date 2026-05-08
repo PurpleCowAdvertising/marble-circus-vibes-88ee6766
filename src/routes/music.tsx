@@ -36,7 +36,7 @@ const ARTISTS = [
   { name: "Focalistic", genre: "Pitori-Sound", image: focalistic },
   { name: "Kabza De Small", genre: "Amapiano", image: kabza },
   { name: "Sho Madjozi", genre: "Gqom-Pop", image: shoMadjozi },
-  { name: "AKA", genre: "Hip-Hop", image: aka },
+  { name: "​", genre: "Hip-Hop", image: aka },
   { name: "DBN Gogo", genre: "Amapiano", image: dbnGogo },
   { name: "Cassper Nyovest", genre: "Hip-Hop", image: cassper },
 ];
