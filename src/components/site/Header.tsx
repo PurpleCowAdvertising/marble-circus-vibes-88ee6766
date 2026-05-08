@@ -45,9 +45,9 @@ export function Header() {
         hidden && !open ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
       }`}
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5 bg-black">
-        {/* Logo — desktop only (mobile uses centered floating pill below) */}
-        <Link to="/" aria-label="Scorpion Kings Live" className="hidden shrink-0 items-center md:flex">
+      <div className="mx-auto hidden max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:flex md:px-8 md:pt-5 bg-black">
+        {/* Logo — desktop only */}
+        <Link to="/" aria-label="Scorpion Kings Live" className="flex shrink-0 items-center">
           <img
             src={logo}
             alt="Scorpion Kings Live"
@@ -60,7 +60,7 @@ export function Header() {
         {/* Floating glass pill nav — desktop */}
         <nav
           aria-label="Primary"
-          className="pointer-events-auto hidden items-center gap-1 rounded-full bg-white px-2 py-1.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-all duration-500 ease-out md:flex"
+          className="pointer-events-auto flex items-center gap-1 rounded-full bg-white px-2 py-1.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-all duration-500 ease-out"
         >
           {NAV.map((item) => (
             <Link
@@ -80,7 +80,7 @@ export function Header() {
         </nav>
 
         {/* Subscribe — desktop only */}
-        <div className="hidden shrink-0 items-center gap-2 md:flex">
+        <div className="flex shrink-0 items-center gap-2">
           <button
             onClick={() => openSubscribe("header")}
             className="rounded-full bg-foreground px-4 py-1.5 text-[12px] font-medium tracking-tight text-background transition-all duration-300 hover:scale-[1.03] hover:bg-foreground/90"
@@ -88,38 +88,40 @@ export function Header() {
             Subscribe
           </button>
         </div>
-
-        {/* Mobile — ultra-minimal: logo left, thin icon right, no chrome */}
-        <div className="flex w-full items-center justify-between md:hidden">
-          <Link to="/" aria-label="Scorpion Kings Live" className="flex items-center">
-            <img src={logo} alt="Scorpion Kings Live" className="h-7 w-auto" />
-          </Link>
-          <button
-            onClick={() => setOpen(!open)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            className="-mr-2 flex h-10 w-10 items-center justify-center transition-transform active:scale-90"
-          >
-            <span className="relative inline-block h-3 w-5">
-              <span
-                className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-white transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                  open ? "translate-y-0 rotate-45" : "-translate-y-[4px] rotate-0"
-                }`}
-              />
-              <span
-                className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-white transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                  open ? "translate-y-0 -rotate-45" : "translate-y-[4px] rotate-0"
-                }`}
-              />
-            </span>
-          </button>
-        </div>
       </div>
 
-      {/* Mobile sheet — full-screen quiet panel */}
+      {/* Mobile — floating FAB menu trigger, bottom-right, thumb-reachable */}
+      <button
+        onClick={() => setOpen(!open)}
+        aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+        className={`pointer-events-auto fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.55)] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-90 md:hidden ${
+          open ? "rotate-90" : "rotate-0"
+        }`}
+      >
+        <span className="relative inline-block h-3.5 w-5">
+          <span
+            className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              open ? "translate-y-0 rotate-45" : "-translate-y-[5px] rotate-0"
+            }`}
+          />
+          <span
+            className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              open ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <span
+            className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              open ? "translate-y-0 -rotate-45" : "translate-y-[5px] rotate-0"
+            }`}
+          />
+        </span>
+      </button>
+
+      {/* Mobile sheet — anchored bottom-right above FAB */}
       <div
-        className={`md:hidden fixed inset-x-0 top-[68px] mx-3 origin-top overflow-hidden rounded-2xl border border-foreground/10 bg-background/85 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          open ? "scale-100 opacity-100" : "pointer-events-none scale-[0.98] opacity-0"
+        className={`md:hidden fixed bottom-24 right-5 z-40 w-[min(320px,calc(100vw-2.5rem))] origin-bottom-right overflow-hidden rounded-2xl border border-white/10 bg-neutral-950/90 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          open ? "scale-100 opacity-100 translate-y-0" : "pointer-events-none scale-95 opacity-0 translate-y-3"
         }`}
         style={{ WebkitBackdropFilter: "blur(24px) saturate(1.4)", backdropFilter: "blur(24px) saturate(1.4)" }}
       >
@@ -129,7 +131,7 @@ export function Header() {
               key={item.to}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="rounded-xl px-4 py-3 text-lg font-medium tracking-tight text-foreground/80 transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+              className="rounded-xl px-4 py-3 text-base font-medium tracking-tight text-white/85 transition-colors hover:bg-white/[0.06] hover:text-white"
             >
               {item.label}
             </Link>
@@ -139,7 +141,7 @@ export function Header() {
               setOpen(false);
               openSubscribe("mobile-nav");
             }}
-            className="mt-2 rounded-xl bg-foreground px-4 py-3 text-sm font-medium tracking-tight text-background"
+            className="mt-2 rounded-xl bg-white px-4 py-3 text-sm font-medium tracking-tight text-black"
           >
             Subscribe
           </button>
