@@ -83,7 +83,7 @@ function HomePage() {
 
       {/* ABOUT TEASER */}
       <div className="relative bg-orange-rich">
-        <Section className="text-foreground">
+        <Section className="text-foreground !pb-3 sm:!pb-4 md:!pb-6">
           <div className="grid gap-10 md:grid-cols-2 md:gap-20">
             <FadeIn>
               <p className="text-xs uppercase tracking-[0.4em] text-foreground/70">About</p>
