@@ -68,8 +68,7 @@ export function Header() {
           />
           <nav
             aria-label="Primary"
-            className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white/75 px-2 py-1.5 ring-1 ring-inset ring-white/60 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-500 ease-out border-white"
-            style={{ WebkitBackdropFilter: "blur(20px) saturate(1.6)", backdropFilter: "blur(20px) saturate(1.6)" }}
+            className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white px-2 py-1.5 ring-1 ring-inset ring-white shadow-[0_8px_28px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-500 ease-out border-white"
           >
             {NAV.map((item) => (
               <Link
@@ -89,11 +88,11 @@ export function Header() {
           </nav>
         </div>
 
-        {/* Subscribe — desktop only */}
+        {/* Subscribe — desktop only, transparent (no background shape) */}
         <div className="hidden shrink-0 items-center gap-2 md:flex">
           <button
             onClick={() => openSubscribe("header")}
-            className="rounded-full bg-foreground px-4 py-1.5 text-[12px] font-medium tracking-tight text-background transition-all duration-300 hover:scale-[1.03] hover:bg-foreground/90"
+            className="text-[12px] font-medium tracking-tight text-white transition-all duration-300 hover:scale-[1.03] hover:text-white/80"
           >
             Subscribe
           </button>
