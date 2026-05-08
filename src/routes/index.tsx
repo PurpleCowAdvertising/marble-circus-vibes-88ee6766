@@ -216,17 +216,17 @@ function HomePage() {
               ].map((p, i) => (
                 <div
                   key={i}
-                  className="group relative flex aspect-[3/2] flex-col items-center justify-center gap-2 overflow-hidden rounded-lg border border-foreground/10 bg-white p-4 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
+                  className="group relative flex aspect-[3/2] overflow-hidden rounded-lg border border-foreground/10 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
                 >
-                  <span className="absolute left-3 top-3 text-[9px] font-bold uppercase tracking-[0.2em] text-foreground/60">
-                    {p.tier}
-                  </span>
                   <img
                     src={p.variant === "full" ? partnerLogoFull : partnerLogoMark}
                     alt={`${p.tier} partner — placeholder logo`}
                     loading="lazy"
-                    className="max-h-[70%] w-auto max-w-[80%] object-contain transition-transform duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  <span className="absolute left-3 top-3 z-10 rounded-full bg-black/30 px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
+                    {p.tier}
+                  </span>
                 </div>
               ))}
             </div>

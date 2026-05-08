@@ -158,12 +158,12 @@ function SponsorsPage() {
                           className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground"
                         />
                       </div>
-                      <div className="mt-5 flex aspect-[3/2] items-center justify-center rounded-md bg-white p-4">
+                      <div className="mt-5 aspect-[3/2] overflow-hidden rounded-md">
                         <img
                           src={logo}
                           alt={`${s.name} — placeholder logo`}
                           loading="lazy"
-                          className="max-h-[80%] w-auto max-w-[85%] object-contain"
+                          className="h-full w-full object-cover"
                         />
                       </div>
                       <div className="mt-5">
