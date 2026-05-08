@@ -266,65 +266,6 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* ARTIST SPOTLIGHT MODAL */}
-      <AnimatePresence>
-        {spotlight && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setSpotlight(null)}
-            className="fixed inset-0 z-[90] flex items-center justify-center bg-foreground/70 p-4 backdrop-blur-md"
-            role="dialog"
-            aria-modal="true"
-            aria-label={`${spotlight.name} spotlight`}
-          >
-            <motion.div
-              initial={{ y: 24, opacity: 0, scale: 0.97 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: 12, opacity: 0, scale: 0.98 }}
-              transition={{ type: "spring", damping: 26, stiffness: 240 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-border bg-card shadow-[0_30px_80px_-20px_rgba(0,0,0,0.55)]"
-            >
-              <button
-                onClick={() => setSpotlight(null)}
-                aria-label="Close spotlight"
-                className="absolute right-3 top-3 z-10 rounded-full bg-background/80 p-2 text-foreground backdrop-blur-md transition-colors hover:bg-background"
-              >
-                <X size={18} />
-              </button>
-              <div className="grid sm:grid-cols-[5fr_6fr]">
-                <div className="relative aspect-square w-full overflow-hidden bg-muted sm:aspect-auto">
-                  <img
-                    src={spotlight.image}
-                    alt={spotlight.name}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col justify-center gap-4 p-6 md:p-8">
-                  <p className="text-[10px] uppercase tracking-[0.35em] text-accent">{spotlight.tag}</p>
-                  <h3 className="font-display text-3xl font-bold leading-none md:text-4xl">{spotlight.name}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground md:text-base">{spotlight.bio}</p>
-                  <div className="flex items-center gap-2 rounded-md border border-border bg-background/60 px-3 py-2 text-xs text-foreground">
-                    <Music2 size={14} className="text-accent" />
-                    <span className="uppercase tracking-widest">{spotlight.set}</span>
-                  </div>
-                  <Link
-                    to="/music"
-                    onClick={() => setSpotlight(null)}
-                    className="group mt-1 inline-flex items-center gap-2 self-start rounded-full bg-accent px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-accent-foreground transition-transform hover:scale-[1.03]"
-                  >
-                    See full lineup
-                    <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }
