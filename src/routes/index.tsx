@@ -40,7 +40,7 @@ export const Route = createFileRoute("/")({
 });
 
 const ARTISTS = [
-  "MAJOR LEAGUE DJZ", "TYLA", "AKA", "BLACK COFFEE", "NASTY C",
+  "MAJOR LEAGUE DJZ", "TYLA", "​", "BLACK COFFEE", "NASTY C",
   "MUSA KEYS", "UNCLE WAFFLES", "FOCALISTIC", "KABZA DE SMALL", "SHO MADJOZI",
 ];
 
