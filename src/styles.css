@@ -358,3 +358,31 @@
     html { scroll-behavior: auto; }
   }
 }
+
+@layer utilities {
+  /* Safe-area spacing for folding sections.
+     Prevents adjacent sections from visually overlapping when one folds
+     over another (negative margin + rounded top + drop shadow). */
+
+  /* Apply to the section ABOVE a fold — guarantees breathing room
+     beneath its content before the next section folds up. */
+  .fold-safe-above {
+    padding-bottom: clamp(3rem, 8vw, 6rem);
+  }
+
+  /* Apply to the folding section ITSELF — pulls it up to create the
+     fold and adds matching top padding so its content never collides
+     with the rounded edge or shadow. */
+  .fold-safe {
+    margin-top: clamp(-4rem, -4vw, -2.5rem);
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  /* Stronger fold (used for hero → carousel where the image has its
+     own bottom padding to absorb the overlap). */
+  .fold-safe-strong {
+    margin-top: clamp(-8rem, -8vw, -4rem);
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+  }
+}
+
