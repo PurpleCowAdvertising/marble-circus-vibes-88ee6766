@@ -12,6 +12,8 @@ import blackCoffee from "@/assets/artists/black-coffee.png";
 import nastyC from "@/assets/artists/nasty-c.png";
 import musaKeys from "@/assets/artists/musa-keys.png";
 import uncleWaffles from "@/assets/artists/uncle-waffles.png";
+import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
+import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
 
 type Headliner = {
   name: string;
