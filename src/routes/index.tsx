@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { useSubscribePopup } from "@/components/site/SubscribePopup";
+import heroPoster from "@/assets/hero-poster.jpg";
 import majorLeague from "@/assets/artists/major-league.jpg";
 import tyla from "@/assets/artists/tyla.jpg";
 import blackCoffee from "@/assets/artists/black-coffee.jpg";
@@ -48,50 +49,40 @@ function HomePage() {
     <>
       {/* HERO */}
       <div ref={heroRef} className="relative min-h-[100svh] overflow-hidden">
-        <div className="absolute inset-0 grid-lines opacity-50" />
-        <div className="absolute -left-32 top-1/3 h-[500px] w-[500px] rounded-full bg-primary/30 blur-[120px]" />
-        <div className="absolute -right-32 top-1/4 h-[400px] w-[400px] rounded-full bg-accent/20 blur-[120px]" />
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroPoster})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background" />
 
         <motion.div
           style={{ y, opacity }}
-          className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-center px-6 pt-24 md:px-10"
+          className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-end px-5 pb-16 pt-28 sm:px-6 md:px-10 md:pb-24"
         >
-          <FadeIn>
-            <p className="text-xs uppercase tracking-[0.5em] text-primary md:text-sm">
-              Sony Music · South Africa
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <h1 className="mt-6 font-display text-[clamp(3.5rem,12vw,11rem)] font-bold leading-[0.85] tracking-tighter text-balance">
-              Sound<br />
-              <span className="text-primary italic">that moves</span><br />
-              a continent.
-            </h1>
-          </FadeIn>
           <FadeIn delay={0.25}>
-            <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-              <span className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/90 sm:gap-6">
+              <span className="flex items-center gap-2 rounded-full bg-background/60 px-4 py-2 backdrop-blur-md">
                 <Calendar size={16} className="text-primary" />
-                Coming 2026
+                19 Sep 2026
               </span>
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 rounded-full bg-background/60 px-4 py-2 backdrop-blur-md">
                 <MapPin size={16} className="text-primary" />
-                Johannesburg · Cape Town · Durban
+                FNB Stadium · Johannesburg
               </span>
             </div>
           </FadeIn>
           <FadeIn delay={0.4}>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
               <button
                 onClick={() => open("hero")}
-                className="group flex items-center gap-3 rounded-full bg-primary px-7 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105"
+                className="group flex items-center gap-3 rounded-full bg-primary px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 sm:px-7 sm:py-4 sm:text-sm"
               >
                 Get the drop
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </button>
               <Link
                 to="/music"
-                className="rounded-full border border-border px-7 py-4 text-sm font-bold uppercase tracking-widest hover:border-primary hover:text-primary"
+                className="rounded-full border border-border bg-background/40 px-6 py-3.5 text-xs font-bold uppercase tracking-widest backdrop-blur-md hover:border-primary hover:text-primary sm:px-7 sm:py-4 sm:text-sm"
               >
                 Explore the lineup
               </Link>
@@ -99,7 +90,7 @@ function HomePage() {
           </FadeIn>
         </motion.div>
 
-        <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-xs uppercase tracking-[0.4em] text-muted-foreground">
+        <div className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.4em] text-muted-foreground sm:text-xs">
           Scroll
         </div>
       </div>
