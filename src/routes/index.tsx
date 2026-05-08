@@ -138,10 +138,10 @@ function HomePage() {
           {HEADLINERS.map((artist, i) => (
             <motion.div
               key={artist.name}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 120, scale: 0.92, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.5, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
               <div
                 className="group relative block aspect-[3/4] w-full overflow-hidden rounded-lg border border-border bg-card text-left"
