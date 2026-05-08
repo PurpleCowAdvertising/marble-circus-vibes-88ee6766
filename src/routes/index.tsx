@@ -166,12 +166,15 @@ function HomePage() {
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {HEADLINERS.map((artist, i) => (
-            <FadeIn key={artist.name} delay={i * 0.05}>
-              <button
-                type="button"
-                onClick={() => setSpotlight(artist)}
-                aria-label={`Open spotlight for ${artist.name}`}
-                className="group relative block aspect-[3/4] w-full overflow-hidden rounded-lg border border-border bg-card text-left hover-lift focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            <motion.div
+              key={artist.name}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div
+                className="group relative block aspect-[3/4] w-full overflow-hidden rounded-lg border border-border bg-card text-left"
               >
                 <img
                   src={artist.image}
@@ -184,12 +187,12 @@ function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent transition-opacity duration-500 group-hover:via-background/30" />
                 <div className="absolute inset-x-0 bottom-0 flex flex-col p-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
                   <h3 className="font-display text-3xl font-bold">{artist.name}</h3>
-                  <span className="mt-1 inline-flex items-center gap-1 text-[11px] uppercase tracking-widest text-muted-foreground opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    Spotlight <ArrowRight size={12} />
+                  <span className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
+                    {artist.tag}
                   </span>
                 </div>
-              </button>
-            </FadeIn>
+              </div>
+            </motion.div>
           ))}
         </div>
       </Section>
