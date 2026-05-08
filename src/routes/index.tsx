@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { ArrowRight, Calendar, MapPin } from "lucide-react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { ArrowRight, Calendar, MapPin, X, Music2 } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { useSubscribePopup } from "@/components/site/SubscribePopup";
 import heroPoster from "@/assets/hero-poster.jpg";
@@ -13,13 +13,21 @@ import nastyC from "@/assets/artists/nasty-c.png";
 import musaKeys from "@/assets/artists/musa-keys.png";
 import uncleWaffles from "@/assets/artists/uncle-waffles.png";
 
-const HEADLINERS = [
-  { name: "MAJOR LEAGUE DJZ", image: majorLeague },
-  { name: "TYLA", image: tyla },
-  { name: "BLACK COFFEE", image: blackCoffee },
-  { name: "NASTY C", image: nastyC },
-  { name: "MUSA KEYS", image: musaKeys },
-  { name: "UNCLE WAFFLES", image: uncleWaffles },
+type Headliner = {
+  name: string;
+  image: string;
+  tag: string;
+  bio: string;
+  set: string;
+};
+
+const HEADLINERS: Headliner[] = [
+  { name: "MAJOR LEAGUE DJZ", image: majorLeague, tag: "Amapiano · Twin Force", bio: "Twin brothers Banele and Bandile have taken Balcony Mix global, turning amapiano into the soundtrack of the diaspora.", set: "Main Stage · Closing Set" },
+  { name: "TYLA", image: tyla, tag: "Pop · Afrobeats", bio: "Grammy-winning sensation behind ‘Water’. A new generation of South African pop, built for arenas and TikTok feeds alike.", set: "Main Stage · Headline" },
+  { name: "BLACK COFFEE", image: blackCoffee, tag: "Deep House · Icon", bio: "The architect of South African house. Decades of craft, residencies from Ibiza to NYC, and a sound that has shaped a continent.", set: "Main Stage · Sunset" },
+  { name: "NASTY C", image: nastyC, tag: "Hip-Hop · Lyricist", bio: "The Coolest Kid in Africa. Sharp pen, world-class delivery and a catalogue that bridges Durban and the Billboard charts.", set: "Main Stage · Prime Time" },
+  { name: "MUSA KEYS", image: musaKeys, tag: "Amapiano · Producer", bio: "From Selema to Unite The World — Musa Keys turns log-drum grooves into stadium-sized choruses.", set: "Second Stage · Headline" },
+  { name: "UNCLE WAFFLES", image: uncleWaffles, tag: "Amapiano · DJ", bio: "The face of new amapiano. Sold-out tours from London to Lagos and a stage presence that turns clubs into cathedrals.", set: "Second Stage · Late Night" },
 ];
 
 export const Route = createFileRoute("/")({
@@ -45,6 +53,18 @@ function HomePage() {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const [spotlight, setSpotlight] = useState<Headliner | null>(null);
+
+  useEffect(() => {
+    if (!spotlight) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setSpotlight(null);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [spotlight]);
 
   return (
     <>
@@ -160,12 +180,17 @@ function HomePage() {
         </FadeIn>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {HEADLINERS.map(({ name, image }, i) => (
-            <FadeIn key={name} delay={i * 0.05}>
-              <div className="group relative aspect-[3/4] overflow-hidden rounded-lg border border-border bg-card hover-lift">
+          {HEADLINERS.map((artist, i) => (
+            <FadeIn key={artist.name} delay={i * 0.05}>
+              <button
+                type="button"
+                onClick={() => setSpotlight(artist)}
+                aria-label={`Open spotlight for ${artist.name}`}
+                className="group relative block aspect-[3/4] w-full overflow-hidden rounded-lg border border-border bg-card text-left hover-lift focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              >
                 <img
-                  src={image}
-                  alt={name}
+                  src={artist.image}
+                  alt={artist.name}
                   width={768}
                   height={1024}
                   loading="lazy"
@@ -173,9 +198,12 @@ function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent transition-opacity duration-500 group-hover:via-background/30" />
                 <div className="absolute inset-x-0 bottom-0 flex flex-col p-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
-                  <h3 className="font-display text-3xl font-bold">{name}</h3>
+                  <h3 className="font-display text-3xl font-bold">{artist.name}</h3>
+                  <span className="mt-1 inline-flex items-center gap-1 text-[11px] uppercase tracking-widest text-muted-foreground opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                    Spotlight <ArrowRight size={12} />
+                  </span>
                 </div>
-              </div>
+              </button>
             </FadeIn>
           ))}
         </div>
@@ -228,6 +256,66 @@ function HomePage() {
           </FadeIn>
         </div>
       </Section>
+
+      {/* ARTIST SPOTLIGHT MODAL */}
+      <AnimatePresence>
+        {spotlight && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setSpotlight(null)}
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-foreground/70 p-4 backdrop-blur-md"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${spotlight.name} spotlight`}
+          >
+            <motion.div
+              initial={{ y: 24, opacity: 0, scale: 0.97 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 12, opacity: 0, scale: 0.98 }}
+              transition={{ type: "spring", damping: 26, stiffness: 240 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-border bg-card shadow-[0_30px_80px_-20px_rgba(0,0,0,0.55)]"
+            >
+              <button
+                onClick={() => setSpotlight(null)}
+                aria-label="Close spotlight"
+                className="absolute right-3 top-3 z-10 rounded-full bg-background/80 p-2 text-foreground backdrop-blur-md transition-colors hover:bg-background"
+              >
+                <X size={18} />
+              </button>
+              <div className="grid sm:grid-cols-[5fr_6fr]">
+                <div className="relative aspect-square w-full overflow-hidden bg-muted sm:aspect-auto">
+                  <img
+                    src={spotlight.image}
+                    alt={spotlight.name}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col justify-center gap-4 p-6 md:p-8">
+                  <p className="text-[10px] uppercase tracking-[0.35em] text-accent">{spotlight.tag}</p>
+                  <h3 className="font-display text-3xl font-bold leading-none md:text-4xl">{spotlight.name}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground md:text-base">{spotlight.bio}</p>
+                  <div className="flex items-center gap-2 rounded-md border border-border bg-background/60 px-3 py-2 text-xs text-foreground">
+                    <Music2 size={14} className="text-accent" />
+                    <span className="uppercase tracking-widest">{spotlight.set}</span>
+                  </div>
+                  <Link
+                    to="/music"
+                    onClick={() => setSpotlight(null)}
+                    className="group mt-1 inline-flex items-center gap-2 self-start rounded-full bg-accent px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-accent-foreground transition-transform hover:scale-[1.03]"
+                  >
+                    See full lineup
+                    <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
