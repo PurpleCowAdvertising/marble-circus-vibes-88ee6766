@@ -58,26 +58,35 @@ export function Header() {
         </Link>
 
         {/* Floating glass pill nav — desktop */}
-        <nav
-          aria-label="Primary"
-          className="pointer-events-auto flex items-center gap-1 rounded-full bg-white px-2 py-1.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-all duration-500 ease-out"
-        >
-          {NAV.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              activeOptions={{ exact: item.to === "/" }}
-              className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-black transition-colors duration-300 hover:text-black lg:px-4"
-              activeProps={{ className: "!text-black" }}
-            >
-              <span className="relative z-10">{item.label}</span>
-              <span
-                aria-hidden
-                className="absolute inset-0 -z-0 rounded-full bg-gradient-to-b from-accent/70 to-accent/45 ring-1 ring-inset ring-white/30 shadow-[0_4px_14px_-2px_color-mix(in_oklab,var(--color-accent)_55%,transparent),inset_0_1px_0_rgba(255,255,255,0.45)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
-              />
-            </Link>
-          ))}
-        </nav>
+        <div className="relative">
+          {/* Scroll-responsive glow — strongest over hero, fades as you scroll */}
+          <span
+            aria-hidden
+            className={`pointer-events-none absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_55%,transparent),transparent_70%)] blur-2xl transition-opacity duration-700 ease-out ${
+              scrolled ? "opacity-0" : "opacity-90"
+            }`}
+          />
+          <nav
+            aria-label="Primary"
+            className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white px-2 py-1.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-all duration-500 ease-out"
+          >
+            {NAV.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                activeOptions={{ exact: item.to === "/" }}
+                className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-black transition-colors duration-300 hover:text-black lg:px-4"
+                activeProps={{ className: "!text-black" }}
+              >
+                <span className="relative z-10">{item.label}</span>
+                <span
+                  aria-hidden
+                  className="absolute inset-0 -z-0 rounded-full bg-gradient-to-b from-accent/70 to-accent/45 ring-1 ring-inset ring-white/30 shadow-[0_4px_14px_-2px_color-mix(in_oklab,var(--color-accent)_55%,transparent),inset_0_1px_0_rgba(255,255,255,0.45)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
+                />
+              </Link>
+            ))}
+          </nav>
+        </div>
 
         {/* Subscribe — desktop only */}
         <div className="flex shrink-0 items-center gap-2">
