@@ -27,15 +27,25 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out ${
         scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border"
-          : "bg-transparent"
+          ? "bg-background/70 backdrop-blur-xl border-b border-border opacity-95"
+          : "bg-transparent opacity-100"
       }`}
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-10">
+      <div
+        className={`mx-auto flex max-w-[1400px] items-center justify-between px-5 sm:px-6 md:px-10 transition-all duration-500 ease-out ${
+          scrolled ? "py-2 md:py-2" : "py-4 md:py-4"
+        }`}
+      >
         <Link to="/" aria-label="Scorpion Kings Live" className="flex items-center">
-          <img src={logo} alt="Scorpion Kings Live" className="h-16 w-auto md:h-20" />
+          <img
+            src={logo}
+            alt="Scorpion Kings Live"
+            className={`w-auto transition-all duration-500 ease-out ${
+              scrolled ? "h-10 md:h-12" : "h-14 md:h-20"
+            }`}
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
