@@ -90,7 +90,7 @@ export function Header() {
         </div>
 
         {/* Subscribe — desktop only */}
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="hidden shrink-0 items-center gap-2 md:flex">
           <button
             onClick={() => openSubscribe("header")}
             className="rounded-full bg-foreground px-4 py-1.5 text-[12px] font-medium tracking-tight text-background transition-all duration-300 hover:scale-[1.03] hover:bg-foreground/90"
