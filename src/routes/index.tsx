@@ -54,8 +54,8 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <div ref={heroRef} className="relative z-0 isolate overflow-hidden bg-orange-rich pt-4 md:pt-5">
-        <div className="mx-auto max-w-[1400px] px-5 pb-3 sm:px-6 md:px-10 md:pb-5 md:pt-12">
+      <div ref={heroRef} className="relative z-0 isolate overflow-hidden bg-orange-rich pt-0 md:pt-0">
+        <div className="mx-auto max-w-[1400px] px-5 pb-3 sm:px-6 md:px-10 md:pb-5 md:pt-2">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
               <div className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/20 to-transparent blur-2xl" />
