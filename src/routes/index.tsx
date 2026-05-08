@@ -96,11 +96,11 @@ function HomePage() {
         <div className="marquee">
           <div className="marquee-track">
             {[...ARTISTS, ...ARTISTS, ...ARTISTS].map((a, i) => (
-              <span key={i} className="flex items-center gap-5 md:gap-8">
-                <span className="flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 font-display text-sm uppercase tracking-widest text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.04] hover:border-white/60 hover:bg-white/20 md:px-5 md:py-2.5 md:text-base">
+              <span key={i} className="flex items-center gap-3 md:gap-8">
+                <span className="flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1.5 font-display text-xs uppercase tracking-widest text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.04] hover:border-white/60 hover:bg-white/20 sm:px-4 sm:py-2 sm:text-sm md:px-5 md:py-2.5 md:text-base">
                   {a}
                 </span>
-                <span className="h-1.5 w-1.5 rounded-full bg-white/70" aria-hidden />
+                <span className="h-1 w-1 rounded-full bg-white/70 md:h-1.5 md:w-1.5" aria-hidden />
               </span>
             ))}
           </div>
