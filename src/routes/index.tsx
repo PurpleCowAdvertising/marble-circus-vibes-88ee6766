@@ -103,7 +103,7 @@ function HomePage() {
       </div>
 
       {/* MARQUEE */}
-      <div className="relative z-10 border-y-4 border-black bg-[#0a0a0a] py-8 shadow-[inset_0_0_60px_rgba(234,173,31,0.25)]">
+      <div className="relative z-10 border-y-4 border-black py-8 shadow-[inset_0_0_60px_rgba(234,173,31,0.25)] bg-orange-100">
         <div className="marquee">
           <div className="marquee-track font-display text-5xl font-black uppercase md:text-7xl">
             {[...ARTISTS, ...ARTISTS].map((a, i) => {
