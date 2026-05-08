@@ -130,9 +130,10 @@ function HomePage() {
               </p>
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 text-foreground hover:text-accent"
+                className="group inline-flex items-center gap-2 text-foreground hover:text-accent"
               >
-                Read our story <ArrowRight size={16} />
+                <span className="story-link">Read our story</span>
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
           </FadeIn>
@@ -161,18 +162,18 @@ function HomePage() {
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {HEADLINERS.map(({ name, image }, i) => (
             <FadeIn key={name} delay={i * 0.05}>
-              <div className="group relative aspect-[3/4] overflow-hidden rounded-lg border border-border bg-card">
+              <div className="group relative aspect-[3/4] overflow-hidden rounded-lg border border-border bg-card hover-lift">
                 <img
                   src={image}
                   alt={name}
                   width={768}
                   height={1024}
                   loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-                <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <p className="text-xs uppercase tracking-widest text-primary">Headliner {i + 1}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent transition-opacity duration-500 group-hover:via-background/30" />
+                <div className="absolute inset-x-0 bottom-0 flex flex-col p-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
+                  <p className="text-xs uppercase tracking-widest text-accent">Headliner {i + 1}</p>
                   <h3 className="mt-1 font-display text-3xl font-bold">{name}</h3>
                 </div>
               </div>
@@ -190,17 +191,18 @@ function HomePage() {
         <FadeIn delay={0.1}>
           <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-4">
             {["HEADLINE", "MAJOR", "MAJOR", "SUPPORTING", "SUPPORTING", "SUPPORTING", "SUPPORTING", "SUPPORTING"].map((tier, i) => (
-              <div key={i} className="flex aspect-[3/2] items-center justify-center bg-card text-xs uppercase tracking-widest text-muted-foreground">
-                {tier}
+              <div key={i} className="group flex aspect-[3/2] items-center justify-center bg-card text-xs uppercase tracking-widest text-muted-foreground transition-all duration-500 hover:bg-accent/5 hover:text-accent">
+                <span className="transition-transform duration-500 group-hover:scale-110">{tier}</span>
               </div>
             ))}
           </div>
           <div className="mt-8">
             <Link
               to="/sponsors"
-              className="inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-accent"
+              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-accent"
             >
-              Become a partner <ArrowRight size={16} />
+              <span className="story-link">Become a partner</span>
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </FadeIn>
