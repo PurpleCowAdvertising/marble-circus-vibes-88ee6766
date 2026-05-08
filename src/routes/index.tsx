@@ -56,7 +56,7 @@ function HomePage() {
               <div className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/20 to-transparent blur-2xl" />
 
               {/* Hero poster — desktop / mobile */}
-              <div className="relative mx-auto w-full max-w-[1100px] overflow-hidden rounded-2xl border border-border shadow-2xl">
+              <div className="relative w-full overflow-hidden rounded-2xl border border-border shadow-2xl">
                 <picture>
                   <source media="(max-width: 767px)" srcSet={heroPosterMobile} />
                   <img
