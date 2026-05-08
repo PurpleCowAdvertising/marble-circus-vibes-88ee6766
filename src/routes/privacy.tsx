@@ -4,9 +4,9 @@ import { FadeIn, PageHero, Section } from "@/components/site/Section";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Scorpion Kings" },
-      { name: "description", content: "How Scorpion Kings collects, uses and protects your personal data." },
-      { property: "og:title", content: "Privacy Policy — Scorpion Kings" },
+      { title: "Privacy Policy — Sony Music Africa" },
+      { name: "description", content: "How Sony Music Africa collects, uses and protects your personal data." },
+      { property: "og:title", content: "Privacy Policy — Sony Music Africa" },
       { property: "og:description", content: "How we handle your data." },
     ],
   }),
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/privacy")({
 });
 
 const SECTIONS = [
-  { h: "1. Introduction", p: "This Privacy Policy describes how Scorpion Kings (\"Scorpion Kings\", \"we\", \"us\") collects, uses, discloses and protects personal information about visitors to this website. By using this website you agree to the practices described here." },
+  { h: "1. Introduction", p: "This Privacy Policy describes how Sony Music Africa (\"Sony Music Africa\", \"we\", \"us\") collects, uses, discloses and protects personal information about visitors to this website. By using this website you agree to the practices described here." },
   { h: "2. Information we collect", p: "We collect information you provide directly (such as your name, email address and any messages submitted via our forms) and information collected automatically through cookies and analytics tools (such as IP address, device type and browsing behaviour)." },
   { h: "3. How we use your information", p: "We use your information to send newsletters and event updates you've subscribed to, respond to enquiries, improve our website and content, and comply with legal obligations." },
   { h: "4. Sharing your information", p: "We do not sell your personal information. We may share data with trusted service providers (e.g. email infrastructure, analytics) under strict confidentiality, and where required by law." },
@@ -31,7 +31,7 @@ function PrivacyPage() {
       <PageHero
         eyebrow="Legal"
         title="Privacy Policy"
-        description="Last updated: this page contains placeholder copy pending review by the Scorpion Kings legal team."
+        description="Last updated: this page contains placeholder copy pending review by the Sony Music Africa legal team."
       />
 
       <Section className="border-t border-border">
