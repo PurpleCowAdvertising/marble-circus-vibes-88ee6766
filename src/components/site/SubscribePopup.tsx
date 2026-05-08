@@ -1,11 +1,10 @@
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-const STORAGE_KEY = "sony_sa_subscribe_dismissed";
 
 const schema = z.object({
   email: z.string().trim().email({ message: "Enter a valid email" }).max(255),
@@ -43,33 +42,10 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
 
   const close = useCallback(() => {
     setIsOpen(false);
-    if (typeof window !== "undefined") {
-      localStorage.setItem(STORAGE_KEY, String(Date.now()));
-    }
   }, []);
 
-  // Auto-trigger after 15s + exit-intent (first visit only)
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const dismissed = localStorage.getItem(STORAGE_KEY);
-    if (dismissed) return;
-
-    const timer = window.setTimeout(() => open("auto-timer"), 15000);
-
-    const onMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
-        open("exit-intent");
-        window.clearTimeout(timer);
-        document.removeEventListener("mouseleave", onMouseLeave);
-      }
-    };
-    document.addEventListener("mouseleave", onMouseLeave);
-
-    return () => {
-      window.clearTimeout(timer);
-      document.removeEventListener("mouseleave", onMouseLeave);
-    };
-  }, [open]);
+  // Popup is triggered manually via user action (header/footer/CTA buttons).
+  // No auto-trigger on load or exit-intent.
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
