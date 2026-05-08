@@ -68,7 +68,7 @@ function HomePage() {
               <div aria-hidden="true" className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/20 to-transparent blur-2xl" />
 
               {/* Hero poster — desktop / mobile */}
-              <figure className="relative w-full overflow-hidden rounded-2xl border border-border shadow-2xl">
+              <figure className="relative w-full overflow-hidden">
                 <picture>
                   <source media="(max-width: 767px)" srcSet={heroPosterMobile} />
                   <img
