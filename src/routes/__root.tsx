@@ -125,7 +125,7 @@ function RootComponent() {
       <SubscribeProvider>
         <div className="relative flex min-h-screen flex-col">
           <Header />
-          <main className="relative z-10 flex-1 pt-20">
+          <main className="relative z-40 isolate bg-orange-rich py-[18px]">
             <Outlet />
           </main>
           <Footer />
