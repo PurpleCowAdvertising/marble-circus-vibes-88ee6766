@@ -112,18 +112,34 @@ function HomePage() {
       </div>
 
       {/* MARQUEE — artist roster */}
-      <div className="relative z-10 overflow-hidden bg-orange-rich py-4 md:py-6">
+      <div
+        className="relative z-10 overflow-hidden bg-orange-rich py-4 md:py-6"
+        role="region"
+        aria-label="Featured artists. Pauses on hover or focus."
+      >
         <div className="marquee">
-          <div className="marquee-track">
-            {[...ARTISTS, ...ARTISTS, ...ARTISTS].map((a, i) => (
-              <span key={i} className="flex items-center gap-3 md:gap-8">
-                <span className="flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1.5 font-display text-xs uppercase tracking-widest text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.04] hover:border-white/60 hover:bg-white/20 sm:px-4 sm:py-2 sm:text-sm md:px-5 md:py-2.5 md:text-base">
-                  {a}
-                </span>
-                <span className="h-1 w-1 rounded-full bg-white/70 md:h-1.5 md:w-1.5" aria-hidden />
-              </span>
-            ))}
-          </div>
+          <ul className="marquee-track items-center" aria-label="Artist roster">
+            {[...ARTISTS, ...ARTISTS, ...ARTISTS].map((a, i) => {
+              const isDuplicate = i >= ARTISTS.length;
+              return (
+                <li
+                  key={i}
+                  className="flex items-center gap-3 md:gap-8"
+                  aria-hidden={isDuplicate || undefined}
+                >
+                  <Link
+                    to="/music"
+                    tabIndex={isDuplicate ? -1 : 0}
+                    aria-label={`View ${a} on the artists page`}
+                    className="flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1.5 font-display text-xs uppercase tracking-widest text-white backdrop-blur-md outline-none transition-all duration-300 hover:scale-[1.04] hover:border-white/60 hover:bg-white/20 focus-visible:scale-[1.04] focus-visible:border-white focus-visible:bg-white/25 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-orange-rich sm:px-4 sm:py-2 sm:text-sm md:px-5 md:py-2.5 md:text-base"
+                  >
+                    {a}
+                  </Link>
+                  <span className="h-1 w-1 rounded-full bg-white/70 md:h-1.5 md:w-1.5" aria-hidden />
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
 
