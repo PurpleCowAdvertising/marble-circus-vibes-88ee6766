@@ -218,7 +218,8 @@ function HomePage() {
       </div>
 
       {/* CTA */}
-      <Section className="border-t border-border surface-light">
+      <div className="surface-light">
+      <Section className="border-t border-border">
         <div className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/20 via-card to-card p-6 md:p-12">
           <FadeIn>
             <h2 className="font-display text-[clamp(1.75rem,8vw,4.5rem)] font-bold leading-tight whitespace-nowrap md:text-7xl">
