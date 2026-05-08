@@ -68,7 +68,8 @@ export function Header() {
           />
           <nav
             aria-label="Primary"
-            className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white px-2 py-1.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-all duration-500 ease-out"
+            className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white/75 px-2 py-1.5 ring-1 ring-inset ring-white/60 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-500 ease-out"
+            style={{ WebkitBackdropFilter: "blur(20px) saturate(1.6)", backdropFilter: "blur(20px) saturate(1.6)" }}
           >
             {NAV.map((item) => (
               <Link
