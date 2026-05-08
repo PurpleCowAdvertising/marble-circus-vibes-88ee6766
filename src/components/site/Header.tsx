@@ -46,18 +46,18 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5">
-        {/* Logo — bare, no chrome */}
-        <Link to="/" aria-label="Scorpion Kings Live" className="flex shrink-0 items-center">
+        {/* Logo — desktop only (mobile uses centered floating pill below) */}
+        <Link to="/" aria-label="Scorpion Kings Live" className="hidden shrink-0 items-center md:flex">
           <img
             src={logo}
             alt="Scorpion Kings Live"
             className={`w-auto transition-all duration-500 ease-out ${
-              scrolled ? "h-7 md:h-8" : "h-8 md:h-10"
+              scrolled ? "h-8" : "h-10"
             }`}
           />
         </Link>
 
-        {/* Floating glass pill nav */}
+        {/* Floating glass pill nav — desktop */}
         <nav
           aria-label="Primary"
           className={`pointer-events-auto hidden items-center gap-1 rounded-full border border-white/40 bg-white/80 px-2 py-1.5 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] backdrop-blur-2xl transition-all duration-500 ease-out md:flex ${
@@ -82,23 +82,46 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Right cluster */}
-        <div className="flex shrink-0 items-center gap-2">
+        {/* Subscribe — desktop only */}
+        <div className="hidden shrink-0 items-center gap-2 md:flex">
           <button
             onClick={() => openSubscribe("header")}
-            className="hidden rounded-full bg-foreground px-4 py-1.5 text-[12px] font-medium tracking-tight text-background transition-all duration-300 hover:scale-[1.03] hover:bg-foreground/90 md:inline-flex"
+            className="rounded-full bg-foreground px-4 py-1.5 text-[12px] font-medium tracking-tight text-background transition-all duration-300 hover:scale-[1.03] hover:bg-foreground/90"
           >
             Subscribe
           </button>
-          <button
-            onClick={() => setOpen(!open)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 bg-background/40 text-foreground backdrop-blur-2xl transition-colors hover:bg-foreground/[0.06] md:hidden"
-            style={{ WebkitBackdropFilter: "blur(24px) saturate(1.4)", backdropFilter: "blur(24px) saturate(1.4)" }}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
+        </div>
+
+        {/* Mobile — single centered floating glass capsule */}
+        <div className="flex w-full items-center justify-center md:hidden">
+          <div
+            className="pointer-events-auto flex w-full max-w-[420px] items-center justify-between gap-3 rounded-full border border-white/40 bg-white/80 py-1.5 pl-2 pr-1.5 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
+            style={{ WebkitBackdropFilter: "blur(24px) saturate(1.6)", backdropFilter: "blur(24px) saturate(1.6)" }}
           >
-            {open ? <X size={18} strokeWidth={1.75} /> : <Menu size={18} strokeWidth={1.75} />}
-          </button>
+            <Link to="/" aria-label="Scorpion Kings Live" className="flex shrink-0 items-center pl-1.5">
+              <img src={logo} alt="Scorpion Kings Live" className="h-6 w-auto" />
+            </Link>
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              className="group flex items-center gap-2 rounded-full bg-neutral-950 px-3.5 py-1.5 text-[12px] font-medium tracking-tight text-white transition-transform active:scale-95"
+            >
+              <span className="relative inline-block h-3 w-4">
+                <span
+                  className={`absolute left-0 right-0 top-1/2 block h-px bg-white transition-transform duration-300 ${
+                    open ? "translate-y-0 rotate-45" : "-translate-y-[3px] rotate-0"
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 right-0 top-1/2 block h-px bg-white transition-transform duration-300 ${
+                    open ? "translate-y-0 -rotate-45" : "translate-y-[3px] rotate-0"
+                  }`}
+                />
+              </span>
+              <span>{open ? "Close" : "Menu"}</span>
+            </button>
+          </div>
         </div>
       </div>
 
