@@ -54,7 +54,7 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <div ref={heroRef} className="relative overflow-hidden bg-orange-rich pt-4 md:pt-5">
+      <div ref={heroRef} className="relative z-0 isolate overflow-hidden bg-orange-rich pt-4 md:pt-5">
         <div className="mx-auto max-w-[1400px] px-5 pb-3 sm:px-6 md:px-10 md:pb-5 md:pt-12">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
@@ -78,12 +78,12 @@ function HomePage() {
       </div>
 
       {/* ARTIST CAROUSEL — folds up over hero */}
-      <div className="relative z-20 -mt-16 md:-mt-32">
+      <div className="relative z-10 isolate -mt-16 md:-mt-32">
         <ArtistCarousel />
       </div>
 
       {/* ABOUT TEASER */}
-      <div className="relative bg-orange-rich">
+      <div className="relative z-20 isolate bg-orange-rich">
         <Section className="text-foreground !pb-3 sm:!pb-4 md:!pb-6">
           <div className="grid gap-10 md:grid-cols-2 md:gap-20">
             <FadeIn>
@@ -116,7 +116,7 @@ function HomePage() {
       </div>
 
       {/* MUSIC PREVIEW */}
-      <div className="surface-light relative z-30 rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)]">
+      <div className="surface-light relative z-30 isolate rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)]">
       <Section>
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -170,7 +170,7 @@ function HomePage() {
       </div>
 
       {/* SPONSORS STRIP */}
-      <div className="relative bg-orange-rich">
+      <div className="relative z-40 isolate bg-orange-rich">
         <Section className="text-foreground">
           <FadeIn>
             {/* On orange background, use BLACK text for legibility */}
