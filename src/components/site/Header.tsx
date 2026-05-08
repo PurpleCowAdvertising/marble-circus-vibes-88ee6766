@@ -15,7 +15,7 @@ const NAV = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [open, setOpen] = useState(false);
+  
   const { open: openSubscribe } = useSubscribePopup();
 
   useEffect(() => {
