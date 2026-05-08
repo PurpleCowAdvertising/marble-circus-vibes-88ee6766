@@ -52,12 +52,29 @@ function HomePage() {
       <div ref={heroRef} className="relative overflow-hidden bg-background pt-16 md:pt-20">
         <div className="mx-auto grid max-w-[1400px] items-center gap-8 px-5 pb-10 sm:px-6 md:grid-cols-[1.1fr_1fr] md:gap-12 md:px-10 md:pb-20 md:pt-12">
           <motion.div style={{ y, opacity }} className="order-2 md:order-1">
+            <FadeIn delay={0.05}>
+              <div
+                className="relative -ml-2 mb-4 h-32 w-full max-w-[360px] sm:h-40 sm:max-w-[420px] md:mb-5 md:h-44"
+                style={{
+                  WebkitMaskImage:
+                    "radial-gradient(ellipse 70% 80% at 35% 55%, #000 35%, transparent 75%)",
+                  maskImage:
+                    "radial-gradient(ellipse 70% 80% at 35% 55%, #000 35%, transparent 75%)",
+                }}
+              >
+                <img
+                  src={scorpionKings}
+                  alt="The Scorpion Kings — Kabza De Small & DJ Maphorisa"
+                  className="h-full w-full object-cover object-top opacity-95"
+                />
+              </div>
+            </FadeIn>
             <FadeIn delay={0.15}>
-              <p className="text-[10px] uppercase tracking-[0.4em] text-primary sm:text-xs">
-                Sony Music · presents
+              <p className="text-[10px] uppercase tracking-[0.4em] text-accent sm:text-xs">
+                Sony Music · presents · The Scorpion Kings
               </p>
               <h1 className="mt-3 font-display text-4xl font-bold leading-[0.95] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                The biggest amapiano show of <span className="text-primary italic">2026.</span>
+                The biggest amapiano show of <span className="text-accent italic">2026.</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.3}>
