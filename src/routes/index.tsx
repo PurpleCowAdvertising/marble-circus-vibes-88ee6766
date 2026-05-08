@@ -168,18 +168,20 @@ function HomePage() {
         </FadeIn>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {ARTISTS.slice(0, 6).map((name, i) => (
+          {HEADLINERS.map(({ name, image }, i) => (
             <FadeIn key={name} delay={i * 0.05}>
               <div className="group relative aspect-[3/4] overflow-hidden rounded-lg border border-border bg-card">
-                <div
-                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
-                  style={{
-                    background: `linear-gradient(135deg, oklch(0.68 0.27 ${12 + i * 30}) 0%, oklch(0.2 0.05 290) 100%)`,
-                  }}
+                <img
+                  src={image}
+                  alt={name}
+                  width={768}
+                  height={1024}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <p className="text-xs uppercase tracking-widest text-primary">Artist {i + 1}</p>
+                  <p className="text-xs uppercase tracking-widest text-primary">Headliner {i + 1}</p>
                   <h3 className="mt-1 font-display text-3xl font-bold">{name}</h3>
                 </div>
               </div>
