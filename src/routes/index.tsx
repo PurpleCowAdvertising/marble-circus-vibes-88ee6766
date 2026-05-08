@@ -103,7 +103,7 @@ function HomePage() {
           <div className="grid gap-10 md:grid-cols-2 md:gap-20">
             <FadeIn>
               <p className="text-xs uppercase tracking-[0.4em] text-foreground/70">About</p>
-              <h2 className="mt-4 font-display text-5xl font-bold leading-tight text-foreground md:text-7xl">
+              <h2 className="mt-4 font-display text-5xl font-bold leading-tight text-foreground md:text-7xl text-orange-400">
                 Built for the artists, powered by the fans.
               </h2>
             </FadeIn>
