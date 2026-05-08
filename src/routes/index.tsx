@@ -176,7 +176,7 @@ function HomePage() {
       </Section>
 
       {/* SPONSORS STRIP */}
-      <Section className="border-t border-border">
+      <Section className="border-t border-border bg-[#f2ac07]">
         <FadeIn>
           <p className="text-xs uppercase tracking-[0.4em] text-primary">In partnership with</p>
           <h2 className="mt-4 font-display text-4xl font-bold md:text-5xl">Powered by the bold.</h2>
