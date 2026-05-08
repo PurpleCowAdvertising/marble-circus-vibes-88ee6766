@@ -132,7 +132,7 @@ function HomePage() {
 
       {/* MUSIC PREVIEW */}
       <div className="surface-light relative z-30 isolate fold-safe rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)]">
-      <Section>
+      <Section className="!pt-2 sm:!pt-3 md:!pt-6">
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -150,7 +150,7 @@ function HomePage() {
           </div>
         </FadeIn>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 md:mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {HEADLINERS.map((artist, i) => (
             <motion.div
               key={artist.name}
@@ -290,7 +290,7 @@ function ArtistCarousel() {
   return (
     <section
       aria-label="Featured artists carousel"
-      className="relative z-10 surface-light rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)] py-10 md:py-14"
+      className="relative z-10 surface-light rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)] pt-6 pb-2 md:py-14"
     >
       <div className="mx-auto max-w-[1400px] px-5 sm:px-6 md:px-10">
         <div className="flex items-end justify-between gap-6">
