@@ -48,48 +48,59 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <div ref={heroRef} className="relative overflow-hidden bg-background md:min-h-[100svh]">
-        <img
-          src={heroPoster}
-          alt="Scorpion Kings Live — 19 Sep 2026, FNB Stadium"
-          className="block h-auto w-full object-contain md:absolute md:inset-0 md:h-full md:object-cover md:object-center"
-        />
-        <div className="absolute inset-0 hidden bg-gradient-to-b from-background/20 via-background/30 to-background md:block" />
+      <div ref={heroRef} className="relative overflow-hidden bg-background pt-16 md:pt-20">
+        <div className="mx-auto grid max-w-[1400px] items-center gap-8 px-5 pb-10 sm:px-6 md:grid-cols-[1.1fr_1fr] md:gap-12 md:px-10 md:pb-20 md:pt-12">
+          <motion.div style={{ y, opacity }} className="order-2 md:order-1">
+            <FadeIn delay={0.15}>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-primary sm:text-xs">
+                Sony Music · presents
+              </p>
+              <h1 className="mt-3 font-display text-4xl font-bold leading-[0.95] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+                The biggest amapiano show of <span className="text-primary italic">2026.</span>
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.3}>
+              <div className="mt-6 flex flex-wrap items-center gap-2 text-xs sm:gap-3 sm:text-sm">
+                <span className="flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-2 backdrop-blur-md sm:px-4">
+                  <Calendar size={14} className="text-primary" />
+                  19 Sep 2026
+                </span>
+                <span className="flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-2 backdrop-blur-md sm:px-4">
+                  <MapPin size={14} className="text-primary" />
+                  FNB Stadium · Johannesburg
+                </span>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.45}>
+              <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
+                <button
+                  onClick={() => open("hero")}
+                  className="group flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[11px] font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 sm:px-7 sm:py-4 sm:text-sm"
+                >
+                  Get the drop
+                  <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </button>
+                <Link
+                  to="/music"
+                  className="rounded-full border border-border bg-card/40 px-5 py-3 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md hover:border-primary hover:text-primary sm:px-7 sm:py-4 sm:text-sm"
+                >
+                  Explore the lineup
+                </Link>
+              </div>
+            </FadeIn>
+          </motion.div>
 
-        <motion.div
-          style={{ y, opacity }}
-          className="relative z-10 mx-auto flex max-w-[1400px] flex-col justify-end px-5 py-8 sm:px-6 md:min-h-[100svh] md:px-10 md:pb-24 md:pt-28"
-        >
-          <FadeIn delay={0.25}>
-            <div className="flex flex-wrap items-center gap-2 text-xs text-foreground sm:gap-4 sm:text-sm">
-              <span className="flex items-center gap-2 rounded-full bg-background/70 px-3 py-2 backdrop-blur-md sm:px-4">
-                <Calendar size={14} className="text-primary" />
-                19 Sep 2026
-              </span>
-              <span className="flex items-center gap-2 rounded-full bg-background/70 px-3 py-2 backdrop-blur-md sm:px-4">
-                <MapPin size={14} className="text-primary" />
-                FNB Stadium · Johannesburg
-              </span>
+          <FadeIn className="order-1 md:order-2">
+            <div className="relative">
+              <div className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/20 to-transparent blur-2xl" />
+              <img
+                src={heroPoster}
+                alt="Scorpion Kings Live — 19 Sep 2026, FNB Stadium"
+                className="w-full rounded-2xl border border-border shadow-2xl"
+              />
             </div>
           </FadeIn>
-          <FadeIn delay={0.4}>
-            <div className="mt-5 flex flex-wrap gap-3 sm:mt-8 sm:gap-4">
-              <button
-                onClick={() => open("hero")}
-                className="group flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[11px] font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 sm:px-7 sm:py-4 sm:text-sm"
-              >
-                Get the drop
-                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-              </button>
-              <Link
-                to="/music"
-                className="rounded-full border border-border bg-background/50 px-5 py-3 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md hover:border-primary hover:text-primary sm:px-7 sm:py-4 sm:text-sm"
-              >
-                Explore the lineup
-              </Link>
-            </div>
-          </FadeIn>
-        </motion.div>
+        </div>
       </div>
 
       {/* MARQUEE */}
