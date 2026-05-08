@@ -81,7 +81,7 @@ export function Header() {
                 <span className="relative z-10">{item.label}</span>
                 <span
                   aria-hidden
-                  className="absolute inset-0 -z-0 rounded-full bg-accent shadow-[0_6px_18px_-4px_color-mix(in_oklab,var(--color-accent)_55%,transparent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
+                  className="absolute inset-0 -z-0 rounded-full bg-accent shadow-[0_6px_18px_-4px_color-mix(in_oklab,var(--color-accent)_55%,transparent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100 border-[#f2ac07]"
                 />
               </Link>
             ))}
