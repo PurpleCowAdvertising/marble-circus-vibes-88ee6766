@@ -45,7 +45,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  const { open } = useSubscribePopup();
+  
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
