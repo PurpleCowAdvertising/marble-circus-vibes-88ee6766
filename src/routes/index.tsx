@@ -72,14 +72,86 @@ function HomePage() {
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
               <div className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-accent/20 to-transparent blur-2xl" />
-              <picture>
-                <source media="(max-width: 767px)" srcSet={heroPosterMobile} />
-                <img
-                  src={heroPoster}
-                  alt="Scorpion Kings Live — 19 Sep 2026, FNB Stadium"
-                  className="w-full rounded-2xl border border-border shadow-2xl"
+
+              {/* Animated hero composition */}
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-[900px] overflow-hidden rounded-2xl border border-border bg-[#f5e9d0] shadow-2xl sm:aspect-[5/6] md:aspect-[16/11]">
+                {/* Stadium background — slow ken-burns */}
+                <motion.img
+                  src={heroStadium}
+                  alt="FNB Stadium"
+                  className="absolute inset-0 h-full w-full object-cover object-bottom"
+                  initial={{ scale: 1.08, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 2.4, ease: "easeOut" }}
                 />
-              </picture>
+
+                {/* Performers — rise from bottom */}
+                <motion.img
+                  src={heroPerformers}
+                  alt="Scorpion Kings"
+                  className="absolute inset-x-0 bottom-0 mx-auto h-[78%] w-auto object-contain"
+                  initial={{ y: 60, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+                />
+
+                {/* Logo — top center, drop in */}
+                <motion.img
+                  src={heroLogo}
+                  alt="Scorpion Kings Live"
+                  className="absolute left-1/2 top-[4%] w-[58%] max-w-[520px] -translate-x-1/2"
+                  initial={{ y: -30, opacity: 0, scale: 0.95 }}
+                  animate={{ y: 0, opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                />
+
+                {/* Date / venue — fade up under logo */}
+                <motion.img
+                  src={heroDateVenue}
+                  alt="19 Sep 26 · FNB Stadium"
+                  className="absolute left-1/2 top-[34%] w-[64%] max-w-[560px] -translate-x-1/2"
+                  initial={{ y: 16, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
+                />
+
+                {/* Divider with scorpion — width reveal */}
+                <motion.img
+                  src={heroDivider}
+                  alt=""
+                  className="absolute left-1/2 top-[44%] w-[62%] max-w-[540px] -translate-x-1/2"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+                  style={{ transformOrigin: "center" }}
+                />
+
+                {/* 60% sold badge — top right, gentle float */}
+                <motion.img
+                  src={heroSoldBadge}
+                  alt="60% sold"
+                  className="absolute right-[3%] top-[6%] w-[22%] max-w-[180px]"
+                  initial={{ x: 30, opacity: 0, rotate: 6 }}
+                  animate={{ x: 0, opacity: 1, rotate: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 1.3 }}
+                >
+                </motion.img>
+                <motion.div
+                  className="pointer-events-none absolute right-[3%] top-[6%] w-[22%] max-w-[180px]"
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                />
+
+                {/* Tickets badge — bottom strip */}
+                <motion.img
+                  src={heroTickets}
+                  alt="Tickets available from Webtickets and Pick n Pay"
+                  className="absolute inset-x-0 bottom-[3%] mx-auto w-[70%] max-w-[520px]"
+                  initial={{ y: 24, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.9, ease: "easeOut", delay: 1.5 }}
+                />
+              </div>
             </motion.div>
           </FadeIn>
 
