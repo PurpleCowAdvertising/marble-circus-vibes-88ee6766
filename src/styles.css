@@ -12,10 +12,17 @@
     font-display: swap;
     src: url("https://fonts.gstatic.com/s/syne/v22/8vIS7w4qzmVxsWxjBZRjr0FKM_04uT6k.woff2") format("woff2");
   }
+  @font-face {
+    font-family: "Chinese Rocks";
+    font-style: normal;
+    font-weight: 400 900;
+    font-display: swap;
+    src: url("/src/assets/fonts/chinese-rocks.otf") format("opentype");
+  }
 }
 
 @theme inline {
-  --font-display: "Syne", "Bebas Neue", system-ui, sans-serif;
+  --font-display: "Chinese Rocks", "Syne", "Bebas Neue", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
