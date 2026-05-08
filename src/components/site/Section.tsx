@@ -13,7 +13,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`relative z-10 mx-auto max-w-[1400px] px-5 py-12 sm:px-6 sm:py-16 md:px-10 md:py-24 ${className}`}
+      className={`relative z-10 mx-auto max-w-[1400px] px-5 pt-3 pb-12 sm:px-6 sm:pt-4 sm:pb-16 md:px-10 md:pt-6 md:pb-24 ${className}`}
     >
       {children}
     </section>
