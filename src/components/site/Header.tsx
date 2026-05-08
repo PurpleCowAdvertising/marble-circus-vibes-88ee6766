@@ -92,17 +92,14 @@ export function Header() {
         {/* Mobile — single centered floating glass capsule */}
         <div className="flex w-full items-center justify-center md:hidden">
           <div
-            className="pointer-events-auto flex w-full max-w-[420px] items-center justify-between gap-3 rounded-full border border-white/40 bg-white/80 py-1.5 pl-2 pr-1.5 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
-            style={{ WebkitBackdropFilter: "blur(24px) saturate(1.6)", backdropFilter: "blur(24px) saturate(1.6)" }}
+            className="pointer-events-auto relative flex h-12 w-full max-w-[420px] items-center justify-between rounded-full bg-white px-2 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)]"
           >
-            <Link to="/" aria-label="Scorpion Kings Live" className="flex shrink-0 items-center pl-1.5">
-              <img src={logo} alt="Scorpion Kings Live" className="h-6 w-auto" />
-            </Link>
+            {/* Menu trigger — left */}
             <button
               onClick={() => setOpen(!open)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className="group flex items-center gap-2 rounded-full bg-neutral-950 px-3.5 py-1.5 text-[12px] font-medium tracking-tight text-white transition-transform active:scale-95"
+              className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-white transition-transform active:scale-95"
             >
               <span className="relative inline-block h-3 w-4">
                 <span
@@ -116,8 +113,19 @@ export function Header() {
                   }`}
                 />
               </span>
-              <span>{open ? "Close" : "Menu"}</span>
             </button>
+
+            {/* Logo — perfectly centered */}
+            <Link
+              to="/"
+              aria-label="Scorpion Kings Live"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            >
+              <img src={logo} alt="Scorpion Kings Live" className="h-7 w-auto" />
+            </Link>
+
+            {/* Right spacer — keeps logo true center */}
+            <span aria-hidden className="h-9 w-9 shrink-0" />
           </div>
         </div>
       </div>
