@@ -151,7 +151,7 @@ function HomePage() {
       </div>
 
       {/* MUSIC PREVIEW */}
-      <Section className="border-t border-border bg-slate-50">
+      <Section className="border-t border-border bg-white">
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
