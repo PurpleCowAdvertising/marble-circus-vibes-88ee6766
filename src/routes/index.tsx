@@ -117,14 +117,19 @@ function HomePage() {
         role="region"
         aria-label="Featured artists. Pauses on hover or focus."
       >
-        <ul className="marquee" aria-label="Artist roster">
-          <li className="marquee-track contents">
-            <ul className="marquee-track flex items-center" aria-hidden={false}>
-              {[...ARTISTS, ...ARTISTS, ...ARTISTS].map((a, i) => (
-                <li key={i} className="flex items-center gap-3 md:gap-8" aria-hidden={i >= ARTISTS.length}>
+        <div className="marquee">
+          <ul className="marquee-track items-center" aria-label="Artist roster">
+            {[...ARTISTS, ...ARTISTS, ...ARTISTS].map((a, i) => {
+              const isDuplicate = i >= ARTISTS.length;
+              return (
+                <li
+                  key={i}
+                  className="flex items-center gap-3 md:gap-8"
+                  aria-hidden={isDuplicate || undefined}
+                >
                   <Link
                     to="/music"
-                    tabIndex={i >= ARTISTS.length ? -1 : 0}
+                    tabIndex={isDuplicate ? -1 : 0}
                     aria-label={`View ${a} on the artists page`}
                     className="flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1.5 font-display text-xs uppercase tracking-widest text-white backdrop-blur-md outline-none transition-all duration-300 hover:scale-[1.04] hover:border-white/60 hover:bg-white/20 focus-visible:scale-[1.04] focus-visible:border-white focus-visible:bg-white/25 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-orange-rich sm:px-4 sm:py-2 sm:text-sm md:px-5 md:py-2.5 md:text-base"
                   >
@@ -132,10 +137,10 @@ function HomePage() {
                   </Link>
                   <span className="h-1 w-1 rounded-full bg-white/70 md:h-1.5 md:w-1.5" aria-hidden />
                 </li>
-              ))}
-            </ul>
-          </li>
-        </ul>
+              );
+            })}
+          </ul>
+        </div>
       </div>
 
       {/* ABOUT TEASER */}
