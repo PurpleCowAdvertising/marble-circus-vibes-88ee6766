@@ -39,6 +39,19 @@ const ARTISTS = [
   "MUSA KEYS", "UNCLE WAFFLES", "FOCALISTIC", "KABZA DE SMALL", "SHO MADJOZI",
 ];
 
+const ARTIST_COLORS = [
+  "#eaad1f", // signature orange
+  "#ff3d3d", // hot red
+  "#ffffff", // bright white
+  "#22d3ee", // electric cyan
+  "#ec4899", // hot pink
+  "#a3e635", // acid lime
+  "#fbbf24", // amber
+  "#8b5cf6", // violet
+  "#f97316", // tangerine
+  "#10b981", // emerald
+];
+
 function HomePage() {
   const { open } = useSubscribePopup();
   const heroRef = useRef<HTMLDivElement>(null);
@@ -90,15 +103,18 @@ function HomePage() {
       </div>
 
       {/* MARQUEE */}
-      <div className="relative z-10 border-y border-border bg-card py-6">
+      <div className="relative z-10 border-y-4 border-black bg-[#0a0a0a] py-8 shadow-[inset_0_0_60px_rgba(234,173,31,0.25)]">
         <div className="marquee">
-          <div className="marquee-track font-display text-3xl uppercase md:text-5xl">
-            {[...ARTISTS, ...ARTISTS].map((a, i) => (
-              <span key={i} className="flex items-center gap-12">
-                {a}
-                <span className="text-primary">✦</span>
-              </span>
-            ))}
+          <div className="marquee-track font-display text-5xl font-black uppercase md:text-7xl">
+            {[...ARTISTS, ...ARTISTS].map((a, i) => {
+              const color = ARTIST_COLORS[i % ARTIST_COLORS.length];
+              return (
+                <span key={i} className="flex items-center gap-12">
+                  <span className="text-3d" style={{ color }}>{a}</span>
+                  <span className="text-3d" style={{ color: "#eaad1f" }}>✦</span>
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
