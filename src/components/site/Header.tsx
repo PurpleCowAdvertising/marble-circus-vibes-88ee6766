@@ -45,7 +45,7 @@ export function Header() {
         hidden && !open ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
       }`}
     >
-      <div className="mx-auto hidden max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:flex md:px-8 md:pt-5 bg-black">
+      <div className="mx-auto hidden max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:flex md:px-8 md:pt-5">
         {/* Logo — desktop only */}
         <Link to="/" aria-label="Scorpion Kings Live" className="flex shrink-0 items-center">
           <img
