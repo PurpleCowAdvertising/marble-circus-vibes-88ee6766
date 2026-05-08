@@ -162,18 +162,26 @@
     display: flex;
     overflow: hidden;
     user-select: none;
-    gap: 3rem;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    gap: 1.5rem;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   }
   .marquee-track {
     display: flex;
-    gap: 3rem;
+    gap: 1.5rem;
     flex-shrink: 0;
-    animation: marquee 45s linear infinite;
+    animation: marquee 28s linear infinite;
     will-change: transform;
   }
-  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @media (min-width: 768px) {
+    .marquee, .marquee-track { gap: 3rem; }
+    .marquee-track { animation-duration: 50s; }
+  }
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation-duration: 90s; }
+  }
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-100%); }
