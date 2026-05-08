@@ -222,17 +222,17 @@ function HomePage() {
 
       {/* CTA */}
       <Section className="border-t border-border bg-slate-50">
-        <div className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/20 via-card to-card p-10 md:p-20">
+        <div className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/20 via-card to-card p-6 md:p-12">
           <FadeIn>
-            <h2 className="font-display text-5xl font-bold leading-none md:text-8xl">
-              Don't<br />miss<br /><span className="text-primary italic">the moment.</span>
+            <h2 className="font-display text-3xl font-bold leading-tight whitespace-nowrap sm:text-5xl md:text-7xl">
+              Don't miss <span className="text-primary italic">the moment.</span>
             </h2>
-            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+            <p className="mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
               Subscribe for first-access drops, ticket waves and exclusive lineup announcements.
             </p>
             <button
               onClick={() => open("home-cta")}
-              className="mt-8 rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground hover:scale-105 transition-transform"
+              className="mt-6 rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground hover:scale-105 transition-transform"
             >
               Subscribe now
             </button>
