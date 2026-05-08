@@ -89,44 +89,30 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile — single centered floating glass capsule */}
-        <div className="flex w-full items-center justify-center md:hidden">
-          <div
-            className="pointer-events-auto relative flex h-12 w-full max-w-[420px] items-center justify-between rounded-full bg-white px-2 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)]"
+        {/* Mobile — ultra-minimal: logo left, thin icon right, no chrome */}
+        <div className="flex w-full items-center justify-between md:hidden">
+          <Link to="/" aria-label="Scorpion Kings Live" className="flex items-center">
+            <img src={logo} alt="Scorpion Kings Live" className="h-7 w-auto" />
+          </Link>
+          <button
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="-mr-2 flex h-10 w-10 items-center justify-center transition-transform active:scale-90"
           >
-            {/* Menu trigger — left */}
-            <button
-              onClick={() => setOpen(!open)}
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-              className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-white transition-transform active:scale-95"
-            >
-              <span className="relative inline-block h-3 w-4">
-                <span
-                  className={`absolute left-0 right-0 top-1/2 block h-px bg-white transition-transform duration-300 ${
-                    open ? "translate-y-0 rotate-45" : "-translate-y-[3px] rotate-0"
-                  }`}
-                />
-                <span
-                  className={`absolute left-0 right-0 top-1/2 block h-px bg-white transition-transform duration-300 ${
-                    open ? "translate-y-0 -rotate-45" : "translate-y-[3px] rotate-0"
-                  }`}
-                />
-              </span>
-            </button>
-
-            {/* Logo — perfectly centered */}
-            <Link
-              to="/"
-              aria-label="Scorpion Kings Live"
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            >
-              <img src={logo} alt="Scorpion Kings Live" className="h-7 w-auto" />
-            </Link>
-
-            {/* Right spacer — keeps logo true center */}
-            <span aria-hidden className="h-9 w-9 shrink-0" />
-          </div>
+            <span className="relative inline-block h-3 w-5">
+              <span
+                className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-white transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  open ? "translate-y-0 rotate-45" : "-translate-y-[4px] rotate-0"
+                }`}
+              />
+              <span
+                className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-white transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  open ? "translate-y-0 -rotate-45" : "translate-y-[4px] rotate-0"
+                }`}
+              />
+            </span>
+          </button>
         </div>
       </div>
 
