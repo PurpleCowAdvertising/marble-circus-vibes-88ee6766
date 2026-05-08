@@ -237,6 +237,7 @@ function HomePage() {
           </FadeIn>
         </div>
       </Section>
+      </div>
 
     </>
   );
