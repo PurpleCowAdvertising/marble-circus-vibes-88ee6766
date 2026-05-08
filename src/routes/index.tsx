@@ -49,7 +49,7 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <div ref={heroRef} className="relative overflow-hidden bg-accent pt-16 md:pt-20">
+      <div ref={heroRef} className="relative overflow-hidden bg-orange-rich pt-16 md:pt-20">
         <div className="mx-auto max-w-[1400px] px-5 pb-10 sm:px-6 md:px-10 md:pb-20 md:pt-12">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
@@ -108,35 +108,37 @@ function HomePage() {
       </div>
 
       {/* ABOUT TEASER */}
-      <Section>
-        <div className="grid gap-12 md:grid-cols-2 md:gap-20">
-          <FadeIn>
-            <p className="text-xs uppercase tracking-[0.4em] text-primary">About</p>
-            <h2 className="mt-4 font-display text-5xl font-bold leading-tight md:text-7xl">
-              Built for the artists, powered by the fans.
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.15}>
-            <div className="space-y-6 text-lg text-muted-foreground md:pt-12">
-              <p>
-                Scorpion Kings Live champions the bold, the brilliant and the boundary-breaking.
-                From amapiano floors to global pop stages — this is where the next sound starts.
-              </p>
-              <p>
-                We're staging an experience that brings the music, the visuals and the moment together
-                in one unforgettable event.
-              </p>
-              <Link
-                to="/about"
-                className="group inline-flex items-center gap-2 text-foreground hover:text-accent"
-              >
-                <span className="story-link">Read our story</span>
-                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </FadeIn>
-        </div>
-      </Section>
+      <div className="relative bg-orange-rich">
+        <Section className="text-white">
+          <div className="grid gap-10 md:grid-cols-2 md:gap-20">
+            <FadeIn>
+              <p className="text-xs uppercase tracking-[0.4em] text-white/80">About</p>
+              <h2 className="mt-4 font-display text-5xl font-bold leading-tight text-white md:text-7xl">
+                Built for the artists, powered by the fans.
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <div className="space-y-6 text-lg text-white/85 md:pt-12">
+                <p>
+                  Scorpion Kings Live champions the bold, the brilliant and the boundary-breaking.
+                  From amapiano floors to global pop stages — this is where the next sound starts.
+                </p>
+                <p>
+                  We're staging an experience that brings the music, the visuals and the moment together
+                  in one unforgettable event.
+                </p>
+                <Link
+                  to="/about"
+                  className="group inline-flex items-center gap-2 text-white hover:text-white/80"
+                >
+                  <span className="story-link">Read our story</span>
+                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </FadeIn>
+          </div>
+        </Section>
+      </div>
 
       {/* MUSIC PREVIEW */}
       <Section className="border-t border-border bg-slate-50">
@@ -180,30 +182,32 @@ function HomePage() {
       </Section>
 
       {/* SPONSORS STRIP */}
-      <Section className="border-t border-border bg-slate-50">
-        <FadeIn>
-          <p className="text-xs uppercase tracking-[0.4em] text-primary">In partnership with</p>
-          <h2 className="mt-4 font-display text-4xl font-bold md:text-5xl">Powered by the bold.</h2>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-4">
-            {["HEADLINE", "MAJOR", "MAJOR", "SUPPORTING", "SUPPORTING", "SUPPORTING", "SUPPORTING", "SUPPORTING"].map((tier, i) => (
-              <div key={i} className="group flex aspect-[3/2] items-center justify-center bg-card text-xs uppercase tracking-widest text-muted-foreground transition-all duration-500 hover:bg-accent/5 hover:text-accent">
-                <span className="transition-transform duration-500 group-hover:scale-110">{tier}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8">
-            <Link
-              to="/sponsors"
-              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-accent"
-            >
-              <span className="story-link">Become a partner</span>
-              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </div>
-        </FadeIn>
-      </Section>
+      <div className="relative bg-orange-rich">
+        <Section className="text-white">
+          <FadeIn>
+            <p className="text-xs uppercase tracking-[0.4em] text-white/80">In partnership with</p>
+            <h2 className="mt-4 font-display text-4xl font-bold text-white md:text-5xl">Powered by the bold.</h2>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-white/20 bg-white/15 md:grid-cols-4">
+              {["HEADLINE", "MAJOR", "MAJOR", "SUPPORTING", "SUPPORTING", "SUPPORTING", "SUPPORTING", "SUPPORTING"].map((tier, i) => (
+                <div key={i} className="group flex aspect-[3/2] items-center justify-center bg-white/5 text-xs uppercase tracking-widest text-white/80 transition-all duration-500 hover:bg-white/15 hover:text-white">
+                  <span className="transition-transform duration-500 group-hover:scale-110">{tier}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8">
+              <Link
+                to="/sponsors"
+                className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/80"
+              >
+                <span className="story-link">Become a partner</span>
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </FadeIn>
+        </Section>
+      </div>
 
       {/* CTA */}
       <Section className="border-t border-border bg-slate-50">
