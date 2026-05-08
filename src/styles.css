@@ -163,13 +163,17 @@
     overflow: hidden;
     user-select: none;
     gap: 3rem;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
   }
   .marquee-track {
     display: flex;
     gap: 3rem;
     flex-shrink: 0;
-    animation: marquee 30s linear infinite;
+    animation: marquee 45s linear infinite;
+    will-change: transform;
   }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-100%); }
