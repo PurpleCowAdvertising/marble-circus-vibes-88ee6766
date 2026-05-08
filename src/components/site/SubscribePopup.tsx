@@ -42,9 +42,6 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
 
   const close = useCallback(() => {
     setIsOpen(false);
-    if (typeof window !== "undefined") {
-      localStorage.setItem(STORAGE_KEY, String(Date.now()));
-    }
   }, []);
 
   // Popup is triggered manually via user action (header/footer/CTA buttons).
