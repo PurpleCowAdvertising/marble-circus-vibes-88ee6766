@@ -99,16 +99,16 @@ function HomePage() {
 
       {/* ABOUT TEASER */}
       <div className="relative z-20 isolate bg-orange-rich">
-        <Section className="text-foreground fold-safe-above">
-          <div className="grid gap-10 md:grid-cols-2 md:gap-20">
+        <Section className="text-foreground fold-safe-above !pb-6 sm:!pb-10 md:!pb-16">
+          <div className="grid gap-3 md:grid-cols-2 md:gap-20">
             <FadeIn>
-              <p className="text-xs uppercase tracking-[0.4em] text-foreground/70">About</p>
-              <h2 className="mt-4 font-display text-5xl font-bold leading-tight text-foreground md:text-7xl text-orange-400">
+              <p className="text-xs uppercase tracking-[0.4em] text-black">About</p>
+              <h2 className="mt-2 font-display text-5xl font-bold leading-tight md:text-7xl text-orange-400">
                 Built for the artists, powered by the fans.
               </h2>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <div className="space-y-6 text-lg text-foreground/85 md:pt-12">
+              <div className="space-y-3 text-lg text-black md:pt-12">
                 <p>
                   Scorpion Kings Live champions the bold, the brilliant and the boundary-breaking.
                   From amapiano floors to global pop stages — this is where the next sound starts.
@@ -119,7 +119,7 @@ function HomePage() {
                 </p>
                 <Link
                   to="/about"
-                  className="group inline-flex items-center gap-2 text-foreground hover:text-foreground/70"
+                  className="group inline-flex items-center gap-2 text-black hover:text-black/70"
                 >
                   <span className="story-link">Read our story</span>
                   <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
