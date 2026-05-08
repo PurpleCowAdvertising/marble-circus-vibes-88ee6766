@@ -87,7 +87,7 @@ export function Header() {
                 setOpen(false);
                 openSubscribe("mobile-nav");
               }}
-              className="mt-6 rounded-full bg-primary px-5 py-3 text-sm font-bold uppercase tracking-widest text-primary-foreground"
+              className="mt-6 rounded-full bg-accent px-5 py-3 text-sm font-bold uppercase tracking-widest text-accent-foreground"
             >
               Subscribe
             </button>
