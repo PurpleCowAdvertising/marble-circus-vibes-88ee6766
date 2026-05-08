@@ -118,10 +118,10 @@ export function Header() {
         </span>
       </button>
 
-      {/* Mobile sheet — full-screen quiet panel */}
+      {/* Mobile sheet — anchored bottom-right above FAB */}
       <div
-        className={`md:hidden fixed inset-x-0 top-[68px] mx-3 origin-top overflow-hidden rounded-2xl border border-foreground/10 bg-background/85 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          open ? "scale-100 opacity-100" : "pointer-events-none scale-[0.98] opacity-0"
+        className={`md:hidden fixed bottom-24 right-5 z-40 w-[min(320px,calc(100vw-2.5rem))] origin-bottom-right overflow-hidden rounded-2xl border border-white/10 bg-neutral-950/90 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          open ? "scale-100 opacity-100 translate-y-0" : "pointer-events-none scale-95 opacity-0 translate-y-3"
         }`}
         style={{ WebkitBackdropFilter: "blur(24px) saturate(1.4)", backdropFilter: "blur(24px) saturate(1.4)" }}
       >
@@ -131,7 +131,7 @@ export function Header() {
               key={item.to}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="rounded-xl px-4 py-3 text-lg font-medium tracking-tight text-foreground/80 transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+              className="rounded-xl px-4 py-3 text-base font-medium tracking-tight text-white/85 transition-colors hover:bg-white/[0.06] hover:text-white"
             >
               {item.label}
             </Link>
@@ -141,7 +141,7 @@ export function Header() {
               setOpen(false);
               openSubscribe("mobile-nav");
             }}
-            className="mt-2 rounded-xl bg-foreground px-4 py-3 text-sm font-medium tracking-tight text-background"
+            className="mt-2 rounded-xl bg-white px-4 py-3 text-sm font-medium tracking-tight text-black"
           >
             Subscribe
           </button>
