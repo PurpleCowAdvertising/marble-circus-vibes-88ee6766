@@ -131,7 +131,7 @@ function HomePage() {
       </div>
 
       {/* MUSIC PREVIEW */}
-      <div className="surface-light relative z-30 isolate fold-safe rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)]">
+      <div className="mt-4 font-display text-4xl font-bold md:text-5xl text-white">
       <Section className="!pt-2 sm:!pt-3 md:!pt-6">
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
