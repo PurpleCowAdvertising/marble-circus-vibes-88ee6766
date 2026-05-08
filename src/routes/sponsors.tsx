@@ -4,6 +4,8 @@ import { z } from "zod";
 import { useMemo } from "react";
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { ArrowUpRight } from "lucide-react";
+import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
+import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
 
 const CATEGORIES = ["all", "platinum", "gold", "silver", "bronze"] as const;
 type Category = (typeof CATEGORIES)[number];
@@ -141,6 +143,7 @@ function SponsorsPage() {
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {filtered.map((s, i) => {
                 const meta = TIER_META[s.tier];
+                const logo = s.tier === "platinum" || s.tier === "gold" ? partnerLogoFull : partnerLogoMark;
                 return (
                   <FadeIn key={s.name} delay={i * 0.03}>
                     <article
@@ -155,7 +158,15 @@ function SponsorsPage() {
                           className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground"
                         />
                       </div>
-                      <div className="mt-8">
+                      <div className="mt-5 flex aspect-[3/2] items-center justify-center rounded-md bg-white p-4">
+                        <img
+                          src={logo}
+                          alt={`${s.name} — placeholder logo`}
+                          loading="lazy"
+                          className="max-h-[80%] w-auto max-w-[85%] object-contain"
+                        />
+                      </div>
+                      <div className="mt-5">
                         <h3 className="font-display text-2xl font-bold leading-tight">{s.name}</h3>
                         <p className="mt-2 text-sm text-muted-foreground">{s.blurb}</p>
                       </div>
