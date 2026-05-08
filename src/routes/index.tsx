@@ -190,8 +190,8 @@ function HomePage() {
         <FadeIn delay={0.1}>
           <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-4">
             {["HEADLINE", "MAJOR", "MAJOR", "SUPPORTING", "SUPPORTING", "SUPPORTING", "SUPPORTING", "SUPPORTING"].map((tier, i) => (
-              <div key={i} className="flex aspect-[3/2] items-center justify-center bg-card text-xs uppercase tracking-widest text-muted-foreground">
-                {tier}
+              <div key={i} className="group flex aspect-[3/2] items-center justify-center bg-card text-xs uppercase tracking-widest text-muted-foreground transition-all duration-500 hover:bg-accent/5 hover:text-accent">
+                <span className="transition-transform duration-500 group-hover:scale-110">{tier}</span>
               </div>
             ))}
           </div>
