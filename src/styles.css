@@ -70,9 +70,9 @@
   --muted: oklch(0.93 0.012 80);
   --muted-foreground: oklch(0.42 0.03 50);
 
-  /* Logo gold/orange */
-  --accent: oklch(0.78 0.17 70);
-  --accent-foreground: oklch(0.16 0.02 40);
+  /* Scorpion Kings orange */
+  --accent: oklch(0.66 0.19 45);
+  --accent-foreground: oklch(0.98 0.005 85);
 
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.98 0.005 85);
