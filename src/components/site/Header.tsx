@@ -81,7 +81,8 @@ export function Header() {
                 <span className="relative z-10">{item.label}</span>
                 <span
                   aria-hidden
-                  className="absolute inset-0 -z-0 rounded-full bg-gradient-to-b from-accent/70 to-accent/45 ring-1 ring-inset ring-white/30 shadow-[0_4px_14px_-2px_color-mix(in_oklab,var(--color-accent)_55%,transparent),inset_0_1px_0_rgba(255,255,255,0.45)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
+                  className="absolute inset-0 -z-0 rounded-full bg-gradient-to-b from-accent/45 to-accent/25 ring-1 ring-inset ring-white/40 shadow-[0_6px_18px_-4px_color-mix(in_oklab,var(--color-accent)_45%,transparent),inset_0_1px_0_rgba(255,255,255,0.55)] backdrop-blur-md backdrop-saturate-150 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
+                  style={{ WebkitBackdropFilter: "blur(12px) saturate(1.5)", backdropFilter: "blur(12px) saturate(1.5)" }}
                 />
               </Link>
             ))}
