@@ -259,7 +259,7 @@
   }
   .animate-float { animation: float-soft 6s ease-in-out infinite; }
 
-  /* Dark surface — deep warm black with subtle glass sheen */
+  /* Dark surface — deep warm black with subtle drifting glass sheen */
   .bg-orange-rich {
     position: relative;
     isolation: isolate;
@@ -270,14 +270,35 @@
   .bg-orange-rich::before {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -20%;
     pointer-events: none;
     z-index: 0;
     background:
-      radial-gradient(ellipse 60% 50% at 50% 0%, oklch(1 0 0 / 0.04), transparent 70%),
-      radial-gradient(ellipse 60% 50% at 50% 100%, oklch(0.7 0.2 48 / 0.05), transparent 70%);
+      radial-gradient(ellipse 45% 35% at 30% 20%, oklch(0.7 0.2 48 / 0.10), transparent 65%),
+      radial-gradient(ellipse 40% 30% at 75% 80%, oklch(0.55 0.18 30 / 0.09), transparent 65%),
+      radial-gradient(ellipse 35% 25% at 80% 15%, oklch(1 0 0 / 0.04), transparent 70%);
+    filter: blur(20px);
+    animation: surface-drift 28s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+  }
+  .bg-orange-rich::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, transparent 40%, oklch(0 0 0 / 0.35) 100%);
   }
   .bg-orange-rich > * { position: relative; z-index: 1; }
+
+  @keyframes surface-drift {
+    0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0.85; }
+    50%  { transform: translate3d(3%, -2%, 0) scale(1.08); opacity: 1; }
+    100% { transform: translate3d(-2%, 3%, 0) scale(1.05); opacity: 0.9; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bg-orange-rich::before { animation: none; }
+  }
 
   /* Light surface — warm off-white with dark text + glass sheen for section contrast */
   .surface-light {
