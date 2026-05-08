@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowRight, ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
-import { useSubscribePopup } from "@/components/site/SubscribePopup";
+
 import heroPoster from "@/assets/hero-poster.jpg";
 import heroPosterMobile from "@/assets/hero-poster-mobile.jpg";
 import majorLeague from "@/assets/artists/major-league.jpg";
