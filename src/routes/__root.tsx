@@ -9,6 +9,10 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { SubscribeProvider } from "@/components/site/SubscribePopup";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -72,11 +76,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Sony Music South Africa" },
+      { name: "description", content: "Sony Music South Africa — home of the artists, the events and the culture." },
+      { name: "author", content: "Sony Music South Africa" },
+      { property: "og:title", content: "Sony Music South Africa" },
+      { property: "og:description", content: "Sony Music South Africa — home of the artists, the events and the culture." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -113,7 +117,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <SubscribeProvider>
+        <div className="relative flex min-h-screen flex-col">
+          <Header />
+          <main className="relative z-10 flex-1 pt-20">
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+        <Toaster />
+      </SubscribeProvider>
     </QueryClientProvider>
   );
 }
