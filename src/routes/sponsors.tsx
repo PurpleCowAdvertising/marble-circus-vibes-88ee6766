@@ -100,7 +100,7 @@ function SponsorsPage() {
                   role="tab"
                   aria-selected={active}
                   onClick={() =>
-                    navigate({ search: (prev) => ({ ...prev, tier: f.key }), replace: true })
+                    navigate({ search: { tier: f.key }, replace: true })
                   }
                   className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all ${
                     active
@@ -127,7 +127,7 @@ function SponsorsPage() {
           <FadeIn>
             <p className="text-xs uppercase tracking-widest text-muted-foreground">
               Showing {filtered.length} {filtered.length === 1 ? "partner" : "partners"}
-              {tier !== "all" && ` · ${TIER_META[tier].label}`}
+              {tier !== "all" ? ` · ${TIER_META[tier as Exclude<Category, "all">].label}` : ""}
             </p>
           </FadeIn>
 
