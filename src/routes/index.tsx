@@ -116,8 +116,8 @@ function HomePage() {
       </div>
 
       {/* MUSIC PREVIEW */}
-      <div className="surface-light">
-      <Section className="border-t border-border">
+      <div className="surface-light relative z-30 -mt-16 md:-mt-32 rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)]">
+      <Section>
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
