@@ -259,16 +259,13 @@
   }
   .animate-float { animation: float-soft 6s ease-in-out infinite; }
 
-  /* Soft cream parchment background (replaces stadium image + orange wash) */
+  /* Dark surface (formerly orange/cream) */
   .bg-orange-rich {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    background-color: #f4ecd6;
-    color: oklch(0.22 0.04 60);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .bg-orange-rich { background-color: #f4ecd6; }
+    background-color: oklch(0.11 0.012 60);
+    color: var(--color-foreground);
   }
 }
 
