@@ -48,28 +48,8 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Auto-trigger after 15s + exit-intent (first visit only)
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const dismissed = localStorage.getItem(STORAGE_KEY);
-    if (dismissed) return;
-
-    const timer = window.setTimeout(() => open("auto-timer"), 15000);
-
-    const onMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
-        open("exit-intent");
-        window.clearTimeout(timer);
-        document.removeEventListener("mouseleave", onMouseLeave);
-      }
-    };
-    document.addEventListener("mouseleave", onMouseLeave);
-
-    return () => {
-      window.clearTimeout(timer);
-      document.removeEventListener("mouseleave", onMouseLeave);
-    };
-  }, [open]);
+  // Popup is triggered manually via user action (header/footer/CTA buttons).
+  // No auto-trigger on load or exit-intent.
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
