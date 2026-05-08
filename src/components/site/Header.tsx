@@ -15,27 +15,43 @@ const NAV = [
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const { open: openSubscribe } = useSubscribePopup();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      // Hide when scrolling down past threshold, show when scrolling up
+      if (y > 120 && y > lastY) {
+        setHidden(true);
+      } else if (y < lastY - 4 || y < 80) {
+        setHidden(false);
+      }
+      lastY = y;
+    };
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
         scrolled
-          ? "bg-background/70 backdrop-blur-xl border-b border-border opacity-95"
-          : "bg-transparent opacity-100"
+          ? "bg-background/70 backdrop-blur-xl border-b border-border"
+          : "bg-transparent"
+      } ${
+        hidden && !open
+          ? "-translate-y-full opacity-0 pointer-events-none"
+          : "translate-y-0 opacity-100"
       }`}
     >
       <div
         className={`mx-auto flex max-w-[1400px] items-center justify-between px-5 sm:px-6 md:px-10 transition-all duration-500 ease-out ${
-          scrolled ? "py-2 md:py-2" : "py-4 md:py-4"
+          scrolled ? "py-1.5 md:py-2" : "py-3 md:py-4"
         }`}
       >
         <Link to="/" aria-label="Scorpion Kings Live" className="flex items-center">
@@ -43,7 +59,7 @@ export function Header() {
             src={logo}
             alt="Scorpion Kings Live"
             className={`w-auto transition-all duration-500 ease-out ${
-              scrolled ? "h-10 md:h-12" : "h-14 md:h-20"
+              scrolled ? "h-9 md:h-10" : "h-14 md:h-20"
             }`}
           />
         </Link>
