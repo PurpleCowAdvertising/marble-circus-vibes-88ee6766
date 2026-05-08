@@ -21,16 +21,22 @@ export function Header() {
 
   useEffect(() => {
     let lastY = window.scrollY;
+    let ticking = false;
     const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 20);
-      // Hide when scrolling down past threshold, show when scrolling up
-      if (y > 120 && y > lastY) {
-        setHidden(true);
-      } else if (y < lastY - 4 || y < 80) {
-        setHidden(false);
-      }
-      lastY = y;
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        setScrolled(y > 20);
+        const delta = y - lastY;
+        if (y > 140 && delta > 6) {
+          setHidden(true);
+        } else if (delta < -6 || y < 80) {
+          setHidden(false);
+        }
+        lastY = y;
+        ticking = false;
+      });
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -39,10 +45,10 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`fixed inset-x-0 top-0 z-50 transition-[transform,opacity,background-color,padding,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
         scrolled
-          ? "bg-background/70 backdrop-blur-xl border-b border-border"
-          : "bg-transparent"
+          ? "bg-background/75 backdrop-blur-xl border-b border-border"
+          : "bg-transparent border-b border-transparent"
       } ${
         hidden && !open
           ? "-translate-y-full opacity-0 pointer-events-none"
