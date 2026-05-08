@@ -200,7 +200,7 @@ function HomePage() {
           <FadeIn>
             {/* On orange background, use BLACK text for legibility */}
             <p className="text-xs uppercase tracking-[0.4em] text-foreground/80">In partnership with</p>
-            <h2 className="mt-4 font-display text-4xl font-bold text-foreground md:text-5xl">Powered by the bold.</h2>
+            <h2 className="mt-4 font-display text-4xl font-bold text-foreground md:text-5xl text-slate-50">Powered by the bold.</h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
