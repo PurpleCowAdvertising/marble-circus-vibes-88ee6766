@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowRight, ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
-import { useSubscribePopup } from "@/components/site/SubscribePopup";
+
 import heroPoster from "@/assets/hero-poster.jpg";
 import heroPosterMobile from "@/assets/hero-poster-mobile.jpg";
 import majorLeague from "@/assets/artists/major-league.jpg";
@@ -45,7 +45,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  const { open } = useSubscribePopup();
+  
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
@@ -217,29 +217,6 @@ function HomePage() {
           </FadeIn>
         </Section>
       </div>
-
-      {/* CTA */}
-      <div className="surface-light">
-      <Section className="border-t border-border">
-        <div className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/20 via-card to-card p-6 md:p-12">
-          <FadeIn>
-            <h2 className="font-display text-[clamp(1.75rem,8vw,4.5rem)] font-bold leading-tight whitespace-nowrap md:text-7xl">
-              Don't miss <span className="text-primary italic">the moment.</span>
-            </h2>
-            <p className="mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
-              Subscribe for first-access drops, ticket waves and exclusive lineup announcements.
-            </p>
-            <button
-              onClick={() => open("home-cta")}
-              className="mt-6 rounded-full bg-accent px-8 py-4 text-sm font-bold uppercase tracking-widest text-accent-foreground hover:scale-105 transition-transform"
-            >
-              Subscribe now
-            </button>
-          </FadeIn>
-        </div>
-      </Section>
-      </div>
-
     </>
   );
 }
