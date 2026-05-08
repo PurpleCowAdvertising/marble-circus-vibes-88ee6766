@@ -83,7 +83,7 @@ function HomePage() {
 
       {/* ABOUT TEASER */}
       <div className="relative bg-orange-rich">
-        <Section className="text-foreground">
+        <Section className="text-foreground !pb-3 sm:!pb-4 md:!pb-6">
           <div className="grid gap-10 md:grid-cols-2 md:gap-20">
             <FadeIn>
               <p className="text-xs uppercase tracking-[0.4em] text-foreground/70">About</p>
@@ -154,7 +154,7 @@ function HomePage() {
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent transition-opacity duration-500 group-hover:via-background/30" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-60" />
                 <div className="absolute inset-x-0 bottom-0 flex flex-col p-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
                   <h3 className="font-display text-3xl font-bold">{artist.name}</h3>
                   <span className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
