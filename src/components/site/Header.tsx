@@ -68,7 +68,11 @@ export function Header() {
           />
           <nav
             aria-label="Primary"
-            className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white px-2 py-1.5 ring-1 ring-inset ring-white shadow-[0_8px_28px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-500 ease-out border-white"
+            className={`pointer-events-auto relative flex items-center gap-1 rounded-full px-2 py-1.5 transition-all duration-500 ease-out ${
+              scrolled
+                ? "bg-white ring-1 ring-inset ring-white shadow-[0_8px_28px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] border-white"
+                : "bg-transparent ring-0 shadow-none border-transparent"
+            }`}
           >
             {NAV.map((item) => (
               <Link
