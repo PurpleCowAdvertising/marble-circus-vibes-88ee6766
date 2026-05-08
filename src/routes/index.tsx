@@ -49,7 +49,7 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <div ref={heroRef} className="relative overflow-hidden bg-background pt-16 md:pt-20">
+      <div ref={heroRef} className="relative overflow-hidden bg-background pt-16 md:pt-20 bg-[#eaad1f]">
         <div className="mx-auto max-w-[1400px] px-5 pb-10 sm:px-6 md:px-10 md:pb-20 md:pt-12">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
