@@ -93,19 +93,18 @@ function HomePage() {
         </div>
       </div>
 
-      {/* MARQUEE */}
-      <div className="relative z-10 border-y border-black/10 py-4 md:py-6 shadow-[inset_0_0_60px_rgba(234,173,31,0.18)] bg-orange-100">
+      {/* MARQUEE — artist roster */}
+      <div className="relative z-10 border-y border-border bg-background py-5 md:py-7">
         <div className="marquee">
-          <div className="marquee-track font-display text-2xl font-black uppercase sm:text-3xl md:text-5xl lg:text-6xl">
-            {[...ARTISTS, ...ARTISTS].map((a, i) => {
-              const color = ARTIST_COLORS[i % ARTIST_COLORS.length];
-              return (
-                <span key={i} className="flex items-center gap-6 md:gap-12">
-                  <span className="text-3d" style={{ color }}>{a}</span>
-                  <span className="text-3d" style={{ color: "#eaad1f" }}>✦</span>
+          <div className="marquee-track">
+            {[...ARTISTS, ...ARTISTS, ...ARTISTS].map((a, i) => (
+              <span key={i} className="flex items-center gap-5 md:gap-8">
+                <span className="flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-2 font-display text-sm uppercase tracking-widest text-foreground backdrop-blur-md md:px-5 md:py-2.5 md:text-base">
+                  {a}
                 </span>
-              );
-            })}
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+              </span>
+            ))}
           </div>
         </div>
       </div>
