@@ -58,7 +58,7 @@
   --radius: 0.25rem;
 
   /* Dark mode — warm black with cream foreground */
-  --background: oklch(0.14 0.012 60);
+  --background: oklch(0.11 0.012 60);
   --foreground: oklch(0.96 0.01 85);
 
   --card: oklch(0.18 0.014 60);
