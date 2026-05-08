@@ -131,7 +131,6 @@ function HomePage() {
       </div>
 
       {/* MUSIC PREVIEW */}
-      <div className="mt-4 font-display text-4xl font-bold md:text-5xl text-white">
       <Section className="!pt-2 sm:!pt-3 md:!pt-6">
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -182,7 +181,6 @@ function HomePage() {
           ))}
         </div>
       </Section>
-      </div>
 
       {/* SPONSORS STRIP */}
       <div className="relative z-40 isolate bg-orange-rich">
