@@ -13,7 +13,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`relative z-10 mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 ${className}`}
+      className={`relative z-10 mx-auto max-w-[1400px] px-5 py-16 sm:px-6 sm:py-20 md:px-10 md:py-32 ${className}`}
     >
       {children}
     </section>
@@ -52,14 +52,14 @@ export function PageHero({
   description?: string;
 }) {
   return (
-    <section className="relative z-10 mx-auto max-w-[1400px] px-6 pb-12 pt-40 md:px-10 md:pb-16 md:pt-48">
+    <section className="relative z-10 mx-auto max-w-[1400px] px-5 pb-10 pt-32 sm:px-6 sm:pt-36 md:px-10 md:pb-16 md:pt-48">
       <FadeIn>
-        <p className="text-xs uppercase tracking-[0.4em] text-primary">{eyebrow}</p>
-        <h1 className="mt-4 font-display text-6xl font-bold leading-[0.9] tracking-tight md:text-8xl lg:text-9xl">
+        <p className="text-[10px] uppercase tracking-[0.4em] text-primary sm:text-xs">{eyebrow}</p>
+        <h1 className="mt-4 font-display text-[clamp(2.75rem,11vw,4rem)] font-bold leading-[0.9] tracking-tight text-balance md:text-8xl lg:text-9xl">
           {title}
         </h1>
         {description && (
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
+          <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg md:text-xl">
             {description}
           </p>
         )}
