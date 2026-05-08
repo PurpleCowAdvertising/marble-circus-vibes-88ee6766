@@ -48,51 +48,48 @@ function HomePage() {
   return (
     <>
       {/* HERO */}
-      <div ref={heroRef} className="relative min-h-[100svh] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroPoster})` }}
+      <div ref={heroRef} className="relative min-h-[100svh] overflow-hidden bg-background">
+        <img
+          src={heroPoster}
+          alt="Scorpion Kings Live — 19 Sep 2026, FNB Stadium"
+          className="absolute inset-0 h-full w-full object-contain object-top md:object-cover md:object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background md:from-background/20 md:via-background/30" />
 
         <motion.div
           style={{ y, opacity }}
-          className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-end px-5 pb-16 pt-28 sm:px-6 md:px-10 md:pb-24"
+          className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-end px-5 pb-10 pt-20 sm:px-6 md:px-10 md:pb-24 md:pt-28"
         >
           <FadeIn delay={0.25}>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/90 sm:gap-6">
-              <span className="flex items-center gap-2 rounded-full bg-background/60 px-4 py-2 backdrop-blur-md">
-                <Calendar size={16} className="text-primary" />
+            <div className="flex flex-wrap items-center gap-2 text-xs text-foreground sm:gap-4 sm:text-sm">
+              <span className="flex items-center gap-2 rounded-full bg-background/70 px-3 py-2 backdrop-blur-md sm:px-4">
+                <Calendar size={14} className="text-primary" />
                 19 Sep 2026
               </span>
-              <span className="flex items-center gap-2 rounded-full bg-background/60 px-4 py-2 backdrop-blur-md">
-                <MapPin size={16} className="text-primary" />
+              <span className="flex items-center gap-2 rounded-full bg-background/70 px-3 py-2 backdrop-blur-md sm:px-4">
+                <MapPin size={14} className="text-primary" />
                 FNB Stadium · Johannesburg
               </span>
             </div>
           </FadeIn>
           <FadeIn delay={0.4}>
-            <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
+            <div className="mt-5 flex flex-wrap gap-3 sm:mt-8 sm:gap-4">
               <button
                 onClick={() => open("hero")}
-                className="group flex items-center gap-3 rounded-full bg-primary px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 sm:px-7 sm:py-4 sm:text-sm"
+                className="group flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[11px] font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105 sm:px-7 sm:py-4 sm:text-sm"
               >
                 Get the drop
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </button>
               <Link
                 to="/music"
-                className="rounded-full border border-border bg-background/40 px-6 py-3.5 text-xs font-bold uppercase tracking-widest backdrop-blur-md hover:border-primary hover:text-primary sm:px-7 sm:py-4 sm:text-sm"
+                className="rounded-full border border-border bg-background/50 px-5 py-3 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md hover:border-primary hover:text-primary sm:px-7 sm:py-4 sm:text-sm"
               >
                 Explore the lineup
               </Link>
             </div>
           </FadeIn>
         </motion.div>
-
-        <div className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.4em] text-muted-foreground sm:text-xs">
-          Scroll
-        </div>
       </div>
 
       {/* MARQUEE */}
