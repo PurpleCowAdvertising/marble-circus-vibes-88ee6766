@@ -9,7 +9,6 @@ const NAV = [
   { to: "/music", label: "Music" },
   { to: "/about", label: "About" },
   { to: "/sponsors", label: "Sponsors" },
-  
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -29,11 +28,8 @@ export function Header() {
         const y = window.scrollY;
         setScrolled(y > 20);
         const delta = y - lastY;
-        if (y > 140 && delta > 6) {
-          setHidden(true);
-        } else if (delta < -6 || y < 80) {
-          setHidden(false);
-        }
+        if (y > 140 && delta > 6) setHidden(true);
+        else if (delta < -6 || y < 80) setHidden(false);
         lastY = y;
         ticking = false;
       });
@@ -45,87 +41,96 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[transform,opacity,background-color,padding,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
-        scrolled
-          ? "bg-background/75 backdrop-blur-xl border-b border-border"
-          : "bg-transparent border-b border-transparent"
-      } ${
-        hidden && !open
-          ? "-translate-y-full opacity-0 pointer-events-none"
-          : "translate-y-0 opacity-100"
+      className={`fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+        hidden && !open ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
       }`}
     >
-      <div
-        className={`mx-auto flex max-w-[1400px] items-center justify-between gap-3 px-4 sm:px-6 md:px-10 transition-all duration-500 ease-out ${
-          scrolled ? "py-1.5 md:py-2" : "py-3 md:py-4"
-        }`}
-      >
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5">
+        {/* Logo — bare, no chrome */}
         <Link to="/" aria-label="Scorpion Kings Live" className="flex shrink-0 items-center">
           <img
             src={logo}
             alt="Scorpion Kings Live"
             className={`w-auto transition-all duration-500 ease-out ${
-              scrolled ? "h-7 sm:h-8 md:h-9" : "h-8 sm:h-9 md:h-10"
+              scrolled ? "h-7 md:h-8" : "h-8 md:h-10"
             }`}
           />
         </Link>
 
-        <nav className="hidden items-center gap-5 md:flex lg:gap-8">
+        {/* Floating glass pill nav */}
+        <nav
+          aria-label="Primary"
+          className={`pointer-events-auto hidden items-center gap-1 rounded-full border border-foreground/10 bg-background/40 px-2 py-1.5 backdrop-blur-2xl transition-all duration-500 ease-out md:flex ${
+            scrolled ? "shadow-[0_8px_32px_-12px_rgba(0,0,0,0.5)]" : ""
+          }`}
+          style={{ WebkitBackdropFilter: "blur(24px) saturate(1.4)", backdropFilter: "blur(24px) saturate(1.4)" }}
+        >
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="font-display text-sm uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent lg:text-base"
-              activeProps={{ className: "text-foreground" }}
               activeOptions={{ exact: item.to === "/" }}
+              className="group relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-foreground/65 transition-colors duration-300 hover:text-foreground lg:px-4"
+              activeProps={{ className: "!text-foreground" }}
             >
-              {item.label}
+              <span className="relative z-10">{item.label}</span>
+              <span
+                aria-hidden
+                className="absolute inset-0 -z-0 rounded-full bg-foreground/[0.06] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100"
+              />
             </Link>
           ))}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+        {/* Right cluster */}
+        <div className="flex shrink-0 items-center gap-2">
           <button
             onClick={() => openSubscribe("header")}
-            className="hidden rounded-full bg-accent px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-accent-foreground transition-transform hover:scale-105 md:inline-block lg:px-5 lg:py-2 lg:text-xs"
+            className="hidden rounded-full bg-foreground px-4 py-1.5 text-[12px] font-medium tracking-tight text-background transition-all duration-300 hover:scale-[1.03] hover:bg-foreground/90 md:inline-flex"
           >
             Subscribe
           </button>
           <button
             onClick={() => setOpen(!open)}
-            className="p-1 md:hidden"
-            aria-label="Menu"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 bg-background/40 text-foreground backdrop-blur-2xl transition-colors hover:bg-foreground/[0.06] md:hidden"
+            style={{ WebkitBackdropFilter: "blur(24px) saturate(1.4)", backdropFilter: "blur(24px) saturate(1.4)" }}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
           >
-            {open ? <X size={22} /> : <Menu size={22} />}
+            {open ? <X size={18} strokeWidth={1.75} /> : <Menu size={18} strokeWidth={1.75} />}
           </button>
         </div>
       </div>
 
-      {open && (
-        <div className="border-t border-border bg-background md:hidden">
-          <nav className="flex flex-col px-6 py-6">
-            {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className="border-b border-border py-4 font-display text-2xl"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <button
-              onClick={() => {
-                setOpen(false);
-                openSubscribe("mobile-nav");
-              }}
-              className="mt-6 rounded-full bg-accent px-5 py-3 text-sm font-bold uppercase tracking-widest text-accent-foreground"
+      {/* Mobile sheet — full-screen quiet panel */}
+      <div
+        className={`md:hidden fixed inset-x-0 top-[68px] mx-3 origin-top overflow-hidden rounded-2xl border border-foreground/10 bg-background/85 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          open ? "scale-100 opacity-100" : "pointer-events-none scale-[0.98] opacity-0"
+        }`}
+        style={{ WebkitBackdropFilter: "blur(24px) saturate(1.4)", backdropFilter: "blur(24px) saturate(1.4)" }}
+      >
+        <nav className="flex flex-col p-2">
+          {NAV.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              onClick={() => setOpen(false)}
+              className="rounded-xl px-4 py-3 text-lg font-medium tracking-tight text-foreground/80 transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
             >
-              Subscribe
-            </button>
-          </nav>
-        </div>
-      )}
+              {item.label}
+            </Link>
+          ))}
+          <button
+            onClick={() => {
+              setOpen(false);
+              openSubscribe("mobile-nav");
+            }}
+            className="mt-2 rounded-xl bg-foreground px-4 py-3 text-sm font-medium tracking-tight text-background"
+          >
+            Subscribe
+          </button>
+        </nav>
+      </div>
     </header>
   );
 }
