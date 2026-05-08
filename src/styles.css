@@ -260,53 +260,15 @@
   }
   .animate-float { animation: float-soft 6s ease-in-out infinite; }
 
-  /* Rich animated orange — stadium image behind, drifting orange overlay on top */
+  /* Soft cream parchment background (replaces stadium image + orange wash) */
   .bg-orange-rich {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    background-color: oklch(0.94 0.06 88);
+    background-color: #f4ecd6;
     color: oklch(0.22 0.04 60);
   }
-  /* Layer 1: stadium image, slow Ken Burns drift — bring it forward */
-  .bg-orange-rich::before {
-    content: "";
-    position: absolute;
-    inset: -8%;
-    z-index: -2;
-    background-image: url("./assets/orange-bg-stadium.jpg");
-    background-size: cover;
-    background-position: center 30%;
-    opacity: 0.85;
-    filter: saturate(1.15) contrast(1.05);
-    animation: orange-drift 38s ease-in-out infinite;
-    will-change: transform;
-  }
-  /* Layer 2: warm yellow/cream wash, low alpha so stadium reads strong */
-  .bg-orange-rich::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image:
-      radial-gradient(ellipse 70% 80% at 20% 15%, oklch(0.92 0.14 88 / 0.22), transparent 60%),
-      radial-gradient(ellipse 75% 85% at 85% 90%, oklch(0.96 0.05 90 / 0.22), transparent 65%),
-      linear-gradient(140deg, oklch(0.88 0.15 85 / 0.22) 0%, oklch(0.94 0.08 88 / 0.18) 60%, oklch(0.96 0.04 90 / 0.22) 100%);
-    background-size: 140% 140%, 140% 140%, 100% 100%;
-    background-position: 0% 0%, 100% 100%, 0% 0%;
-    animation: orange-shift 28s ease-in-out infinite;
-  }
-  @keyframes orange-shift {
-    0%, 100% { background-position: 0% 0%, 100% 100%, 0% 0%; }
-    50%      { background-position: 25% 20%, 75% 80%, 0% 0%; }
-  }
-  @keyframes orange-drift {
-    0%, 100% { transform: scale(1.06) translate3d(0, 0, 0); }
-    50%      { transform: scale(1.14) translate3d(-3%, -2%, 0); }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .bg-orange-rich::before,
-    .bg-orange-rich::after { animation: none; }
+    .bg-orange-rich { background-color: #f4ecd6; }
   }
 }
