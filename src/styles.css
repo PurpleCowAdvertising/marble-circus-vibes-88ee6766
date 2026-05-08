@@ -272,3 +272,10 @@
     .bg-orange-rich { background-color: #f4ecd6; }
   }
 }
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
