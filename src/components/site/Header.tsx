@@ -50,26 +50,26 @@ export function Header() {
       }`}
     >
       <div
-        className={`mx-auto flex max-w-[1400px] items-center justify-between px-5 sm:px-6 md:px-10 transition-all duration-500 ease-out ${
+        className={`mx-auto flex max-w-[1400px] items-center justify-between gap-3 px-4 sm:px-6 md:px-10 transition-all duration-500 ease-out ${
           scrolled ? "py-1.5 md:py-2" : "py-3 md:py-4"
         }`}
       >
-        <Link to="/" aria-label="Scorpion Kings Live" className="flex items-center">
+        <Link to="/" aria-label="Scorpion Kings Live" className="flex shrink-0 items-center">
           <img
             src={logo}
             alt="Scorpion Kings Live"
             className={`w-auto transition-all duration-500 ease-out ${
-              scrolled ? "h-9 md:h-10" : "h-14 md:h-20"
+              scrolled ? "h-8 sm:h-9 md:h-10" : "h-10 sm:h-12 md:h-16 lg:h-20"
             }`}
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-5 md:flex lg:gap-8">
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="font-display text-base uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent"
+              className="font-display text-sm uppercase tracking-widest text-muted-foreground transition-colors hover:text-accent lg:text-base"
               activeProps={{ className: "text-foreground" }}
               activeOptions={{ exact: item.to === "/" }}
             >
@@ -78,19 +78,19 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <button
             onClick={() => openSubscribe("header")}
-            className="hidden rounded-full bg-accent px-5 py-2 text-xs font-bold uppercase tracking-widest text-accent-foreground transition-transform hover:scale-105 md:block"
+            className="hidden rounded-full bg-accent px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-accent-foreground transition-transform hover:scale-105 md:inline-block lg:px-5 lg:py-2 lg:text-xs"
           >
             Subscribe
           </button>
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden"
+            className="p-1 md:hidden"
             aria-label="Menu"
           >
-            {open ? <X size={24} /> : <Menu size={24} />}
+            {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
