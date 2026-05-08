@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { ArrowRight, ArrowLeft, Calendar, MapPin, X, Music2 } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { ArrowRight, ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { useSubscribePopup } from "@/components/site/SubscribePopup";
 import heroPoster from "@/assets/hero-poster.jpg";
