@@ -166,6 +166,7 @@ function HomePage() {
           ))}
         </div>
       </Section>
+      </div>
 
       {/* SPONSORS STRIP */}
       <div className="relative bg-orange-rich">
