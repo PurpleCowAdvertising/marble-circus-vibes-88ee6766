@@ -173,7 +173,7 @@ function HomePage() {
                 
                 <div className="absolute inset-x-0 bottom-0 flex flex-col p-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
                   <h3 className="font-display text-3xl font-bold">{artist.name}</h3>
-                  <span className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
+                  <span className="mt-1 text-[11px] uppercase tracking-widest text-white">
                     {artist.tag}
                   </span>
                 </div>
@@ -189,8 +189,8 @@ function HomePage() {
         <Section className="text-foreground">
           <FadeIn>
             {/* On orange background, use BLACK text for legibility */}
-            <p className="text-xs uppercase tracking-[0.4em] text-foreground/80">In partnership with</p>
-            <h2 className="mt-4 font-display text-4xl font-bold text-foreground md:text-5xl">Powered by the bold.</h2>
+            <p className="text-xs uppercase tracking-[0.4em] text-black">In partnership with</p>
+            <h2 className="mt-4 font-display text-4xl font-bold text-black md:text-5xl">Powered by the bold.</h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -223,7 +223,7 @@ function HomePage() {
             <div className="mt-8">
               <Link
                 to="/sponsors"
-                className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-foreground hover:text-foreground/70"
+                className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-black hover:text-black/70"
               >
                 <span className="story-link">Become a partner</span>
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
