@@ -81,10 +81,10 @@ function HomePage() {
               </span>
               <Link
                 to="/music"
-                className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-2.5 py-1.5 font-bold uppercase tracking-widest backdrop-blur-md transition-colors hover:border-accent hover:text-accent sm:gap-2 sm:px-4 sm:py-2"
+                className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-card/60 px-2.5 py-1.5 backdrop-blur-md transition-colors hover:border-accent hover:text-accent sm:gap-2 sm:px-4 sm:py-2"
               >
+                <ArrowRight size={12} className="text-accent transition-transform group-hover:translate-x-1 sm:size-[14px]" />
                 <span className="whitespace-nowrap">Explore the lineup</span>
-                <ArrowRight size={12} className="transition-transform group-hover:translate-x-1 sm:size-[14px]" />
               </Link>
             </div>
           </FadeIn>
