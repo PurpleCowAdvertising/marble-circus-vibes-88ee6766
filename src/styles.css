@@ -168,6 +168,20 @@
     to { transform: translateX(-100%); }
   }
 
+  /* Bold 3D extruded text — chunky layered shadow */
+  .text-3d {
+    text-shadow:
+      1px 1px 0 rgba(0,0,0,0.9),
+      2px 2px 0 rgba(0,0,0,0.9),
+      3px 3px 0 rgba(0,0,0,0.9),
+      4px 4px 0 rgba(0,0,0,0.9),
+      5px 5px 0 rgba(0,0,0,0.9),
+      6px 6px 0 rgba(0,0,0,0.9),
+      7px 7px 12px rgba(0,0,0,0.35);
+    -webkit-text-stroke: 1.5px rgba(0,0,0,0.9);
+    paint-order: stroke fill;
+  }
+
   .grid-lines {
     background-image:
       linear-gradient(to right, oklch(1 0 0 / 0.04) 1px, transparent 1px),
