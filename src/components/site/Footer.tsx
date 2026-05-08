@@ -29,26 +29,26 @@ export function Footer() {
           <div>
             <h4 className="mb-4 text-xs uppercase tracking-widest text-muted-foreground">Explore</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/music" className="hover:text-primary">Music</Link></li>
-              <li><Link to="/about" className="hover:text-primary">About</Link></li>
-              <li><Link to="/sponsors" className="hover:text-primary">Sponsors</Link></li>
-              <li><Link to="/faqs" className="hover:text-primary">FAQs</Link></li>
-              <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
+              <li><Link to="/music" className="hover:text-accent">Music</Link></li>
+              <li><Link to="/about" className="hover:text-accent">About</Link></li>
+              <li><Link to="/sponsors" className="hover:text-accent">Sponsors</Link></li>
+              <li><Link to="/faqs" className="hover:text-accent">FAQs</Link></li>
+              <li><Link to="/contact" className="hover:text-accent">Contact</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="mb-4 text-xs uppercase tracking-widest text-muted-foreground">Legal</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/privacy" className="hover:text-primary">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="hover:text-primary">Terms of Use</Link></li>
+              <li><Link to="/privacy" className="hover:text-accent">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-accent">Terms of Use</Link></li>
             </ul>
 
             <div className="mt-8 flex gap-4">
-              <a href="#" aria-label="Instagram" className="text-muted-foreground hover:text-primary"><Instagram size={20} /></a>
-              <a href="#" aria-label="Twitter" className="text-muted-foreground hover:text-primary"><Twitter size={20} /></a>
-              <a href="#" aria-label="YouTube" className="text-muted-foreground hover:text-primary"><Youtube size={20} /></a>
-              <a href="#" aria-label="Spotify" className="text-muted-foreground hover:text-primary"><Music size={20} /></a>
+              <a href="#" aria-label="Instagram" className="text-muted-foreground hover:text-accent"><Instagram size={20} /></a>
+              <a href="#" aria-label="Twitter" className="text-muted-foreground hover:text-accent"><Twitter size={20} /></a>
+              <a href="#" aria-label="YouTube" className="text-muted-foreground hover:text-accent"><Youtube size={20} /></a>
+              <a href="#" aria-label="Spotify" className="text-muted-foreground hover:text-accent"><Music size={20} /></a>
             </div>
           </div>
         </div>

@@ -82,7 +82,7 @@ function ContactPage() {
                     <Icon size={18} className="text-primary" />
                     <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">{label}</p>
                   </div>
-                  <a href={`mailto:${email}`} className="mt-2 block font-display text-2xl font-bold hover:text-primary md:text-3xl">
+                  <a href={`mailto:${email}`} className="mt-2 block font-display text-2xl font-bold hover:text-accent md:text-3xl">
                     {email}
                   </a>
                 </div>
@@ -110,7 +110,7 @@ function ContactPage() {
                   <button
                     type="button"
                     onClick={() => setSent(false)}
-                    className="mt-6 rounded-full border border-border px-6 py-2 text-sm uppercase tracking-widest hover:border-primary"
+                    className="mt-6 rounded-full border border-border px-6 py-2 text-sm uppercase tracking-widest hover:border-accent"
                   >
                     Send another
                   </button>

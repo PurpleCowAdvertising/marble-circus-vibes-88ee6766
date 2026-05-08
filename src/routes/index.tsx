@@ -82,7 +82,7 @@ function HomePage() {
                 </button>
                 <Link
                   to="/music"
-                  className="rounded-full border border-border bg-card/40 px-5 py-3 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md hover:border-primary hover:text-primary sm:px-7 sm:py-4 sm:text-sm"
+                  className="rounded-full border border-border bg-card/40 px-5 py-3 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md hover:border-accent hover:text-accent sm:px-7 sm:py-4 sm:text-sm"
                 >
                   Explore the lineup
                 </Link>
@@ -138,7 +138,7 @@ function HomePage() {
               </p>
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 text-foreground hover:text-primary"
+                className="inline-flex items-center gap-2 text-foreground hover:text-accent"
               >
                 Read our story <ArrowRight size={16} />
               </Link>
@@ -159,7 +159,7 @@ function HomePage() {
             </div>
             <Link
               to="/music"
-              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-primary"
+              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-accent"
             >
               All artists <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
@@ -206,7 +206,7 @@ function HomePage() {
           <div className="mt-8">
             <Link
               to="/sponsors"
-              className="inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-primary"
+              className="inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-accent"
             >
               Become a partner <ArrowRight size={16} />
             </Link>
