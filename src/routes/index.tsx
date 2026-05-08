@@ -53,6 +53,18 @@ function HomePage() {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const [spotlight, setSpotlight] = useState<Headliner | null>(null);
+
+  useEffect(() => {
+    if (!spotlight) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setSpotlight(null);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [spotlight]);
 
   return (
     <>
