@@ -76,12 +76,12 @@ function HomePage() {
 
           <FadeIn delay={0.2}>
             <div className="mt-5 flex flex-wrap items-center gap-1.5 text-[11px] sm:mt-8 sm:gap-2.5 sm:text-sm md:gap-3">
-              <span className="flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-white backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
-                <Calendar size={12} className="text-white sm:size-[14px]" />
+              <span className="flex items-center gap-1.5 rounded-full border border-foreground/20 bg-background/60 px-2.5 py-1.5 text-foreground backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
+                <Calendar size={12} className="text-foreground sm:size-[14px]" />
                 <span className="whitespace-nowrap">19 Sep 2026</span>
               </span>
-              <span className="flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-2.5 py-1.5 text-white backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
-                <MapPin size={12} className="text-white sm:size-[14px]" />
+              <span className="flex items-center gap-1.5 rounded-full border border-foreground/20 bg-background/60 px-2.5 py-1.5 text-foreground backdrop-blur-md sm:gap-2 sm:px-4 sm:py-2">
+                <MapPin size={12} className="text-foreground sm:size-[14px]" />
                 <span className="whitespace-nowrap">FNB Stadium · Johannesburg</span>
               </span>
               <Link
