@@ -42,7 +42,7 @@ export function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
-        hidden && !open ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+        hidden ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-center gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:justify-between md:px-8 md:pt-5">
