@@ -130,9 +130,10 @@ function HomePage() {
               </p>
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 text-foreground hover:text-accent"
+                className="group inline-flex items-center gap-2 text-foreground hover:text-accent"
               >
-                Read our story <ArrowRight size={16} />
+                <span className="story-link">Read our story</span>
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
           </FadeIn>
