@@ -345,11 +345,11 @@ function ArtistCarousel() {
               src={a.image}
               alt={a.name}
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.1]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/10 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-4 md:p-5">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-background/80">{a.tag}</p>
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/20 to-transparent opacity-70 transition-opacity duration-700 group-hover:opacity-100" />
+            <div className="absolute inset-x-0 bottom-0 translate-y-1 p-4 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 md:p-5">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-background/70 opacity-0 transition-opacity duration-500 group-hover:opacity-100">{a.tag}</p>
               <h3 className="mt-1 font-display text-xl font-bold leading-tight text-background md:text-2xl">
                 {a.name}
               </h3>
