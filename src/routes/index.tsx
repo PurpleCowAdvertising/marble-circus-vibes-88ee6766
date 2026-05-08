@@ -5,6 +5,7 @@ import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { useSubscribePopup } from "@/components/site/SubscribePopup";
 import heroPoster from "@/assets/hero-poster.jpg";
+import scorpionKings from "@/assets/scorpion-kings.png";
 import majorLeague from "@/assets/artists/major-league.jpg";
 import tyla from "@/assets/artists/tyla.jpg";
 import blackCoffee from "@/assets/artists/black-coffee.jpg";
