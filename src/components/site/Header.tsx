@@ -106,40 +106,53 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile — floating FAB menu trigger, bottom-right, thumb-reachable */}
-      <button
-        onClick={() => setOpen(!open)}
-        aria-label={open ? "Close menu" : "Open menu"}
-        aria-expanded={open}
-        className={`pointer-events-auto fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.55)] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-90 md:hidden ${
-          open ? "rotate-90" : "rotate-0"
-        }`}
-      >
-        <span className="relative inline-block h-3.5 w-5">
+      {/* Mobile — floating glass FAB menu trigger */}
+      <div className="pointer-events-none fixed bottom-5 right-5 z-50 md:hidden">
+        <span
+          aria-hidden
+          className={`pointer-events-none absolute -inset-5 -z-10 rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_55%,transparent),transparent_70%)] blur-2xl transition-opacity duration-500 ${
+            open ? "opacity-100" : "opacity-70"
+          }`}
+        />
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="pointer-events-auto relative flex h-14 w-14 items-center justify-center rounded-full bg-white/75 ring-1 ring-inset ring-white/60 text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-90"
+          style={{ WebkitBackdropFilter: "blur(20px) saturate(1.6)", backdropFilter: "blur(20px) saturate(1.6)" }}
+        >
           <span
-            className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              open ? "translate-y-0 rotate-45" : "-translate-y-[5px] rotate-0"
+            aria-hidden
+            className={`absolute inset-0 rounded-full bg-gradient-to-b from-accent/55 to-accent/30 ring-1 ring-inset ring-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] transition-opacity duration-300 ${
+              open ? "opacity-100" : "opacity-0"
             }`}
           />
-          <span
-            className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              open ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              open ? "translate-y-0 -rotate-45" : "translate-y-[5px] rotate-0"
-            }`}
-          />
-        </span>
-      </button>
+          <span className="relative inline-block h-3.5 w-5">
+            <span
+              className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                open ? "translate-y-0 rotate-45" : "-translate-y-[5px] rotate-0"
+              }`}
+            />
+            <span
+              className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                open ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute left-0 right-0 top-1/2 block h-[1.5px] rounded-full bg-black transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                open ? "translate-y-0 -rotate-45" : "translate-y-[5px] rotate-0"
+              }`}
+            />
+          </span>
+        </button>
+      </div>
 
-      {/* Mobile sheet — anchored bottom-right above FAB */}
+      {/* Mobile sheet — glass panel anchored above FAB */}
       <div
-        className={`md:hidden fixed bottom-24 right-5 z-40 w-[min(320px,calc(100vw-2.5rem))] origin-bottom-right overflow-hidden rounded-2xl border border-white/10 bg-neutral-950/90 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`md:hidden fixed bottom-24 right-5 z-40 w-[min(320px,calc(100vw-2.5rem))] origin-bottom-right overflow-hidden rounded-2xl bg-white/75 ring-1 ring-inset ring-white/60 shadow-[0_18px_48px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           open ? "scale-100 opacity-100 translate-y-0" : "pointer-events-none scale-95 opacity-0 translate-y-3"
         }`}
-        style={{ WebkitBackdropFilter: "blur(24px) saturate(1.4)", backdropFilter: "blur(24px) saturate(1.4)" }}
+        style={{ WebkitBackdropFilter: "blur(24px) saturate(1.6)", backdropFilter: "blur(24px) saturate(1.6)" }}
       >
         <nav className="flex flex-col p-2">
           {NAV.map((item) => (
@@ -147,9 +160,18 @@ export function Header() {
               key={item.to}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="rounded-xl px-4 py-3 text-base font-medium tracking-tight text-white/85 transition-colors hover:bg-white/[0.06] hover:text-white"
+              className="group relative rounded-xl px-4 py-3 text-base font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-black hover:font-semibold"
             >
-              {item.label}
+              <span
+                className="relative z-10"
+                style={{ textShadow: "0 1px 0 rgba(255,255,255,0.5)" }}
+              >
+                {item.label}
+              </span>
+              <span
+                aria-hidden
+                className="absolute inset-0 -z-0 rounded-xl bg-gradient-to-b from-accent/45 to-accent/25 ring-1 ring-inset ring-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.55)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
             </Link>
           ))}
           <button
@@ -157,7 +179,7 @@ export function Header() {
               setOpen(false);
               openSubscribe("mobile-nav");
             }}
-            className="mt-2 rounded-xl bg-white px-4 py-3 text-sm font-medium tracking-tight text-black"
+            className="mt-2 rounded-xl bg-neutral-950 px-4 py-3 text-sm font-semibold tracking-tight text-white"
           >
             Subscribe
           </button>
