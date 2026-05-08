@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      consent_records: {
+        Row: {
+          consent_at: string
+          created_at: string
+          id: string
+          marketing_consent: boolean
+          privacy_consent: boolean
+          source: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          consent_at?: string
+          created_at?: string
+          id?: string
+          marketing_consent?: boolean
+          privacy_consent?: boolean
+          source?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          consent_at?: string
+          created_at?: string
+          id?: string
+          marketing_consent?: boolean
+          privacy_consent?: boolean
+          source?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           created_at: string
