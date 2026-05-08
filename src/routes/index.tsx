@@ -115,7 +115,7 @@ function HomePage() {
       </div>
 
       {/* MUSIC PREVIEW */}
-      <Section className="border-t border-border bg-white">
+      <Section className="border-t border-border bg-background">
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -172,7 +172,7 @@ function HomePage() {
           <FadeIn>
             {/* On orange background, use BLACK text for legibility */}
             <p className="text-xs uppercase tracking-[0.4em] text-foreground/80">In partnership with</p>
-            <h2 className="mt-4 font-display text-4xl font-bold text-foreground md:text-5xl text-slate-50">Powered by the bold.</h2>
+            <h2 className="mt-4 font-display text-4xl font-bold text-foreground md:text-5xl">Powered by the bold.</h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -216,7 +216,7 @@ function HomePage() {
       </div>
 
       {/* CTA */}
-      <Section className="border-t border-border bg-slate-50">
+      <Section className="border-t border-border bg-background">
         <div className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/20 via-card to-card p-6 md:p-12">
           <FadeIn>
             <h2 className="font-display text-[clamp(1.75rem,8vw,4.5rem)] font-bold leading-tight whitespace-nowrap md:text-7xl">
@@ -293,7 +293,7 @@ function ArtistCarousel() {
   return (
     <section
       aria-label="Featured artists carousel"
-      className="relative z-10 border-y border-foreground/10 bg-white py-10 md:py-14"
+      className="relative z-10 border-y border-foreground/10 bg-background py-10 md:py-14"
     >
       <div className="mx-auto max-w-[1400px] px-5 sm:px-6 md:px-10">
         <div className="flex items-end justify-between gap-6">
@@ -308,7 +308,7 @@ function ArtistCarousel() {
               type="button"
               onClick={() => nudge(-1)}
               aria-label="Previous artists"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 bg-white text-foreground transition-all hover:scale-105 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 bg-background text-foreground transition-all hover:scale-105 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
             >
               <ArrowLeft size={18} />
             </button>
@@ -316,7 +316,7 @@ function ArtistCarousel() {
               type="button"
               onClick={() => nudge(1)}
               aria-label="Next artists"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 bg-white text-foreground transition-all hover:scale-105 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/20 bg-background text-foreground transition-all hover:scale-105 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
             >
               <ArrowRight size={18} />
             </button>
