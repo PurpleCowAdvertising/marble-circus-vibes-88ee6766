@@ -44,11 +44,6 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const ARTISTS = [
-  "MAJOR LEAGUE DJZ", "TYLA", "BLACK COFFEE", "NASTY C",
-  "MUSA KEYS", "UNCLE WAFFLES", "FOCALISTIC", "KABZA DE SMALL", "SHO MADJOZI",
-];
-
 function HomePage() {
   const { open } = useSubscribePopup();
   const heroRef = useRef<HTMLDivElement>(null);
