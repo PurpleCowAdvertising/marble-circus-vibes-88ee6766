@@ -10,7 +10,10 @@ const STORAGE_KEY = "sony_sa_subscribe_dismissed";
 const schema = z.object({
   email: z.string().trim().email({ message: "Enter a valid email" }).max(255),
   name: z.string().trim().max(100).optional().or(z.literal("")),
-  consent: z.boolean(),
+  marketingConsent: z.boolean(),
+  privacyConsent: z.literal(true, {
+    errorMap: () => ({ message: "You must accept the Privacy Policy to subscribe" }),
+  }),
 });
 
 type Ctx = { open: (source?: string) => void; close: () => void; isOpen: boolean };
@@ -29,7 +32,8 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
   const [success, setSuccess] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [consent, setConsent] = useState(true);
+  const [marketingConsent, setMarketingConsent] = useState(true);
+  const [privacyConsent, setPrivacyConsent] = useState(false);
 
   const open = useCallback((src: string = "manual") => {
     setSource(src);
@@ -69,7 +73,7 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const parsed = schema.safeParse({ email, name, consent });
+    const parsed = schema.safeParse({ email, name, marketingConsent, privacyConsent });
     if (!parsed.success) {
       toast.error(parsed.error.issues[0]?.message ?? "Invalid input");
       return;
@@ -79,7 +83,9 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
       const { error } = await supabase.from("subscribers").insert({
         email: parsed.data.email,
         name: parsed.data.name || null,
-        marketing_consent: parsed.data.consent,
+        marketing_consent: parsed.data.marketingConsent,
+        privacy_consent: parsed.data.privacyConsent,
+        consent_at: new Date().toISOString(),
         source,
       });
       if (error) {
@@ -181,12 +187,28 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
                       <label className="flex cursor-pointer items-start gap-2 text-xs text-muted-foreground">
                         <input
                           type="checkbox"
-                          checked={consent}
-                          onChange={(e) => setConsent(e.target.checked)}
+                          checked={marketingConsent}
+                          onChange={(e) => setMarketingConsent(e.target.checked)}
                           className="mt-0.5 accent-primary"
                         />
                         <span>
                           I agree to receive marketing emails from Sony Music SA. I can unsubscribe anytime.
+                        </span>
+                      </label>
+                      <label className="flex cursor-pointer items-start gap-2 text-xs text-muted-foreground">
+                        <input
+                          type="checkbox"
+                          required
+                          checked={privacyConsent}
+                          onChange={(e) => setPrivacyConsent(e.target.checked)}
+                          className="mt-0.5 accent-primary"
+                        />
+                        <span>
+                          I have read and accept the{" "}
+                          <a href="/privacy" target="_blank" rel="noreferrer" className="underline hover:text-accent">
+                            Privacy Policy
+                          </a>{" "}
+                          and consent to the processing of my personal information in accordance with POPIA / GDPR.
                         </span>
                       </label>
                       <button
