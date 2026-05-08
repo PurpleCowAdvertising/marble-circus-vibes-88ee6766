@@ -77,9 +77,10 @@ function HomePage() {
         </div>
       </div>
 
-      {/* ARTIST CAROUSEL — swipeable, with arrows + scrubber */}
-      <ArtistCarousel />
-
+      {/* ARTIST CAROUSEL — folds up over hero */}
+      <div className="relative z-20 -mt-16 md:-mt-32">
+        <ArtistCarousel />
+      </div>
 
       {/* ABOUT TEASER */}
       <div className="relative bg-orange-rich">
@@ -115,8 +116,8 @@ function HomePage() {
       </div>
 
       {/* MUSIC PREVIEW */}
-      <div className="surface-light">
-      <Section className="border-t border-border">
+      <div className="surface-light relative z-30 -mt-16 md:-mt-32 rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)]">
+      <Section>
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -154,7 +155,7 @@ function HomePage() {
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-60" />
+                
                 <div className="absolute inset-x-0 bottom-0 flex flex-col p-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
                   <h3 className="font-display text-3xl font-bold">{artist.name}</h3>
                   <span className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
@@ -297,7 +298,7 @@ function ArtistCarousel() {
   return (
     <section
       aria-label="Featured artists carousel"
-      className="relative z-10 border-y border-foreground/10 surface-light py-10 md:py-14"
+      className="relative z-10 surface-light rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)] py-10 md:py-14"
     >
       <div className="mx-auto max-w-[1400px] px-5 sm:px-6 md:px-10">
         <div className="flex items-end justify-between gap-6">
