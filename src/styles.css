@@ -257,41 +257,53 @@
   }
   .animate-float { animation: float-soft 6s ease-in-out infinite; }
 
-  /* Rich animated orange — used for hero + alternating sections */
+  /* Rich animated orange — stadium image behind, drifting orange overlay on top */
   .bg-orange-rich {
     position: relative;
     isolation: isolate;
+    overflow: hidden;
     background-color: oklch(0.6 0.18 38);
-    background-image:
-      radial-gradient(ellipse 70% 80% at 20% 15%, oklch(0.74 0.17 55 / 0.55), transparent 60%),
-      radial-gradient(ellipse 75% 85% at 85% 90%, oklch(0.46 0.16 30 / 0.6), transparent 65%),
-      linear-gradient(140deg, oklch(0.66 0.19 48) 0%, oklch(0.56 0.19 35) 60%, oklch(0.48 0.16 30) 100%);
-    background-size: 140% 140%, 140% 140%, 100% 100%;
-    background-position: 0% 0%, 100% 100%, 0% 0%;
-    background-attachment: scroll;
-    animation: orange-shift 32s ease-in-out infinite;
     color: oklch(0.99 0.005 85);
   }
+  /* Layer 1: stadium image, slow Ken Burns drift */
+  .bg-orange-rich::before {
+    content: "";
+    position: absolute;
+    inset: -8%;
+    z-index: -2;
+    background-image: url("./assets/orange-bg-stadium.jpg");
+    background-size: cover;
+    background-position: center 30%;
+    opacity: 0.22;
+    filter: saturate(1.15) contrast(1.05);
+    animation: orange-drift 60s ease-in-out infinite;
+    will-change: transform;
+  }
+  /* Layer 2: animated orange wash with alpha so the image bleeds through */
   .bg-orange-rich::after {
     content: "";
     position: absolute;
     inset: 0;
-    pointer-events: none;
     z-index: -1;
+    pointer-events: none;
     background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.5'/></svg>");
-    opacity: 0.04;
-    mix-blend-mode: overlay;
+      radial-gradient(ellipse 70% 80% at 20% 15%, oklch(0.74 0.17 55 / 0.55), transparent 60%),
+      radial-gradient(ellipse 75% 85% at 85% 90%, oklch(0.46 0.16 30 / 0.55), transparent 65%),
+      linear-gradient(140deg, oklch(0.66 0.19 48 / 0.86) 0%, oklch(0.56 0.19 35 / 0.86) 60%, oklch(0.48 0.16 30 / 0.88) 100%);
+    background-size: 140% 140%, 140% 140%, 100% 100%;
+    background-position: 0% 0%, 100% 100%, 0% 0%;
+    animation: orange-shift 32s ease-in-out infinite;
   }
   @keyframes orange-shift {
-    0%, 100% {
-      background-position: 0% 0%, 100% 100%, 0% 0%;
-    }
-    50% {
-      background-position: 20% 15%, 80% 85%, 0% 0%;
-    }
+    0%, 100% { background-position: 0% 0%, 100% 100%, 0% 0%; }
+    50%      { background-position: 20% 15%, 80% 85%, 0% 0%; }
+  }
+  @keyframes orange-drift {
+    0%, 100% { transform: scale(1.05) translate3d(0, 0, 0); }
+    50%      { transform: scale(1.12) translate3d(-2%, -1.5%, 0); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .bg-orange-rich { animation: none; }
+    .bg-orange-rich::before,
+    .bg-orange-rich::after { animation: none; }
   }
 }
