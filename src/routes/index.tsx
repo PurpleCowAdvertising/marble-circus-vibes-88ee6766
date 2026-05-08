@@ -25,9 +25,9 @@ const HEADLINERS = [
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Scorpion Kings — Home of the Culture" },
-      { name: "description", content: "Scorpion Kings — artists, events and the culture. Be first to know about lineup drops, tickets and exclusive content." },
-      { property: "og:title", content: "Scorpion Kings" },
+      { title: "Scorpion Kings Live — Home of the Culture" },
+      { name: "description", content: "Scorpion Kings Live — artists, events and the culture. Be first to know about lineup drops, tickets and exclusive content." },
+      { property: "og:title", content: "Scorpion Kings Live" },
       { property: "og:description", content: "Home of the artists, the events and the culture." },
     ],
   }),
@@ -115,7 +115,7 @@ function HomePage() {
           <FadeIn delay={0.15}>
             <div className="space-y-6 text-lg text-muted-foreground md:pt-12">
               <p>
-                Scorpion Kings champions the bold, the brilliant and the boundary-breaking.
+                Scorpion Kings Live champions the bold, the brilliant and the boundary-breaking.
                 From amapiano floors to global pop stages — this is where the next sound starts.
               </p>
               <p>

@@ -168,7 +168,7 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
                           className="mt-0.5 accent-primary"
                         />
                         <span>
-                          I agree to receive marketing emails from Scorpion Kings. I can unsubscribe anytime.
+                          I agree to receive marketing emails from Scorpion Kings Live. I can unsubscribe anytime.
                         </span>
                       </label>
                       <label className="flex cursor-pointer items-start gap-2 text-xs text-muted-foreground">

@@ -105,7 +105,7 @@ export function ConsentBanner() {
                       />
                       <span>
                         <strong className="text-foreground">Marketing.</strong> Receive
-                        announcements, lineup drops and ticket waves from Scorpion Kings.
+                        announcements, lineup drops and ticket waves from Scorpion Kings Live.
                       </span>
                     </label>
                   </div>
