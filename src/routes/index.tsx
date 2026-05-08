@@ -78,13 +78,13 @@ function HomePage() {
       </div>
 
       {/* ARTIST CAROUSEL — folds up over hero */}
-      <div className="relative z-10 isolate -mt-16 md:-mt-32">
+      <div className="relative z-10 isolate fold-safe-strong">
         <ArtistCarousel />
       </div>
 
       {/* ABOUT TEASER */}
       <div className="relative z-20 isolate bg-orange-rich">
-        <Section className="text-foreground !pb-20 sm:!pb-24 md:!pb-32">
+        <Section className="text-foreground fold-safe-above">
           <div className="grid gap-10 md:grid-cols-2 md:gap-20">
             <FadeIn>
               <p className="text-xs uppercase tracking-[0.4em] text-foreground/70">About</p>
@@ -116,7 +116,7 @@ function HomePage() {
       </div>
 
       {/* MUSIC PREVIEW */}
-      <div className="surface-light relative z-30 isolate -mt-10 md:-mt-16 rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)] pt-6 md:pt-10">
+      <div className="surface-light relative z-30 isolate fold-safe rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)]">
       <Section>
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
