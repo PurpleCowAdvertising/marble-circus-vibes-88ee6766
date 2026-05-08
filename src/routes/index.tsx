@@ -7,11 +7,11 @@ import { useSubscribePopup } from "@/components/site/SubscribePopup";
 import heroPoster from "@/assets/hero-poster.jpg";
 import heroPosterMobile from "@/assets/hero-poster-mobile.jpg";
 import majorLeague from "@/assets/artists/major-league.jpg";
-import tyla from "@/assets/artists/tyla.jpg";
-import blackCoffee from "@/assets/artists/black-coffee.jpg";
-import nastyC from "@/assets/artists/nasty-c.jpg";
-import musaKeys from "@/assets/artists/musa-keys.jpg";
-import uncleWaffles from "@/assets/artists/uncle-waffles.jpg";
+import tyla from "@/assets/artists/tyla.png";
+import blackCoffee from "@/assets/artists/black-coffee.png";
+import nastyC from "@/assets/artists/nasty-c.png";
+import musaKeys from "@/assets/artists/musa-keys.png";
+import uncleWaffles from "@/assets/artists/uncle-waffles.png";
 
 const HEADLINERS = [
   { name: "MAJOR LEAGUE DJZ", image: majorLeague },
