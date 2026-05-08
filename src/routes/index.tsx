@@ -4,6 +4,21 @@ import { useRef } from "react";
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { useSubscribePopup } from "@/components/site/SubscribePopup";
+import majorLeague from "@/assets/artists/major-league.jpg";
+import tyla from "@/assets/artists/tyla.jpg";
+import blackCoffee from "@/assets/artists/black-coffee.jpg";
+import nastyC from "@/assets/artists/nasty-c.jpg";
+import musaKeys from "@/assets/artists/musa-keys.jpg";
+import uncleWaffles from "@/assets/artists/uncle-waffles.jpg";
+
+const HEADLINERS = [
+  { name: "MAJOR LEAGUE DJZ", image: majorLeague },
+  { name: "TYLA", image: tyla },
+  { name: "BLACK COFFEE", image: blackCoffee },
+  { name: "NASTY C", image: nastyC },
+  { name: "MUSA KEYS", image: musaKeys },
+  { name: "UNCLE WAFFLES", image: uncleWaffles },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
