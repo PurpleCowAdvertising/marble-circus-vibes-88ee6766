@@ -8,14 +8,14 @@ export function Footer() {
   const { open } = useSubscribePopup();
   return (
     <footer className="relative z-10 border-t border-border bg-background">
-      <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-10 md:py-16">
+      <div className="mx-auto max-w-[1400px] px-6 py-8 md:px-10 md:py-10">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
           <div className="col-span-2 md:col-span-2">
             <img src={logo} alt="Scorpion Kings Live" className="h-12 w-auto md:h-32" />
             <img
               src={ticketsAvailable}
               alt="Tickets available from Webtickets and Pick n Pay"
-              className="mt-4 h-auto w-full max-w-[320px] md:mt-6 md:max-w-[380px]"
+              className="mt-4 block h-auto w-auto max-w-[260px] md:mt-5 md:max-w-[300px]"
             />
             <h3 className="mt-4 font-display text-3xl font-bold tracking-tight md:hidden">
               Stay in the<br />
@@ -59,7 +59,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-2 border-t border-border pt-6 text-center text-[10px] text-muted-foreground md:mt-16 md:gap-4 md:pt-8 md:text-xs">
+        <div className="mt-8 flex flex-col items-center justify-center gap-2 border-t border-border pt-5 text-center text-[10px] text-muted-foreground md:mt-10 md:gap-3 md:pt-6 md:text-xs">
           <p>© {new Date().getFullYear()} Sony Music Africa. All rights reserved.</p>
           <p className="tracking-widest"><span>Designed & developed by</span> <br /><a href="https://purplecowbw.com" target="_blank" rel="noopener noreferrer" className="uppercase hover:text-accent transition-colors">Purple Cow Advertising</a></p>
         </div>
