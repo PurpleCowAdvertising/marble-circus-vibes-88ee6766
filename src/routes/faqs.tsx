@@ -10,9 +10,9 @@ import {
 export const Route = createFileRoute("/faqs")({
   head: () => ({
     meta: [
-      { title: "FAQs — Sony Music South Africa" },
+      { title: "FAQs — Scorpion Kings" },
       { name: "description", content: "Everything you need to know — tickets, venue, travel, policies and more." },
-      { property: "og:title", content: "FAQs — Sony Music SA" },
+      { property: "og:title", content: "FAQs — Scorpion Kings" },
       { property: "og:description", content: "Tickets, venue, travel and policies — answered." },
     ],
   }),

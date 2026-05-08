@@ -54,7 +54,7 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-xs text-muted-foreground md:flex-row md:items-center">
-          <p>© {new Date().getFullYear()} Sony Music Entertainment Africa (Pty) Ltd. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Scorpion Kings. All rights reserved.</p>
           <p className="uppercase tracking-widest">Made for the culture.</p>
         </div>
       </div>

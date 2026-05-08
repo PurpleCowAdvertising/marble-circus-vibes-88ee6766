@@ -105,7 +105,7 @@ export function ConsentBanner() {
                       />
                       <span>
                         <strong className="text-foreground">Marketing.</strong> Receive
-                        announcements, lineup drops and ticket waves from Sony Music SA.
+                        announcements, lineup drops and ticket waves from Scorpion Kings.
                       </span>
                     </label>
                   </div>

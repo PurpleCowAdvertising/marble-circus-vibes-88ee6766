@@ -5,9 +5,9 @@ import { ArrowUpRight } from "lucide-react";
 export const Route = createFileRoute("/sponsors")({
   head: () => ({
     meta: [
-      { title: "Sponsors & Partners — Sony Music SA" },
-      { name: "description", content: "Meet the brands powering the moment. Partnership opportunities with Sony Music South Africa." },
-      { property: "og:title", content: "Sponsors & Partners — Sony Music SA" },
+      { title: "Sponsors & Partners — Scorpion Kings" },
+      { name: "description", content: "Meet the brands powering the moment. Partnership opportunities with Scorpion Kings." },
+      { property: "og:title", content: "Sponsors & Partners — Scorpion Kings" },
       { property: "og:description", content: "Powered by brands that move with the culture." },
     ],
   }),

@@ -9,9 +9,9 @@ import { Mail, Briefcase, Newspaper } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Sony Music South Africa" },
-      { name: "description", content: "Get in touch with Sony Music South Africa — general enquiries, press, partnerships." },
-      { property: "og:title", content: "Contact — Sony Music SA" },
+      { title: "Contact — Scorpion Kings" },
+      { name: "description", content: "Get in touch with Scorpion Kings — general enquiries, press, partnerships." },
+      { property: "og:title", content: "Contact — Scorpion Kings" },
       { property: "og:description", content: "General, press and partnership enquiries." },
     ],
   }),
@@ -91,7 +91,7 @@ function ContactPage() {
               <div>
                 <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Office</p>
                 <p className="mt-2 font-display text-xl">
-                  Sony Music Entertainment Africa<br />
+                  Scorpion Kings<br />
                   Johannesburg, South Africa
                 </p>
               </div>
