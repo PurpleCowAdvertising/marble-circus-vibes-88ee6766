@@ -59,9 +59,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-center gap-2 border-t border-black/10 pt-5 text-center text-[10px] text-black/60 md:mt-10 md:gap-3 md:pt-6 md:text-xs">
+      </div>
+      <div className="bg-black text-white">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-center gap-2 px-6 py-5 text-center text-[10px] md:gap-3 md:px-10 md:py-6 md:text-xs">
           <p>© {new Date().getFullYear()} Sony Music Africa. All rights reserved.</p>
-          <p className="tracking-widest"><span>Designed & developed by</span> <br /><a href="https://purplecowbw.com" target="_blank" rel="noopener noreferrer" className="uppercase text-black hover:text-black/60 transition-colors">Purple Cow Advertising</a></p>
+          <p className="tracking-widest"><span>Designed & developed by</span> <br /><a href="https://purplecowbw.com" target="_blank" rel="noopener noreferrer" className="uppercase text-white hover:text-white/70 transition-colors">Purple Cow Advertising</a></p>
         </div>
       </div>
     </footer>
