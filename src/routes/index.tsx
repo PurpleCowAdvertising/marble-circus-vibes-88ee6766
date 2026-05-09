@@ -191,41 +191,41 @@ function HomePage() {
 
       {/* SPONSORS STRIP */}
       <div className="relative z-40 isolate bg-orange-rich">
-        <Section className="text-foreground">
+        <Section className="text-foreground !py-8 md:!py-12">
           <FadeIn>
-            <p className="text-xs uppercase tracking-[0.4em] text-black">Latest</p>
-            <h2 className="mt-4 font-display text-4xl font-bold md:text-5xl text-white">News from the Kings.</h2>
-            <p className="mt-3 max-w-xl text-sm text-white/85">
+            <p className="text-[10px] uppercase tracking-[0.4em] text-black">Latest</p>
+            <h2 className="mt-2 font-display text-3xl font-bold md:text-4xl text-white">News from the Kings.</h2>
+            <p className="mt-2 max-w-xl text-sm text-white/85">
               Live updates straight from Kabza De Small and DJ Maphorisa's official Facebook pages.
             </p>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <div className="mt-5 grid gap-3 md:mt-6 md:gap-4 md:grid-cols-2">
               {[
                 { name: "Kabza De Small", handle: "@KabzaDeSmall", href: "https://www.facebook.com/KabzaDeSmall" },
                 { name: "DJ Maphorisa", handle: "@djmaphorisa", href: "https://www.facebook.com/djmaphorisa" },
               ].map((p) => (
                 <div
                   key={p.name}
-                  className="group relative overflow-hidden rounded-2xl border border-white/15 bg-black/40 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/30 hover:shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]"
+                  className="group relative overflow-hidden rounded-xl border border-white/15 bg-black/40 shadow-[0_14px_40px_-18px_rgba(0,0,0,0.7)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-0.5 hover:border-white/30"
                 >
                   <div
                     aria-hidden
                     className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent"
                   />
-                  <div className="flex items-center justify-between gap-3 px-5 py-3">
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1877F2] font-display text-base font-bold text-white shadow-md">f</span>
+                  <div className="flex items-center justify-between gap-2 px-3 py-2 md:px-4 md:py-2.5">
+                    <div className="flex items-center gap-2.5">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1877F2] font-display text-sm font-bold text-white shadow-md">f</span>
                       <div className="leading-tight">
-                        <h3 className="font-display text-base font-bold text-white">{p.name}</h3>
-                        <p className="text-[10px] uppercase tracking-widest text-white/60">{p.handle}</p>
+                        <h3 className="font-display text-sm font-bold text-white md:text-base">{p.name}</h3>
+                        <p className="text-[9px] uppercase tracking-widest text-white/60">{p.handle}</p>
                       </div>
                     </div>
                     <a
                       href={p.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full border border-white/25 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white transition-colors hover:bg-white hover:text-black"
+                      className="rounded-full border border-white/25 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white transition-colors hover:bg-white hover:text-black"
                     >
                       Follow
                     </a>
@@ -233,8 +233,8 @@ function HomePage() {
                   <div className="relative overflow-hidden border-t border-white/10 bg-white">
                     <iframe
                       title={`${p.name} Facebook feed`}
-                      src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(p.href)}&tabs=timeline&width=500&height=340&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false`}
-                      style={{ border: "none", overflow: "hidden", width: "100%", height: 340, display: "block" }}
+                      src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(p.href)}&tabs=timeline&width=500&height=300&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false`}
+                      style={{ border: "none", overflow: "hidden", width: "100%", height: 300, display: "block" }}
                       scrolling="no"
                       frameBorder="0"
                       allowFullScreen
