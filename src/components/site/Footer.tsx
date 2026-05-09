@@ -12,11 +12,13 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
           <div className="col-span-2 md:col-span-2">
             <img src={logo} alt="Scorpion Kings Live" className="h-12 w-auto md:h-32" />
-            <img
-              src={ticketsAvailable}
-              alt="Tickets available from Webtickets and Pick n Pay"
-              className="mt-4 block h-auto w-auto max-w-[260px] md:mt-5 md:max-w-[300px]"
-            />
+            <div className="mt-4 block max-w-[260px] overflow-hidden md:mt-5 md:max-w-[300px]" style={{ aspectRatio: "1313 / 232" }}>
+              <img
+                src={ticketsAvailable}
+                alt="Tickets available from Webtickets"
+                className="block h-auto w-full"
+              />
+            </div>
             <h3 className="mt-4 font-display text-3xl font-bold tracking-tight text-black md:hidden">
               Stay in the<br />
               <span className="text-black">loop.</span>
