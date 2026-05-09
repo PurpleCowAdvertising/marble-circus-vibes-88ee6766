@@ -85,15 +85,9 @@ export function Header() {
           </nav>
         </div>
 
-        {/* Subscribe — desktop only, transparent (no background shape) */}
-        <div className="hidden shrink-0 items-center gap-2 md:flex">
-          <button
-            onClick={() => openSubscribe("header")}
-            className="text-[12px] font-medium tracking-tight text-white transition-all duration-300 hover:scale-[1.03] hover:text-white/80"
-          >
-            Subscribe
-          </button>
-        </div>
+        {/* Subscribe button removed */}
+        <div className="hidden md:block" aria-hidden />
+
       </div>
 
     </header>
