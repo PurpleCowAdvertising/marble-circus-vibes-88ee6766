@@ -374,7 +374,7 @@ function ArtistCarousel() {
 
       <div
         ref={trackRef}
-        className="no-scrollbar mt-4 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-5 pb-1 sm:mt-8 sm:gap-5 sm:px-6 sm:pb-2 md:gap-6 md:px-10"
+        className="no-scrollbar mt-4 flex gap-3 overflow-x-auto px-5 pb-1 sm:mt-8 sm:gap-5 sm:px-6 sm:pb-2 md:gap-6 md:px-10"
         tabIndex={0}
         aria-label="Scroll through featured artists. Use arrow keys or drag."
         onKeyDown={(e) => {
@@ -389,7 +389,7 @@ function ArtistCarousel() {
             aria-label={`View ${a.name} on the artists page`}
             aria-hidden={idx >= CAROUSEL_ARTISTS.length || undefined}
             tabIndex={idx >= CAROUSEL_ARTISTS.length ? -1 : 0}
-            className="group relative block aspect-[3/4] w-[68%] flex-none snap-start overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] transition-shadow hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 sm:w-[42%] md:w-[28%] lg:w-[22%]"
+            className="group relative block aspect-[3/4] w-[68%] flex-none overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] transition-shadow hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 sm:w-[42%] md:w-[28%] lg:w-[22%]"
           >
             <img
               src={a.image}
