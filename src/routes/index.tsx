@@ -362,6 +362,18 @@ function ArtistCarousel() {
             aria-hidden
           />
         </div>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          value={Math.round(progress * 100)}
+          onChange={onSliderChange}
+          aria-label="Scroll position"
+          className="h-1 w-32 cursor-pointer accent-[var(--orange-rich,theme(colors.orange.600))] sm:w-44"
+        />
+        <span className="hidden font-mono text-[11px] uppercase tracking-widest text-foreground/60 sm:inline">
+          {String(Math.round(progress * 100)).padStart(2, "0")}%
+        </span>
       </div>
     </section>
   );
