@@ -368,7 +368,7 @@ function ArtistCarousel() {
 
       <div
         ref={trackRef}
-        className="no-scrollbar mt-4 flex gap-3 overflow-x-auto px-5 pb-1 sm:mt-8 sm:gap-5 sm:px-6 sm:pb-2 md:gap-6 md:px-10"
+        className="no-scrollbar mt-2 flex gap-3 overflow-x-auto px-5 pb-1 sm:mt-8 sm:gap-5 sm:px-6 sm:pb-2 md:gap-6 md:px-10"
         tabIndex={0}
         aria-label="Scroll through featured artists. Use arrow keys or drag."
         onKeyDown={(e) => {
