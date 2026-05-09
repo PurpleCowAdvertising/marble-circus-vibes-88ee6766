@@ -256,9 +256,9 @@ function ArtistCarousel() {
   const recompute = () => {
     const el = trackRef.current;
     if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    setMaxScroll(max);
-    setProgress(max > 0 ? el.scrollLeft / max : 0);
+    const loop = el.scrollWidth / 2; // list is duplicated for seamless marquee
+    setMaxScroll(loop);
+    setProgress(loop > 0 ? (el.scrollLeft % loop) / loop : 0);
   };
 
   useEffect(() => {
@@ -266,8 +266,8 @@ function ArtistCarousel() {
     const el = trackRef.current;
     if (!el) return;
     const onScroll = () => {
-      const max = el.scrollWidth - el.clientWidth;
-      setProgress(max > 0 ? el.scrollLeft / max : 0);
+      const loop = el.scrollWidth / 2;
+      setProgress(loop > 0 ? (el.scrollLeft % loop) / loop : 0);
     };
     el.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", recompute);
