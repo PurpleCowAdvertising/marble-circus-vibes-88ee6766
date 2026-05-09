@@ -11,7 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-
+import { SubscribeProvider } from "@/components/site/SubscribePopup";
 import { ConsentBanner } from "@/components/site/ConsentBanner";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -122,15 +122,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="relative flex min-h-screen flex-col">
-        <Header />
-        <main className="relative z-10 flex-1">
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
-      <ConsentBanner />
-      <Toaster />
+      <SubscribeProvider>
+        <div className="relative flex min-h-screen flex-col">
+          <Header />
+          <main className="relative z-10 flex-1">
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+        <ConsentBanner />
+        <Toaster />
+      </SubscribeProvider>
     </QueryClientProvider>
   );
 }

@@ -188,6 +188,55 @@ function HomePage() {
         </div>
       </Section>
       </div>
+
+      {/* SPONSORS STRIP */}
+      <div className="relative z-40 isolate bg-orange-rich">
+        <Section className="text-foreground">
+          <FadeIn>
+            {/* On orange background, use BLACK text for legibility */}
+            <p className="text-xs uppercase tracking-[0.4em] text-black">In partnership with</p>
+            <h2 className="mt-4 font-display text-4xl font-bold md:text-5xl text-white">Powered by the bold.</h2>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
+              {[
+                { tier: "Headline", variant: "full" as const },
+                { tier: "Major", variant: "full" as const },
+                { tier: "Major", variant: "full" as const },
+                { tier: "Supporting", variant: "mark" as const },
+                { tier: "Supporting", variant: "mark" as const },
+                { tier: "Supporting", variant: "mark" as const },
+                { tier: "Supporting", variant: "mark" as const },
+                { tier: "Supporting", variant: "mark" as const },
+              ].map((p, i) => (
+                <div
+                  key={i}
+                  className="group relative flex aspect-[3/2] overflow-hidden rounded-lg border border-foreground/10 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <img
+                    src={p.variant === "full" ? partnerLogoFull : partnerLogoMark}
+                    alt={`${p.tier} partner — placeholder logo`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute left-3 top-3 z-10 rounded-full bg-black/30 px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
+                    {p.tier}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8">
+              <Link
+                to="/sponsors"
+                className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-black hover:text-black/70"
+              >
+                <span className="story-link">Become a partner</span>
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </FadeIn>
+        </Section>
+      </div>
     </>
   );
 }
