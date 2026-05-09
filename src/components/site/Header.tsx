@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
-import { useSubscribePopup } from "./SubscribePopup";
 import logo from "@/assets/logo.png";
 
 const NAV = [
@@ -15,8 +14,6 @@ const NAV = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-  
-  const { open: openSubscribe } = useSubscribePopup();
 
   useEffect(() => {
     let lastY = window.scrollY;
