@@ -270,6 +270,53 @@ function ArtistCarousel() {
     };
   }, []);
 
+  // Auto-glide: continuously scroll left-to-right, pause on hover/touch, loop seamlessly
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let rafId = 0;
+    let last = performance.now();
+    let paused = false;
+    const SPEED = 30; // pixels per second
+
+    const tick = (now: number) => {
+      const dt = (now - last) / 1000;
+      last = now;
+      if (!paused) {
+        const max = el.scrollWidth - el.clientWidth;
+        if (max > 0) {
+          let next = el.scrollLeft + SPEED * dt;
+          if (next >= max - 1) next = 0; // loop back to start
+          el.scrollLeft = next;
+        }
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const pause = () => { paused = true; };
+    const resume = () => { last = performance.now(); paused = false; };
+
+    el.addEventListener("mouseenter", pause);
+    el.addEventListener("mouseleave", resume);
+    el.addEventListener("touchstart", pause, { passive: true });
+    el.addEventListener("touchend", resume);
+    el.addEventListener("focusin", pause);
+    el.addEventListener("focusout", resume);
+
+    rafId = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(rafId);
+      el.removeEventListener("mouseenter", pause);
+      el.removeEventListener("mouseleave", resume);
+      el.removeEventListener("touchstart", pause);
+      el.removeEventListener("touchend", resume);
+      el.removeEventListener("focusin", pause);
+      el.removeEventListener("focusout", resume);
+    };
+  }, []);
+
   const nudge = (dir: 1 | -1) => {
     const el = trackRef.current;
     if (!el) return;
