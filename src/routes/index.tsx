@@ -304,23 +304,17 @@ function ArtistCarousel() {
       rafId = requestAnimationFrame(tick);
     };
 
-    // Pause briefly on any user interaction, then auto-resume so mobile vertical
-    // page-scroll never leaves the carousel permanently paused.
+    // Only pause for clear desktop intent (mouse hover / keyboard focus).
+    // Mobile touches and page-scroll wheels do NOT pause — the glide stays continuous.
     const bump = () => { pausedUntil = performance.now() + 1200; };
 
     el.addEventListener("mouseenter", bump);
-    el.addEventListener("touchstart", bump, { passive: true });
-    el.addEventListener("touchmove", bump, { passive: true });
-    el.addEventListener("wheel", bump, { passive: true });
     el.addEventListener("focusin", bump);
 
     rafId = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(rafId);
       el.removeEventListener("mouseenter", bump);
-      el.removeEventListener("touchstart", bump);
-      el.removeEventListener("touchmove", bump);
-      el.removeEventListener("wheel", bump);
       el.removeEventListener("focusin", bump);
     };
   }, []);
