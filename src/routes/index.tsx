@@ -277,7 +277,7 @@ function ArtistCarousel() {
     };
   }, []);
 
-  // Auto-glide: continuously scroll left-to-right, pause on hover/touch, loop seamlessly
+  // Auto-glide: continuous seamless marquee (loops via duplicated list)
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -286,16 +286,17 @@ function ArtistCarousel() {
     let rafId = 0;
     let last = performance.now();
     let paused = false;
-    const SPEED = 30; // pixels per second
+    const SPEED = 40; // pixels per second
 
     const tick = (now: number) => {
       const dt = (now - last) / 1000;
       last = now;
       if (!paused) {
-        const max = el.scrollWidth - el.clientWidth;
-        if (max > 0) {
+        // The track renders the artist list twice. Looping point = half the scrollable content.
+        const loopPoint = el.scrollWidth / 2;
+        if (loopPoint > 0) {
           let next = el.scrollLeft + SPEED * dt;
-          if (next >= max - 1) next = 0; // loop back to start
+          if (next >= loopPoint) next -= loopPoint; // seamless wrap — visuals are identical at this offset
           el.scrollLeft = next;
         }
       }
