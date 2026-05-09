@@ -6,8 +6,8 @@ import logo from "@/assets/logo.png";
 
 const NAV = [
   { to: "/", label: "Home" },
-  { to: "/music", label: "Music" },
   { to: "/about", label: "About" },
+  { to: "/music", label: "Music" },
   
   { to: "/faqs", label: "FAQs" },
 ] as const;
