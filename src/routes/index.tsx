@@ -129,18 +129,19 @@ function HomePage() {
       </div>
 
       {/* MUSIC PREVIEW */}
+      <div className="bg-white text-black">
       <Section className="!pt-2 sm:!pt-3 md:!pt-6">
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-primary">The Lineup</p>
-              <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-white">
+              <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-black">
                 Headliners.
               </h2>
             </div>
             <Link
               to="/music"
-              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest hover:text-accent"
+              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-black hover:text-black/60"
             >
               All artists <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
