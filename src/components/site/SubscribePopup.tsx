@@ -35,49 +35,13 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
   const [marketingConsent, setMarketingConsent] = useState(true);
   const [privacyConsent, setPrivacyConsent] = useState(false);
 
-  const open = useCallback((src: string = "manual") => {
-    setSource(src);
-    setSuccess(false);
-    setIsOpen(true);
+  const open = useCallback((_src: string = "manual") => {
+    // Subscribe popup disabled site-wide.
   }, []);
 
   const close = useCallback(() => {
     setIsOpen(false);
-    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch {}
   }, []);
-
-  // Gentle auto-trigger: once per session, only after the user has shown
-  // engagement (≥35s on the page AND scrolled past 50% of the document).
-  // Never fires on first paint, never re-opens after close/submit.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    try { if (sessionStorage.getItem(SESSION_KEY)) return; } catch {}
-
-    let fired = false;
-    let timeReady = false;
-    let scrollReady = false;
-
-    const maybeOpen = () => {
-      if (fired || !timeReady || !scrollReady) return;
-      fired = true;
-      open("auto-engaged");
-    };
-
-    const timer = window.setTimeout(() => { timeReady = true; maybeOpen(); }, 35000);
-
-    const onScroll = () => {
-      const doc = document.documentElement;
-      const scrolled = (window.scrollY + window.innerHeight) / doc.scrollHeight;
-      if (scrolled > 0.5) { scrollReady = true; maybeOpen(); }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    return () => {
-      window.clearTimeout(timer);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [open]);
 
   useEffect(() => {
     if (success) {
