@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
-import { useSubscribePopup } from "./SubscribePopup";
 import logo from "@/assets/logo.png";
 
 const NAV = [
@@ -15,8 +14,6 @@ const NAV = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-  
-  const { open: openSubscribe } = useSubscribePopup();
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -88,15 +85,9 @@ export function Header() {
           </nav>
         </div>
 
-        {/* Subscribe — desktop only, transparent (no background shape) */}
-        <div className="hidden shrink-0 items-center gap-2 md:flex">
-          <button
-            onClick={() => openSubscribe("header")}
-            className="text-[12px] font-medium tracking-tight text-white transition-all duration-300 hover:scale-[1.03] hover:text-white/80"
-          >
-            Subscribe
-          </button>
-        </div>
+        {/* Subscribe button removed */}
+        <div className="hidden md:block" aria-hidden />
+
       </div>
 
     </header>
