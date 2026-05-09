@@ -279,51 +279,49 @@ function ArtistCarousel() {
     };
   }, []);
 
-  // Auto-glide: continuous seamless marquee (loops via duplicated list)
+  // Auto-glide: continuous seamless marquee (loops via duplicated list).
+  // Works on desktop AND mobile. Pauses briefly on user interaction then resumes.
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let rafId = 0;
     let last = performance.now();
-    let paused = false;
-    const SPEED = 40; // pixels per second
+    let pausedUntil = 0;
+    const SPEED = 45; // pixels per second
 
     const tick = (now: number) => {
       const dt = (now - last) / 1000;
       last = now;
-      if (!paused) {
-        // The track renders the artist list twice. Looping point = half the scrollable content.
+      if (now >= pausedUntil) {
         const loopPoint = el.scrollWidth / 2;
         if (loopPoint > 0) {
           let next = el.scrollLeft + SPEED * dt;
-          if (next >= loopPoint) next -= loopPoint; // seamless wrap — visuals are identical at this offset
+          if (next >= loopPoint) next -= loopPoint;
           el.scrollLeft = next;
         }
       }
       rafId = requestAnimationFrame(tick);
     };
 
-    const pause = () => { paused = true; };
-    const resume = () => { last = performance.now(); paused = false; };
+    // Pause briefly on any user interaction, then auto-resume so mobile vertical
+    // page-scroll never leaves the carousel permanently paused.
+    const bump = () => { pausedUntil = performance.now() + 1200; };
 
-    el.addEventListener("mouseenter", pause);
-    el.addEventListener("mouseleave", resume);
-    el.addEventListener("touchstart", pause, { passive: true });
-    el.addEventListener("touchend", resume);
-    el.addEventListener("focusin", pause);
-    el.addEventListener("focusout", resume);
+    el.addEventListener("mouseenter", bump);
+    el.addEventListener("touchstart", bump, { passive: true });
+    el.addEventListener("touchmove", bump, { passive: true });
+    el.addEventListener("wheel", bump, { passive: true });
+    el.addEventListener("focusin", bump);
 
     rafId = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(rafId);
-      el.removeEventListener("mouseenter", pause);
-      el.removeEventListener("mouseleave", resume);
-      el.removeEventListener("touchstart", pause);
-      el.removeEventListener("touchend", resume);
-      el.removeEventListener("focusin", pause);
-      el.removeEventListener("focusout", resume);
+      el.removeEventListener("mouseenter", bump);
+      el.removeEventListener("touchstart", bump);
+      el.removeEventListener("touchmove", bump);
+      el.removeEventListener("wheel", bump);
+      el.removeEventListener("focusin", bump);
     };
   }, []);
 
