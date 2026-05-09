@@ -15,19 +15,6 @@ export function Footer() {
               alt="Tickets available from Webtickets and Pick n Pay"
               className="mt-4 block h-auto w-auto max-w-[260px] md:mt-5 md:max-w-[300px]"
             />
-            <h3 className="mt-4 font-display text-3xl font-bold tracking-tight text-black md:hidden">
-              Stay in the<br />
-              <span className="text-black">loop.</span>
-            </h3>
-            <p className="mt-3 max-w-md text-sm text-black/70 md:hidden">
-              Drops, lineup reveals, ticket waves and exclusive behind-the-scenes — straight to your inbox.
-            </p>
-            <button
-              onClick={() => open("footer")}
-              className="mt-5 rounded-full bg-black px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-105 md:hidden"
-            >
-              Subscribe
-            </button>
           </div>
 
           <div>
