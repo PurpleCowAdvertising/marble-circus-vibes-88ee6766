@@ -57,7 +57,7 @@ function HomePage() {
       <section
         ref={heroRef}
         aria-labelledby="hero-heading"
-        className="relative z-0 isolate overflow-hidden bg-orange-rich pt-16 md:pt-0"
+        className="relative z-0 isolate overflow-hidden bg-[#fbedd8] md:bg-orange-rich pt-16 md:pt-0"
       >
         <h1 id="hero-heading" className="sr-only">
           Scorpion Kings Live — DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2026
