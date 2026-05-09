@@ -407,9 +407,9 @@ function ArtistCarousel() {
 
       {/* Scrubber slider */}
       <div className="mx-auto mt-3 flex max-w-[1400px] items-center gap-4 px-5 sm:mt-6 sm:px-6 md:px-10 border-orange-500">
-        <div className="relative h-1 flex-1 overflow-hidden rounded-full bg-foreground/10">
+        <div className="relative h-1 flex-1 overflow-hidden rounded-full bg-orange-rich/15">
           <div
-            className="absolute inset-y-0 left-0 rounded-full bg-foreground transition-[width] duration-150"
+            className="absolute inset-y-0 left-0 rounded-full bg-orange-rich transition-[width] duration-150"
             style={{ width: `${Math.max(8, progress * 100)}%` }}
             aria-hidden
           />
@@ -421,7 +421,7 @@ function ArtistCarousel() {
           value={Math.round(progress * 100)}
           onChange={onSliderChange}
           aria-label="Scroll position"
-          className="h-1 w-32 cursor-pointer accent-foreground sm:w-44"
+          className="h-1 w-32 cursor-pointer accent-[var(--orange-rich,theme(colors.orange.600))] sm:w-44"
         />
         <span className="hidden font-mono text-[11px] uppercase tracking-widest text-foreground/60 sm:inline">
           {String(Math.round(progress * 100)).padStart(2, "0")}%
