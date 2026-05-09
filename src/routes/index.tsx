@@ -159,18 +159,25 @@ function HomePage() {
               <div
                 className="group relative block aspect-[3/4] w-full overflow-hidden rounded-lg border border-border bg-card text-left"
               >
-                <img
+                <motion.img
                   src={artist.image}
                   alt={artist.name}
                   width={768}
                   height={1024}
                   loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.08]"
+                  initial={{ scale: 1.35 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 1.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 h-full w-full object-cover will-change-transform group-hover:scale-[1.08] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
                 />
-                
+
+                {/* Legibility scrim — guarantees text contrast across every artist image */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/85 via-black/55 to-transparent" />
+
                 <div className="absolute inset-x-0 bottom-0 flex flex-col p-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
-                  <h3 className="font-display text-3xl font-bold">{artist.name}</h3>
-                  <span className="mt-1 text-[11px] uppercase tracking-widest text-white">
+                  <h3 className="font-display text-3xl font-bold text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.6)]">{artist.name}</h3>
+                  <span className="mt-1 text-[11px] uppercase tracking-widest text-white/90 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">
                     {artist.tag}
                   </span>
                 </div>
