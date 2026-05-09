@@ -256,9 +256,9 @@ function ArtistCarousel() {
   const recompute = () => {
     const el = trackRef.current;
     if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    setMaxScroll(max);
-    setProgress(max > 0 ? el.scrollLeft / max : 0);
+    const loop = el.scrollWidth / 2; // list is duplicated for seamless marquee
+    setMaxScroll(loop);
+    setProgress(loop > 0 ? (el.scrollLeft % loop) / loop : 0);
   };
 
   useEffect(() => {
@@ -266,8 +266,8 @@ function ArtistCarousel() {
     const el = trackRef.current;
     if (!el) return;
     const onScroll = () => {
-      const max = el.scrollWidth - el.clientWidth;
-      setProgress(max > 0 ? el.scrollLeft / max : 0);
+      const loop = el.scrollWidth / 2;
+      setProgress(loop > 0 ? (el.scrollLeft % loop) / loop : 0);
     };
     el.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", recompute);
@@ -277,7 +277,7 @@ function ArtistCarousel() {
     };
   }, []);
 
-  // Auto-glide: continuously scroll left-to-right, pause on hover/touch, loop seamlessly
+  // Auto-glide: continuous seamless marquee (loops via duplicated list)
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -286,16 +286,17 @@ function ArtistCarousel() {
     let rafId = 0;
     let last = performance.now();
     let paused = false;
-    const SPEED = 30; // pixels per second
+    const SPEED = 40; // pixels per second
 
     const tick = (now: number) => {
       const dt = (now - last) / 1000;
       last = now;
       if (!paused) {
-        const max = el.scrollWidth - el.clientWidth;
-        if (max > 0) {
+        // The track renders the artist list twice. Looping point = half the scrollable content.
+        const loopPoint = el.scrollWidth / 2;
+        if (loopPoint > 0) {
           let next = el.scrollLeft + SPEED * dt;
-          if (next >= max - 1) next = 0; // loop back to start
+          if (next >= loopPoint) next -= loopPoint; // seamless wrap — visuals are identical at this offset
           el.scrollLeft = next;
         }
       }
@@ -381,11 +382,13 @@ function ArtistCarousel() {
           if (e.key === "ArrowLeft")  { e.preventDefault(); nudge(-1); }
         }}
       >
-        {CAROUSEL_ARTISTS.map((a) => (
+        {[...CAROUSEL_ARTISTS, ...CAROUSEL_ARTISTS].map((a, idx) => (
           <Link
-            key={a.name}
+            key={`${a.name}-${idx}`}
             to="/music"
             aria-label={`View ${a.name} on the artists page`}
+            aria-hidden={idx >= CAROUSEL_ARTISTS.length || undefined}
+            tabIndex={idx >= CAROUSEL_ARTISTS.length ? -1 : 0}
             className="group relative block aspect-[3/4] w-[68%] flex-none snap-start overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] transition-shadow hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 sm:w-[42%] md:w-[28%] lg:w-[22%]"
           >
             <img
