@@ -91,7 +91,7 @@ function HomePage() {
 
 
       {/* ARTIST CAROUSEL — folds up over hero */}
-      <div className="relative z-10 isolate fold-safe-strong bg-[#fbedd8] md:bg-orange-rich">
+      <div className="relative z-10 isolate fold-safe-strong">
         <ArtistCarousel />
       </div>
 
@@ -135,7 +135,7 @@ function HomePage() {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-primary">The Lineup</p>
-              <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-orange-400">
+              <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-white">
                 Headliners.
               </h2>
             </div>
@@ -335,7 +335,7 @@ function ArtistCarousel() {
   return (
     <section
       aria-label="Featured artists carousel"
-      className="relative z-10 surface-light rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)] pt-5 pb-3 md:py-14 border-white"
+      className="relative z-10 surface-light rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)] pt-6 pb-2 md:py-14 py-[56px] border-white"
     >
       <div className="mx-auto max-w-[1400px] px-5 sm:px-6 md:px-10">
         <div className="flex items-end justify-between gap-6">
@@ -368,7 +368,7 @@ function ArtistCarousel() {
 
       <div
         ref={trackRef}
-        className="no-scrollbar mt-2 flex gap-3 overflow-x-auto px-5 pb-1 sm:mt-8 sm:gap-5 sm:px-6 sm:pb-2 md:gap-6 md:px-10"
+        className="no-scrollbar mt-4 flex gap-3 overflow-x-auto px-5 pb-1 sm:mt-8 sm:gap-5 sm:px-6 sm:pb-2 md:gap-6 md:px-10"
         tabIndex={0}
         aria-label="Scroll through featured artists. Use arrow keys or drag."
         onKeyDown={(e) => {
