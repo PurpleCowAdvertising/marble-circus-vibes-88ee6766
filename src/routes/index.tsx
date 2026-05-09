@@ -193,49 +193,49 @@ function HomePage() {
       <div className="relative z-40 isolate bg-orange-rich">
         <Section className="text-foreground">
           <FadeIn>
-            {/* On orange background, use BLACK text for legibility */}
-            <p className="text-xs uppercase tracking-[0.4em] text-black">In partnership with</p>
-            <h2 className="mt-4 font-display text-4xl font-bold md:text-5xl text-white">Powered by the bold.</h2>
+            <p className="text-xs uppercase tracking-[0.4em] text-black">Latest</p>
+            <h2 className="mt-4 font-display text-4xl font-bold md:text-5xl text-white">News from the Kings.</h2>
+            <p className="mt-3 max-w-xl text-sm text-white/85">
+              Live updates straight from Kabza De Small and DJ Maphorisa's official Facebook pages.
+            </p>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
+            <div className="mt-10 grid gap-6 md:grid-cols-2">
               {[
-                { tier: "Headline", variant: "full" as const },
-                { tier: "Major", variant: "full" as const },
-                { tier: "Major", variant: "full" as const },
-                { tier: "Supporting", variant: "mark" as const },
-                { tier: "Supporting", variant: "mark" as const },
-                { tier: "Supporting", variant: "mark" as const },
-                { tier: "Supporting", variant: "mark" as const },
-                { tier: "Supporting", variant: "mark" as const },
-              ].map((p, i) => (
+                { name: "Kabza De Small", href: "https://www.facebook.com/KabzaDeSmall" },
+                { name: "DJ Maphorisa", href: "https://www.facebook.com/djmaphorisa" },
+              ].map((p) => (
                 <div
-                  key={i}
-                  className="group relative flex aspect-[3/2] overflow-hidden rounded-lg border border-foreground/10 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
+                  key={p.name}
+                  className="overflow-hidden rounded-xl border border-black/10 bg-white shadow-xl"
                 >
-                  <img
-                    src={p.variant === "full" ? partnerLogoFull : partnerLogoMark}
-                    alt={`${p.tier} partner — placeholder logo`}
+                  <div className="flex items-center justify-between border-b border-black/10 px-4 py-3">
+                    <h3 className="font-display text-lg font-bold text-black">{p.name}</h3>
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] uppercase tracking-widest text-black/60 hover:text-black"
+                    >
+                      Visit page →
+                    </a>
+                  </div>
+                  <iframe
+                    title={`${p.name} Facebook feed`}
+                    src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(p.href)}&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`}
+                    width="500"
+                    height="600"
+                    style={{ border: "none", overflow: "hidden", width: "100%", height: 600 }}
+                    scrolling="no"
+                    frameBorder="0"
+                    allowFullScreen
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <span className="absolute left-3 top-3 z-10 rounded-full bg-black/30 px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
-                    {p.tier}
-                  </span>
                 </div>
               ))}
             </div>
-            <div className="mt-8">
-              <Link
-                to="/sponsors"
-                className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-black hover:text-black/70"
-              >
-                <span className="story-link">Become a partner</span>
-                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </div>
           </FadeIn>
-        </Section>
       </div>
     </>
   );
