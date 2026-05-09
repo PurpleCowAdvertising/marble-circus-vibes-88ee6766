@@ -90,10 +90,6 @@ function HomePage() {
       </section>
 
 
-      {/* ARTIST CAROUSEL — folds up over hero */}
-      <div className="relative z-10 isolate fold-safe-strong bg-[#fbedd8] md:bg-orange-rich">
-        <ArtistCarousel />
-      </div>
 
       {/* ABOUT TEASER */}
       <div className="relative z-20 isolate bg-orange-rich">
