@@ -141,7 +141,7 @@ function HomePage() {
             </div>
             <Link
               to="/music"
-              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-black hover:text-black/60"
+              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/60"
             >
               All artists <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
