@@ -13,6 +13,7 @@ import { Route as TicketsRouteImport } from './routes/tickets'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as MusicRouteImport } from './routes/music'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ExperienceRouteImport } from './routes/experience'
@@ -38,6 +39,11 @@ const SponsorsRoute = SponsorsRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MusicRoute = MusicRouteImport.update({
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
   '/music': typeof MusicRoute
+  '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
   '/terms': typeof TermsRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
   '/music': typeof MusicRoute
+  '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
   '/terms': typeof TermsRoute
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
   '/music': typeof MusicRoute
+  '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
   '/terms': typeof TermsRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/faqs'
     | '/music'
+    | '/news'
     | '/privacy'
     | '/sponsors'
     | '/terms'
@@ -129,6 +139,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/faqs'
     | '/music'
+    | '/news'
     | '/privacy'
     | '/sponsors'
     | '/terms'
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/faqs'
     | '/music'
+    | '/news'
     | '/privacy'
     | '/sponsors'
     | '/terms'
@@ -154,6 +166,7 @@ export interface RootRouteChildren {
   ExperienceRoute: typeof ExperienceRoute
   FaqsRoute: typeof FaqsRoute
   MusicRoute: typeof MusicRoute
+  NewsRoute: typeof NewsRoute
   PrivacyRoute: typeof PrivacyRoute
   SponsorsRoute: typeof SponsorsRoute
   TermsRoute: typeof TermsRoute
@@ -188,6 +201,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/music': {
@@ -242,6 +262,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExperienceRoute: ExperienceRoute,
   FaqsRoute: FaqsRoute,
   MusicRoute: MusicRoute,
+  NewsRoute: NewsRoute,
   PrivacyRoute: PrivacyRoute,
   SponsorsRoute: SponsorsRoute,
   TermsRoute: TermsRoute,
