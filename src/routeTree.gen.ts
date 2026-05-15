@@ -15,6 +15,7 @@ import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as MusicRouteImport } from './routes/music'
+import { Route as LegacyRouteImport } from './routes/legacy'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -51,6 +52,11 @@ const MusicRoute = MusicRouteImport.update({
   path: '/music',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegacyRoute = LegacyRouteImport.update({
+  id: '/legacy',
+  path: '/legacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqsRoute = FaqsRouteImport.update({
   id: '/faqs',
   path: '/faqs',
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
+  '/legacy': typeof LegacyRoute
   '/music': typeof MusicRoute
   '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
+  '/legacy': typeof LegacyRoute
   '/music': typeof MusicRoute
   '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
+  '/legacy': typeof LegacyRoute
   '/music': typeof MusicRoute
   '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience'
     | '/faqs'
+    | '/legacy'
     | '/music'
     | '/news'
     | '/privacy'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience'
     | '/faqs'
+    | '/legacy'
     | '/music'
     | '/news'
     | '/privacy'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience'
     | '/faqs'
+    | '/legacy'
     | '/music'
     | '/news'
     | '/privacy'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ExperienceRoute: typeof ExperienceRoute
   FaqsRoute: typeof FaqsRoute
+  LegacyRoute: typeof LegacyRoute
   MusicRoute: typeof MusicRoute
   NewsRoute: typeof NewsRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MusicRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legacy': {
+      id: '/legacy'
+      path: '/legacy'
+      fullPath: '/legacy'
+      preLoaderRoute: typeof LegacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faqs': {
       id: '/faqs'
       path: '/faqs'
@@ -261,6 +281,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ExperienceRoute: ExperienceRoute,
   FaqsRoute: FaqsRoute,
+  LegacyRoute: LegacyRoute,
   MusicRoute: MusicRoute,
   NewsRoute: NewsRoute,
   PrivacyRoute: PrivacyRoute,
