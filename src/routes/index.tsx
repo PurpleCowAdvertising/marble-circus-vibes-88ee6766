@@ -217,32 +217,47 @@ function HomePage() {
               return (
                 <motion.article
                   key={t.name}
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 80, filter: "blur(14px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.8, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className={`group relative flex h-full flex-col rounded-2xl border p-6 md:p-7 transition-transform hover:-translate-y-1 ${
+                  transition={{ duration: 1.1, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -10 }}
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 md:p-7 transition-[border-color,box-shadow,background-color] duration-500 ease-out ${
                     gold
-                      ? "border-gold/50 bg-gold/10"
-                      : "border-white/15 bg-white/[0.04]"
+                      ? "border-gold/40 bg-gold/[0.06] hover:border-gold hover:bg-gold/15 hover:shadow-[0_24px_60px_-20px_color-mix(in_oklab,var(--gold)_55%,transparent)]"
+                      : "border-white/15 bg-white/[0.04] hover:border-white/60 hover:bg-white/[0.08] hover:shadow-[0_24px_60px_-20px_rgba(255,255,255,0.25)]"
                   }`}
                 >
+                  {/* Dissolve sheen */}
+                  <span
+                    aria-hidden
+                    className={`pointer-events-none absolute inset-0 -translate-y-full opacity-0 transition-all duration-[900ms] ease-out group-hover:translate-y-0 group-hover:opacity-100 ${
+                      gold
+                        ? "bg-[radial-gradient(120%_60%_at_50%_0%,color-mix(in_oklab,var(--gold)_25%,transparent)_0%,transparent_70%)]"
+                        : "bg-[radial-gradient(120%_60%_at_50%_0%,rgba(255,255,255,0.18)_0%,transparent_70%)]"
+                    }`}
+                  />
                   {t.highlight && (
-                    <span className="absolute -top-3 left-6 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-gold-foreground">
+                    <span className="absolute -top-3 left-6 z-10 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-gold-foreground">
                       Most popular
                     </span>
                   )}
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-white/60">{t.tag}</p>
-                  <h3 className={`mt-2 font-display text-2xl font-bold md:text-3xl ${gold ? "text-gold" : "text-white"}`}>{t.name}</h3>
-                  <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-gold" : "text-white"}`}>{t.price}</p>
-                  <Link
-                    to="/tickets"
-                    className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest transition-transform hover:scale-105 ${
-                      gold ? "bg-gold text-gold-foreground" : "bg-white text-black"
-                    }`}
-                  >
-                    Buy
-                  </Link>
+                  <div className="relative z-[1] flex h-full flex-col">
+                    <p className="text-[10px] uppercase tracking-[0.4em] text-white/60 transition-colors duration-500 group-hover:text-white/90">{t.tag}</p>
+                    <h3 className={`mt-2 font-display text-2xl font-bold md:text-3xl transition-transform duration-500 ease-out group-hover:translate-x-1 ${gold ? "text-gold" : "text-white"}`}>{t.name}</h3>
+                    <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-gold" : "text-white"}`}>{t.price}</p>
+                    <Link
+                      to="/tickets"
+                      className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest transition-all duration-500 ease-out group-hover:gap-3 group-hover:px-6 ${
+                        gold
+                          ? "bg-gold text-gold-foreground hover:shadow-[0_10px_30px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)]"
+                          : "bg-white text-black hover:shadow-[0_10px_30px_-8px_rgba(255,255,255,0.5)]"
+                      }`}
+                    >
+                      <span>Buy</span>
+                      <ArrowRight size={14} className="transition-transform duration-500 ease-out group-hover:translate-x-1" />
+                    </Link>
+                  </div>
                 </motion.article>
               );
             })}
