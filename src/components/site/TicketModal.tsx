@@ -67,7 +67,7 @@ export function TicketModal({ tier, onClose }: Props) {
             type="button"
             aria-label="Close"
             onClick={onClose}
-            className="absolute inset-0 bg-black/70 backdrop-blur-md"
+            className="absolute inset-0 bg-black/85 sm:bg-black/70 sm:backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
