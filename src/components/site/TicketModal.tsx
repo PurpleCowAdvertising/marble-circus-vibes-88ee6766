@@ -119,7 +119,7 @@ export function TicketModal({ tier, onClose }: Props) {
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/90 backdrop-blur-md transition hover:scale-105 hover:bg-white/20"
+              className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/15 text-white/95 sm:backdrop-blur-md transition hover:scale-105 hover:bg-white/25"
             >
               <X size={16} />
             </button>
