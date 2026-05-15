@@ -5,107 +5,97 @@ import { FadeIn, PageHero, Section } from "@/components/site/Section";
 export const Route = createFileRoute("/tickets")({
   head: () => ({
     meta: [
-      { title: "Tickets — Scorpion Kings Live" },
-      { name: "description", content: "General Access, VIP and Premium / Table tickets for Scorpion Kings Live at FNB Stadium, 19 September 2026." },
-      { property: "og:title", content: "Tickets — Scorpion Kings Live" },
-      { property: "og:description", content: "Choose your tier. Buy through the official ticketing partner." },
+      { title: "Tickets — Scorpion Kings Live at FNB Stadium" },
+      { name: "description", content: "Tickets for Scorpion Kings Live at FNB Stadium, 19 September 2026. From R400 via Webtickets, Pick n Pay and Boxer stores nationwide. Ages 14+." },
+      { property: "og:title", content: "Tickets — Scorpion Kings Live at FNB Stadium" },
+      { property: "og:description", content: "On sale now from R400. Webtickets, Pick n Pay and Boxer stores nationwide." },
     ],
   }),
   component: TicketsPage,
 });
 
-type Tier = {
-  name: string;
-  price: string;
-  tag: string;
-  perks: string[];
-  cta: string;
-  href: string;
-  highlight?: boolean;
-};
-
-const TIERS: Tier[] = [
-  {
-    name: "General Access",
-    price: "From R 450",
-    tag: "Stage front to floor",
-    perks: ["Full festival access", "All stages", "Food & bar zones"],
-    cta: "Buy GA",
-    href: "#",
-  },
-  {
-    name: "VIP",
-    price: "From R 1 250",
-    tag: "Elevated view, fast lanes",
-    perks: ["Dedicated VIP entrance", "Raised viewing deck", "Premium bars"],
-    cta: "Buy VIP",
-    href: "#",
-    highlight: true,
-  },
-  {
-    name: "Premium / Table",
-    price: "From R 4 800",
-    tag: "Hospitality + bottle service",
-    perks: ["Reserved table", "Dedicated host", "Private restrooms"],
-    cta: "Reserve Table",
-    href: "#",
-  },
-];
+const RETAILERS = ["Webtickets", "Pick n Pay", "Boxer"];
 
 function TicketsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Tickets"
-        title="Pick your tier."
-        description="Three ways into the night. Tickets sell through the official ticketing partner — link goes live with the public on-sale."
+        eyebrow="Tickets · On sale now"
+        title="Be part of history."
+        description="Scorpion Kings Live returns to FNB Stadium on 19 September 2026 — the biggest Amapiano celebration the world has ever seen. Over 80 000 fans. One stadium. One sound."
       />
 
       <Section className="!pt-0">
-        <div className="grid gap-6 md:grid-cols-3">
-          {TIERS.map((t, i) => (
-            <FadeIn key={t.name} delay={i * 0.08}>
-              <article
-                className={`group relative flex h-full flex-col rounded-2xl border p-6 transition-transform hover:-translate-y-1 md:p-8 ${
-                  t.highlight
-                    ? "border-primary bg-primary/5 shadow-[0_20px_60px_-20px_color-mix(in_oklab,var(--primary)_40%,transparent)]"
-                    : "border-border bg-card"
-                }`}
-              >
-                {t.highlight && (
-                  <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
-                    Most popular
-                  </span>
-                )}
-                <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">{t.tag}</p>
-                <h2 className="mt-2 font-display text-3xl font-bold leading-tight md:text-4xl">{t.name}</h2>
-                <p className="mt-3 font-display text-2xl font-bold text-primary">{t.price}</p>
-                <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
-                  {t.perks.map((p) => (
-                    <li key={p} className="flex items-start gap-2">
-                      <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-primary" />
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={t.href}
-                  className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-xs font-bold uppercase tracking-widest transition-transform hover:scale-105 ${
-                    t.highlight
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-foreground text-background"
-                  }`}
-                >
-                  {t.cta} <ArrowUpRight size={14} />
-                </a>
-              </article>
-            </FadeIn>
-          ))}
-        </div>
+        {/* Headline ticket card */}
+        <FadeIn>
+          <article className="relative overflow-hidden rounded-3xl border border-primary bg-primary/5 p-8 md:p-12 shadow-[0_30px_80px_-30px_color-mix(in_oklab,var(--primary)_45%,transparent)]">
+            <span className="absolute -top-3 left-8 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
+              Tickets are live
+            </span>
+            <div className="grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-end">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">From</p>
+                <p className="mt-2 font-display text-6xl font-bold leading-none text-primary md:text-8xl">R400</p>
+                <p className="mt-3 text-sm text-muted-foreground">per person · ages 14 and up</p>
+                <p className="mt-6 max-w-md text-base text-foreground/80">
+                  Tickets on sale from <strong>05 May 2026</strong> via Webtickets, Pick n Pay and Boxer
+                  stores nationwide. Secure your place before it's gone.
+                </p>
+              </div>
 
-        <FadeIn delay={0.3}>
+              <div className="space-y-3">
+                <a
+                  href="https://www.webtickets.co.za"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-[1.02]"
+                >
+                  Buy on Webtickets <ArrowUpRight size={16} />
+                </a>
+                <p className="text-center text-[10px] uppercase tracking-widest text-muted-foreground">
+                  Also at Pick n Pay & Boxer in-store
+                </p>
+              </div>
+            </div>
+          </article>
+        </FadeIn>
+
+        {/* Retailers strip */}
+        <FadeIn delay={0.15}>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {RETAILERS.map((r) => (
+              <div
+                key={r}
+                className="flex items-center justify-center rounded-2xl border border-border bg-card px-6 py-5 text-center"
+              >
+                <p className="font-display text-lg font-bold tracking-tight">{r}</p>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+
+        {/* Event facts */}
+        <FadeIn delay={0.25}>
+          <div className="mt-12 grid gap-4 md:grid-cols-4">
+            {[
+              { k: "Venue", v: "FNB Stadium, Johannesburg" },
+              { k: "Date", v: "19 September 2026" },
+              { k: "Capacity", v: "80 000+ fans" },
+              { k: "Age limit", v: "14 and up" },
+            ].map((f) => (
+              <div key={f.k} className="rounded-xl border border-border bg-card p-5">
+                <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">{f.k}</p>
+                <p className="mt-2 font-display text-lg font-bold leading-tight">{f.v}</p>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.35}>
           <p className="mt-10 text-xs text-muted-foreground">
-            Final pricing, on-sale times and ticketing partner to be confirmed. All sales are governed by the official ticketing partner's terms.
+            Curated by Amapiano pioneers DJ Maphorisa and Kabza De Small. More
+            announcements — including lineup reveals — still to come. All sales
+            are governed by the official ticketing partner's terms.
           </p>
         </FadeIn>
       </Section>
