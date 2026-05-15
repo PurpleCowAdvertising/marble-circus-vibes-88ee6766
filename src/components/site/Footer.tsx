@@ -35,7 +35,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-3 text-[10px] uppercase tracking-widest text-orange-rich md:mb-4 md:text-xs md:text-black/60">Explore</h4>
+            <h4 className="mb-3 text-[10px] uppercase tracking-widest text-gold md:mb-4 md:text-xs md:text-black/60">Explore</h4>
             <ul className="space-y-1.5 text-sm md:space-y-2">
               <li><Link to="/music" className="text-black hover:text-black/60">Line-Up</Link></li>
               <li><Link to="/tickets" className="text-black hover:text-black/60">Tickets</Link></li>
