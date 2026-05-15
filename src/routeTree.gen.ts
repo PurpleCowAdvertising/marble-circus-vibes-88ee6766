@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TicketsRouteImport } from './routes/tickets'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -18,6 +19,11 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TicketsRoute = TicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
   '/terms': typeof TermsRoute
+  '/tickets': typeof TicketsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
   '/terms': typeof TermsRoute
+  '/tickets': typeof TicketsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
   '/terms': typeof TermsRoute
+  '/tickets': typeof TicketsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sponsors'
     | '/terms'
+    | '/tickets'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sponsors'
     | '/terms'
+    | '/tickets'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sponsors'
     | '/terms'
+    | '/tickets'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,10 +144,18 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SponsorsRoute: typeof SponsorsRoute
   TermsRoute: typeof TermsRoute
+  TicketsRoute: typeof TicketsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tickets': {
+      id: '/tickets'
+      path: '/tickets'
+      fullPath: '/tickets'
+      preLoaderRoute: typeof TicketsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SponsorsRoute: SponsorsRoute,
   TermsRoute: TermsRoute,
+  TicketsRoute: TicketsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
