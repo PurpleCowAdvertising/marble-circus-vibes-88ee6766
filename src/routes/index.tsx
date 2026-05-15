@@ -133,7 +133,12 @@ function HomePage() {
       {/* MUSIC PREVIEW — desktop/tablet only (mobile uses the carousel above) */}
       <div className="hidden md:block bg-black text-white">
       <Section className="!pt-2 sm:!pt-3 md:!pt-6 !bg-black">
-        <FadeIn>
+        <motion.div
+          initial={{ opacity: 0, y: 60, filter: "blur(14px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-primary">The Lineup</p>
@@ -148,7 +153,7 @@ function HomePage() {
               All artists <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
-        </FadeIn>
+        </motion.div>
 
         <div className="mt-6 md:mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {HEADLINERS.map((artist, i) => (
