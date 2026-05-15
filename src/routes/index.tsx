@@ -259,10 +259,10 @@ function HomePage() {
                         : "bg-[radial-gradient(120%_60%_at_50%_0%,rgba(255,255,255,0.22)_0%,transparent_70%)]"
                     }`}
                   />
-                  {/* Most-popular badge — absolute so it never reflows the content row */}
+                  {/* Most-popular badge — desktop only (mobile shows inline under tag) */}
                   {t.highlight && (
                     <span
-                      className={`pointer-events-none absolute right-5 top-5 z-[2] rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.2em] backdrop-blur-md ${
+                      className={`pointer-events-none absolute right-5 top-5 z-[2] hidden rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.2em] backdrop-blur-md md:inline-block ${
                         gold
                           ? "border-gold/50 bg-gold/15 text-gold"
                           : "border-white/30 bg-white/10 text-white"
@@ -272,16 +272,21 @@ function HomePage() {
                     </span>
                   )}
                   <div className="relative z-[1] flex h-full flex-col">
-                    <p className={`text-[10px] uppercase tracking-[0.4em] text-white/60 transition-colors duration-500 group-hover:text-white/90 ${t.highlight ? "pr-28" : ""}`}>{t.tag}</p>
-                    <h3 className={`mt-3 font-display text-2xl font-bold md:text-3xl transition-transform duration-500 ease-out group-hover:translate-x-1 ${gold ? "text-gold" : "text-white"}`}>{t.name}</h3>
-                    <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-gold" : "text-white"}`}>{t.price}</p>
+                    <p className={`text-[10px] uppercase tracking-[0.4em] text-white md:text-white/60 transition-colors duration-500 group-hover:text-white/90 ${t.highlight ? "md:pr-28" : ""}`}>{t.tag}</p>
+                    {t.highlight && (
+                      <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.3em] text-white md:hidden">
+                        Most Popular
+                      </p>
+                    )}
+                    <h3 className={`mt-3 font-display text-2xl font-bold md:text-3xl transition-transform duration-500 ease-out group-hover:translate-x-1 ${gold ? "text-gold" : "text-gold md:text-white"}`}>{t.name}</h3>
+                    <p className={`mt-3 font-display text-xl font-bold ${gold ? (i === 0 ? "text-white md:text-gold" : "text-white") : "text-white"}`}>{t.price}</p>
                     <button
                       type="button"
                       onClick={() => setActiveTier({ ...t, gold })}
                       className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[12px] md:text-[11px] font-bold uppercase tracking-widest md:backdrop-blur-md transition-all duration-500 ease-out group-hover:gap-3 group-hover:px-6 ${
                         gold
                           ? "bg-gold text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] md:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45),0_8px_24px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
-                          : "bg-white text-black shadow-[0_6px_18px_-8px_rgba(0,0,0,0.5)] md:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8),0_8px_24px_-8px_rgba(255,255,255,0.35)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_14px_36px_-10px_rgba(255,255,255,0.55)]"
+                          : "bg-gold text-gold-foreground md:bg-white md:text-black shadow-[0_6px_18px_-8px_rgba(0,0,0,0.5)] md:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8),0_8px_24px_-8px_rgba(255,255,255,0.35)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_14px_36px_-10px_rgba(255,255,255,0.55)]"
                       }`}
                     >
                       <span>Buy</span>
