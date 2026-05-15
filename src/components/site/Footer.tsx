@@ -37,9 +37,13 @@ export function Footer() {
           <div>
             <h4 className="mb-3 text-[10px] uppercase tracking-widest text-black/60 md:mb-4 md:text-xs">Explore</h4>
             <ul className="space-y-1.5 text-sm md:space-y-2">
-              <li><Link to="/music" className="text-black hover:text-black/60">Music</Link></li>
-              <li><Link to="/about" className="text-black hover:text-black/60">About</Link></li>
+              <li><Link to="/music" className="text-black hover:text-black/60">Line-Up</Link></li>
+              <li><Link to="/tickets" className="text-black hover:text-black/60">Tickets</Link></li>
+              <li><Link to="/experience" className="text-black hover:text-black/60">Experience</Link></li>
               <li><Link to="/sponsors" className="text-black hover:text-black/60">Sponsors</Link></li>
+              <li><Link to="/news" className="text-black hover:text-black/60">News</Link></li>
+              <li><Link to="/legacy" className="text-black hover:text-black/60">Legacy / CSI</Link></li>
+              <li><Link to="/merchandise" className="text-black hover:text-black/60">Merchandise</Link></li>
               <li><Link to="/faqs" className="text-black hover:text-black/60">FAQs</Link></li>
               <li><Link to="/contact" className="text-black hover:text-black/60">Contact</Link></li>
             </ul>
