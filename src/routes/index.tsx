@@ -333,7 +333,12 @@ function HomePage() {
       {/* PARTNERS PREVIEW — desktop/tablet only */}
       <div className="hidden md:block bg-black text-white">
         <Section className="!py-10 md:!py-14 !bg-black">
-          <FadeIn>
+          <motion.div
+            initial={{ opacity: 0, y: 60, filter: "blur(14px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.4em] text-primary">Partners</p>
@@ -346,38 +351,46 @@ function HomePage() {
                 All partners <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
-          </FadeIn>
+          </motion.div>
 
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:mt-8 md:grid-cols-6">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="flex aspect-[3/2] items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] p-4"
+                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 1, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="flex aspect-[3/2] items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-500 hover:border-white/30 hover:bg-white/[0.06]"
               >
                 <img
                   src={i % 2 === 0 ? partnerLogoFull : partnerLogoMark}
                   alt="Partner logo placeholder"
                   loading="lazy"
-                  className="max-h-full max-w-full object-contain opacity-80"
+                  className="max-h-full max-w-full object-contain opacity-80 transition-opacity duration-500 hover:opacity-100"
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <FadeIn delay={0.15}>
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/15 bg-white/[0.04] p-6 md:p-8">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-primary">Partner with us</p>
-                <h3 className="mt-2 font-display text-xl font-bold md:text-2xl">Move with the culture.</h3>
-              </div>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105"
-              >
-                Partner enquiry <ArrowRight size={14} />
-              </Link>
+          <motion.div
+            initial={{ opacity: 0, y: 50, filter: "blur(12px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/15 bg-white/[0.04] p-6 md:p-8"
+          >
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-primary">Partner with us</p>
+              <h3 className="mt-2 font-display text-xl font-bold md:text-2xl">Move with the culture.</h3>
             </div>
-          </FadeIn>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105"
+            >
+              Partner enquiry <ArrowRight size={14} />
+            </Link>
+          </motion.div>
         </Section>
       </div>
 
