@@ -9,15 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TicketsRouteImport } from './routes/tickets'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as MusicRouteImport } from './routes/music'
+import { Route as MerchandiseRouteImport } from './routes/merchandise'
+import { Route as LegacyRouteImport } from './routes/legacy'
 import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TicketsRoute = TicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -33,14 +43,34 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MusicRoute = MusicRouteImport.update({
   id: '/music',
   path: '/music',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MerchandiseRoute = MerchandiseRouteImport.update({
+  id: '/merchandise',
+  path: '/merchandise',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegacyRoute = LegacyRouteImport.update({
+  id: '/legacy',
+  path: '/legacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqsRoute = FaqsRouteImport.update({
   id: '/faqs',
   path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperienceRoute = ExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -63,32 +93,47 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
+  '/legacy': typeof LegacyRoute
+  '/merchandise': typeof MerchandiseRoute
   '/music': typeof MusicRoute
+  '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
   '/terms': typeof TermsRoute
+  '/tickets': typeof TicketsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
+  '/legacy': typeof LegacyRoute
+  '/merchandise': typeof MerchandiseRoute
   '/music': typeof MusicRoute
+  '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
   '/terms': typeof TermsRoute
+  '/tickets': typeof TicketsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
+  '/legacy': typeof LegacyRoute
+  '/merchandise': typeof MerchandiseRoute
   '/music': typeof MusicRoute
+  '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
   '/sponsors': typeof SponsorsRoute
   '/terms': typeof TermsRoute
+  '/tickets': typeof TicketsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,46 +141,73 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/experience'
     | '/faqs'
+    | '/legacy'
+    | '/merchandise'
     | '/music'
+    | '/news'
     | '/privacy'
     | '/sponsors'
     | '/terms'
+    | '/tickets'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
+    | '/experience'
     | '/faqs'
+    | '/legacy'
+    | '/merchandise'
     | '/music'
+    | '/news'
     | '/privacy'
     | '/sponsors'
     | '/terms'
+    | '/tickets'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
+    | '/experience'
     | '/faqs'
+    | '/legacy'
+    | '/merchandise'
     | '/music'
+    | '/news'
     | '/privacy'
     | '/sponsors'
     | '/terms'
+    | '/tickets'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  ExperienceRoute: typeof ExperienceRoute
   FaqsRoute: typeof FaqsRoute
+  LegacyRoute: typeof LegacyRoute
+  MerchandiseRoute: typeof MerchandiseRoute
   MusicRoute: typeof MusicRoute
+  NewsRoute: typeof NewsRoute
   PrivacyRoute: typeof PrivacyRoute
   SponsorsRoute: typeof SponsorsRoute
   TermsRoute: typeof TermsRoute
+  TicketsRoute: typeof TicketsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tickets': {
+      id: '/tickets'
+      path: '/tickets'
+      fullPath: '/tickets'
+      preLoaderRoute: typeof TicketsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -157,6 +229,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/music': {
       id: '/music'
       path: '/music'
@@ -164,11 +243,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MusicRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/merchandise': {
+      id: '/merchandise'
+      path: '/merchandise'
+      fullPath: '/merchandise'
+      preLoaderRoute: typeof MerchandiseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legacy': {
+      id: '/legacy'
+      path: '/legacy'
+      fullPath: '/legacy'
+      preLoaderRoute: typeof LegacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faqs': {
       id: '/faqs'
       path: '/faqs'
       fullPath: '/faqs'
       preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ExperienceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -199,11 +299,16 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  ExperienceRoute: ExperienceRoute,
   FaqsRoute: FaqsRoute,
+  LegacyRoute: LegacyRoute,
+  MerchandiseRoute: MerchandiseRoute,
   MusicRoute: MusicRoute,
+  NewsRoute: NewsRoute,
   PrivacyRoute: PrivacyRoute,
   SponsorsRoute: SponsorsRoute,
   TermsRoute: TermsRoute,
+  TicketsRoute: TicketsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
