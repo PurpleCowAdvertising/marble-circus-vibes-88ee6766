@@ -35,12 +35,29 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
   const [marketingConsent, setMarketingConsent] = useState(true);
   const [privacyConsent, setPrivacyConsent] = useState(false);
 
-  const open = useCallback((_src: string = "manual") => {
-    // Subscribe popup disabled site-wide.
+  const open = useCallback((src: string = "manual") => {
+    setSource(src);
+    setSuccess(false);
+    setIsOpen(true);
   }, []);
 
   const close = useCallback(() => {
     setIsOpen(false);
+  }, []);
+
+  // Auto-open once per browser session after a short delay
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      if (sessionStorage.getItem(SESSION_KEY) === "1") return;
+    } catch {}
+    const t = window.setTimeout(() => {
+      setSource("auto");
+      setSuccess(false);
+      setIsOpen(true);
+      try { sessionStorage.setItem(SESSION_KEY, "1"); } catch {}
+    }, 6000);
+    return () => window.clearTimeout(t);
   }, []);
 
   useEffect(() => {
