@@ -62,7 +62,7 @@ export function Footer() {
               <li className="md:hidden"><Link to="/legacy" className="text-black hover:text-black/60">CSI</Link></li>
             </ul>
 
-            <div className="mt-6 flex justify-center gap-3 md:mt-8 md:justify-start md:gap-4">
+            <div className="mt-6 flex justify-start gap-3 md:mt-8 md:justify-start md:gap-4">
               <a href="#" aria-label="Instagram" className="text-black hover:text-black/60"><Instagram size={18} /></a>
               <a href="#" aria-label="Twitter" className="text-black hover:text-black/60"><Twitter size={18} /></a>
               <a href="#" aria-label="YouTube" className="text-black hover:text-black/60"><Youtube size={18} /></a>
