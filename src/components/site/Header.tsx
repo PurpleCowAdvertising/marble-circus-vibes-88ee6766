@@ -10,7 +10,7 @@ const NAV = [
   { to: "/music", label: "Line-Up" },
   { to: "/tickets", label: "Tickets" },
   { to: "/experience", label: "Experience" },
-  { to: "/sponsors", label: "Sponsors" },
+  { to: "/partners", label: "Partners" },
   { to: "/news", label: "News" },
   { to: "/legacy", label: "Legacy" },
   { to: "/merchandise", label: "Merch" },

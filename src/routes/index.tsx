@@ -259,14 +259,20 @@ function HomePage() {
                         : "bg-[radial-gradient(120%_60%_at_50%_0%,rgba(255,255,255,0.22)_0%,transparent_70%)]"
                     }`}
                   />
-                  {t.highlight && (
-                    <span className="absolute -top-3 left-6 z-10 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-gold-foreground shadow-[0_8px_20px_-6px_color-mix(in_oklab,var(--gold)_70%,transparent)]">
-                      Most popular
-                    </span>
-                  )}
                   <div className="relative z-[1] flex h-full flex-col">
-                    <p className="text-[10px] uppercase tracking-[0.4em] text-white/60 transition-colors duration-500 group-hover:text-white/90">{t.tag}</p>
-                    <h3 className={`mt-2 font-display text-2xl font-bold md:text-3xl transition-transform duration-500 ease-out group-hover:translate-x-1 ${gold ? "text-gold" : "text-white"}`}>{t.name}</h3>
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="text-[10px] uppercase tracking-[0.4em] text-white/60 transition-colors duration-500 group-hover:text-white/90">{t.tag}</p>
+                      {t.highlight && (
+                        <span className={`shrink-0 rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.2em] backdrop-blur-md ${
+                          gold
+                            ? "border-gold/50 bg-gold/15 text-gold"
+                            : "border-white/30 bg-white/10 text-white"
+                        }`}>
+                          Most popular
+                        </span>
+                      )}
+                    </div>
+                    <h3 className={`mt-3 font-display text-2xl font-bold md:text-3xl transition-transform duration-500 ease-out group-hover:translate-x-1 ${gold ? "text-gold" : "text-white"}`}>{t.name}</h3>
                     <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-gold" : "text-white"}`}>{t.price}</p>
                     <button
                       type="button"
@@ -345,7 +351,7 @@ function HomePage() {
                 <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl text-white">Powered by the bold.</h2>
               </div>
               <Link
-                to="/sponsors"
+                to="/partners"
                 className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/60"
               >
                 All partners <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
