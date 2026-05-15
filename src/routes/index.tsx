@@ -189,7 +189,155 @@ function HomePage() {
       </Section>
       </div>
 
-      {/* SPONSORS STRIP */}
+      {/* TICKETS PREVIEW */}
+      <div className="bg-black text-white">
+        <Section className="!pt-2 sm:!pt-3 md:!pt-6 !bg-black">
+          <FadeIn>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="text-xs uppercase tracking-[0.4em] text-primary">Tickets</p>
+                <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-white">Pick your tier.</h2>
+              </div>
+              <Link
+                to="/tickets"
+                className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/60"
+              >
+                All tickets <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </FadeIn>
+
+          <div className="mt-8 md:mt-12 grid gap-4 md:grid-cols-3">
+            {[
+              { name: "General Access", price: "From R 450", tag: "Stage front to floor" },
+              { name: "VIP", price: "From R 1 250", tag: "Elevated view, fast lanes", highlight: true },
+              { name: "Premium / Table", price: "From R 4 800", tag: "Hospitality + bottle service" },
+            ].map((t, i) => (
+              <motion.article
+                key={t.name}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className={`group relative flex h-full flex-col rounded-2xl border p-6 md:p-7 transition-transform hover:-translate-y-1 ${
+                  t.highlight
+                    ? "border-primary bg-primary/10"
+                    : "border-white/15 bg-white/[0.04]"
+                }`}
+              >
+                {t.highlight && (
+                  <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
+                    Most popular
+                  </span>
+                )}
+                <p className="text-[10px] uppercase tracking-[0.4em] text-white/60">{t.tag}</p>
+                <h3 className="mt-2 font-display text-2xl font-bold md:text-3xl">{t.name}</h3>
+                <p className="mt-3 font-display text-xl font-bold text-primary">{t.price}</p>
+                <Link
+                  to="/tickets"
+                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
+                >
+                  Buy
+                </Link>
+              </motion.article>
+            ))}
+          </div>
+        </Section>
+      </div>
+
+      {/* EXPERIENCE PREVIEW */}
+      <div className="relative z-30 isolate bg-orange-rich">
+        <Section className="text-foreground !py-10 md:!py-14">
+          <FadeIn>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-black">Experience</p>
+                <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl text-white">Inside the show.</h2>
+              </div>
+              <Link
+                to="/experience"
+                className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/70"
+              >
+                Full experience <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </FadeIn>
+
+          <div className="mt-8 grid gap-3 md:gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { title: "Main stage", body: "Immersive event visual, the focus of the night." },
+              { title: "VIP", body: "Hospitality and elevated viewing." },
+              { title: "Vendors + merch", body: "Food, bars and limited drops." },
+              { title: "Site map + traffic", body: "Parking, transport and access info." },
+            ].map((b, i) => (
+              <motion.div
+                key={b.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                className="group rounded-xl border border-white/15 bg-black/30 p-4 md:p-5 backdrop-blur-sm transition-transform hover:-translate-y-0.5"
+              >
+                <div className="aspect-[16/10] w-full rounded-md border border-dashed border-white/20 bg-white/[0.03]" aria-hidden />
+                <h3 className="mt-3 font-display text-base font-bold text-white md:text-lg">{b.title}</h3>
+                <p className="mt-1 text-xs text-white/75">{b.body}</p>
+              </motion.div>
+            ))}
+          </div>
+        </Section>
+      </div>
+
+      {/* PARTNERS PREVIEW */}
+      <div className="bg-black text-white">
+        <Section className="!py-10 md:!py-14 !bg-black">
+          <FadeIn>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-primary">Partners</p>
+                <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl text-white">Powered by the bold.</h2>
+              </div>
+              <Link
+                to="/sponsors"
+                className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/60"
+              >
+                All partners <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </FadeIn>
+
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:mt-8 md:grid-cols-6">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex aspect-[3/2] items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] p-4"
+              >
+                <img
+                  src={i % 2 === 0 ? partnerLogoFull : partnerLogoMark}
+                  alt="Partner logo placeholder"
+                  loading="lazy"
+                  className="max-h-full max-w-full object-contain opacity-80"
+                />
+              </div>
+            ))}
+          </div>
+
+          <FadeIn delay={0.15}>
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/15 bg-white/[0.04] p-6 md:p-8">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-primary">Partner with us</p>
+                <h3 className="mt-2 font-display text-xl font-bold md:text-2xl">Move with the culture.</h3>
+              </div>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105"
+              >
+                Partner enquiry <ArrowRight size={14} />
+              </Link>
+            </div>
+          </FadeIn>
+        </Section>
+      </div>
+
       <div className="relative z-40 isolate bg-orange-rich">
         <Section className="text-foreground !py-8 md:!py-12">
           <FadeIn>
