@@ -212,35 +212,40 @@ function HomePage() {
               { name: "General Access", price: "From R 400", tag: "Stage front to floor" },
               { name: "VIP", price: "TBA", tag: "Elevated view, fast lanes", highlight: true },
               { name: "Premium / Table", price: "TBA", tag: "Hospitality + bottle service" },
-            ].map((t, i) => (
-              <motion.article
-                key={t.name}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.8, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className={`group relative flex h-full flex-col rounded-2xl border p-6 md:p-7 transition-transform hover:-translate-y-1 ${
-                  t.highlight
-                    ? "border-primary bg-primary/10"
-                    : "border-white/15 bg-white/[0.04]"
-                }`}
-              >
-                {t.highlight && (
-                  <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
-                    Most popular
-                  </span>
-                )}
-                <p className="text-[10px] uppercase tracking-[0.4em] text-white/60">{t.tag}</p>
-                <h3 className="mt-2 font-display text-2xl font-bold md:text-3xl">{t.name}</h3>
-                <p className="mt-3 font-display text-xl font-bold text-primary">{t.price}</p>
-                <Link
-                  to="/tickets"
-                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
+            ].map((t, i) => {
+              const gold = i % 2 === 0;
+              return (
+                <motion.article
+                  key={t.name}
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.8, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className={`group relative flex h-full flex-col rounded-2xl border p-6 md:p-7 transition-transform hover:-translate-y-1 ${
+                    gold
+                      ? "border-gold/50 bg-gold/10"
+                      : "border-white/15 bg-white/[0.04]"
+                  }`}
                 >
-                  Buy
-                </Link>
-              </motion.article>
-            ))}
+                  {t.highlight && (
+                    <span className="absolute -top-3 left-6 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-gold-foreground">
+                      Most popular
+                    </span>
+                  )}
+                  <p className="text-[10px] uppercase tracking-[0.4em] text-white/60">{t.tag}</p>
+                  <h3 className={`mt-2 font-display text-2xl font-bold md:text-3xl ${gold ? "text-gold" : "text-white"}`}>{t.name}</h3>
+                  <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-gold" : "text-white"}`}>{t.price}</p>
+                  <Link
+                    to="/tickets"
+                    className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest transition-transform hover:scale-105 ${
+                      gold ? "bg-gold text-gold-foreground" : "bg-white text-black"
+                    }`}
+                  >
+                    Buy
+                  </Link>
+                </motion.article>
+              );
+            })}
           </div>
         </Section>
       </div>
