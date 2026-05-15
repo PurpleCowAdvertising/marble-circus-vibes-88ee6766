@@ -93,7 +93,7 @@ function HomePage() {
 
 
       {/* ARTIST CAROUSEL — folds up over hero */}
-      <div className="relative z-10 isolate fold-safe-strong">
+      <div id="lineup" className="relative z-10 isolate fold-safe-strong scroll-mt-24">
         <ArtistCarousel />
       </div>
 
