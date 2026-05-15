@@ -123,7 +123,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <SubscribeProvider>
-        <div className="relative flex min-h-screen flex-col">
+        <div className="relative flex min-h-[100dvh] flex-col">
           <Header />
           <main className="relative z-10 flex-1">
             <Outlet />
