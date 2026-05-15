@@ -110,7 +110,7 @@ export function Header() {
               onClick={() => openSubscribe("header")}
               className="text-[12px] font-medium tracking-tight text-white transition-all duration-300 hover:scale-[1.03] hover:text-white/80"
             >
-              Subscribe
+              ​
             </button>
           </div>
 
@@ -184,7 +184,7 @@ export function Header() {
               }}
               className="mt-6 w-full rounded-full bg-primary px-5 py-3 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-[1.02]"
             >
-              Subscribe
+              ​
             </button>
           </nav>
         </div>

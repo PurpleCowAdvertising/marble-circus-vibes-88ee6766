@@ -206,7 +206,7 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
                         disabled={submitting}
                         className="mt-1 w-full rounded-full bg-white px-6 py-3 text-sm font-bold uppercase tracking-widest text-foreground transition-transform hover:scale-[1.02] disabled:opacity-60"
                       >
-                        {submitting ? "Joining..." : "Subscribe"}
+                        {submitting ? "Joining..." : "​"}
                       </button>
                     </form>
                   </div>
