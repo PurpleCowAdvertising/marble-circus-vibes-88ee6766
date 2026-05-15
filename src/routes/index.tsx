@@ -343,7 +343,7 @@ function HomePage() {
       </div>
 
       {/* PARTNERS PREVIEW — desktop/tablet only */}
-      <div className="hidden md:block bg-black text-white">
+      <div id="partners" className="hidden md:block bg-black text-white scroll-mt-24">
         <Section className="!py-10 md:!py-14 !bg-black">
           <motion.div
             initial={{ opacity: 0, y: 60, filter: "blur(14px)" }}
