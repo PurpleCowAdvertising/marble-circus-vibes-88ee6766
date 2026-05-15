@@ -15,6 +15,7 @@ import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as MusicRouteImport } from './routes/music'
+import { Route as MerchandiseRouteImport } from './routes/merchandise'
 import { Route as LegacyRouteImport } from './routes/legacy'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ExperienceRouteImport } from './routes/experience'
@@ -50,6 +51,11 @@ const NewsRoute = NewsRouteImport.update({
 const MusicRoute = MusicRouteImport.update({
   id: '/music',
   path: '/music',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MerchandiseRoute = MerchandiseRouteImport.update({
+  id: '/merchandise',
+  path: '/merchandise',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LegacyRoute = LegacyRouteImport.update({
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
   '/legacy': typeof LegacyRoute
+  '/merchandise': typeof MerchandiseRoute
   '/music': typeof MusicRoute
   '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
   '/legacy': typeof LegacyRoute
+  '/merchandise': typeof MerchandiseRoute
   '/music': typeof MusicRoute
   '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
   '/legacy': typeof LegacyRoute
+  '/merchandise': typeof MerchandiseRoute
   '/music': typeof MusicRoute
   '/news': typeof NewsRoute
   '/privacy': typeof PrivacyRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/faqs'
     | '/legacy'
+    | '/merchandise'
     | '/music'
     | '/news'
     | '/privacy'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/faqs'
     | '/legacy'
+    | '/merchandise'
     | '/music'
     | '/news'
     | '/privacy'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/faqs'
     | '/legacy'
+    | '/merchandise'
     | '/music'
     | '/news'
     | '/privacy'
@@ -178,6 +190,7 @@ export interface RootRouteChildren {
   ExperienceRoute: typeof ExperienceRoute
   FaqsRoute: typeof FaqsRoute
   LegacyRoute: typeof LegacyRoute
+  MerchandiseRoute: typeof MerchandiseRoute
   MusicRoute: typeof MusicRoute
   NewsRoute: typeof NewsRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -228,6 +241,13 @@ declare module '@tanstack/react-router' {
       path: '/music'
       fullPath: '/music'
       preLoaderRoute: typeof MusicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/merchandise': {
+      id: '/merchandise'
+      path: '/merchandise'
+      fullPath: '/merchandise'
+      preLoaderRoute: typeof MerchandiseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/legacy': {
@@ -282,6 +302,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExperienceRoute: ExperienceRoute,
   FaqsRoute: FaqsRoute,
   LegacyRoute: LegacyRoute,
+  MerchandiseRoute: MerchandiseRoute,
   MusicRoute: MusicRoute,
   NewsRoute: NewsRoute,
   PrivacyRoute: PrivacyRoute,
