@@ -51,7 +51,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="pl-4 md:pl-0">
             <h4 className="mb-3 text-[10px] uppercase tracking-widest text-black/60 md:mb-4 md:text-xs">Legal</h4>
             <ul className="space-y-1.5 text-sm md:space-y-2">
               <li><Link to="/privacy" className="text-black hover:text-black/60">Privacy Policy</Link></li>
