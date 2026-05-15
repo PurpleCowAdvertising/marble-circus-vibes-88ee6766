@@ -46,7 +46,8 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  
+  const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
+
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
