@@ -301,7 +301,7 @@ function HomePage() {
       </div>
 
       {/* EXPERIENCE PREVIEW — desktop/tablet only */}
-      <div className="relative z-30 isolate bg-orange-rich hidden md:block">
+      <div id="experience" className="relative z-30 isolate bg-orange-rich hidden md:block scroll-mt-24">
         <Section className="text-foreground !py-10 md:!py-14">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
