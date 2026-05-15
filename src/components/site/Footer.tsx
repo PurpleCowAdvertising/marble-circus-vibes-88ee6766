@@ -27,26 +27,34 @@ export function Footer() {
             <p className="mt-3 max-w-md text-sm text-black/70 md:hidden">
               Drops, lineup reveals, ticket waves and exclusive behind-the-scenes — straight to your inbox.
             </p>
+            {/* Mobile: Contact button (replaces Subscribe). Desktop: keep Subscribe. */}
+            <Link
+              to="/contact"
+              className="mt-5 inline-block rounded-full bg-black px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-105 md:hidden"
+            >
+              Contact
+            </Link>
             <button
               onClick={() => open("footer")}
-              className="mt-5 rounded-full bg-black px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-105 md:hidden"
+              className="mt-5 hidden rounded-full bg-black px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-105"
             >
               Subscribe
             </button>
           </div>
 
           <div>
-            <h4 className="mb-3 text-[10px] uppercase tracking-widest text-black/60 md:mb-4 md:text-xs">Explore</h4>
+            <h4 className="mb-3 text-[10px] uppercase tracking-widest text-orange-rich md:mb-4 md:text-xs md:text-black/60">Explore</h4>
             <ul className="space-y-1.5 text-sm md:space-y-2">
               <li><Link to="/music" className="text-black hover:text-black/60">Line-Up</Link></li>
               <li><Link to="/tickets" className="text-black hover:text-black/60">Tickets</Link></li>
               <li><Link to="/experience" className="text-black hover:text-black/60">Experience</Link></li>
-              <li><Link to="/partners" className="text-black hover:text-black/60">Partners</Link></li>
-              <li><Link to="/news" className="text-black hover:text-black/60">News</Link></li>
-              <li><Link to="/legacy" className="text-black hover:text-black/60">Legacy / CSI</Link></li>
-              <li><Link to="/merchandise" className="text-black hover:text-black/60">Merchandise</Link></li>
+              {/* Desktop-only links (mobile moves these to right column or removes) */}
+              <li className="hidden md:list-item"><Link to="/partners" className="text-black hover:text-black/60">Partners</Link></li>
+              <li className="hidden md:list-item"><Link to="/news" className="text-black hover:text-black/60">News</Link></li>
+              <li className="hidden md:list-item"><Link to="/legacy" className="text-black hover:text-black/60">Legacy / CSI</Link></li>
+              <li className="hidden md:list-item"><Link to="/merchandise" className="text-black hover:text-black/60">Merchandise</Link></li>
               <li><Link to="/faqs" className="text-black hover:text-black/60">FAQs</Link></li>
-              <li><Link to="/contact" className="text-black hover:text-black/60">Contact</Link></li>
+              <li className="hidden md:list-item"><Link to="/contact" className="text-black hover:text-black/60">Contact</Link></li>
             </ul>
           </div>
 
@@ -55,6 +63,11 @@ export function Footer() {
             <ul className="space-y-1.5 text-sm md:space-y-2">
               <li><Link to="/privacy" className="text-black hover:text-black/60">Privacy Policy</Link></li>
               <li><Link to="/terms" className="text-black hover:text-black/60">Terms of Use</Link></li>
+              {/* Mobile-only: Partners, News, Legacy, CSI moved here */}
+              <li className="md:hidden"><Link to="/partners" className="text-black hover:text-black/60">Partners</Link></li>
+              <li className="md:hidden"><Link to="/news" className="text-black hover:text-black/60">News</Link></li>
+              <li className="md:hidden"><Link to="/legacy" className="text-black hover:text-black/60">Legacy</Link></li>
+              <li className="md:hidden"><Link to="/legacy" className="text-black hover:text-black/60">CSI</Link></li>
             </ul>
 
             <div className="mt-6 flex gap-3 md:mt-8 md:gap-4">
