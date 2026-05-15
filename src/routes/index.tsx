@@ -287,8 +287,8 @@ function HomePage() {
         </Section>
       </div>
 
-      {/* PARTNERS PREVIEW */}
-      <div className="bg-black text-white">
+      {/* PARTNERS PREVIEW — desktop/tablet only */}
+      <div className="hidden md:block bg-black text-white">
         <Section className="!py-10 md:!py-14 !bg-black">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
