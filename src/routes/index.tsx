@@ -279,7 +279,7 @@ function HomePage() {
                       </p>
                     )}
                     <h3 className={`mt-3 font-display text-2xl font-bold md:text-3xl transition-transform duration-500 ease-out group-hover:translate-x-1 ${gold ? "text-gold" : "text-gold md:text-white"}`}>{t.name}</h3>
-                    <p className={`mt-3 font-display text-xl font-bold ${gold ? (i === 0 ? "text-white md:text-gold" : "text-white") : "text-white"}`}>{t.price}</p>
+                    <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-white md:text-gold" : "text-white"}`}>{t.price}</p>
                     <button
                       type="button"
                       onClick={() => setActiveTier({ ...t, gold })}
