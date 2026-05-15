@@ -51,6 +51,8 @@
   --color-ring: var(--ring);
   --color-marble: var(--marble);
   --color-electric: var(--electric);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
   --color-ring-offset-background: var(--background);
 }
 
@@ -89,6 +91,10 @@
 
   --marble: oklch(0.96 0.01 85);
   --electric: oklch(0.7 0.2 30);
+
+  /* Scorpion Kings logo gold (yellow-orange center) */
+  --gold: oklch(0.83 0.16 80);
+  --gold-foreground: oklch(0.14 0.012 60);
 }
 
 .dark {
