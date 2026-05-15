@@ -209,9 +209,9 @@ function HomePage() {
 
           <div className="mt-8 md:mt-12 grid gap-4 md:grid-cols-3">
             {[
-              { name: "General Access", price: "From R 450", tag: "Stage front to floor" },
-              { name: "VIP", price: "From R 1 250", tag: "Elevated view, fast lanes", highlight: true },
-              { name: "Premium / Table", price: "From R 4 800", tag: "Hospitality + bottle service" },
+              { name: "General Access", price: "From R 400", tag: "Stage front to floor" },
+              { name: "VIP", price: "TBA", tag: "Elevated view, fast lanes", highlight: true },
+              { name: "Premium / Table", price: "TBA", tag: "Hospitality + bottle service" },
             ].map((t, i) => (
               <motion.article
                 key={t.name}
