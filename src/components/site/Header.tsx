@@ -161,7 +161,7 @@ export function Header() {
 
           <nav aria-label="Mobile" className="px-4 pb-8 pt-6 sm:px-6">
             <ul className="divide-y divide-white/10">
-              {NAV.map((item) => (
+              {NAV.filter((item) => !["/news", "/legacy", "/faqs"].includes(item.to)).map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}
