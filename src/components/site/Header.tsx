@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 import { useSubscribePopup } from "./SubscribePopup";
 import logo from "@/assets/logo.png";
@@ -20,7 +21,8 @@ const NAV = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-  
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const { open: openSubscribe } = useSubscribePopup();
 
   useEffect(() => {
@@ -44,66 +46,149 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock body scroll while mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [menuOpen]);
+
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
-        hidden ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
-      }`}
-    >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-center gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:justify-between md:px-8 md:pt-5">
-        {/* Logo — desktop only */}
-        <Link to="/" aria-label="Scorpion Kings Live" className="hidden shrink-0 items-center md:flex">
-          <img
-            src={logo}
-            alt="Scorpion Kings Live"
-            className={`w-auto transition-all duration-500 ease-out ${
-              scrolled ? "h-8" : "h-10"
-            }`}
-          />
-        </Link>
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+          hidden && !menuOpen ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+        }`}
+      >
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5">
+          {/* Logo — visible all sizes */}
+          <Link to="/" aria-label="Scorpion Kings Live" className="flex shrink-0 items-center">
+            <img
+              src={logo}
+              alt="Scorpion Kings Live"
+              className={`w-auto transition-all duration-500 ease-out ${
+                scrolled ? "h-7 md:h-8" : "h-9 md:h-10"
+              }`}
+            />
+          </Link>
 
-        {/* Floating glass pill nav — desktop */}
-        <div className="relative">
-          {/* Scroll-responsive glow — strongest over hero, fades as you scroll */}
-          <span
-            aria-hidden
-            className={`pointer-events-none absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_55%,transparent),transparent_70%)] blur-2xl transition-opacity duration-700 ease-out ${
-              scrolled ? "opacity-0" : "opacity-90"
-            }`}
-          />
-          <nav
-            aria-label="Primary"
-            className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white px-2 py-1.5 ring-1 ring-inset ring-white shadow-[0_8px_28px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-500 ease-out border-white"
-          >
-            {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                activeOptions={{ exact: item.to === "/" }}
-                className="group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-black hover:font-semibold sm:px-3.5 sm:py-1.5 sm:text-[13px] lg:px-4 group-data-[status=active]:font-semibold data-[status=active]:!text-black"
-                activeProps={{ className: "!text-black !font-semibold" }}
-              >
-                <span className="relative z-10">{item.label}</span>
-                <span
-                  aria-hidden
-                  className="absolute inset-0 -z-0 rounded-full bg-[#f8a52d] shadow-[0_6px_18px_-4px_rgba(248,165,45,0.55)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100 border-[#f2ac07]"
-                />
-              </Link>
-            ))}
-          </nav>
-        </div>
+          {/* Desktop pill nav */}
+          <div className="relative hidden md:block">
+            <span
+              aria-hidden
+              className={`pointer-events-none absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_55%,transparent),transparent_70%)] blur-2xl transition-opacity duration-700 ease-out ${
+                scrolled ? "opacity-0" : "opacity-90"
+              }`}
+            />
+            <nav
+              aria-label="Primary"
+              className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white px-2 py-1.5 ring-1 ring-inset ring-white shadow-[0_8px_28px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-500 ease-out border-white"
+            >
+              {NAV.map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  activeOptions={{ exact: item.to === "/" }}
+                  className="group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-black hover:font-semibold sm:px-3 sm:py-1.5 sm:text-[12px] lg:px-3.5 lg:text-[13px] group-data-[status=active]:font-semibold data-[status=active]:!text-black"
+                  activeProps={{ className: "!text-black !font-semibold" }}
+                >
+                  <span className="relative z-10">{item.label}</span>
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 -z-0 rounded-full bg-[#f8a52d] shadow-[0_6px_18px_-4px_rgba(248,165,45,0.55)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100 border-[#f2ac07]"
+                  />
+                </Link>
+              ))}
+            </nav>
+          </div>
 
-        {/* Subscribe — desktop only, transparent (no background shape) */}
-        <div className="hidden shrink-0 items-center gap-2 md:flex">
+          {/* Subscribe — desktop only */}
+          <div className="hidden shrink-0 items-center gap-2 md:flex">
+            <button
+              onClick={() => openSubscribe("header")}
+              className="text-[12px] font-medium tracking-tight text-white transition-all duration-300 hover:scale-[1.03] hover:text-white/80"
+            >
+              Subscribe
+            </button>
+          </div>
+
+          {/* Mobile hamburger */}
           <button
-            onClick={() => openSubscribe("header")}
-            className="text-[12px] font-medium tracking-tight text-white transition-all duration-300 hover:scale-[1.03] hover:text-white/80"
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_8px_24px_-10px_rgba(0,0,0,0.55)] ring-1 ring-black/5 transition-transform hover:scale-[1.05] md:hidden"
           >
-            Subscribe
+            <Menu size={20} />
           </button>
         </div>
-      </div>
+      </header>
 
-    </header>
+      {/* Mobile drawer */}
+      <div
+        className={`fixed inset-0 z-[60] md:hidden ${menuOpen ? "" : "pointer-events-none"}`}
+        aria-hidden={!menuOpen}
+      >
+        {/* Backdrop */}
+        <div
+          onClick={() => setMenuOpen(false)}
+          className={`absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${
+            menuOpen ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        {/* Panel */}
+        <div
+          className={`absolute inset-x-0 top-0 bg-black text-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            menuOpen ? "translate-y-0" : "-translate-y-full"
+          }`}
+        >
+          <div className="flex items-center justify-between px-4 pt-4 sm:px-6">
+            <Link to="/" onClick={() => setMenuOpen(false)} aria-label="Scorpion Kings Live">
+              <img src={logo} alt="Scorpion Kings Live" className="h-8 w-auto" />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-transform hover:scale-105"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          <nav aria-label="Mobile" className="px-4 pb-8 pt-6 sm:px-6">
+            <ul className="divide-y divide-white/10">
+              {NAV.map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    onClick={() => setMenuOpen(false)}
+                    activeOptions={{ exact: item.to === "/" }}
+                    className="flex items-center justify-between py-4 font-display text-2xl font-bold tracking-tight transition-colors hover:text-primary"
+                    activeProps={{ className: "!text-primary" }}
+                  >
+                    {item.label}
+                    <span aria-hidden className="text-white/30">→</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                openSubscribe("header");
+              }}
+              className="mt-6 w-full rounded-full bg-primary px-5 py-3 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-[1.02]"
+            >
+              Subscribe
+            </button>
+          </nav>
+        </div>
+      </div>
+    </>
   );
 }
