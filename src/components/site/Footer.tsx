@@ -62,7 +62,7 @@ export function Footer() {
               <li className="md:hidden"><Link to="/legacy" className="text-black hover:text-black/60">CSI</Link></li>
             </ul>
 
-            <div className="mt-6 flex justify-start gap-3 md:mt-8 md:justify-start md:gap-4">
+            <div className="mt-6 hidden md:flex md:mt-8 md:justify-start md:gap-4">
               <a href="#" aria-label="Instagram" className="text-black hover:text-black/60"><Instagram size={18} /></a>
               <a href="#" aria-label="Twitter" className="text-black hover:text-black/60"><Twitter size={18} /></a>
               <a href="#" aria-label="YouTube" className="text-black hover:text-black/60"><Youtube size={18} /></a>
@@ -71,6 +71,13 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Mobile-only social icons, left-aligned with Explore column */}
+        <div className="mt-6 flex justify-start gap-3 md:hidden">
+          <a href="#" aria-label="Instagram" className="text-black hover:text-black/60"><Instagram size={18} /></a>
+          <a href="#" aria-label="Twitter" className="text-black hover:text-black/60"><Twitter size={18} /></a>
+          <a href="#" aria-label="YouTube" className="text-black hover:text-black/60"><Youtube size={18} /></a>
+          <a href="#" aria-label="Spotify" className="text-black hover:text-black/60"><Music size={18} /></a>
+        </div>
       </div>
       <div className="bg-white text-black border-t border-black/10 md:border-0 md:bg-black md:text-white">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-center gap-1 px-6 py-3 text-center text-[10px] leading-tight md:gap-1.5 md:px-10 md:py-4 md:text-xs">
