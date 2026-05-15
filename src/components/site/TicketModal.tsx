@@ -67,7 +67,7 @@ export function TicketModal({ tier, onClose }: Props) {
             type="button"
             aria-label="Close"
             onClick={onClose}
-            className="absolute inset-0 bg-black/70 backdrop-blur-md"
+            className="absolute inset-0 bg-black/85 sm:bg-black/70 sm:backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -88,10 +88,10 @@ export function TicketModal({ tier, onClose }: Props) {
                 ? "inset 0 1px 0 0 color-mix(in oklab, var(--gold) 60%, transparent), inset 0 -1px 0 0 rgba(0,0,0,0.4), 0 40px 80px -20px rgba(0,0,0,0.7), 0 0 60px -10px color-mix(in oklab, var(--gold) 40%, transparent)"
                 : "inset 0 1px 0 0 rgba(255,255,255,0.4), inset 0 -1px 0 0 rgba(0,0,0,0.4), 0 40px 80px -20px rgba(0,0,0,0.7), 0 0 60px -10px rgba(255,255,255,0.15)",
             }}
-            className={`relative w-full max-w-lg overflow-hidden rounded-3xl border p-6 sm:p-8 backdrop-blur-2xl backdrop-saturate-150 ${
+            className={`relative w-full max-w-lg overflow-hidden rounded-3xl border p-6 sm:p-8 sm:backdrop-blur-2xl sm:backdrop-saturate-150 ${
               gold
-                ? "border-gold/40 bg-gradient-to-br from-gold/[0.18] via-gold/[0.06] to-black/40"
-                : "border-white/25 bg-gradient-to-br from-white/[0.16] via-white/[0.05] to-black/40"
+                ? "border-gold/45 bg-gradient-to-br from-gold/[0.32] via-gold/[0.14] to-black/70 sm:from-gold/[0.18] sm:via-gold/[0.06] sm:to-black/40"
+                : "border-white/30 bg-gradient-to-br from-white/[0.24] via-white/[0.08] to-black/75 sm:from-white/[0.16] sm:via-white/[0.05] sm:to-black/40"
             }`}
           >
             {/* Top specular highlight */}
@@ -119,7 +119,7 @@ export function TicketModal({ tier, onClose }: Props) {
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/90 backdrop-blur-md transition hover:scale-105 hover:bg-white/20"
+              className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/15 text-white/95 sm:backdrop-blur-md transition hover:scale-105 hover:bg-white/25"
             >
               <X size={16} />
             </button>
@@ -155,7 +155,7 @@ export function TicketModal({ tier, onClose }: Props) {
               </ul>
 
               {/* Quantity */}
-              <div className="mt-7 flex items-center justify-between rounded-2xl border border-white/15 bg-white/[0.06] p-3 backdrop-blur-md">
+              <div className="mt-7 flex items-center justify-between rounded-2xl border border-white/15 bg-white/[0.1] sm:bg-white/[0.06] p-3 sm:backdrop-blur-md">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.3em] text-white/60">Quantity</p>
                   <p className="mt-0.5 text-sm text-white/90">Max 8 per order</p>

@@ -234,10 +234,10 @@ function HomePage() {
                       ? "inset 0 1px 0 0 color-mix(in oklab, var(--gold) 55%, transparent), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 20px 50px -20px rgba(0,0,0,0.55)"
                       : "inset 0 1px 0 0 rgba(255,255,255,0.35), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 20px 50px -20px rgba(0,0,0,0.55)",
                   }}
-                  className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border p-6 md:p-7 backdrop-blur-2xl backdrop-saturate-150 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out ${
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border p-6 md:p-7 md:backdrop-blur-2xl md:backdrop-saturate-150 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out ${
                     gold
-                      ? "border-gold/30 bg-gradient-to-br from-gold/[0.18] via-gold/[0.06] to-transparent hover:border-gold/70"
-                      : "border-white/20 bg-gradient-to-br from-white/[0.14] via-white/[0.05] to-transparent hover:border-white/60"
+                      ? "border-gold/40 bg-gradient-to-br from-gold/[0.32] via-gold/[0.14] to-black/30 md:from-gold/[0.18] md:via-gold/[0.06] md:to-transparent hover:border-gold/70"
+                      : "border-white/25 bg-gradient-to-br from-white/[0.22] via-white/[0.08] to-black/30 md:from-white/[0.14] md:via-white/[0.05] md:to-transparent hover:border-white/60"
                   }`}
                 >
                   {/* Top specular highlight — the Apple-glass shine */}
@@ -271,10 +271,10 @@ function HomePage() {
                     <button
                       type="button"
                       onClick={() => setActiveTier({ ...t, gold })}
-                      className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md transition-all duration-500 ease-out group-hover:gap-3 group-hover:px-6 ${
+                      className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[12px] md:text-[11px] font-bold uppercase tracking-widest md:backdrop-blur-md transition-all duration-500 ease-out group-hover:gap-3 group-hover:px-6 ${
                         gold
-                          ? "bg-gold text-gold-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45),0_8px_24px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
-                          : "bg-white text-black shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8),0_8px_24px_-8px_rgba(255,255,255,0.35)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_14px_36px_-10px_rgba(255,255,255,0.55)]"
+                          ? "bg-gold text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] md:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45),0_8px_24px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
+                          : "bg-white text-black shadow-[0_6px_18px_-8px_rgba(0,0,0,0.5)] md:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8),0_8px_24px_-8px_rgba(255,255,255,0.35)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_14px_36px_-10px_rgba(255,255,255,0.55)]"
                       }`}
                     >
                       <span>Buy</span>
