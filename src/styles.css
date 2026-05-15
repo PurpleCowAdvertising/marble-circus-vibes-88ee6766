@@ -51,6 +51,8 @@
   --color-ring: var(--ring);
   --color-marble: var(--marble);
   --color-electric: var(--electric);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
   --color-ring-offset-background: var(--background);
 }
 
