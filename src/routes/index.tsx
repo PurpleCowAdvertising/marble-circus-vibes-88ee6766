@@ -244,13 +244,13 @@ function HomePage() {
                     className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border p-6 md:p-7 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out ${
                       gold
                         ? "bg-black bg-none border-gold/50 md:bg-gradient-to-br md:from-gold/[0.22] md:via-gold/[0.10] md:to-white hover:border-gold/80"
-                        : "border-black/15 bg-gradient-to-br from-black/[0.06] via-black/[0.02] to-white hover:border-black/40"
+                        : "bg-white border-black/15 md:bg-gradient-to-br md:from-black/[0.06] md:via-black/[0.02] md:to-white hover:border-black/40"
                     }`}
                   >
                     {/* Top specular highlight — desktop only (mobile black cards don't need light shine) */}
                     <span
                       aria-hidden
-                      className={`pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-white/60 via-white/10 to-transparent opacity-80 ${gold ? "hidden md:block" : ""}`}
+                      className={`pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-white/60 via-white/10 to-transparent opacity-80 ${gold ? "hidden md:block" : "hidden md:block"}`}
                     />
                     {/* Soft inner edge for depth */}
                     <span
@@ -282,7 +282,7 @@ function HomePage() {
                       <p className={`text-[10px] uppercase tracking-[0.4em] transition-colors duration-500 ${
                         gold
                           ? "text-white md:text-black/70 group-hover:text-white md:group-hover:text-black"
-                          : "text-black/70 group-hover:text-black"
+                          : "text-black md:text-black/70 group-hover:text-black"
                       } ${t.highlight ? "md:pr-28" : ""}`}>{t.tag}</p>
                       {t.highlight && (
                         <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.3em] text-black md:hidden">
