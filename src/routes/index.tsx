@@ -259,19 +259,20 @@ function HomePage() {
                         : "bg-[radial-gradient(120%_60%_at_50%_0%,rgba(255,255,255,0.22)_0%,transparent_70%)]"
                     }`}
                   />
+                  {/* Most-popular badge — absolute so it never reflows the content row */}
+                  {t.highlight && (
+                    <span
+                      className={`pointer-events-none absolute right-5 top-5 z-[2] rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.2em] backdrop-blur-md ${
+                        gold
+                          ? "border-gold/50 bg-gold/15 text-gold"
+                          : "border-white/30 bg-white/10 text-white"
+                      }`}
+                    >
+                      Most popular
+                    </span>
+                  )}
                   <div className="relative z-[1] flex h-full flex-col">
-                    <div className="flex items-start justify-between gap-3">
-                      <p className="text-[10px] uppercase tracking-[0.4em] text-white/60 transition-colors duration-500 group-hover:text-white/90">{t.tag}</p>
-                      {t.highlight && (
-                        <span className={`shrink-0 rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.2em] backdrop-blur-md ${
-                          gold
-                            ? "border-gold/50 bg-gold/15 text-gold"
-                            : "border-white/30 bg-white/10 text-white"
-                        }`}>
-                          Most popular
-                        </span>
-                      )}
-                    </div>
+                    <p className={`text-[10px] uppercase tracking-[0.4em] text-white/60 transition-colors duration-500 group-hover:text-white/90 ${t.highlight ? "pr-28" : ""}`}>{t.tag}</p>
                     <h3 className={`mt-3 font-display text-2xl font-bold md:text-3xl transition-transform duration-500 ease-out group-hover:translate-x-1 ${gold ? "text-gold" : "text-white"}`}>{t.name}</h3>
                     <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-gold" : "text-white"}`}>{t.price}</p>
                     <button
