@@ -73,8 +73,8 @@ function ContactPage() {
           <FadeIn>
             <div className="space-y-10">
               {[
+                { icon: Newspaper, label: "Press · Kim Sineke", email: "kim@iam4.co.za" },
                 { icon: Mail, label: "General", email: "hello@sonymusic.co.za" },
-                { icon: Newspaper, label: "Press", email: "press@sonymusic.co.za" },
                 { icon: Briefcase, label: "Partnerships", email: "partners@sonymusic.co.za" },
               ].map(({ icon: Icon, label, email }) => (
                 <div key={label}>
@@ -85,6 +85,11 @@ function ContactPage() {
                   <a href={`mailto:${email}`} className="mt-2 block font-display text-2xl font-bold hover:text-accent md:text-3xl">
                     {email}
                   </a>
+                  {label.startsWith("Press") && (
+                    <a href="tel:+27810421076" className="mt-1 block text-sm text-muted-foreground hover:text-foreground">
+                      +27 81 042 1076
+                    </a>
+                  )}
                 </div>
               ))}
 
