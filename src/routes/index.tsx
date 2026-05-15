@@ -245,8 +245,8 @@ function HomePage() {
         </Section>
       </div>
 
-      {/* EXPERIENCE PREVIEW */}
-      <div className="relative z-30 isolate bg-orange-rich">
+      {/* EXPERIENCE PREVIEW — desktop/tablet only */}
+      <div className="relative z-30 isolate bg-orange-rich hidden md:block">
         <Section className="text-foreground !py-10 md:!py-14">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
