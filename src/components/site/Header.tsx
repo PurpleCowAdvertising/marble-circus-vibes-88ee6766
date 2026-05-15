@@ -87,21 +87,37 @@ export function Header() {
               aria-label="Primary"
               className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white px-2 py-1.5 ring-1 ring-inset ring-white shadow-[0_8px_28px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-500 ease-out border-white"
             >
-              {NAV.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  activeOptions={{ exact: item.to === "/" }}
-                  className="group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-black hover:font-semibold sm:px-3 sm:py-1.5 sm:text-[12px] lg:px-3.5 lg:text-[13px] group-data-[status=active]:font-semibold data-[status=active]:!text-black"
-                  activeProps={{ className: "!text-black !font-semibold" }}
-                >
-                  <span className="relative z-10">{item.label}</span>
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 -z-0 rounded-full bg-[#f8a52d] shadow-[0_6px_18px_-4px_rgba(248,165,45,0.55)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100 border-[#f2ac07]"
-                  />
-                </Link>
-              ))}
+              {NAV.map((item) => {
+                const className =
+                  "group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-black hover:font-semibold sm:px-3 sm:py-1.5 sm:text-[12px] lg:px-3.5 lg:text-[13px] group-data-[status=active]:font-semibold data-[status=active]:!text-black";
+                const inner = (
+                  <>
+                    <span className="relative z-10">{item.label}</span>
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 -z-0 rounded-full bg-[#f8a52d] shadow-[0_6px_18px_-4px_rgba(248,165,45,0.55)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100 border-[#f2ac07]"
+                    />
+                  </>
+                );
+                if (item.kind === "scroll") {
+                  return (
+                    <a key={item.hash} href={`/#${item.hash}`} className={className}>
+                      {inner}
+                    </a>
+                  );
+                }
+                return (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    activeOptions={{ exact: item.to === "/" }}
+                    className={className}
+                    activeProps={{ className: "!text-black !font-semibold" }}
+                  >
+                    {inner}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
 
