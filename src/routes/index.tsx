@@ -197,7 +197,7 @@ function HomePage() {
       </div>
 
       {/* TICKETS PREVIEW */}
-      <div className="bg-black text-white">
+      <div id="tickets" className="bg-black text-white scroll-mt-24">
         <Section className="!pt-2 sm:!pt-3 md:!pt-6 !bg-black">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
