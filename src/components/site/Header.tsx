@@ -6,10 +6,15 @@ import logo from "@/assets/logo.png";
 
 const NAV = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/music", label: "News" },
-  
+  { to: "/music", label: "Line-Up" },
+  { to: "/tickets", label: "Tickets" },
+  { to: "/experience", label: "Experience" },
+  { to: "/sponsors", label: "Sponsors" },
+  { to: "/news", label: "News" },
+  { to: "/legacy", label: "Legacy" },
+  { to: "/merchandise", label: "Merch" },
   { to: "/faqs", label: "FAQs" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function Header() {
