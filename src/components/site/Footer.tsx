@@ -85,7 +85,7 @@ export function Footer() {
           <p className="tracking-widest">
             <span>{SITE_CREDIT.prefix}</span>
             <br />
-            <a href={SITE_CREDIT.url} target="_blank" rel="noopener noreferrer" className="uppercase text-black hover:text-black/70 md:text-white md:hover:text-white/70 transition-colors">{SITE_CREDIT.agency}</a>
+            <a href={SITE_CREDIT.url} target="_blank" rel="noopener noreferrer" className="uppercase md:text-white md:hover:text-white/70 transition-colors text-purple-700 font-bold">{SITE_CREDIT.agency}</a>
           </p>
         </div>
       </div>
