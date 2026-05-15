@@ -40,12 +40,14 @@ export function Footer() {
               <li><Link to="/music" className="text-black hover:text-black/60">Line-Up</Link></li>
               <li><Link to="/tickets" className="text-black hover:text-black/60">Tickets</Link></li>
               <li><Link to="/experience" className="text-black hover:text-black/60">Experience</Link></li>
-              {/* Desktop-only links (mobile moves these to right column or removes) */}
+              {/* Desktop-only links */}
               <li className="hidden md:list-item"><Link to="/partners" className="text-black hover:text-black/60">Partners</Link></li>
               <li className="hidden md:list-item"><Link to="/news" className="text-black hover:text-black/60">News</Link></li>
               <li className="hidden md:list-item"><Link to="/legacy" className="text-black hover:text-black/60">Legacy / CSI</Link></li>
               <li className="hidden md:list-item"><Link to="/merchandise" className="text-black hover:text-black/60">Merchandise</Link></li>
               <li><Link to="/faqs" className="text-black hover:text-black/60">FAQs</Link></li>
+              {/* Mobile-only: Legacy under FAQs */}
+              <li className="md:hidden"><Link to="/legacy" className="text-black hover:text-black/60">Legacy</Link></li>
               <li className="hidden md:list-item"><Link to="/contact" className="text-black hover:text-black/60">Contact</Link></li>
             </ul>
           </div>
@@ -55,14 +57,13 @@ export function Footer() {
             <ul className="space-y-1.5 text-sm md:space-y-2">
               <li><Link to="/privacy" className="text-black hover:text-black/60">Privacy Policy</Link></li>
               <li><Link to="/terms" className="text-black hover:text-black/60">Terms of Use</Link></li>
-              {/* Mobile-only: Partners, News, Legacy, CSI moved here */}
+              {/* Mobile-only extras */}
               <li className="md:hidden"><Link to="/partners" className="text-black hover:text-black/60">Partners</Link></li>
               <li className="md:hidden"><Link to="/news" className="text-black hover:text-black/60">News</Link></li>
-              <li className="md:hidden"><Link to="/legacy" className="text-black hover:text-black/60">Legacy</Link></li>
               <li className="md:hidden"><Link to="/legacy" className="text-black hover:text-black/60">CSI</Link></li>
             </ul>
 
-            <div className="mt-6 flex gap-3 md:mt-8 md:gap-4">
+            <div className="mt-6 flex justify-center gap-3 md:mt-8 md:justify-start md:gap-4">
               <a href="#" aria-label="Instagram" className="text-black hover:text-black/60"><Instagram size={18} /></a>
               <a href="#" aria-label="Twitter" className="text-black hover:text-black/60"><Twitter size={18} /></a>
               <a href="#" aria-label="YouTube" className="text-black hover:text-black/60"><Youtube size={18} /></a>
