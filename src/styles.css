@@ -126,7 +126,7 @@
 
   html,
   body {
-    background-color: #000;
+    background-color: #fff;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
