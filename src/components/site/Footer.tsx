@@ -72,13 +72,13 @@ export function Footer() {
         </div>
 
       </div>
-      <div className="bg-black text-white">
+      <div className="bg-white text-black border-t border-black/10 md:border-0 md:bg-black md:text-white">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-center gap-1 px-6 py-3 text-center text-[10px] leading-tight md:gap-1.5 md:px-10 md:py-4 md:text-xs">
           <p>Copyright 2016 Sony. All rights reserved.</p>
           <p className="tracking-widest">
             <span>{SITE_CREDIT.prefix}</span>
             <br />
-            <a href={SITE_CREDIT.url} target="_blank" rel="noopener noreferrer" className="uppercase text-white hover:text-white/70 transition-colors">{SITE_CREDIT.agency}</a>
+            <a href={SITE_CREDIT.url} target="_blank" rel="noopener noreferrer" className="uppercase text-black hover:text-black/70 md:text-white md:hover:text-white/70 transition-colors">{SITE_CREDIT.agency}</a>
           </p>
         </div>
       </div>
