@@ -416,7 +416,7 @@ function HomePage() {
             </p>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <div className="mt-5 grid gap-3 md:mt-6 md:gap-4 md:grid-cols-2">
+            <div className="mt-5 hidden md:mt-6 md:grid md:gap-4 md:grid-cols-2">
               {[
                 { name: "Kabza De Small", handle: "@KabzaDeSmall", href: "https://www.facebook.com/KabzaDeSmall" },
                 { name: "DJ Maphorisa", handle: "@djmaphorisa", href: "https://www.facebook.com/djmaphorisa" },
