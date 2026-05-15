@@ -155,7 +155,7 @@ export function TicketModal({ tier, onClose }: Props) {
               </ul>
 
               {/* Quantity */}
-              <div className="mt-7 flex items-center justify-between rounded-2xl border border-white/15 bg-white/[0.06] p-3 backdrop-blur-md">
+              <div className="mt-7 flex items-center justify-between rounded-2xl border border-white/15 bg-white/[0.1] sm:bg-white/[0.06] p-3 sm:backdrop-blur-md">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.3em] text-white/60">Quantity</p>
                   <p className="mt-0.5 text-sm text-white/90">Max 8 per order</p>
