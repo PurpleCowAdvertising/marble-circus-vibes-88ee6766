@@ -234,10 +234,10 @@ function HomePage() {
                       ? "inset 0 1px 0 0 color-mix(in oklab, var(--gold) 55%, transparent), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 20px 50px -20px rgba(0,0,0,0.55)"
                       : "inset 0 1px 0 0 rgba(255,255,255,0.35), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 20px 50px -20px rgba(0,0,0,0.55)",
                   }}
-                  className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border p-6 md:p-7 backdrop-blur-2xl backdrop-saturate-150 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out ${
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border p-6 md:p-7 md:backdrop-blur-2xl md:backdrop-saturate-150 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out ${
                     gold
-                      ? "border-gold/30 bg-gradient-to-br from-gold/[0.18] via-gold/[0.06] to-transparent hover:border-gold/70"
-                      : "border-white/20 bg-gradient-to-br from-white/[0.14] via-white/[0.05] to-transparent hover:border-white/60"
+                      ? "border-gold/40 bg-gradient-to-br from-gold/[0.32] via-gold/[0.14] to-black/30 md:from-gold/[0.18] md:via-gold/[0.06] md:to-transparent hover:border-gold/70"
+                      : "border-white/25 bg-gradient-to-br from-white/[0.22] via-white/[0.08] to-black/30 md:from-white/[0.14] md:via-white/[0.05] md:to-transparent hover:border-white/60"
                   }`}
                 >
                   {/* Top specular highlight — the Apple-glass shine */}
