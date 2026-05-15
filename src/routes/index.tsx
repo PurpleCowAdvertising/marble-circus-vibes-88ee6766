@@ -197,17 +197,17 @@ function HomePage() {
       </div>
 
       {/* TICKETS PREVIEW */}
-      <div id="tickets" className="bg-black text-white scroll-mt-24">
-        <Section className="!pt-2 sm:!pt-3 md:!pt-6 !bg-black">
+      <div id="tickets" className="bg-white text-black scroll-mt-24">
+        <Section className="!pt-8 sm:!pt-10 md:!pt-14 !bg-white">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
                 <p className="text-xs uppercase tracking-[0.4em] text-primary">Tickets</p>
-                <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-white">Pick your tier.</h2>
+                <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-black">Pick your tier.</h2>
               </div>
               <Link
                 to="/tickets"
-                className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/60"
+                className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-black hover:text-black/60"
               >
                 All tickets <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Link>
@@ -231,24 +231,24 @@ function HomePage() {
                   whileHover={{ y: -10 }}
                   style={{
                     boxShadow: gold
-                      ? "inset 0 1px 0 0 color-mix(in oklab, var(--gold) 55%, transparent), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 20px 50px -20px rgba(0,0,0,0.55)"
-                      : "inset 0 1px 0 0 rgba(255,255,255,0.35), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 20px 50px -20px rgba(0,0,0,0.55)",
+                      ? "inset 0 1px 0 0 color-mix(in oklab, var(--gold) 55%, transparent), inset 0 -1px 0 0 rgba(0,0,0,0.08), 0 20px 50px -20px rgba(0,0,0,0.18)"
+                      : "inset 0 1px 0 0 rgba(0,0,0,0.06), inset 0 -1px 0 0 rgba(0,0,0,0.08), 0 20px 50px -20px rgba(0,0,0,0.18)",
                   }}
-                  className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border p-6 md:p-7 md:backdrop-blur-2xl md:backdrop-saturate-150 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out ${
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border p-6 md:p-7 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out ${
                     gold
-                      ? "border-gold/40 bg-gradient-to-br from-gold/[0.32] via-gold/[0.14] to-black/30 md:from-gold/[0.18] md:via-gold/[0.06] md:to-transparent hover:border-gold/70"
-                      : "border-white/25 bg-gradient-to-br from-white/[0.22] via-white/[0.08] to-black/30 md:from-white/[0.14] md:via-white/[0.05] md:to-transparent hover:border-white/60"
+                      ? "border-gold/50 bg-gradient-to-br from-gold/[0.22] via-gold/[0.10] to-white hover:border-gold/80"
+                      : "border-black/15 bg-gradient-to-br from-black/[0.06] via-black/[0.02] to-white hover:border-black/40"
                   }`}
                 >
-                  {/* Top specular highlight — the Apple-glass shine */}
+                  {/* Top specular highlight */}
                   <span
                     aria-hidden
-                    className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-white/25 via-white/5 to-transparent opacity-70 mix-blend-overlay"
+                    className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-white/60 via-white/10 to-transparent opacity-80"
                   />
-                  {/* Soft inner edge for 3D depth */}
+                  {/* Soft inner edge for depth */}
                   <span
                     aria-hidden
-                    className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10"
+                    className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-black/5"
                   />
                   {/* Hover dissolve sheen */}
                   <span
@@ -256,37 +256,37 @@ function HomePage() {
                     className={`pointer-events-none absolute inset-0 -translate-y-full opacity-0 transition-all duration-[900ms] ease-out group-hover:translate-y-0 group-hover:opacity-100 ${
                       gold
                         ? "bg-[radial-gradient(120%_60%_at_50%_0%,color-mix(in_oklab,var(--gold)_30%,transparent)_0%,transparent_70%)]"
-                        : "bg-[radial-gradient(120%_60%_at_50%_0%,rgba(255,255,255,0.22)_0%,transparent_70%)]"
+                        : "bg-[radial-gradient(120%_60%_at_50%_0%,rgba(0,0,0,0.08)_0%,transparent_70%)]"
                     }`}
                   />
                   {/* Most-popular badge — desktop only (mobile shows inline under tag) */}
                   {t.highlight && (
                     <span
-                      className={`pointer-events-none absolute right-5 top-5 z-[2] hidden rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.2em] backdrop-blur-md md:inline-block ${
+                      className={`pointer-events-none absolute right-5 top-5 z-[2] hidden rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.2em] md:inline-block ${
                         gold
-                          ? "border-gold/50 bg-gold/15 text-gold"
-                          : "border-white/30 bg-white/10 text-white"
+                          ? "border-gold/60 bg-gold/15 text-gold"
+                          : "border-black/30 bg-black/5 text-black"
                       }`}
                     >
                       Most popular
                     </span>
                   )}
                   <div className="relative z-[1] flex h-full flex-col">
-                    <p className={`text-[10px] uppercase tracking-[0.4em] text-white md:text-white/60 transition-colors duration-500 group-hover:text-white/90 ${t.highlight ? "md:pr-28" : ""}`}>{t.tag}</p>
+                    <p className={`text-[10px] uppercase tracking-[0.4em] text-black/70 transition-colors duration-500 group-hover:text-black ${t.highlight ? "md:pr-28" : ""}`}>{t.tag}</p>
                     {t.highlight && (
-                      <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.3em] text-white md:hidden">
+                      <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.3em] text-black md:hidden">
                         Most Popular
                       </p>
                     )}
-                    <h3 className={`mt-3 font-display text-2xl font-bold md:text-3xl transition-transform duration-500 ease-out group-hover:translate-x-1 ${gold ? "text-gold" : "text-gold md:text-white"}`}>{t.name}</h3>
-                    <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-white md:text-gold" : "text-white"}`}>{t.price}</p>
+                    <h3 className={`mt-3 font-display text-2xl font-bold md:text-3xl transition-transform duration-500 ease-out group-hover:translate-x-1 ${gold ? "text-gold" : "text-gold md:text-black"}`}>{t.name}</h3>
+                    <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-black md:text-gold" : "text-black"}`}>{t.price}</p>
                     <button
                       type="button"
                       onClick={() => setActiveTier({ ...t, gold })}
-                      className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[12px] md:text-[11px] font-bold uppercase tracking-widest md:backdrop-blur-md transition-all duration-500 ease-out group-hover:gap-3 group-hover:px-6 ${
+                      className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[12px] md:text-[11px] font-bold uppercase tracking-widest transition-all duration-500 ease-out group-hover:gap-3 group-hover:px-6 ${
                         gold
-                          ? "bg-gold text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] md:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45),0_8px_24px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
-                          : "bg-gold text-gold-foreground md:bg-white md:text-black shadow-[0_6px_18px_-8px_rgba(0,0,0,0.5)] md:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8),0_8px_24px_-8px_rgba(255,255,255,0.35)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_14px_36px_-10px_rgba(255,255,255,0.55)]"
+                          ? "bg-gold text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
+                          : "bg-gold text-gold-foreground md:bg-black md:text-white shadow-[0_6px_18px_-8px_rgba(0,0,0,0.35)] hover:shadow-[0_14px_36px_-10px_rgba(0,0,0,0.5)]"
                       }`}
                     >
                       <span>Buy</span>
