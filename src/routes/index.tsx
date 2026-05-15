@@ -128,8 +128,8 @@ function HomePage() {
         </Section>
       </div>
 
-      {/* MUSIC PREVIEW */}
-      <div className="bg-black text-white">
+      {/* MUSIC PREVIEW — desktop/tablet only (mobile uses the carousel above) */}
+      <div className="hidden md:block bg-black text-white">
       <Section className="!pt-2 sm:!pt-3 md:!pt-6 !bg-black">
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
