@@ -5,17 +5,18 @@ import { Menu, X } from "lucide-react";
 import { useSubscribePopup } from "./SubscribePopup";
 import logo from "@/assets/logo.png";
 
-const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/music", label: "Line-Up" },
-  { to: "/tickets", label: "Tickets" },
-  { to: "/experience", label: "Experience" },
-  { to: "/partners", label: "Partners" },
-  { to: "/news", label: "News" },
-  { to: "/legacy", label: "Legacy" },
-  { to: "/merchandise", label: "Merch" },
-  { to: "/faqs", label: "FAQs" },
-  { to: "/contact", label: "Contact" },
+type NavItem =
+  | { kind: "route"; to: "/" | "/news" | "/merchandise"; label: string }
+  | { kind: "scroll"; hash: string; label: string };
+
+const NAV: readonly NavItem[] = [
+  { kind: "route", to: "/", label: "Home" },
+  { kind: "scroll", hash: "lineup", label: "Line-Up" },
+  { kind: "scroll", hash: "tickets", label: "Tickets" },
+  { kind: "scroll", hash: "experience", label: "Experience" },
+  { kind: "scroll", hash: "partners", label: "Partners" },
+  { kind: "route", to: "/news", label: "News" },
+  { kind: "route", to: "/merchandise", label: "Merch" },
 ] as const;
 
 export function Header() {
@@ -86,21 +87,37 @@ export function Header() {
               aria-label="Primary"
               className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white px-2 py-1.5 ring-1 ring-inset ring-white shadow-[0_8px_28px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-500 ease-out border-white"
             >
-              {NAV.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  activeOptions={{ exact: item.to === "/" }}
-                  className="group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-black hover:font-semibold sm:px-3 sm:py-1.5 sm:text-[12px] lg:px-3.5 lg:text-[13px] group-data-[status=active]:font-semibold data-[status=active]:!text-black"
-                  activeProps={{ className: "!text-black !font-semibold" }}
-                >
-                  <span className="relative z-10">{item.label}</span>
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 -z-0 rounded-full bg-[#f8a52d] shadow-[0_6px_18px_-4px_rgba(248,165,45,0.55)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100 border-[#f2ac07]"
-                  />
-                </Link>
-              ))}
+              {NAV.map((item) => {
+                const className =
+                  "group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-black hover:font-semibold sm:px-3 sm:py-1.5 sm:text-[12px] lg:px-3.5 lg:text-[13px] group-data-[status=active]:font-semibold data-[status=active]:!text-black";
+                const inner = (
+                  <>
+                    <span className="relative z-10">{item.label}</span>
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 -z-0 rounded-full bg-[#f8a52d] shadow-[0_6px_18px_-4px_rgba(248,165,45,0.55)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[status=active]:opacity-100 border-[#f2ac07]"
+                    />
+                  </>
+                );
+                if (item.kind === "scroll") {
+                  return (
+                    <a key={item.hash} href={`/#${item.hash}`} className={className}>
+                      {inner}
+                    </a>
+                  );
+                }
+                return (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    activeOptions={{ exact: item.to === "/" }}
+                    className={className}
+                    activeProps={{ className: "!text-black !font-semibold" }}
+                  >
+                    {inner}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
 
@@ -161,20 +178,42 @@ export function Header() {
 
           <nav aria-label="Mobile" className="px-4 pb-8 pt-6 sm:px-6">
             <ul className="divide-y divide-white/10">
-              {NAV.filter((item) => !["/news", "/legacy", "/faqs"].includes(item.to)).map((item) => (
-                <li key={item.to}>
-                  <Link
-                    to={item.to}
-                    onClick={() => setMenuOpen(false)}
-                    activeOptions={{ exact: item.to === "/" }}
-                    className="flex items-center justify-between py-4 font-display text-2xl font-bold tracking-tight transition-colors hover:text-primary"
-                    activeProps={{ className: "!text-primary" }}
-                  >
+              {NAV.filter((item) => item.kind === "scroll" || !["/news"].includes(item.to)).map((item) => {
+                const linkClass =
+                  "flex items-center justify-between py-4 font-display text-2xl font-bold tracking-tight transition-colors hover:text-primary";
+                const inner = (
+                  <>
                     {item.label}
                     <span aria-hidden className="text-white/30">→</span>
-                  </Link>
-                </li>
-              ))}
+                  </>
+                );
+                if (item.kind === "scroll") {
+                  return (
+                    <li key={item.hash}>
+                      <a
+                        href={`/#${item.hash}`}
+                        onClick={() => setMenuOpen(false)}
+                        className={linkClass}
+                      >
+                        {inner}
+                      </a>
+                    </li>
+                  );
+                }
+                return (
+                  <li key={item.to}>
+                    <Link
+                      to={item.to}
+                      onClick={() => setMenuOpen(false)}
+                      activeOptions={{ exact: item.to === "/" }}
+                      className={linkClass}
+                      activeProps={{ className: "!text-primary" }}
+                    >
+                      {inner}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             <button

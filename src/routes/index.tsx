@@ -93,7 +93,7 @@ function HomePage() {
 
 
       {/* ARTIST CAROUSEL — folds up over hero */}
-      <div className="relative z-10 isolate fold-safe-strong">
+      <div id="lineup" className="relative z-10 isolate fold-safe-strong scroll-mt-24">
         <ArtistCarousel />
       </div>
 
@@ -197,7 +197,7 @@ function HomePage() {
       </div>
 
       {/* TICKETS PREVIEW */}
-      <div className="bg-black text-white">
+      <div id="tickets" className="bg-black text-white scroll-mt-24">
         <Section className="!pt-2 sm:!pt-3 md:!pt-6 !bg-black">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -301,7 +301,7 @@ function HomePage() {
       </div>
 
       {/* EXPERIENCE PREVIEW — desktop/tablet only */}
-      <div className="relative z-30 isolate bg-orange-rich hidden md:block">
+      <div id="experience" className="relative z-30 isolate bg-orange-rich hidden md:block scroll-mt-24">
         <Section className="text-foreground !py-10 md:!py-14">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -343,7 +343,7 @@ function HomePage() {
       </div>
 
       {/* PARTNERS PREVIEW — desktop/tablet only */}
-      <div className="hidden md:block bg-black text-white">
+      <div id="partners" className="hidden md:block bg-black text-white scroll-mt-24">
         <Section className="!py-10 md:!py-14 !bg-black">
           <motion.div
             initial={{ opacity: 0, y: 60, filter: "blur(14px)" }}
