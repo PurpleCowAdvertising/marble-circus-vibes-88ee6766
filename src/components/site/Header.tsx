@@ -178,20 +178,42 @@ export function Header() {
 
           <nav aria-label="Mobile" className="px-4 pb-8 pt-6 sm:px-6">
             <ul className="divide-y divide-white/10">
-              {NAV.filter((item) => !["/news", "/legacy", "/faqs"].includes(item.to)).map((item) => (
-                <li key={item.to}>
-                  <Link
-                    to={item.to}
-                    onClick={() => setMenuOpen(false)}
-                    activeOptions={{ exact: item.to === "/" }}
-                    className="flex items-center justify-between py-4 font-display text-2xl font-bold tracking-tight transition-colors hover:text-primary"
-                    activeProps={{ className: "!text-primary" }}
-                  >
+              {NAV.filter((item) => item.kind === "scroll" || !["/news"].includes(item.to)).map((item) => {
+                const linkClass =
+                  "flex items-center justify-between py-4 font-display text-2xl font-bold tracking-tight transition-colors hover:text-primary";
+                const inner = (
+                  <>
                     {item.label}
                     <span aria-hidden className="text-white/30">→</span>
-                  </Link>
-                </li>
-              ))}
+                  </>
+                );
+                if (item.kind === "scroll") {
+                  return (
+                    <li key={item.hash}>
+                      <a
+                        href={`/#${item.hash}`}
+                        onClick={() => setMenuOpen(false)}
+                        className={linkClass}
+                      >
+                        {inner}
+                      </a>
+                    </li>
+                  );
+                }
+                return (
+                  <li key={item.to}>
+                    <Link
+                      to={item.to}
+                      onClick={() => setMenuOpen(false)}
+                      activeOptions={{ exact: item.to === "/" }}
+                      className={linkClass}
+                      activeProps={{ className: "!text-primary" }}
+                    >
+                      {inner}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             <button
