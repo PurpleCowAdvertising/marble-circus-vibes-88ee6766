@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { SITE_CREDIT } from "../config/credits";
+import { SITE_CREDIT } from "@/config/credits";
 
 const footerSrc = readFileSync(
   path.resolve(__dirname, "Footer.tsx"),
