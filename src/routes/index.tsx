@@ -434,6 +434,8 @@ function HomePage() {
           </FadeIn>
         </Section>
       </div>
+
+      <TicketModal tier={activeTier} onClose={() => setActiveTier(null)} />
     </>
   );
 }
