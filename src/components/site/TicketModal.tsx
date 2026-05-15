@@ -88,10 +88,10 @@ export function TicketModal({ tier, onClose }: Props) {
                 ? "inset 0 1px 0 0 color-mix(in oklab, var(--gold) 60%, transparent), inset 0 -1px 0 0 rgba(0,0,0,0.4), 0 40px 80px -20px rgba(0,0,0,0.7), 0 0 60px -10px color-mix(in oklab, var(--gold) 40%, transparent)"
                 : "inset 0 1px 0 0 rgba(255,255,255,0.4), inset 0 -1px 0 0 rgba(0,0,0,0.4), 0 40px 80px -20px rgba(0,0,0,0.7), 0 0 60px -10px rgba(255,255,255,0.15)",
             }}
-            className={`relative w-full max-w-lg overflow-hidden rounded-3xl border p-6 sm:p-8 backdrop-blur-2xl backdrop-saturate-150 ${
+            className={`relative w-full max-w-lg overflow-hidden rounded-3xl border p-6 sm:p-8 sm:backdrop-blur-2xl sm:backdrop-saturate-150 ${
               gold
-                ? "border-gold/40 bg-gradient-to-br from-gold/[0.18] via-gold/[0.06] to-black/40"
-                : "border-white/25 bg-gradient-to-br from-white/[0.16] via-white/[0.05] to-black/40"
+                ? "border-gold/45 bg-gradient-to-br from-gold/[0.32] via-gold/[0.14] to-black/70 sm:from-gold/[0.18] sm:via-gold/[0.06] sm:to-black/40"
+                : "border-white/30 bg-gradient-to-br from-white/[0.24] via-white/[0.08] to-black/75 sm:from-white/[0.16] sm:via-white/[0.05] sm:to-black/40"
             }`}
           >
             {/* Top specular highlight */}
