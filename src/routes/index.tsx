@@ -222,23 +222,38 @@ function HomePage() {
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 1.1, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ y: -10 }}
-                  className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 md:p-7 transition-[border-color,box-shadow,background-color] duration-500 ease-out ${
+                  style={{
+                    boxShadow: gold
+                      ? "inset 0 1px 0 0 color-mix(in oklab, var(--gold) 55%, transparent), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 20px 50px -20px rgba(0,0,0,0.55)"
+                      : "inset 0 1px 0 0 rgba(255,255,255,0.35), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 20px 50px -20px rgba(0,0,0,0.55)",
+                  }}
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border p-6 md:p-7 backdrop-blur-2xl backdrop-saturate-150 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out ${
                     gold
-                      ? "border-gold/40 bg-gold/[0.06] hover:border-gold hover:bg-gold/15 hover:shadow-[0_24px_60px_-20px_color-mix(in_oklab,var(--gold)_55%,transparent)]"
-                      : "border-white/15 bg-white/[0.04] hover:border-white/60 hover:bg-white/[0.08] hover:shadow-[0_24px_60px_-20px_rgba(255,255,255,0.25)]"
+                      ? "border-gold/30 bg-gradient-to-br from-gold/[0.18] via-gold/[0.06] to-transparent hover:border-gold/70"
+                      : "border-white/20 bg-gradient-to-br from-white/[0.14] via-white/[0.05] to-transparent hover:border-white/60"
                   }`}
                 >
-                  {/* Dissolve sheen */}
+                  {/* Top specular highlight — the Apple-glass shine */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-white/25 via-white/5 to-transparent opacity-70 mix-blend-overlay"
+                  />
+                  {/* Soft inner edge for 3D depth */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10"
+                  />
+                  {/* Hover dissolve sheen */}
                   <span
                     aria-hidden
                     className={`pointer-events-none absolute inset-0 -translate-y-full opacity-0 transition-all duration-[900ms] ease-out group-hover:translate-y-0 group-hover:opacity-100 ${
                       gold
-                        ? "bg-[radial-gradient(120%_60%_at_50%_0%,color-mix(in_oklab,var(--gold)_25%,transparent)_0%,transparent_70%)]"
-                        : "bg-[radial-gradient(120%_60%_at_50%_0%,rgba(255,255,255,0.18)_0%,transparent_70%)]"
+                        ? "bg-[radial-gradient(120%_60%_at_50%_0%,color-mix(in_oklab,var(--gold)_30%,transparent)_0%,transparent_70%)]"
+                        : "bg-[radial-gradient(120%_60%_at_50%_0%,rgba(255,255,255,0.22)_0%,transparent_70%)]"
                     }`}
                   />
                   {t.highlight && (
-                    <span className="absolute -top-3 left-6 z-10 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-gold-foreground">
+                    <span className="absolute -top-3 left-6 z-10 rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-gold-foreground shadow-[0_8px_20px_-6px_color-mix(in_oklab,var(--gold)_70%,transparent)]">
                       Most popular
                     </span>
                   )}
@@ -248,10 +263,10 @@ function HomePage() {
                     <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-gold" : "text-white"}`}>{t.price}</p>
                     <Link
                       to="/tickets"
-                      className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest transition-all duration-500 ease-out group-hover:gap-3 group-hover:px-6 ${
+                      className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md transition-all duration-500 ease-out group-hover:gap-3 group-hover:px-6 ${
                         gold
-                          ? "bg-gold text-gold-foreground hover:shadow-[0_10px_30px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)]"
-                          : "bg-white text-black hover:shadow-[0_10px_30px_-8px_rgba(255,255,255,0.5)]"
+                          ? "bg-gold text-gold-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45),0_8px_24px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
+                          : "bg-white text-black shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8),0_8px_24px_-8px_rgba(255,255,255,0.35)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_14px_36px_-10px_rgba(255,255,255,0.55)]"
                       }`}
                     >
                       <span>Buy</span>
