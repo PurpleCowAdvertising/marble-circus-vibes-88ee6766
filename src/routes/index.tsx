@@ -345,7 +345,7 @@ function HomePage() {
                 <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl text-white">Powered by the bold.</h2>
               </div>
               <Link
-                to="/sponsors"
+                to="/partners"
                 className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/60"
               >
                 All partners <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

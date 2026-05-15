@@ -40,7 +40,7 @@ export function Footer() {
               <li><Link to="/music" className="text-black hover:text-black/60">Line-Up</Link></li>
               <li><Link to="/tickets" className="text-black hover:text-black/60">Tickets</Link></li>
               <li><Link to="/experience" className="text-black hover:text-black/60">Experience</Link></li>
-              <li><Link to="/sponsors" className="text-black hover:text-black/60">Sponsors</Link></li>
+              <li><Link to="/partners" className="text-black hover:text-black/60">Partners</Link></li>
               <li><Link to="/news" className="text-black hover:text-black/60">News</Link></li>
               <li><Link to="/legacy" className="text-black hover:text-black/60">Legacy / CSI</Link></li>
               <li><Link to="/merchandise" className="text-black hover:text-black/60">Merchandise</Link></li>
