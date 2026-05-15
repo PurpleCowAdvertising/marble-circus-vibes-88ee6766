@@ -70,7 +70,7 @@ export function Footer() {
       <div className="bg-black text-white">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-center gap-2 px-6 py-5 text-center text-[10px] md:gap-3 md:px-10 md:py-6 md:text-xs">
           <p>© {new Date().getFullYear()} Sony Music Africa. All rights reserved.</p>
-          <p className="tracking-widest"><span>Designed & Developed by</span> <br /><a href="https://purplecowbw.com" target="_blank" rel="noopener noreferrer" className="uppercase text-white hover:text-white/70 transition-colors">Purple Cow Advertising</a></p>
+          <p className="tracking-widest"><span>{SITE_CREDIT.prefix}</span> <br /><a href={SITE_CREDIT.url} target="_blank" rel="noopener noreferrer" className="uppercase text-white hover:text-white/70 transition-colors">{SITE_CREDIT.agency}</a></p>
         </div>
       </div>
     </footer>
