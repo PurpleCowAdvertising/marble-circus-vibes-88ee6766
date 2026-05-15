@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowRight, ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
+import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 
 import heroPoster from "@/assets/hero-poster.png";
 import heroPosterMobile from "@/assets/hero-poster-mobile.png";
@@ -45,7 +46,8 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  
+  const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
+
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
@@ -261,8 +263,9 @@ function HomePage() {
                     <p className="text-[10px] uppercase tracking-[0.4em] text-white/60 transition-colors duration-500 group-hover:text-white/90">{t.tag}</p>
                     <h3 className={`mt-2 font-display text-2xl font-bold md:text-3xl transition-transform duration-500 ease-out group-hover:translate-x-1 ${gold ? "text-gold" : "text-white"}`}>{t.name}</h3>
                     <p className={`mt-3 font-display text-xl font-bold ${gold ? "text-gold" : "text-white"}`}>{t.price}</p>
-                    <Link
-                      to="/tickets"
+                    <button
+                      type="button"
+                      onClick={() => setActiveTier({ ...t, gold })}
                       className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest backdrop-blur-md transition-all duration-500 ease-out group-hover:gap-3 group-hover:px-6 ${
                         gold
                           ? "bg-gold text-gold-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45),0_8px_24px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
@@ -271,7 +274,7 @@ function HomePage() {
                     >
                       <span>Buy</span>
                       <ArrowRight size={14} className="transition-transform duration-500 ease-out group-hover:translate-x-1" />
-                    </Link>
+                    </button>
                   </div>
                 </motion.article>
               );
@@ -431,6 +434,8 @@ function HomePage() {
           </FadeIn>
         </Section>
       </div>
+
+      <TicketModal tier={activeTier} onClose={() => setActiveTier(null)} />
     </>
   );
 }
