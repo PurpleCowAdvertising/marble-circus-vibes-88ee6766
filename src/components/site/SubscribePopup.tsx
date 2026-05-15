@@ -45,20 +45,8 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
     setIsOpen(false);
   }, []);
 
-  // Auto-open once per browser session after a short delay
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      if (sessionStorage.getItem(SESSION_KEY) === "1") return;
-    } catch {}
-    const t = window.setTimeout(() => {
-      setSource("auto");
-      setSuccess(false);
-      setIsOpen(true);
-      try { sessionStorage.setItem(SESSION_KEY, "1"); } catch {}
-    }, 6000);
-    return () => window.clearTimeout(t);
-  }, []);
+  // Auto-open disabled — popup now only opens via explicit Subscribe triggers
+  // (Header, Footer, etc.). Re-enable by restoring the timeout effect if needed.
 
   useEffect(() => {
     if (success) {
