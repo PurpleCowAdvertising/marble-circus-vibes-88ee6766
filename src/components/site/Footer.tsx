@@ -1,12 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Twitter, Youtube, Music } from "lucide-react";
-import { useSubscribePopup } from "./SubscribePopup";
 import { SITE_CREDIT } from "@/config/credits";
 import logo from "@/assets/logo.png";
 import ticketsAvailable from "@/assets/tickets-available.png";
 
 export function Footer() {
-  const { open } = useSubscribePopup();
   return (
     <footer className="relative z-10 border-t border-black/10 bg-white text-black">
       <div className="mx-auto max-w-[1400px] px-6 py-8 md:px-10 md:py-10">
