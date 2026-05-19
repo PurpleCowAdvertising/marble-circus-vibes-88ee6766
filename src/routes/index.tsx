@@ -81,13 +81,32 @@ function HomePage() {
                   aria-label="Scorpion Kings live performance footage"
                   className="h-[70vh] max-h-[820px] min-h-[420px] w-full object-cover md:h-[85vh]"
                 />
-                {/* Centered event logo overlay — transparent, no scrim, sits over the video */}
-                <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-6">
-                  <img
+                {/* Centered event logo + date overlay — transparent, no scrim */}
+                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 md:gap-7">
+                  <motion.img
                     src={skLiveLogo}
                     alt="Scorpion Kings Live 2026"
-                    className="w-[68%] max-w-[520px] drop-shadow-[0_6px_24px_rgba(0,0,0,0.55)] md:w-[42%] md:max-w-[680px]"
+                    initial={{ opacity: 0, scale: 0.92, filter: "blur(14px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-[88%] max-w-[760px] drop-shadow-[0_8px_28px_rgba(0,0,0,0.6)] md:w-[62%] md:max-w-[920px]"
                   />
+                  <motion.div
+                    initial={{ opacity: 0, y: 18, letterSpacing: "0.6em", filter: "blur(8px)" }}
+                    animate={{ opacity: 1, y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
+                    transition={{ duration: 1.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex items-center gap-3 font-display text-[11px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] sm:gap-4 sm:text-sm md:text-base"
+                  >
+                    <span>19 Sep 26</span>
+                    <motion.span
+                      aria-hidden
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.6, delay: 2.0, ease: [0.16, 1, 0.3, 1] }}
+                      className="inline-block h-1.5 w-1.5 rounded-full bg-gold"
+                    />
+                    <span>FNB Stadium</span>
+                  </motion.div>
                 </div>
                 <figcaption className="sr-only">
                   Scorpion Kings live — South Africa has always been home. Footage of DJ Maphorisa and Kabza De Small on stage.
