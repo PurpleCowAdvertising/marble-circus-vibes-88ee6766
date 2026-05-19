@@ -16,7 +16,7 @@ import musaKeys from "@/assets/artists/musa-keys.png";
 import uncleWaffles from "@/assets/artists/uncle-waffles.png";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
-import skLiveLogo from "@/assets/scorpion-kings-live-logo.png";
+import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.png";
 
 type Headliner = {
   name: string;
