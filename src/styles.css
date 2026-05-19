@@ -360,10 +360,8 @@
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-  }
+  /* Smooth behavior is applied per-call in JS (ScrollToTop hash handler).
+     Avoid html { scroll-behavior: smooth } globally — it slows wheel/trackpad scrolling. */
 }
 
 @layer utilities {
