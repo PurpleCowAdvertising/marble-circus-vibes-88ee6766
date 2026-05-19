@@ -6,7 +6,7 @@ export const Route = createFileRoute("/tickets")({
   head: () => ({
     meta: [
       { title: "Tickets — Scorpion Kings Live at FNB Stadium" },
-      { name: "description", content: "Tickets for Scorpion Kings Live at FNB Stadium, 19 September 2026. From R400 via Webtickets, Pick n Pay and Boxer stores nationwide. Ages 14+." },
+      { name: "description", content: "Tickets for Scorpion Kings Live at FNB Stadium, 19 September 2028. From R400 via Webtickets, Pick n Pay and Boxer stores nationwide. Ages 14+." },
       { property: "og:title", content: "Tickets — Scorpion Kings Live at FNB Stadium" },
       { property: "og:description", content: "On sale now from R400. Webtickets, Pick n Pay and Boxer stores nationwide." },
     ],
@@ -22,7 +22,7 @@ function TicketsPage() {
       <PageHero
         eyebrow="Tickets · On sale now"
         title="Be part of history."
-        description="Scorpion Kings Live returns to FNB Stadium on 19 September 2026 — the biggest Amapiano celebration the world has ever seen. Over 80 000 fans. One stadium. One sound."
+        description="Scorpion Kings Live returns to FNB Stadium on 19 September 2028 — the biggest Amapiano celebration the world has ever seen. Over 80 000 fans. One stadium. One sound."
       />
 
       <Section className="!pt-0">
@@ -79,7 +79,7 @@ function TicketsPage() {
           <div className="mt-12 grid gap-4 md:grid-cols-4">
             {[
               { k: "Venue", v: "FNB Stadium, Johannesburg" },
-              { k: "Date", v: "19 September 2026" },
+              { k: "Date", v: "19 September 2028" },
               { k: "Capacity", v: "80 000+ fans" },
               { k: "Age limit", v: "14 and up" },
             ].map((f) => (

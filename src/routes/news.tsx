@@ -6,7 +6,7 @@ export const Route = createFileRoute("/news")({
   head: () => ({
     meta: [
       { title: "News — Scorpion Kings Live" },
-      { name: "description", content: "Announcements, press releases and updates from Scorpion Kings Live at FNB Stadium, 19 September 2026." },
+      { name: "description", content: "Announcements, press releases and updates from Scorpion Kings Live at FNB Stadium, 19 September 2028." },
       { property: "og:title", content: "News — Scorpion Kings Live" },
       { property: "og:description", content: "Latest from the Kings — straight from the source." },
     ],
@@ -49,7 +49,7 @@ const POSTS: Post[] = [
     excerpt:
       "Scorpion Kings Live at FNB Stadium is officially loading — bigger, and set to redefine the scale of live Amapiano experiences in South Africa and beyond.",
     body: [
-      "On 19 September 2026, Johannesburg's iconic FNB Stadium will play host to what is set to become the largest Amapiano celebration the world has ever seen, with over 80 000 fans expected to come together.",
+      "On 19 September 2028, Johannesburg's iconic FNB Stadium will play host to what is set to become the largest Amapiano celebration the world has ever seen, with over 80 000 fans expected to come together.",
       "This year's Scorpion Kings Live at FNB Stadium is more than just a concert. It's a powerful reflection of the community that has built and carried Amapiano from local streets to global stages — connection, shared energy and a sound that continues to unite people across cities, countries and cultures.",
       "Fans can expect an electrifying showcase of the very best in Amapiano, with a dynamic lineup and a stadium-wide atmosphere that captures the spirit of the movement.",
       "Tickets will be available via Webtickets, Pick n Pay and Boxer stores nationwide from 05 May 2026.",
