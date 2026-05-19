@@ -123,7 +123,16 @@ function ScrollToTop() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const hash = useRouterState({ select: (s) => s.location.hash });
   useEffect(() => {
-    if (hash) return; // let in-page anchor links scroll naturally
+    if (hash) {
+      // Smooth-scroll to the in-page anchor target
+      const id = hash.replace(/^#/, "");
+      const el = id ? document.getElementById(id) : null;
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      return;
+    }
+    // Route change: jump to top instantly
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [pathname, hash]);
   return null;
