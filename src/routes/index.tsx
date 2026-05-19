@@ -90,21 +90,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* POSTER BANNER — previous hero image, now a slim announcement banner */}
-      <aside aria-label="Scorpion Kings Live 2026 poster" className="relative z-[5] isolate w-full overflow-hidden bg-black">
-        <picture>
-          <source media="(max-width: 767px)" srcSet={heroPosterMobile} />
-          <img
-            src={heroPoster}
-            alt="Scorpion Kings Live concert poster — DJ Maphorisa and Kabza De Small, FNB Stadium Johannesburg, 19 September 2026."
-            width={1920}
-            height={1080}
-            loading="lazy"
-            decoding="async"
-            className="block h-auto w-full object-cover md:max-h-[260px] md:object-[center_30%]"
-          />
-        </picture>
-      </aside>
 
 
       {/* ARTIST CAROUSEL — folds up over hero */}
