@@ -115,7 +115,7 @@ function HomePage() {
                     initial={{ opacity: 0, y: 22, letterSpacing: "0.7em", filter: "blur(10px)" }}
                     animate={{ opacity: 1, y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
                     transition={{ duration: 2.4, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[11px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-sm md:text-base"
+                    className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[19px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
                   >
                     <span>19 Sep 28</span>
                     <motion.span
@@ -127,7 +127,21 @@ function HomePage() {
                     />
                     <span>FNB Stadium</span>
                   </motion.div>
+                  <motion.a
+                    href="#tickets"
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 4, ease: [0.16, 1, 0.3, 1] }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById("tickets")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-gold-foreground shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] transition-transform hover:scale-105 sm:text-base"
+                  >
+                    Buy Tickets <ArrowRight size={16} />
+                  </motion.a>
                 </div>
+
                 <figcaption className="sr-only">
                   Scorpion Kings live — South Africa has always been home. Footage of DJ Maphorisa and Kabza De Small on stage.
                 </figcaption>
@@ -291,22 +305,23 @@ function HomePage() {
 
 
       {/* TICKETS PREVIEW */}
-      <div id="tickets" className="bg-white text-black scroll-mt-24">
-        {/* Heading area — white on both mobile + desktop */}
-        <div className="bg-white">
-          <Section className="!pt-8 sm:!pt-10 md:!pt-14 !pb-4 md:!pb-6 !bg-white">
+      <div id="tickets" className="bg-black text-white scroll-mt-24">
+        {/* Heading area — black on both mobile + desktop */}
+        <div className="bg-black">
+          <Section className="!pt-8 sm:!pt-10 md:!pt-14 !pb-4 md:!pb-6 !bg-black">
             <FadeIn>
               <div className="flex flex-wrap items-end justify-between gap-6">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.4em] text-black">Tickets</p>
-                  <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-gold md:text-black">Pick your tier.</h2>
+                  <p className="text-xs uppercase tracking-[0.4em] text-white">Tickets</p>
+                  <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-gold md:text-white">Pick your tier.</h2>
                 </div>
                 <Link
                   to="/tickets"
-                  className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-black hover:text-black/60"
+                  className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/60"
                 >
                   All tickets <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </Link>
+
               </div>
             </FadeIn>
           </Section>
