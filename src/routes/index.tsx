@@ -15,6 +15,7 @@ import musaKeys from "@/assets/artists/musa-keys.png";
 import uncleWaffles from "@/assets/artists/uncle-waffles.png";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
+import skLiveLogo from "@/assets/scorpion-kings-live-logo.png";
 
 type Headliner = {
   name: string;
@@ -80,6 +81,14 @@ function HomePage() {
                   aria-label="Scorpion Kings live performance footage"
                   className="h-[70vh] max-h-[820px] min-h-[420px] w-full object-cover md:h-[85vh]"
                 />
+                {/* Centered event logo overlay — transparent, no scrim, sits over the video */}
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-6">
+                  <img
+                    src={skLiveLogo}
+                    alt="Scorpion Kings Live 2026"
+                    className="w-[68%] max-w-[520px] drop-shadow-[0_6px_24px_rgba(0,0,0,0.55)] md:w-[42%] md:max-w-[680px]"
+                  />
+                </div>
                 <figcaption className="sr-only">
                   Scorpion Kings live — South Africa has always been home. Footage of DJ Maphorisa and Kabza De Small on stage.
                 </figcaption>
