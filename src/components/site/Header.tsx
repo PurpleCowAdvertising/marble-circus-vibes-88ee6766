@@ -21,13 +21,12 @@ const NAV: readonly NavItem[] = [
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [opacity, setOpacity] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { open: openSubscribe } = useSubscribePopup();
 
   useEffect(() => {
-    let lastY = window.scrollY;
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
@@ -35,10 +34,12 @@ export function Header() {
       requestAnimationFrame(() => {
         const y = window.scrollY;
         setScrolled(y > 20);
-        const delta = y - lastY;
-        if (y > 140 && delta > 6) setHidden(true);
-        else if (delta < -6 || y < 80) setHidden(false);
-        lastY = y;
+        // Gradual fade-in based on scroll distance.
+        // Stays invisible at the very top, then ramps from 0 → 1 between 80px and 480px.
+        const START = 80;
+        const END = 480;
+        const next = Math.max(0, Math.min(1, (y - START) / (END - START)));
+        setOpacity(next);
         ticking = false;
       });
     };
@@ -56,13 +57,15 @@ export function Header() {
     }
   }, [menuOpen]);
 
+  const headerOpacity = menuOpen ? 1 : opacity;
+
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
-          hidden && !menuOpen ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
-        }`}
+        style={{ opacity: headerOpacity, pointerEvents: headerOpacity < 0.05 ? "none" : "auto" }}
+        className="fixed inset-x-0 top-0 z-50 transition-opacity duration-200 ease-out will-change-[opacity]"
       >
+
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5">
           {/* Logo — visible all sizes */}
           <Link to="/" aria-label="Scorpion Kings Live" className="flex shrink-0 items-center">
