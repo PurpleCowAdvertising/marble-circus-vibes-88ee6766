@@ -67,22 +67,21 @@ function HomePage() {
         <div className="w-full pb-3 md:pb-5">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
-              {/* Hero poster — desktop / mobile */}
-              <figure className="relative w-full overflow-hidden">
-                <picture>
-                  <source media="(max-width: 767px)" srcSet={heroPosterMobile} />
-                  <img
-                    src={heroPoster}
-                    alt="Official Scorpion Kings Live concert poster: DJ Maphorisa and Kabza De Small standing side by side in front of a golden Soweto skyline and FNB Stadium, with bold red-and-yellow ‘Scorpion Kings Live’ lettering and the date 19 September 2026."
-                    width={1920}
-                    height={1080}
-                    fetchPriority="high"
-                    decoding="async"
-                    className="h-auto w-full object-cover"
-                  />
-                </picture>
+              {/* Hero video — looping background of the artists live */}
+              <figure className="relative w-full overflow-hidden bg-black">
+                <video
+                  src="/hero-video.mp4"
+                  poster={heroPosterMobile}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-label="Scorpion Kings live performance footage"
+                  className="h-[70vh] max-h-[820px] min-h-[420px] w-full object-cover md:h-[85vh]"
+                />
                 <figcaption className="sr-only">
-                  Scorpion Kings Live 2026 — headline poster announcing the show on 19 September 2026 at FNB Stadium, Johannesburg.
+                  Scorpion Kings live — South Africa has always been home. Footage of DJ Maphorisa and Kabza De Small on stage.
                 </figcaption>
               </figure>
             </motion.div>
@@ -90,6 +89,22 @@ function HomePage() {
 
         </div>
       </section>
+
+      {/* POSTER BANNER — previous hero image, now a slim announcement banner */}
+      <aside aria-label="Scorpion Kings Live 2026 poster" className="relative z-[5] isolate w-full overflow-hidden bg-black">
+        <picture>
+          <source media="(max-width: 767px)" srcSet={heroPosterMobile} />
+          <img
+            src={heroPoster}
+            alt="Scorpion Kings Live concert poster — DJ Maphorisa and Kabza De Small, FNB Stadium Johannesburg, 19 September 2026."
+            width={1920}
+            height={1080}
+            loading="lazy"
+            decoding="async"
+            className="block h-auto w-full object-cover md:max-h-[260px] md:object-[center_30%]"
+          />
+        </picture>
+      </aside>
 
 
       {/* ARTIST CAROUSEL — folds up over hero */}
