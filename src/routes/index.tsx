@@ -17,6 +17,19 @@ import uncleWaffles from "@/assets/artists/uncle-waffles.png";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
 import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.png";
+import pastFanPhone from "@/assets/past-event/fan-phone.jpg";
+import pastDrummerFire from "@/assets/past-event/drummer-fire.jpg";
+import pastStageWalk from "@/assets/past-event/stage-walk.jpg";
+import pastRedVocalist from "@/assets/past-event/red-vocalist.jpg";
+import pastStadiumFire from "@/assets/past-event/stadium-fire.jpg";
+
+const PAST_EVENT_PHOTOS: { src: string; alt: string }[] = [
+  { src: pastStadiumFire, alt: "FNB Stadium ablaze with pyrotechnics during the last Scorpion Kings Live show" },
+  { src: pastDrummerFire, alt: "Traditional drummer on stage framed by flames" },
+  { src: pastRedVocalist, alt: "Vocalist in red performing under stadium lights" },
+  { src: pastStageWalk, alt: "Artist walking the main stage in a cream jacket" },
+  { src: pastFanPhone, alt: "Fan smiling in the stands at FNB Stadium" },
+];
 
 type Headliner = {
   name: string;
