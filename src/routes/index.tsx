@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { ArrowRight, ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
+import { LaunchAudio } from "@/components/site/LaunchAudio";
 
 import heroPoster from "@/assets/hero-poster.png";
 import heroPosterMobile from "@/assets/hero-poster-mobile.png";
