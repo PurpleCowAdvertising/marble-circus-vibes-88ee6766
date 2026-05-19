@@ -227,8 +227,8 @@ function HomePage() {
 
 
       {/* MUSIC PREVIEW — desktop/tablet only (mobile uses the carousel above) */}
-      <div className="hidden md:block bg-black text-white">
-      <Section className="!pt-2 sm:!pt-3 md:!pt-6 !bg-black">
+      <div className="hidden md:block bg-white text-black">
+      <Section className="!pt-2 sm:!pt-3 md:!pt-6 !bg-white">
         <motion.div
           initial={{ opacity: 0, y: 60, filter: "blur(14px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -238,13 +238,13 @@ function HomePage() {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-primary">The Lineup</p>
-              <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-white">
-                Headliners.
+              <h2 className="mt-4 font-display text-5xl font-bold md:text-7xl text-black">
+                2025 Scorpion Kings Live
               </h2>
             </div>
             <Link
               to="/music"
-              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/60"
+              className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-black hover:text-black/60"
             >
               All artists <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
@@ -263,17 +263,14 @@ function HomePage() {
               <div
                 className="group relative block aspect-[3/4] w-full overflow-hidden rounded-lg border border-border bg-card text-left"
               >
-                <motion.img
+                <img
                   src={artist.image}
                   alt={artist.name}
                   width={768}
                   height={1024}
                   loading="lazy"
-                  initial={{ scale: 1.35 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 1.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 h-full w-full object-cover will-change-transform group-hover:scale-[1.08] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  style={{ animationDelay: `${i * -2.5}s` }}
+                  className="absolute inset-0 h-full w-full object-cover will-change-transform animate-ken-burns group-hover:[animation-play-state:paused] group-hover:scale-[1.12] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
                 />
 
                 {/* Legibility scrim — guarantees text contrast across every artist image */}
@@ -291,6 +288,7 @@ function HomePage() {
         </div>
       </Section>
       </div>
+
 
       {/* TICKETS PREVIEW */}
       <div id="tickets" className="bg-white text-black scroll-mt-24">

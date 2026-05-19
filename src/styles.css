@@ -341,6 +341,21 @@
     50%  { transform: translate3d(3%, -2%, 0) scale(1.08); opacity: 1; }
     100% { transform: translate3d(-2%, 3%, 0) scale(1.05); opacity: 0.9; }
   }
+
+  /* Ken Burns — subtle continuous pan/zoom for in-card image life */
+  @keyframes ken-burns {
+    0%   { transform: scale(1.15) translate3d(0, 0, 0); }
+    25%  { transform: scale(1.22) translate3d(-2%, 1.5%, 0); }
+    50%  { transform: scale(1.28) translate3d(2%, -1%, 0); }
+    75%  { transform: scale(1.22) translate3d(1.5%, 2%, 0); }
+    100% { transform: scale(1.15) translate3d(0, 0, 0); }
+  }
+  .animate-ken-burns {
+    animation: ken-burns 18s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-ken-burns { animation: none; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .bg-orange-rich::before { animation: none; }
   }
