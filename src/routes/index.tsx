@@ -74,13 +74,13 @@ function HomePage() {
       <section
         ref={heroRef}
         aria-labelledby="hero-heading"
-        className="relative z-0 isolate overflow-hidden bg-[#fbedd8] md:bg-orange-rich pt-16 md:pt-0"
+        className="relative z-0 isolate overflow-hidden bg-black pt-16 md:pt-0"
       >
         <h1 id="hero-heading" className="sr-only">
           Scorpion Kings Live — DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2028
         </h1>
         <LaunchAudio src="/hero-soundtrack.m4a" startAt={0} />
-        <div className="w-full pb-3 md:pb-5">
+        <div className="w-full">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
               {/* Hero video — looping background of the artists live */}
@@ -672,7 +672,7 @@ function ArtistCarousel() {
   return (
     <section
       aria-label="Featured artists carousel"
-      className="relative z-10 surface-light rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)] pt-6 pb-2 md:py-14 py-[56px] border-white"
+      className="relative z-10 surface-light rounded-t-[2.5rem] md:rounded-t-[3rem] shadow-[0_-20px_40px_-20px_rgba(0,0,0,0.4)] pt-8 pb-2 md:py-14 border-white"
     >
       <div className="mx-auto max-w-[1400px] px-5 sm:px-6 md:px-10">
         <div className="flex items-end justify-between gap-6">
