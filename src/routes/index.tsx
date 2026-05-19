@@ -104,7 +104,7 @@ function HomePage() {
                       aria-hidden
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 1.2, delay: 8.5, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ duration: 0.8, delay: 3.6, ease: [0.16, 1, 0.3, 1] }}
                       className="inline-block h-1.5 w-1.5 rounded-full bg-gold"
                     />
                     <span>FNB Stadium</span>
