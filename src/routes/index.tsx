@@ -91,7 +91,7 @@ function HomePage() {
                     initial={{ opacity: 0, scale: 0.94, filter: "blur(12px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-h-[68vh] w-auto max-w-[96%] object-contain drop-shadow-[0_10px_36px_rgba(0,0,0,0.7)] md:max-h-[72vh] md:max-w-[88%]"
+                    className="max-h-[51vh] w-auto max-w-[72%] object-contain drop-shadow-[0_10px_36px_rgba(0,0,0,0.7)] md:max-h-[54vh] md:max-w-[66%]"
                   />
                   <motion.div
                     initial={{ opacity: 0, y: 22, letterSpacing: "0.7em", filter: "blur(10px)" }}
