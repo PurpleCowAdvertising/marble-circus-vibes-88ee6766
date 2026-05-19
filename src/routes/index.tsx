@@ -77,7 +77,7 @@ function HomePage() {
         className="relative z-0 isolate overflow-hidden bg-[#fbedd8] md:bg-orange-rich pt-16 md:pt-0"
       >
         <h1 id="hero-heading" className="sr-only">
-          Scorpion Kings Live — DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2026
+          Scorpion Kings Live — DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2028
         </h1>
         <LaunchAudio src="/hero-soundtrack.m4a" startAt={0} />
         <div className="w-full pb-3 md:pb-5">
@@ -100,7 +100,7 @@ function HomePage() {
                 <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 md:gap-6">
                   <motion.img
                     src={skLiveLogo}
-                    alt="Scorpion Kings Live 2026"
+                    alt="Scorpion Kings Live 2028"
                     initial={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
                     animate={{ opacity: [0, 1, 1, 0], scale: 1, filter: "blur(0px)" }}
                     transition={{
@@ -109,15 +109,15 @@ function HomePage() {
                       ease: "easeInOut",
                       repeat: Infinity,
                     }}
-                    className="max-h-[51vh] w-auto max-w-[72%] object-contain drop-shadow-[0_10px_36px_rgba(0,0,0,0.7)] md:max-h-[54vh] md:max-w-[66%]"
+                    className="max-h-[42vh] w-auto max-w-[88%] object-contain drop-shadow-[0_10px_36px_rgba(0,0,0,0.7)] md:max-h-[54vh] md:max-w-[66%]"
                   />
                   <motion.div
                     initial={{ opacity: 0, y: 22, letterSpacing: "0.7em", filter: "blur(10px)" }}
                     animate={{ opacity: 1, y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
                     transition={{ duration: 2.4, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex items-center gap-3 font-display text-xs font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-sm md:text-base"
+                    className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[11px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-sm md:text-base"
                   >
-                    <span>19 Sep 26</span>
+                    <span>19 Sep 28</span>
                     <motion.span
                       aria-hidden
                       initial={{ opacity: 0, scale: 0 }}
