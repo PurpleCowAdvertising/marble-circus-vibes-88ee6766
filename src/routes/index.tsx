@@ -16,7 +16,7 @@ import musaKeys from "@/assets/artists/musa-keys.png";
 import uncleWaffles from "@/assets/artists/uncle-waffles.png";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
-import skLiveLogo from "@/assets/scorpion-kings-live-logo.png";
+import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.png";
 
 type Headliner = {
   name: string;
@@ -88,15 +88,15 @@ function HomePage() {
                   <motion.img
                     src={skLiveLogo}
                     alt="Scorpion Kings Live 2026"
-                    initial={{ opacity: 0, scale: 0.86, filter: "blur(18px)" }}
+                    initial={{ opacity: 0, scale: 0.94, filter: "blur(12px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    transition={{ duration: 6.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-h-[52vh] w-auto max-w-[88%] object-contain drop-shadow-[0_8px_28px_rgba(0,0,0,0.6)] md:max-h-[58vh] md:max-w-[62%]"
+                    transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="max-h-[68vh] w-auto max-w-[96%] object-contain drop-shadow-[0_10px_36px_rgba(0,0,0,0.7)] md:max-h-[72vh] md:max-w-[88%]"
                   />
                   <motion.div
                     initial={{ opacity: 0, y: 22, letterSpacing: "0.7em", filter: "blur(10px)" }}
                     animate={{ opacity: 1, y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
-                    transition={{ duration: 5.5, delay: 4.5, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 2.4, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
                     className="flex items-center gap-3 font-display text-xs font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-sm md:text-base"
                   >
                     <span>19 Sep 26</span>
@@ -104,7 +104,7 @@ function HomePage() {
                       aria-hidden
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 1.2, delay: 8.5, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ duration: 0.8, delay: 3.6, ease: [0.16, 1, 0.3, 1] }}
                       className="inline-block h-1.5 w-1.5 rounded-full bg-gold"
                     />
                     <span>FNB Stadium</span>
