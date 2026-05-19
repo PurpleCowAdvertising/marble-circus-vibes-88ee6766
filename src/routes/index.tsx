@@ -394,9 +394,8 @@ function HomePage() {
                         onClick={() => setActiveTier({ ...t, gold })}
                         className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[12px] md:text-[11px] font-bold uppercase tracking-widest transition-all duration-500 ease-out group-hover:gap-3 group-hover:px-6 ${
                           gold
-
                             ? "bg-gold text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
-                            : "bg-gold text-gold-foreground md:bg-black md:text-white shadow-[0_6px_18px_-8px_rgba(0,0,0,0.35)] hover:shadow-[0_14px_36px_-10px_rgba(0,0,0,0.5)]"
+                            : "bg-white text-black shadow-[0_6px_18px_-8px_rgba(255,255,255,0.25)] hover:shadow-[0_14px_36px_-10px_rgba(255,255,255,0.4)]"
                         }`}
                       >
                         <span>Buy</span>
