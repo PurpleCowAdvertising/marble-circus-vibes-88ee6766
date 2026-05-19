@@ -34,12 +34,13 @@ export function Header() {
       requestAnimationFrame(() => {
         const y = window.scrollY;
         setScrolled(y > 20);
-        // Gradual fade-in based on scroll distance.
-        // Stays invisible at the very top, then ramps from 0 → 1 between 80px and 480px.
+        // Visible on landing, fades out gradually as user scrolls down.
+        // Fully visible until 80px, then fades from 1 → 0 between 80px and 480px.
         const START = 80;
         const END = 480;
-        const next = Math.max(0, Math.min(1, (y - START) / (END - START)));
-        setOpacity(next);
+        const progress = Math.max(0, Math.min(1, (y - START) / (END - START)));
+        setOpacity(1 - progress);
+
         ticking = false;
       });
     };
