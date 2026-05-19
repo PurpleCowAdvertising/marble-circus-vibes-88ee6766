@@ -124,14 +124,30 @@
     border-color: var(--color-border);
   }
 
-  html,
+  html {
+    min-height: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   body {
+    min-height: 100%;
+    height: auto;
     background-color: #fff;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    overscroll-behavior-y: none;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #root {
+    min-height: 100%;
   }
 
   h1, h2, h3, h4, .font-display {
