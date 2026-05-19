@@ -115,7 +115,7 @@ function HomePage() {
                     initial={{ opacity: 0, y: 22, letterSpacing: "0.7em", filter: "blur(10px)" }}
                     animate={{ opacity: 1, y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
                     transition={{ duration: 2.4, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex items-center gap-3 font-display text-xs font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-sm md:text-base"
+                    className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[11px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-sm md:text-base"
                   >
                     <span>19 Sep 28</span>
                     <motion.span
