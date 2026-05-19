@@ -172,6 +172,10 @@ function HomePage() {
                   <span className="story-link">Read our story</span>
                   <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
+              </div>
+            </FadeIn>
+          </div>
+        </Section>
       </div>
 
       {/* PAST EVENT GALLERY — restrained horizontal strip, lets the imagery breathe */}
@@ -221,10 +225,6 @@ function HomePage() {
         </Section>
       </div>
 
-            </FadeIn>
-          </div>
-        </Section>
-      </div>
 
       {/* MUSIC PREVIEW — desktop/tablet only (mobile uses the carousel above) */}
       <div className="hidden md:block bg-black text-white">
