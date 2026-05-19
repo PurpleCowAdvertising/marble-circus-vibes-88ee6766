@@ -113,18 +113,17 @@ function HomePage() {
                   />
                   <motion.div
                     initial={{ opacity: 0, y: 22, letterSpacing: "0.7em", filter: "blur(10px)" }}
-                    animate={{ opacity: 1, y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
-                    transition={{ duration: 2.4, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
+                    animate={{ opacity: [0, 1, 1, 0], y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
+                    transition={{
+                      duration: 9,
+                      times: [0, 0.28, 0.72, 1],
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                    }}
                     className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[19px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
                   >
                     <span>19 Sep 28</span>
-                    <motion.span
-                      aria-hidden
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.8, delay: 3.6, ease: [0.16, 1, 0.3, 1] }}
-                      className="inline-block h-1.5 w-1.5 rounded-full bg-gold"
-                    />
+                    <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-gold" />
                     <span>FNB Stadium</span>
                   </motion.div>
                   <motion.a
@@ -136,10 +135,11 @@ function HomePage() {
                       e.preventDefault();
                       document.getElementById("tickets")?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }}
-                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-gold-foreground shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] transition-transform hover:scale-105 sm:text-base"
+                    className="-mt-1 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-gold-foreground shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] transition-transform hover:scale-105 sm:text-base"
                   >
                     Buy Tickets <ArrowRight size={16} />
                   </motion.a>
+
                 </div>
 
                 <figcaption className="sr-only">
