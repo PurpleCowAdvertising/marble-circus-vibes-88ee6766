@@ -88,9 +88,14 @@ function HomePage() {
                   <motion.img
                     src={skLiveLogo}
                     alt="Scorpion Kings Live 2026"
-                    initial={{ opacity: 0, scale: 0.94, filter: "blur(12px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+                    initial={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
+                    animate={{ opacity: [0, 1, 1, 0], scale: 1, filter: "blur(0px)" }}
+                    transition={{
+                      duration: 9,
+                      times: [0, 0.28, 0.72, 1],
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                    }}
                     className="max-h-[51vh] w-auto max-w-[72%] object-contain drop-shadow-[0_10px_36px_rgba(0,0,0,0.7)] md:max-h-[54vh] md:max-w-[66%]"
                   />
                   <motion.div
