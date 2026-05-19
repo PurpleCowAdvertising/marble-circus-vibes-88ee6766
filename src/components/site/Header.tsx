@@ -34,12 +34,13 @@ export function Header() {
       requestAnimationFrame(() => {
         const y = window.scrollY;
         setScrolled(y > 20);
-        // Gradual fade-in based on scroll distance.
-        // Stays invisible at the very top, then ramps from 0 → 1 between 80px and 480px.
+        // Visible on landing, fades out gradually as user scrolls down.
+        // Fully visible until 80px, then fades from 1 → 0 between 80px and 480px.
         const START = 80;
         const END = 480;
-        const next = Math.max(0, Math.min(1, (y - START) / (END - START)));
-        setOpacity(next);
+        const progress = Math.max(0, Math.min(1, (y - START) / (END - START)));
+        setOpacity(1 - progress);
+
         ticking = false;
       });
     };
@@ -88,11 +89,12 @@ export function Header() {
             />
             <nav
               aria-label="Primary"
-              className="pointer-events-auto relative flex items-center gap-1 rounded-full bg-white px-2 py-1.5 ring-1 ring-inset ring-white shadow-[0_8px_28px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-500 ease-out border-white"
+              className="pointer-events-auto relative flex items-center gap-1 rounded-full border border-white/25 bg-white/10 px-2 py-1.5 backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] transition-all duration-500 ease-out"
             >
               {NAV.map((item) => {
                 const className =
-                  "group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-neutral-900 transition-all duration-300 hover:text-black hover:font-semibold sm:px-3 sm:py-1.5 sm:text-[12px] lg:px-3.5 lg:text-[13px] group-data-[status=active]:font-semibold data-[status=active]:!text-black";
+                  "group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-white transition-all duration-300 hover:text-white hover:font-semibold sm:px-3 sm:py-1.5 sm:text-[12px] lg:px-3.5 lg:text-[13px] group-data-[status=active]:font-semibold data-[status=active]:!text-white";
+
                 const inner = (
                   <>
                     <span className="relative z-10">{item.label}</span>
