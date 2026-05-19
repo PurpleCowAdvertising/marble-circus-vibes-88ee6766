@@ -4,9 +4,11 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { Header } from "@/components/site/Header";
@@ -117,12 +119,23 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+function ScrollToTop() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const hash = useRouterState({ select: (s) => s.location.hash });
+  useEffect(() => {
+    if (hash) return; // let in-page anchor links scroll naturally
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname, hash]);
+  return null;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
       <SubscribeProvider>
+        <ScrollToTop />
         <div className="relative flex min-h-[100dvh] flex-col">
           <Header />
           <main className="relative z-10 flex-1">
