@@ -105,7 +105,7 @@ function HomePage() {
                     animate={{ opacity: [0, 1, 1, 0], scale: 1, filter: "blur(0px)" }}
                     transition={{
                       duration: 9,
-                      times: [0, 0.28, 0.72, 1],
+                      times: [0, 0.11, 0.78, 1],
                       ease: "easeInOut",
                       repeat: Infinity,
                     }}
@@ -116,10 +116,11 @@ function HomePage() {
                     animate={{ opacity: [0, 1, 1, 0], y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
                     transition={{
                       duration: 9,
-                      times: [0, 0.28, 0.72, 1],
+                      times: [0, 0.18, 0.78, 1],
                       ease: "easeInOut",
                       repeat: Infinity,
                     }}
+
                     className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[19px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
                   >
                     <span>19 Sep 28</span>
