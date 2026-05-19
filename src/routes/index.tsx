@@ -17,6 +17,19 @@ import uncleWaffles from "@/assets/artists/uncle-waffles.png";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
 import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.png";
+import pastFanPhone from "@/assets/past-event/fan-phone.jpg";
+import pastDrummerFire from "@/assets/past-event/drummer-fire.jpg";
+import pastStageWalk from "@/assets/past-event/stage-walk.jpg";
+import pastRedVocalist from "@/assets/past-event/red-vocalist.jpg";
+import pastStadiumFire from "@/assets/past-event/stadium-fire.jpg";
+
+const PAST_EVENT_PHOTOS: { src: string; alt: string }[] = [
+  { src: pastStadiumFire, alt: "FNB Stadium ablaze with pyrotechnics during the last Scorpion Kings Live show" },
+  { src: pastDrummerFire, alt: "Traditional drummer on stage framed by flames" },
+  { src: pastRedVocalist, alt: "Vocalist in red performing under stadium lights" },
+  { src: pastStageWalk, alt: "Artist walking the main stage in a cream jacket" },
+  { src: pastFanPhone, alt: "Fan smiling in the stands at FNB Stadium" },
+];
 
 type Headliner = {
   name: string;
@@ -164,6 +177,54 @@ function HomePage() {
           </div>
         </Section>
       </div>
+
+      {/* PAST EVENT GALLERY — restrained horizontal strip, lets the imagery breathe */}
+      <div className="relative z-20 isolate bg-orange-rich">
+        <Section className="text-foreground !pt-4 !pb-10 md:!pt-8 md:!pb-14">
+          <FadeIn>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-black">From the last show</p>
+                <h2 className="mt-2 font-display text-2xl font-bold md:text-4xl text-white">
+                  A taste of what's coming.
+                </h2>
+              </div>
+              <p className="max-w-xs text-xs text-white/80 md:text-sm">
+                Moments from the previous Scorpion Kings Live at FNB Stadium.
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <div className="mt-6 -mx-4 md:-mx-8 overflow-x-auto scrollbar-hide">
+              <ul className="flex gap-3 px-4 md:gap-4 md:px-8">
+                {PAST_EVENT_PHOTOS.map((p, i) => (
+                  <motion.li
+                    key={p.src}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.9, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    className="group relative shrink-0 overflow-hidden rounded-lg bg-black/40"
+                    style={{
+                      width: i === 0 ? "clamp(220px, 36vw, 360px)" : "clamp(160px, 24vw, 260px)",
+                      aspectRatio: "3 / 4",
+                    }}
+                  >
+                    <img
+                      src={p.src}
+                      alt={p.alt}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                    />
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </FadeIn>
+        </Section>
+      </div>
+
 
       {/* MUSIC PREVIEW — desktop/tablet only (mobile uses the carousel above) */}
       <div className="hidden md:block bg-black text-white">
