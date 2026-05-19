@@ -275,7 +275,7 @@ function HomePage() {
               transition={{ duration: 1.5, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
               <div
-                className="group relative block aspect-[3/4] w-full overflow-hidden rounded-lg border border-border bg-card text-left"
+                className="group relative block aspect-[3/4] w-full overflow-hidden rounded-3xl bg-card text-left shadow-[0_30px_60px_-20px_rgba(0,0,0,0.55),0_12px_24px_-12px_rgba(0,0,0,0.4),inset_0_1px_0_0_rgba(255,255,255,0.08)] ring-1 ring-black/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.65),0_18px_36px_-12px_rgba(0,0,0,0.5)]"
               >
                 <img
                   src={artist.image}
