@@ -79,7 +79,7 @@ function HomePage() {
         <h1 id="hero-heading" className="sr-only">
           Scorpion Kings Live — DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2028
         </h1>
-        <LaunchAudio src="/hero-soundtrack.m4a" startAt={0} />
+        <LaunchAudio src="/hero-soundtrack.m4a" startAt={48} />
         <div className="w-full">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
