@@ -114,7 +114,7 @@ function HomePage() {
                   className="h-[70vh] max-h-[820px] min-h-[420px] w-full object-cover md:h-[85vh]"
                 />
                 {/* Event logo + date overlay — all three reveal together, synced to the video loop */}
-                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-start gap-4 p-6 pt-[18vh] md:gap-6 md:pt-[22vh]">
+                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 pt-[8vh] md:gap-5 md:pt-[10vh]">
                   <motion.img
                     key={`logo-${cycle}`}
                     src={skLiveLogo}
