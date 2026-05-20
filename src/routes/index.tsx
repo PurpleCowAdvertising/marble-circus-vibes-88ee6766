@@ -64,9 +64,25 @@ function HomePage() {
   const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
 
   const heroRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [cycle, setCycle] = useState(0);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  // Detect when the hero video loops back to start; replay the overlay animations in sync.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    let last = 0;
+    const onTime = () => {
+      if (v.currentTime + 0.5 < last) setCycle((c) => c + 1);
+      last = v.currentTime;
+    };
+    v.addEventListener("timeupdate", onTime);
+    return () => v.removeEventListener("timeupdate", onTime);
+  }, []);
+
 
   return (
     <>
