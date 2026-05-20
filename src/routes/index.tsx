@@ -102,6 +102,7 @@ function HomePage() {
               {/* Hero video — looping background of the artists live */}
               <figure className="relative w-full overflow-hidden bg-black">
                 <video
+                  ref={videoRef}
                   src="/hero-video.mp4"
                   poster={heroPosterMobile}
                   autoPlay
@@ -112,31 +113,22 @@ function HomePage() {
                   aria-label="Scorpion Kings live performance footage"
                   className="h-[70vh] max-h-[820px] min-h-[420px] w-full object-cover md:h-[85vh]"
                 />
-                {/* Centered event logo + date overlay — transparent, no scrim */}
-                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 md:gap-6">
+                {/* Event logo + date overlay — all three reveal together, synced to the video loop */}
+                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-start gap-4 p-6 pt-[18vh] md:gap-6 md:pt-[22vh]">
                   <motion.img
+                    key={`logo-${cycle}`}
                     src={skLiveLogo}
                     alt="Scorpion Kings Live 2028"
                     initial={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
-                    animate={{ opacity: [0, 1, 1, 0], scale: 1, filter: "blur(0px)" }}
-                    transition={{
-                      duration: 9,
-                      times: [0, 0.11, 0.78, 1],
-                      ease: "easeInOut",
-                      repeat: Infinity,
-                    }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    transition={{ duration: 8, ease: "easeOut" }}
                     className="max-h-[42vh] w-auto max-w-[88%] object-contain drop-shadow-[0_10px_36px_rgba(0,0,0,0.7)] md:max-h-[54vh] md:max-w-[66%]"
                   />
                   <motion.div
+                    key={`date-${cycle}`}
                     initial={{ opacity: 0, y: 22, letterSpacing: "0.7em", filter: "blur(10px)" }}
-                    animate={{ opacity: [0, 1, 1, 0], y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
-                    transition={{
-                      duration: 9,
-                      times: [0, 0.18, 0.78, 1],
-                      ease: "easeInOut",
-                      repeat: Infinity,
-                    }}
-
+                    animate={{ opacity: 1, y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
+                    transition={{ duration: 8, ease: "easeOut" }}
                     className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[19px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
                   >
                     <span>19 Sep 28</span>
@@ -144,20 +136,23 @@ function HomePage() {
                     <span>FNB Stadium</span>
                   </motion.div>
                   <motion.a
+                    key={`cta-${cycle}`}
                     href="#tickets"
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 2, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 8, ease: "easeOut" }}
                     onClick={(e) => {
                       e.preventDefault();
                       document.getElementById("tickets")?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }}
-                    className="-mt-1 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-white backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] transition-transform hover:scale-105 sm:text-base"
+                    className="pointer-events-auto mt-2 md:mt-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-white backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] transition-transform hover:scale-105 sm:text-base"
                   >
                     Buy Tickets <ArrowRight size={16} />
                   </motion.a>
 
                 </div>
+
+
 
                 <figcaption className="sr-only">
                   Scorpion Kings live — South Africa has always been home. Footage of DJ Maphorisa and Kabza De Small on stage.
