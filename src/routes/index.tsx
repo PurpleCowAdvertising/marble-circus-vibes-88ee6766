@@ -104,12 +104,11 @@ function HomePage() {
                 <video
                   ref={videoRef}
                   src="/hero-video.mp4"
-                  poster={heroPosterMobile}
                   autoPlay
                   loop
                   muted
                   playsInline
-                  preload="metadata"
+                  preload="auto"
                   aria-label="Scorpion Kings live performance footage"
                   className="h-[70vh] max-h-[820px] min-h-[420px] w-full object-cover md:h-[85vh]"
                 />
