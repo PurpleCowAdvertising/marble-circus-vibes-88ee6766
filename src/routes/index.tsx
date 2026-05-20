@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { ArrowRight, ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
-import { LaunchAudio } from "@/components/site/LaunchAudio";
+
 
 import heroPoster from "@/assets/hero-poster.png";
 import heroPosterMobile from "@/assets/hero-poster-mobile.png";
@@ -95,7 +95,7 @@ function HomePage() {
         <h1 id="hero-heading" className="sr-only">
           Scorpion Kings Live — DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2028
         </h1>
-        <LaunchAudio src="/hero-soundtrack.m4a" startAt={48} />
+        
         <div className="w-full">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
