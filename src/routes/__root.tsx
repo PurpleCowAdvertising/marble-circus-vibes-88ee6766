@@ -138,6 +138,27 @@ function ScrollToTop() {
   return null;
 }
 
+function ShowcaseNavBlocker() {
+  // Showcase mode: prevent any link/anchor click from navigating away.
+  // In-page buttons (audio play/pause, scroll, etc.) keep working.
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const anchor = target.closest("a");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href") || "";
+      // Allow pure in-page hash scrolls
+      if (href.startsWith("#")) return;
+      e.preventDefault();
+      e.stopPropagation();
+    };
+    document.addEventListener("click", handler, true);
+    return () => document.removeEventListener("click", handler, true);
+  }, []);
+  return null;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
@@ -145,6 +166,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <SubscribeProvider>
         <ScrollToTop />
+        <ShowcaseNavBlocker />
         <div className="relative flex min-h-[100dvh] flex-col">
           <Header />
           <main className="relative z-10 flex-1">
