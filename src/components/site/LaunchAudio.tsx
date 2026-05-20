@@ -71,9 +71,9 @@ export function LaunchAudio({ src, startAt = 0, volume = 0.65 }: Props) {
         type="button"
         onClick={toggle}
         aria-label={playing ? "Pause soundtrack" : "Play soundtrack"}
-        className="fixed bottom-4 right-4 z-50 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-black/60 text-white backdrop-blur transition hover:bg-black/80"
+        className="fixed bottom-5 right-5 z-[100] inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-black/80 text-white shadow-[0_10px_30px_-8px_rgba(0,0,0,0.8)] backdrop-blur transition hover:scale-105 hover:bg-black"
       >
-        {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 translate-x-[1px]" />}
+        {playing ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 translate-x-[1px]" />}
       </button>
     </>
   );
