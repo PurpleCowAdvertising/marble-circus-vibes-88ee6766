@@ -122,7 +122,7 @@ function HomePage() {
                     initial={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     transition={{ duration: 8, ease: "easeOut" }}
-                    className="max-h-[42vh] w-auto max-w-[88%] object-contain drop-shadow-[0_10px_36px_rgba(0,0,0,0.7)] md:max-h-[54vh] md:max-w-[66%]"
+                    className="mt-auto max-h-[42vh] w-auto max-w-[88%] object-contain drop-shadow-[0_10px_36px_rgba(0,0,0,0.7)] md:max-h-[54vh] md:max-w-[66%]"
                   />
                   <motion.div
                     key={`date-${cycle}`}
