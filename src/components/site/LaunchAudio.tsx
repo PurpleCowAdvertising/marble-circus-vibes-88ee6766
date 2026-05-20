@@ -3,7 +3,7 @@ import { Play, Pause } from "lucide-react";
 
 type Props = { src: string; startAt?: number; volume?: number };
 
-export function LaunchAudio({ src, startAt = 0, volume = 0.6 }: Props) {
+export function LaunchAudio({ src, startAt = 0, volume = 0.65 }: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -71,7 +71,7 @@ export function LaunchAudio({ src, startAt = 0, volume = 0.6 }: Props) {
         type="button"
         onClick={toggle}
         aria-label={playing ? "Pause soundtrack" : "Play soundtrack"}
-        className="fixed bottom-5 right-5 z-50 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-black/60 text-white backdrop-blur transition hover:bg-black/80"
+        className="absolute bottom-5 right-5 z-50 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-black/60 text-white backdrop-blur transition hover:bg-black/80"
       >
         {playing ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 translate-x-[1px]" />}
       </button>
