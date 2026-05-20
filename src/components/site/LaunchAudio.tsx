@@ -47,9 +47,25 @@ export function LaunchAudio({ src, startAt = 0, volume = 0.65 }: Props) {
     };
 
     seekAndPlay();
+
+    // Stop audio when the tab/window is hidden or closed (browser close, tab close, navigation away).
+    const stop = () => {
+      try {
+        audio.pause();
+        audio.currentTime = 0;
+      } catch {}
+    };
+    window.addEventListener("pagehide", stop);
+    window.addEventListener("beforeunload", stop);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") stop();
+    });
+
     return () => {
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
+      window.removeEventListener("pagehide", stop);
+      window.removeEventListener("beforeunload", stop);
       audio.pause();
     };
   }, [src, startAt, volume]);
