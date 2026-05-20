@@ -6,17 +6,17 @@ import { FadeIn, Section } from "@/components/site/Section";
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { LaunchAudio } from "@/components/site/LaunchAudio";
 
-import heroPoster from "@/assets/hero-poster.png";
-import heroPosterMobile from "@/assets/hero-poster-mobile.png";
+import heroPoster from "@/assets/hero-poster.webp";
+import heroPosterMobile from "@/assets/hero-poster-mobile.webp";
 import majorLeague from "@/assets/artists/major-league.jpg";
-import tyla from "@/assets/artists/tyla.png";
-import blackCoffee from "@/assets/artists/black-coffee.png";
-import nastyC from "@/assets/artists/nasty-c.png";
-import musaKeys from "@/assets/artists/musa-keys.png";
-import uncleWaffles from "@/assets/artists/uncle-waffles.png";
+import tyla from "@/assets/artists/tyla.webp";
+import blackCoffee from "@/assets/artists/black-coffee.webp";
+import nastyC from "@/assets/artists/nasty-c.webp";
+import musaKeys from "@/assets/artists/musa-keys.webp";
+import uncleWaffles from "@/assets/artists/uncle-waffles.webp";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
-import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.png";
+import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.webp";
 import pastFanPhone from "@/assets/past-event/fan-phone.jpg";
 import pastDrummerFire from "@/assets/past-event/drummer-fire.jpg";
 import pastStageWalk from "@/assets/past-event/stage-walk.jpg";
@@ -126,15 +126,16 @@ function HomePage() {
                   />
                   <motion.div
                     key={`date-${cycle}`}
-                    initial={{ opacity: 0, y: 22, letterSpacing: "0.7em", filter: "blur(10px)" }}
+                    initial={{ opacity: 0, y: 22, letterSpacing: "0.35em", filter: "blur(10px)" }}
                     animate={{ opacity: 1, y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
                     transition={{ duration: 8, ease: "easeOut" }}
-                    className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[19px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
+                    className="flex flex-nowrap items-center justify-center gap-2.5 whitespace-nowrap font-display text-[15px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
                   >
                     <span>19 Sep 28</span>
                     <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-gold" />
                     <span>FNB Stadium</span>
                   </motion.div>
+
                   <motion.a
                     key={`cta-${cycle}`}
                     href="#tickets"
