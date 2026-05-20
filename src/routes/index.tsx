@@ -147,7 +147,7 @@ function HomePage() {
                     }}
                     className="pointer-events-auto mt-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-white backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] transition-transform hover:scale-105 sm:text-base"
                   >
-                    Buy Tickets <ArrowRight size={16} />
+                    Buy Tickets
                   </motion.a>
 
                 </div>
