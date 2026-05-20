@@ -3,7 +3,7 @@ import { Play, Pause } from "lucide-react";
 
 type Props = { src: string; startAt?: number; volume?: number };
 
-export function LaunchAudio({ src, startAt = 0, volume = 0.6 }: Props) {
+export function LaunchAudio({ src, startAt = 0, volume = 0.65 }: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
 
