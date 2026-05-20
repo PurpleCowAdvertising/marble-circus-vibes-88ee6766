@@ -114,7 +114,7 @@ function HomePage() {
                   className="h-[70vh] max-h-[820px] min-h-[420px] w-full object-cover md:h-[85vh]"
                 />
                 {/* Event logo + date overlay — all three reveal together, synced to the video loop */}
-                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 pt-[8vh] md:gap-5 md:pt-[10vh]">
+                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 md:justify-start md:gap-5 md:pt-[10vh]">
                   <motion.img
                     key={`logo-${cycle}`}
                     src={skLiveLogo}
@@ -145,12 +145,13 @@ function HomePage() {
                       e.preventDefault();
                       document.getElementById("tickets")?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }}
-                    className="pointer-events-auto mt-2 md:mt-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-white backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] transition-transform hover:scale-105 sm:text-base"
+                    className="pointer-events-auto absolute bottom-[8vh] left-1/2 -translate-x-1/2 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-white backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] transition-transform hover:scale-105 sm:text-base md:static md:left-auto md:translate-x-0 md:mt-4"
                   >
                     Buy Tickets <ArrowRight size={16} />
                   </motion.a>
 
                 </div>
+
 
 
 
