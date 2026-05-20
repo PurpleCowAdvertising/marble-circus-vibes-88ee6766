@@ -161,6 +161,8 @@ function ShowcaseNavBlocker() {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isHome = pathname === "/";
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -168,7 +170,7 @@ function RootComponent() {
         <ScrollToTop />
         <ShowcaseNavBlocker />
         <div className="relative flex min-h-[100dvh] flex-col">
-          <Header />
+          {!isHome && <Header />}
           <main className="relative z-10 flex-1">
             <Outlet />
           </main>
