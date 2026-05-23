@@ -100,7 +100,7 @@ function HomePage() {
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
               {/* Hero video — looping logo/headline reveal of the artists */}
-              <figure className="relative h-[70vh] max-h-[820px] min-h-[420px] w-full overflow-hidden bg-black md:h-[85vh]">
+              <figure className="relative h-[100svh] w-full overflow-hidden bg-black md:h-[85vh] md:max-h-[820px] md:min-h-[420px]">
                 {/* Blurred fill layer — keeps the section full-bleed on portrait */}
                 <video
                   src="/hero-video-mobile.mp4"
@@ -122,7 +122,7 @@ function HomePage() {
                   playsInline
                   preload="auto"
                   aria-label="Scorpion Kings Live logo reveal"
-                  className="relative h-full w-full object-contain md:hidden"
+                  className="relative h-full w-full object-cover md:hidden"
                 />
                 {/* Desktop video */}
                 <video
