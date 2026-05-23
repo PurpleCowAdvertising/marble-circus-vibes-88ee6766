@@ -76,14 +76,27 @@ function HomePage() {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
+    // Belt-and-braces: explicitly kick off playback for iOS Safari, which
+    // sometimes ignores the autoPlay attribute on cold loads even when muted.
+    v.muted = true;
+    const tryPlay = () => v.play().catch(() => {});
+    tryPlay();
     let last = 0;
     const onTime = () => {
       if (v.currentTime + 0.5 < last) setCycle((c) => c + 1);
       last = v.currentTime;
     };
+    const onLoaded = () => tryPlay();
     v.addEventListener("timeupdate", onTime);
-    return () => v.removeEventListener("timeupdate", onTime);
+    v.addEventListener("loadedmetadata", onLoaded);
+    v.addEventListener("canplay", onLoaded);
+    return () => {
+      v.removeEventListener("timeupdate", onTime);
+      v.removeEventListener("loadedmetadata", onLoaded);
+      v.removeEventListener("canplay", onLoaded);
+    };
   }, []);
+
 
 
   return (
