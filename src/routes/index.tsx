@@ -110,7 +110,7 @@ function HomePage() {
                   playsInline
                   preload="auto"
                   aria-label="Scorpion Kings Live logo reveal"
-                  className="h-[70vh] max-h-[820px] min-h-[420px] w-full object-cover md:h-[85vh]"
+                  className="h-[70vh] max-h-[820px] min-h-[420px] w-full bg-black object-contain md:h-[85vh] md:object-cover"
                 />
                 {/* Date + CTA overlay */}
                 <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[8vh] md:gap-5 md:pb-[10vh]">
