@@ -4,6 +4,8 @@ import { useRef, useState, useEffect } from "react";
 import { ArrowRight, ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
+import { LaunchAudio } from "@/components/site/LaunchAudio";
+
 
 
 import heroPoster from "@/assets/hero-poster.png";
@@ -86,7 +88,9 @@ function HomePage() {
 
   return (
     <>
+      <LaunchAudio src="/hero-soundtrack.m4a" />
       {/* HERO */}
+
       <section
         ref={heroRef}
         aria-labelledby="hero-heading"
@@ -101,17 +105,14 @@ function HomePage() {
             <motion.div style={{ y, opacity }} className="relative">
               {/* Hero video — looping logo/headline reveal of the artists */}
               <figure className="relative h-[100svh] w-full overflow-hidden bg-black md:h-[85vh] md:max-h-[820px] md:min-h-[420px]">
-                {/* Blurred fill layer — keeps the section full-bleed on portrait */}
-                <video
-                  src="/hero-video-mobile.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
+                {/* Poster fallback while the mobile video loads */}
+                <img
+                  src={heroPosterMobile}
+                  alt=""
                   aria-hidden
-                  className="absolute inset-0 h-full w-full scale-110 object-cover opacity-70 blur-2xl md:hidden"
+                  className="absolute inset-0 h-full w-full object-cover md:hidden"
                 />
+
                 {/* Mobile video — text version */}
                 <video
                   ref={videoRef}
