@@ -88,7 +88,9 @@ function HomePage() {
 
   return (
     <>
+      <LaunchAudio src="/hero-soundtrack.m4a" />
       {/* HERO */}
+
       <section
         ref={heroRef}
         aria-labelledby="hero-heading"
