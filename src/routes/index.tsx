@@ -93,13 +93,13 @@ function HomePage() {
         className="relative z-0 isolate overflow-hidden bg-black"
       >
         <h1 id="hero-heading" className="sr-only">
-          Scorpion Kings Live — DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2028
+          Scorpion Kings Live — DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2026
         </h1>
         
         <div className="w-full">
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
-              {/* Hero video — looping background of the artists live */}
+              {/* Hero video — looping logo/headline reveal of the artists */}
               <figure className="relative w-full overflow-hidden bg-black">
                 <video
                   ref={videoRef}
@@ -109,28 +109,19 @@ function HomePage() {
                   muted
                   playsInline
                   preload="auto"
-                  aria-label="Scorpion Kings live performance footage"
+                  aria-label="Scorpion Kings Live logo reveal"
                   className="h-[70vh] max-h-[820px] min-h-[420px] w-full object-cover md:h-[85vh]"
                 />
-                {/* Event logo + date overlay — all three reveal together, synced to the video loop */}
-                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-start gap-3 p-6 pt-[10vh] pb-[8vh] md:gap-5 md:pt-[12vh] md:pb-[10vh]">
-                  <motion.img
-                    key={`logo-${cycle}`}
-                    src={skLiveLogo}
-                    alt="Scorpion Kings Live 2028"
-                    initial={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    transition={{ duration: 8, ease: "easeOut" }}
-                    className="mt-auto max-h-[42vh] w-auto max-w-[88%] object-contain drop-shadow-[0_10px_36px_rgba(0,0,0,0.7)] md:max-h-[54vh] md:max-w-[66%]"
-                  />
+                {/* Date + CTA overlay */}
+                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[8vh] md:gap-5 md:pb-[10vh]">
                   <motion.div
                     key={`date-${cycle}`}
                     initial={{ opacity: 0, y: 22, letterSpacing: "0.7em", filter: "blur(10px)" }}
                     animate={{ opacity: 1, y: 0, letterSpacing: "0.35em", filter: "blur(0px)" }}
                     transition={{ duration: 8, ease: "easeOut" }}
-                    className="mb-auto flex flex-wrap items-center justify-center gap-2.5 font-display text-[19px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
+                    className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[19px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
                   >
-                    <span>19 Sep 28</span>
+                    <span>19 Sep 26</span>
                     <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-gold" />
                     <span>FNB Stadium</span>
                   </motion.div>
