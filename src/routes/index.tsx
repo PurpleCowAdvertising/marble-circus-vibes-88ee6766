@@ -65,6 +65,8 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
+  const isMobile = useIsMobile();
+
 
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -122,29 +124,21 @@ function HomePage() {
 
 
 
-                {/* Mobile video — text version */}
+                {/* Single hero video per viewport — avoids downloading both files on mobile */}
                 <video
                   ref={videoRef}
-                  src="/hero-video-mobile.mp4"
+                  key={isMobile ? "mobile" : "desktop"}
+                  src={isMobile ? "/hero-video-mobile.mp4" : "/hero-video.mp4"}
                   autoPlay
                   loop
                   muted
                   playsInline
                   preload="auto"
                   aria-label="Scorpion Kings Live logo reveal"
-                  className="relative h-full w-full object-cover md:hidden"
+                  className="relative h-full w-full object-cover"
                 />
-                {/* Desktop video */}
-                <video
-                  src="/hero-video.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  aria-hidden
-                  className="relative hidden h-full w-full object-cover md:block"
-                />
+
+
 
                 {/* Date + CTA overlay */}
                 <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[8vh] md:gap-5 md:pb-[10vh]">
