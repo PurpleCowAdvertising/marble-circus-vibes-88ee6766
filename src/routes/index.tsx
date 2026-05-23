@@ -8,9 +8,8 @@ import { LaunchAudio } from "@/components/site/LaunchAudio";
 
 
 
-import heroPoster from "@/assets/hero-poster.png";
-import heroPosterMobile from "@/assets/hero-poster-mobile.png";
 import majorLeague from "@/assets/artists/major-league.jpg";
+
 import tyla from "@/assets/artists/tyla.png";
 import blackCoffee from "@/assets/artists/black-coffee.png";
 import nastyC from "@/assets/artists/nasty-c.png";
