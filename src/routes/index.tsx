@@ -5,17 +5,18 @@ import { ArrowRight, ArrowLeft, Calendar, MapPin } from "lucide-react";
 import { FadeIn, Section } from "@/components/site/Section";
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { LaunchAudio } from "@/components/site/LaunchAudio";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 
 
-import heroPoster from "@/assets/hero-poster.png";
-import heroPosterMobile from "@/assets/hero-poster-mobile.png";
+
 import majorLeague from "@/assets/artists/major-league.jpg";
-import tyla from "@/assets/artists/tyla.png";
-import blackCoffee from "@/assets/artists/black-coffee.png";
-import nastyC from "@/assets/artists/nasty-c.png";
-import musaKeys from "@/assets/artists/musa-keys.png";
-import uncleWaffles from "@/assets/artists/uncle-waffles.png";
+
+import tyla from "@/assets/artists/tyla.webp";
+import blackCoffee from "@/assets/artists/black-coffee.webp";
+import nastyC from "@/assets/artists/nasty-c.webp";
+import musaKeys from "@/assets/artists/musa-keys.webp";
+import uncleWaffles from "@/assets/artists/uncle-waffles.webp";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
 import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.png";
@@ -64,6 +65,8 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
+  const isMobile = useIsMobile();
+
 
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -121,29 +124,21 @@ function HomePage() {
 
 
 
-                {/* Mobile video — text version */}
+                {/* Single hero video per viewport — avoids downloading both files on mobile */}
                 <video
                   ref={videoRef}
-                  src="/hero-video-mobile.mp4"
+                  key={isMobile ? "mobile" : "desktop"}
+                  src={isMobile ? "/hero-video-mobile.mp4" : "/hero-video.mp4"}
                   autoPlay
                   loop
                   muted
                   playsInline
                   preload="auto"
                   aria-label="Scorpion Kings Live logo reveal"
-                  className="relative h-full w-full object-cover md:hidden"
+                  className="relative h-full w-full object-cover"
                 />
-                {/* Desktop video */}
-                <video
-                  src="/hero-video.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  aria-hidden
-                  className="relative hidden h-full w-full object-cover md:block"
-                />
+
+
 
                 {/* Date + CTA overlay */}
                 <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[8vh] md:gap-5 md:pb-[10vh]">
