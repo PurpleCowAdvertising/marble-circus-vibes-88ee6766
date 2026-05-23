@@ -103,7 +103,7 @@ function HomePage() {
               <figure className="relative h-[70vh] max-h-[820px] min-h-[420px] w-full overflow-hidden bg-black md:h-[85vh]">
                 {/* Blurred fill layer — keeps the section full-bleed on portrait */}
                 <video
-                  src="/hero-video.mp4"
+                  src="/hero-video-mobile.mp4"
                   autoPlay
                   loop
                   muted
@@ -112,18 +112,30 @@ function HomePage() {
                   aria-hidden
                   className="absolute inset-0 h-full w-full scale-110 object-cover opacity-70 blur-2xl md:hidden"
                 />
-                {/* Main video — full logo always visible (contain on mobile, cover on desktop) */}
+                {/* Mobile video — text version */}
                 <video
                   ref={videoRef}
-                  src="/hero-video.mp4"
+                  src="/hero-video-mobile.mp4"
                   autoPlay
                   loop
                   muted
                   playsInline
                   preload="auto"
                   aria-label="Scorpion Kings Live logo reveal"
-                  className="relative h-full w-full object-contain md:object-cover"
+                  className="relative h-full w-full object-contain md:hidden"
                 />
+                {/* Desktop video */}
+                <video
+                  src="/hero-video.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  aria-hidden
+                  className="relative hidden h-full w-full object-cover md:block"
+                />
+
                 {/* Date + CTA overlay */}
                 <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[8vh] md:gap-5 md:pb-[10vh]">
                   <motion.div
