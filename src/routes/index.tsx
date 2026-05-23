@@ -10,11 +10,11 @@ import { LaunchAudio } from "@/components/site/LaunchAudio";
 
 import majorLeague from "@/assets/artists/major-league.jpg";
 
-import tyla from "@/assets/artists/tyla.png";
-import blackCoffee from "@/assets/artists/black-coffee.png";
-import nastyC from "@/assets/artists/nasty-c.png";
-import musaKeys from "@/assets/artists/musa-keys.png";
-import uncleWaffles from "@/assets/artists/uncle-waffles.png";
+import tyla from "@/assets/artists/tyla.webp";
+import blackCoffee from "@/assets/artists/black-coffee.webp";
+import nastyC from "@/assets/artists/nasty-c.webp";
+import musaKeys from "@/assets/artists/musa-keys.webp";
+import uncleWaffles from "@/assets/artists/uncle-waffles.webp";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
 import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.png";
