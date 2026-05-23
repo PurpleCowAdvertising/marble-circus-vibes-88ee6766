@@ -105,13 +105,8 @@ function HomePage() {
             <motion.div style={{ y, opacity }} className="relative">
               {/* Hero video — looping logo/headline reveal of the artists */}
               <figure className="relative h-[100svh] w-full overflow-hidden bg-black md:h-[85vh] md:max-h-[820px] md:min-h-[420px]">
-                {/* Poster fallback while the mobile video loads */}
-                <img
-                  src={heroPosterMobile}
-                  alt=""
-                  aria-hidden
-                  className="absolute inset-0 h-full w-full object-cover md:hidden"
-                />
+
+
 
                 {/* Mobile video — text version */}
                 <video
