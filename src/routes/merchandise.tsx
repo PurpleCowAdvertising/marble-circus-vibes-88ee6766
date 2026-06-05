@@ -15,10 +15,10 @@ export const Route = createFileRoute("/merchandise")({
 });
 
 const PRODUCTS = [
-  { name: "Tour Tee — Black", price: "R 350" },
-  { name: "Tour Hoodie", price: "R 850" },
-  { name: "Snapback Cap", price: "R 320" },
-  { name: "Event Poster (A2)", price: "R 180" },
+  { name: "Tour Tee — Black", price: "R 350", swatch: "from-zinc-800 to-black", emoji: "👕" },
+  { name: "Tour Hoodie", price: "R 850", swatch: "from-primary/60 to-primary", emoji: "🧥" },
+  { name: "Snapback Cap", price: "R 320", swatch: "from-gold/60 to-gold", emoji: "🧢" },
+  { name: "Event Poster (A2)", price: "R 180", swatch: "from-accent/60 to-accent", emoji: "🖼️" },
 ];
 
 function MerchandisePage() {
@@ -35,13 +35,21 @@ function MerchandisePage() {
           {PRODUCTS.map((p, i) => (
             <FadeIn key={p.name} delay={i * 0.05}>
               <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-4 transition-transform hover:-translate-y-1">
-                <div className="aspect-square w-full rounded-lg border border-dashed border-border/70 bg-muted/40" aria-hidden />
+                <div className={`relative aspect-square w-full overflow-hidden rounded-lg bg-gradient-to-br ${p.swatch}`}>
+                  <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-90 transition-transform duration-500 group-hover:scale-110">
+                    {p.emoji}
+                  </div>
+                  <span className="absolute left-3 top-3 rounded-full bg-background/80 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-foreground backdrop-blur">
+                    Preview
+                  </span>
+                </div>
                 <h3 className="mt-4 font-display text-lg font-bold leading-tight">{p.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{p.price}</p>
               </article>
             </FadeIn>
           ))}
         </div>
+
 
         <FadeIn delay={0.25}>
           <div className="mt-12 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-card p-6 md:p-8">
