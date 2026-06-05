@@ -9,6 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import { Header } from "@/components/site/Header";
@@ -17,6 +18,7 @@ import { MobileTabBar } from "@/components/site/MobileTabBar";
 import { SubscribeProvider } from "@/components/site/SubscribePopup";
 import { ConsentBanner } from "@/components/site/ConsentBanner";
 import { Toaster } from "@/components/ui/sonner";
+
 
 function NotFoundComponent() {
   return (
