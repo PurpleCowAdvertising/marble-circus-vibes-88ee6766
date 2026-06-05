@@ -135,15 +135,14 @@
 
   body {
     min-height: 100%;
-    height: auto;
     background-color: #fff;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior-y: auto;
-    -webkit-overflow-scrolling: touch;
+    /* Do NOT set overflow-y on body — the html element owns vertical scroll.
+       Two scroll containers on iOS Safari break position: fixed (the floating
+       tab bar drifts mid-page instead of pinning to the visual viewport). */
   }
 
   #root {
