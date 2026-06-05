@@ -167,7 +167,6 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <SubscribeProvider>
         <ScrollToTop />
-        <ShowcaseNavBlocker />
         <div className="relative flex min-h-[100dvh] flex-col">
           <Header />
           <main className="relative z-10 flex-1 pb-16 md:pb-0">
