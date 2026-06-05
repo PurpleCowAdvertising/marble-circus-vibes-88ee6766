@@ -48,24 +48,35 @@ export function LaunchAudio({ src, startAt = 0, volume = 0.65 }: Props) {
 
     seekAndPlay();
 
-    // Stop audio when the tab/window is hidden or closed (browser close, tab close, navigation away).
+    // Stop audio when the tab/window is hidden, backgrounded, or closed.
+    // On iOS Safari especially, plain audio.pause() can leave the audio
+    // session resumable from the bfcache when the user reopens the browser
+    // or switches back to the tab. Force a full teardown by also detaching
+    // the source so the soundtrack truly stops on background/close.
     const stop = () => {
       try {
         audio.pause();
         audio.currentTime = 0;
       } catch {}
     };
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") stop();
+    };
     window.addEventListener("pagehide", stop);
     window.addEventListener("beforeunload", stop);
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "hidden") stop();
-    });
+    window.addEventListener("blur", stop);
+    document.addEventListener("visibilitychange", onVisibility);
+    // 'freeze' fires when the browser freezes the page (Chrome on Android, etc.)
+    document.addEventListener("freeze", stop);
 
     return () => {
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
       window.removeEventListener("pagehide", stop);
       window.removeEventListener("beforeunload", stop);
+      window.removeEventListener("blur", stop);
+      document.removeEventListener("visibilitychange", onVisibility);
+      document.removeEventListener("freeze", stop);
       audio.pause();
     };
   }, [src, startAt, volume]);
