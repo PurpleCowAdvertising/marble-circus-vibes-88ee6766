@@ -24,6 +24,11 @@ export function MobileTabBar() {
           <Link
             key={tab.to}
             to={tab.to}
+            onClick={() => {
+              if (typeof navigator !== "undefined" && navigator.vibrate) {
+                navigator.vibrate(8);
+              }
+            }}
             className="group flex flex-1 flex-col items-center justify-center gap-0.5 py-1 transition-colors"
           >
             <span
