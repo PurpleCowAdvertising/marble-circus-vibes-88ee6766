@@ -9,6 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import { Header } from "@/components/site/Header";
@@ -17,6 +18,7 @@ import { MobileTabBar } from "@/components/site/MobileTabBar";
 import { SubscribeProvider } from "@/components/site/SubscribePopup";
 import { ConsentBanner } from "@/components/site/ConsentBanner";
 import { Toaster } from "@/components/ui/sonner";
+
 
 function NotFoundComponent() {
   return (
@@ -160,6 +162,24 @@ function ShowcaseNavBlocker() {
   return null;
 }
 
+function AnimatedOutlet() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={pathname}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -8 }}
+        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+        className="md:contents"
+      >
+        <Outlet />
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
@@ -171,7 +191,7 @@ function RootComponent() {
         <div className="relative flex min-h-[100dvh] flex-col">
           <Header />
           <main className="relative z-10 flex-1 pb-16 md:pb-0">
-            <Outlet />
+            <AnimatedOutlet />
           </main>
           <Footer />
           <MobileTabBar />
