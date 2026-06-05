@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import tourTee from "@/assets/merch/tour-tee.jpg";
+import tourHoodie from "@/assets/merch/tour-hoodie.jpg";
+import snapbackCap from "@/assets/merch/snapback-cap.jpg";
+import eventPoster from "@/assets/merch/event-poster.jpg";
 
 export const Route = createFileRoute("/merchandise")({
   head: () => ({
@@ -15,10 +19,10 @@ export const Route = createFileRoute("/merchandise")({
 });
 
 const PRODUCTS = [
-  { name: "Tour Tee — Black", price: "R 350", swatch: "from-zinc-800 to-black", emoji: "👕" },
-  { name: "Tour Hoodie", price: "R 850", swatch: "from-primary/60 to-primary", emoji: "🧥" },
-  { name: "Snapback Cap", price: "R 320", swatch: "from-gold/60 to-gold", emoji: "🧢" },
-  { name: "Event Poster (A2)", price: "R 180", swatch: "from-accent/60 to-accent", emoji: "🖼️" },
+  { name: "Tour Tee — Black", price: "R 350", image: tourTee, alt: "Black Scorpion Kings Live tour t-shirt" },
+  { name: "Tour Hoodie", price: "R 850", image: tourHoodie, alt: "Black Scorpion Kings Live pullover hoodie" },
+  { name: "Snapback Cap", price: "R 320", image: snapbackCap, alt: "Black flat-brim Scorpion Kings Live snapback cap" },
+  { name: "Event Poster (A2)", price: "R 180", image: eventPoster, alt: "A2 Scorpion Kings Live event poster" },
 ];
 
 function MerchandisePage() {
@@ -35,10 +39,15 @@ function MerchandisePage() {
           {PRODUCTS.map((p, i) => (
             <FadeIn key={p.name} delay={i * 0.05}>
               <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-4 transition-transform hover:-translate-y-1">
-                <div className={`relative aspect-square w-full overflow-hidden rounded-lg bg-gradient-to-br ${p.swatch}`}>
-                  <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-90 transition-transform duration-500 group-hover:scale-110">
-                    {p.emoji}
-                  </div>
+                <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-black">
+                  <img
+                    src={p.image}
+                    alt={p.alt}
+                    width={1024}
+                    height={1024}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                  />
                   <span className="absolute left-3 top-3 rounded-full bg-background/80 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-foreground backdrop-blur">
                     Preview
                   </span>
