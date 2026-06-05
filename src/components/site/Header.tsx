@@ -64,7 +64,7 @@ export function Header() {
     <>
       <header
         style={{ opacity: headerOpacity, pointerEvents: headerOpacity < 0.05 ? "none" : "auto" }}
-        className="fixed inset-x-0 top-0 z-50 hidden transition-opacity duration-200 ease-out will-change-[opacity] md:block"
+        className="fixed inset-x-0 top-0 z-50 block transition-opacity duration-200 ease-out will-change-[opacity]"
       >
 
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5">
