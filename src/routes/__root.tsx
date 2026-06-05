@@ -169,7 +169,7 @@ function RootComponent() {
         <ScrollToTop />
         <div className="relative flex min-h-[100dvh] flex-col">
           <Header />
-          <main className="relative z-10 flex-1 pb-16 md:pb-0">
+          <main className="relative z-10 flex-1 pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
             <AnimatedOutlet />
           </main>
           <Footer />
