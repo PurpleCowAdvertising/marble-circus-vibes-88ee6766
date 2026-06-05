@@ -103,7 +103,7 @@ function NewsPage() {
         </div>
 
         <FadeIn delay={0.3}>
-          <div className="mt-10 rounded-2xl border border-dashed border-border p-6 text-sm text-muted-foreground md:p-8">
+          <div className="mt-10 rounded-2xl border border-border bg-card p-6 text-sm text-muted-foreground md:p-8">
             <p className="font-bold uppercase tracking-widest text-foreground">Press queries</p>
             <p className="mt-2">
               Kim Sineke ·{" "}
