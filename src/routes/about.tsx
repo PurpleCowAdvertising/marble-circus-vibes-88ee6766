@@ -71,19 +71,25 @@ function AboutPage() {
         </FadeIn>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { name: "Yule Dlamini", role: "A&R Lead" },
-            { name: "Tina M.", role: "Brand & Design" },
-            { name: "Ref M.", role: "Operations" },
-            { name: "Katlego N.", role: "Partnerships" },
-          ].map((p, i) => (
-            <FadeIn key={p.name} delay={i * 0.05}>
-              <div className="aspect-square rounded-lg border border-border bg-gradient-to-br from-card to-secondary" />
-              <p className="mt-4 font-display text-xl font-bold">{p.name}</p>
-              <p className="text-sm text-muted-foreground">{p.role}</p>
-            </FadeIn>
-          ))}
+            { name: "Yule Dlamini", role: "A&R Lead", gradient: "from-primary/40 to-primary/10" },
+            { name: "Tina M.", role: "Brand & Design", gradient: "from-accent/40 to-accent/10" },
+            { name: "Ref M.", role: "Operations", gradient: "from-gold/40 to-gold/10" },
+            { name: "Katlego N.", role: "Partnerships", gradient: "from-primary/40 to-accent/10" },
+          ].map((p, i) => {
+            const initials = p.name.split(" ").map((s) => s[0]).join("").slice(0, 2);
+            return (
+              <FadeIn key={p.name} delay={i * 0.05}>
+                <div className={`relative flex aspect-square items-center justify-center overflow-hidden rounded-lg border border-border bg-gradient-to-br ${p.gradient}`}>
+                  <span className="font-display text-6xl font-bold tracking-tight text-foreground/80">{initials}</span>
+                </div>
+                <p className="mt-4 font-display text-xl font-bold">{p.name}</p>
+                <p className="text-sm text-muted-foreground">{p.role}</p>
+              </FadeIn>
+            );
+          })}
         </div>
       </Section>
     </>
   );
 }
+
