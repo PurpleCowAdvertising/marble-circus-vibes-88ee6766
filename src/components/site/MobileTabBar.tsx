@@ -15,8 +15,13 @@ export function MobileTabBar() {
   return (
     <nav
       aria-label="Mobile tab bar"
-      style={{ paddingBottom: "env(safe-area-inset-bottom)", transform: "translateZ(0)" }}
-      className="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around border-t border-white/10 bg-black/90 backdrop-blur-xl backdrop-saturate-150 will-change-transform [transform:translateZ(0)] [-webkit-backface-visibility:hidden] [backface-visibility:hidden] md:hidden"
+      style={{
+        paddingBottom: "env(safe-area-inset-bottom)",
+        // Pin to the visual viewport bottom on iOS Safari so the bar tracks the
+        // collapsing URL/toolbar instead of drifting up the page.
+        bottom: 0,
+      }}
+      className="fixed inset-x-0 z-50 flex h-16 items-center justify-around border-t border-white/10 bg-black/90 backdrop-blur-xl backdrop-saturate-150 md:hidden"
     >
 
       {TABS.map((tab) => {
