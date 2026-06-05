@@ -67,7 +67,7 @@ export function Header() {
         className="fixed inset-x-0 top-0 z-50 block transition-opacity duration-200 ease-out will-change-[opacity]"
       >
 
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-center md:justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5">
           {/* Logo — visible all sizes */}
           <Link to="/" aria-label="Scorpion Kings Live" className="flex shrink-0 items-center">
             <img
@@ -142,7 +142,7 @@ export function Header() {
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
             aria-expanded={menuOpen}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_8px_24px_-10px_rgba(0,0,0,0.55)] ring-1 ring-black/5 transition-transform hover:scale-[1.05] md:hidden"
+            className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_8px_24px_-10px_rgba(0,0,0,0.55)] ring-1 ring-black/5 transition-transform hover:scale-[1.05]"
           >
             <Menu size={20} />
           </button>
