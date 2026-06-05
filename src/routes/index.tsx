@@ -460,10 +460,10 @@ function HomePage() {
 
           <div className="mt-8 grid gap-3 md:gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { title: "Main stage", body: "Immersive event visual, the focus of the night." },
-              { title: "VIP", body: "Hospitality and elevated viewing." },
-              { title: "Vendors + merch", body: "Food, bars and limited drops." },
-              { title: "Site map + traffic", body: "Parking, transport and access info." },
+              { title: "Main stage", body: "Immersive event visual, the focus of the night.", image: pastStadiumFire, alt: "Main stage pyrotechnics at FNB Stadium" },
+              { title: "VIP", body: "Hospitality and elevated viewing.", image: pastStageWalk, alt: "Artist walking the stage in cream jacket" },
+              { title: "Vendors + merch", body: "Food, bars and limited drops.", image: pastRedVocalist, alt: "Performer in red on stage under stadium lights" },
+              { title: "Site map + traffic", body: "Parking, transport and access info.", image: pastFanPhone, alt: "Fan smiling in the FNB Stadium stands" },
             ].map((b, i) => (
               <motion.div
                 key={b.title}
@@ -471,11 +471,21 @@ function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.7, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="group rounded-xl border border-white/15 bg-black/30 p-4 md:p-5 backdrop-blur-sm transition-transform hover:-translate-y-0.5"
+                className="group overflow-hidden rounded-xl border border-white/15 bg-black/40 backdrop-blur-sm transition-transform hover:-translate-y-0.5"
               >
-                <div className="aspect-[16/10] w-full rounded-md border border-dashed border-white/20 bg-white/[0.03]" aria-hidden />
-                <h3 className="mt-3 font-display text-base font-bold text-white md:text-lg">{b.title}</h3>
-                <p className="mt-1 text-xs text-white/75">{b.body}</p>
+                <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <img
+                    src={b.image}
+                    alt={b.alt}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                </div>
+                <div className="p-4 md:p-5">
+                  <h3 className="font-display text-base font-bold text-white md:text-lg">{b.title}</h3>
+                  <p className="mt-1 text-xs text-white/75">{b.body}</p>
+                </div>
               </motion.div>
             ))}
           </div>
