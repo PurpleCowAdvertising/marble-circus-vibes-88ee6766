@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import { HeroVideo } from "@/components/site/HeroVideo";
 
 export function Section({
   children,
@@ -42,28 +43,13 @@ export function FadeIn({
   );
 }
 
-export function PageHero({
-  eyebrow,
-  title,
-  description,
-}: {
-  eyebrow: string;
-  title: string;
+export function PageHero(_props: {
+  eyebrow?: string;
+  title?: string;
   description?: string;
 }) {
-  return (
-    <section className="relative z-10 mx-auto max-w-[1400px] px-5 pb-10 pt-32 sm:px-6 sm:pt-36 md:px-10 md:pb-16 md:pt-48">
-      <FadeIn>
-        <p className="text-[10px] uppercase tracking-[0.4em] text-primary sm:text-xs">{eyebrow}</p>
-        <h1 className="mt-4 font-display text-[clamp(2.75rem,11vw,4rem)] font-bold leading-[0.9] tracking-tight text-balance md:text-8xl lg:text-9xl">
-          {title}
-        </h1>
-        {description && (
-          <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg md:text-xl">
-            {description}
-          </p>
-        )}
-      </FadeIn>
-    </section>
-  );
+  // All landing pages use the looping home hero video.
+  // Props are accepted (and ignored) so existing call sites don't need changes.
+  void _props;
+  return <HeroVideo />;
 }
