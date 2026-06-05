@@ -133,7 +133,8 @@ function HomePage() {
                   loop
                   muted
                   playsInline
-                  preload="auto"
+                  preload="metadata"
+                  fetchPriority="high"
                   aria-label="Scorpion Kings Live logo reveal"
                   className="relative h-full w-full object-cover"
                 />

@@ -82,7 +82,7 @@ export function LaunchAudio({ src, startAt = 0, volume = 0.65 }: Props) {
 
   return (
     <>
-      <audio ref={audioRef} src={src} loop preload="auto" />
+      <audio ref={audioRef} src={src} loop preload="metadata" />
       <button
         type="button"
         onClick={toggle}
