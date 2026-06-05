@@ -43,13 +43,40 @@ export function FadeIn({
   );
 }
 
-export function PageHero(_props: {
+export function PageHero({
+  eyebrow,
+  title,
+  description,
+}: {
   eyebrow?: string;
   title?: string;
   description?: string;
 }) {
-  // All landing pages use the looping home hero video.
-  // Props are accepted (and ignored) so existing call sites don't need changes.
-  void _props;
-  return <HeroVideo />;
+  return (
+    <>
+      <HeroVideo />
+      {(eyebrow || title || description) && (
+        <section className="relative z-10 mx-auto max-w-[1400px] bg-black px-5 pt-10 pb-6 sm:px-6 sm:pt-14 sm:pb-8 md:px-10 md:pt-20 md:pb-12">
+          <FadeIn>
+            {eyebrow && (
+              <p className="text-[10px] uppercase tracking-[0.4em] text-primary sm:text-xs">
+                {eyebrow}
+              </p>
+            )}
+            {title && (
+              <h1 className="mt-3 font-display text-[clamp(2.25rem,9vw,3.5rem)] font-bold leading-[0.95] tracking-tight text-balance text-white md:text-7xl lg:text-8xl">
+                {title}
+              </h1>
+            )}
+            {description && (
+              <p className="mt-4 max-w-2xl text-base text-white/75 sm:text-lg md:text-xl">
+                {description}
+              </p>
+            )}
+          </FadeIn>
+        </section>
+      )}
+    </>
+  );
 }
+
