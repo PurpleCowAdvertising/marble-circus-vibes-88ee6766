@@ -141,7 +141,7 @@ function HomePage() {
 
 
                 {/* Date + CTA overlay */}
-                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[calc(8vh+1.5rem)] md:gap-5 md:pb-[10vh]">
+                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[calc(8svh+1.5rem)] md:gap-5 md:pb-[10vh]">
                   <motion.div
                     key={`date-${cycle}`}
                     initial={{ opacity: 0, y: 22, letterSpacing: "0.7em", filter: "blur(10px)" }}
