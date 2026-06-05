@@ -57,7 +57,7 @@ export function HeroVideo() {
                 loop
                 muted
                 playsInline
-                preload="auto"
+                preload="metadata"
                 aria-label="Scorpion Kings Live logo reveal"
                 className="relative h-full w-full object-cover"
               />
