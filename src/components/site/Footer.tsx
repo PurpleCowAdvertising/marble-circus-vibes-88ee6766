@@ -40,15 +40,18 @@ export function Footer() {
               <li><Link to="/tickets" className="text-black hover:text-black/60">Tickets</Link></li>
               <li><Link to="/experience" className="text-black hover:text-black/60">Experience</Link></li>
               {/* Desktop-only links */}
+              <li className="hidden md:list-item"><Link to="/about" className="text-black hover:text-black/60">About</Link></li>
               <li className="hidden md:list-item"><Link to="/partners" className="text-black hover:text-black/60">Partners</Link></li>
               <li className="hidden md:list-item"><Link to="/news" className="text-black hover:text-black/60">News</Link></li>
               <li className="hidden md:list-item"><Link to="/legacy" className="text-black hover:text-black/60">Legacy / CSI</Link></li>
               <li className="hidden md:list-item"><Link to="/merchandise" className="text-black hover:text-black/60">Merchandise</Link></li>
               <li><Link to="/faqs" className="text-black hover:text-black/60">FAQs</Link></li>
-              {/* Mobile-only: Legacy under FAQs */}
+              {/* Mobile-only: About + Legacy under FAQs */}
+              <li className="md:hidden"><Link to="/about" className="text-black hover:text-black/60">About</Link></li>
               <li className="md:hidden"><Link to="/legacy" className="text-black hover:text-black/60">Legacy</Link></li>
               <li className="hidden md:list-item"><Link to="/contact" className="text-black hover:text-black/60">Contact</Link></li>
             </ul>
+
           </div>
 
           <div className="pl-4 md:pl-0">
