@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import appCss from "../styles.css?url";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { MobileTabBar } from "@/components/site/MobileTabBar";
 import { SubscribeProvider } from "@/components/site/SubscribePopup";
 import { ConsentBanner } from "@/components/site/ConsentBanner";
 import { Toaster } from "@/components/ui/sonner";
@@ -169,10 +170,11 @@ function RootComponent() {
         <ShowcaseNavBlocker />
         <div className="relative flex min-h-[100dvh] flex-col">
           <Header />
-          <main className="relative z-10 flex-1">
+          <main className="relative z-10 flex-1 pb-16 md:pb-0">
             <Outlet />
           </main>
           <Footer />
+          <MobileTabBar />
         </div>
         <ConsentBanner />
         <Toaster />
