@@ -27,7 +27,15 @@ export const Route = createFileRoute("/tickets")({
 
 const RETAILERS = ["Webtickets", "Pick n Pay", "Boxer"] as const;
 
-const TICKET_TIERS = [
+type TicketTier = {
+  name: string;
+  price: string;
+  description: string;
+  perks: readonly string[];
+  featured?: boolean;
+};
+
+const TICKET_TIERS: readonly TicketTier[] = [
   {
     name: "General Access",
     price: "From R400",
@@ -47,7 +55,7 @@ const TICKET_TIERS = [
     description: "Hospitality-led experience for groups and premium guests.",
     perks: ["Reserved table area", "Hospitality service", "Premium host support"],
   },
-] as const;
+];
 
 function TicketsPage() {
   return (
