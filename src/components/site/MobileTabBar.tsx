@@ -18,17 +18,32 @@ function vibrate() {
 function scrollToHash(hash: string) {
   const target = document.getElementById(hash);
 
-  if (target) {
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
+  if (!target) return;
+
+  target.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 }
 
 export function MobileTabBar() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const hash = useRouterState({ select: (s) => s.location.hash });
+  const pathname = useRouterState((state) => state.location.pathname);
+  const hash = useRouterState((state) => state.location.hash);
+
+  const handleScrollTab = (sectionHash: string) => {
+    vibrate();
+
+    if (pathname !== "/") {
+      window.location.href = `/#${sectionHash}`;
+      return;
+    }
+
+    window.history.pushState(null, "", `/#${sectionHash}`);
+
+    window.setTimeout(() => {
+      scrollToHash(sectionHash);
+    }, 50);
+  };
 
   return (
     <nav
@@ -72,20 +87,7 @@ export function MobileTabBar() {
 
         if (tab.kind === "scroll") {
           return (
-            <button
-              key={tab.hash}
-              type="button"
-              onClick={() => {
-                vibrate();
-
-                window.history.pushState(null, "", `/#${tab.hash}`);
-
-                window.setTimeout(() => {
-                  scrollToHash(tab.hash);
-                }, 50);
-              }}
-              className={baseClassName}
-            >
+            <button key={tab.hash} type="button" onClick={() => handleScrollTab(tab.hash)} className={baseClassName}>
               {inner}
             </button>
           );
