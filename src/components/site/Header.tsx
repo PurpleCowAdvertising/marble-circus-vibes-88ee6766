@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -22,15 +22,17 @@ const NAV: readonly NavItem[] = [
 function scrollToHash(hash: string) {
   const target = document.getElementById(hash);
 
-  if (target) {
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
+  if (!target) return;
+
+  target.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 }
 
 export function Header() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -58,8 +60,8 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    const bodyOverflow = document.body.style.overflow;
-    const htmlOverflow = document.documentElement.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
 
     if (menuOpen) {
       document.body.style.overflow = "hidden";
@@ -67,8 +69,8 @@ export function Header() {
     }
 
     return () => {
-      document.body.style.overflow = bodyOverflow;
-      document.documentElement.style.overflow = htmlOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
     };
   }, [menuOpen]);
 
@@ -76,6 +78,11 @@ export function Header() {
 
   const handleScrollNav = (hash: string) => {
     closeMenu();
+
+    if (pathname !== "/") {
+      window.location.href = `/#${hash}`;
+      return;
+    }
 
     window.history.pushState(null, "", `/#${hash}`);
 
@@ -213,10 +220,7 @@ export function Header() {
 
           <nav aria-label="Mobile" className="px-4 pb-8 pt-6 sm:px-6">
             <ul className="divide-y divide-white/10">
-              {NAV.filter((item) => {
-                if (item.kind === "scroll") return true;
-                return item.to !== "/news";
-              }).map((item) => {
+              {NAV.map((item) => {
                 const linkClass =
                   "flex w-full items-center justify-between py-4 text-left font-display text-2xl font-bold tracking-tight text-white transition-colors hover:text-[#f8a52d]";
 
