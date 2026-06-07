@@ -218,7 +218,7 @@ function RootComponent() {
         <div className="relative flex min-h-[100dvh] flex-col bg-background text-foreground">
           <Header />
 
-          <main className="relative z-10 flex-1 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
+          <main className="relative z-10 flex-1">
             <AnimatedOutlet />
           </main>
 
