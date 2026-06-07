@@ -125,15 +125,6 @@ export function TicketModal({ tier, onClose }: Props) {
               className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/15"
             />
 
-            <span
-              aria-hidden
-              className={`pointer-events-none absolute -top-1/2 left-1/2 h-[140%] w-[140%] -translate-x-1/2 rounded-full opacity-60 blur-3xl ${
-                gold
-                  ? "bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--gold)_30%,transparent),transparent_70%)]"
-                  : "bg-[radial-gradient(closest-side,rgba(255,255,255,0.2),transparent_70%)]"
-              }`}
-            />
-
             <button
               type="button"
               onClick={onClose}
@@ -152,7 +143,7 @@ export function TicketModal({ tier, onClose }: Props) {
                 </h3>
 
                 {tier.highlight && (
-                  <span className="rounded-full bg-gold px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-gold-foreground shadow-[0_8px_20px_-6px_color-mix(in_oklab,var(--gold)_70%,transparent)]">
+                  <span className="rounded-full bg-gold px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-gold-foreground">
                     Popular
                   </span>
                 )}
@@ -210,10 +201,6 @@ export function TicketModal({ tier, onClose }: Props) {
 
               <Link
                 to="/tickets"
-                search={{
-                  tier: tier.name,
-                  qty,
-                }}
                 onClick={onClose}
                 className={`group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-xs font-bold uppercase tracking-widest transition-all duration-500 ease-out hover:gap-3 ${
                   gold
