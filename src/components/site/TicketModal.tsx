@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Minus, Plus, X, Check } from "lucide-react";
+import { ArrowRight, Check, Minus, Plus, X } from "lucide-react";
 
 export type TicketTier = {
   name: string;
@@ -18,19 +18,15 @@ type Props = {
 
 const PERKS: Record<string, string[]> = {
   "General Access": [
-    "Standing access · Stage front to floor",
-    "Entry from 14:00 · Doors close 22:30",
-    "All main stage performances",
+    "Standing access from stage front to floor",
+    "Entry from 14:00",
+    "Access to all main stage performances",
   ],
-  "VIP": [
-    "Elevated viewing deck",
-    "Fast-track entry & dedicated bar",
-    "VIP washrooms + lounge access",
-  ],
-  "Premium / Table": [
-    "Private table · Hospitality service",
-    "Bottle service & curated menu",
-    "Closest to the stage · Concierge host",
+  VIP: ["Elevated viewing deck", "Fast-track entry and dedicated bar", "VIP washrooms and lounge access"],
+  "Premium Table": [
+    "Private table and hospitality service",
+    "Bottle service and curated menu",
+    "Premium host support close to the stage",
   ],
 };
 
@@ -39,18 +35,31 @@ export function TicketModal({ tier, onClose }: Props) {
 
   useEffect(() => {
     if (!tier) return;
+
     setQty(1);
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
     return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
     };
   }, [tier, onClose]);
 
-  const gold = !!tier?.gold;
-  const perks = tier ? PERKS[tier.name] ?? [] : [];
+  const gold = Boolean(tier?.gold);
+  const perks = tier ? (PERKS[tier.name] ?? []) : [];
 
   return (
     <AnimatePresence>
@@ -62,10 +71,9 @@ export function TicketModal({ tier, onClose }: Props) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Backdrop */}
           <motion.button
             type="button"
-            aria-label="Close"
+            aria-label="Close ticket modal"
             onClick={onClose}
             className="absolute inset-0 bg-black/85 sm:bg-black/70 sm:backdrop-blur-md"
             initial={{ opacity: 0 }}
@@ -73,38 +81,50 @@ export function TicketModal({ tier, onClose }: Props) {
             exit={{ opacity: 0 }}
           />
 
-          {/* Card */}
           <motion.div
             role="dialog"
             aria-modal="true"
             aria-label={`${tier.name} tickets`}
-            initial={{ opacity: 0, y: 60, scale: 0.94, rotateX: 8, filter: "blur(14px)" }}
-            animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: 40, scale: 0.96, filter: "blur(10px)" }}
-            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            initial={{
+              opacity: 0,
+              y: 48,
+              scale: 0.96,
+              filter: "blur(12px)",
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              filter: "blur(0px)",
+            }}
+            exit={{
+              opacity: 0,
+              y: 32,
+              scale: 0.97,
+              filter: "blur(8px)",
+            }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              transformStyle: "preserve-3d",
               boxShadow: gold
                 ? "inset 0 1px 0 0 color-mix(in oklab, var(--gold) 60%, transparent), inset 0 -1px 0 0 rgba(0,0,0,0.4), 0 40px 80px -20px rgba(0,0,0,0.7), 0 0 60px -10px color-mix(in oklab, var(--gold) 40%, transparent)"
                 : "inset 0 1px 0 0 rgba(255,255,255,0.4), inset 0 -1px 0 0 rgba(0,0,0,0.4), 0 40px 80px -20px rgba(0,0,0,0.7), 0 0 60px -10px rgba(255,255,255,0.15)",
             }}
-            className={`relative w-full max-w-lg overflow-hidden rounded-3xl border p-6 sm:p-8 sm:backdrop-blur-2xl sm:backdrop-saturate-150 ${
+            className={`relative max-h-[calc(100dvh-2rem)] w-full max-w-lg overflow-y-auto rounded-3xl border p-6 text-white sm:p-8 sm:backdrop-blur-2xl sm:backdrop-saturate-150 ${
               gold
-                ? "border-gold/45 bg-gradient-to-br from-gold/[0.32] via-gold/[0.14] to-black/70 sm:from-gold/[0.18] sm:via-gold/[0.06] sm:to-black/40"
-                : "border-white/30 bg-gradient-to-br from-white/[0.24] via-white/[0.08] to-black/75 sm:from-white/[0.16] sm:via-white/[0.05] sm:to-black/40"
+                ? "border-gold/45 bg-gradient-to-br from-gold/[0.32] via-gold/[0.14] to-black/80 sm:from-gold/[0.18] sm:via-gold/[0.06] sm:to-black/50"
+                : "border-white/30 bg-gradient-to-br from-white/[0.24] via-white/[0.08] to-black/85 sm:from-white/[0.16] sm:via-white/[0.05] sm:to-black/50"
             }`}
           >
-            {/* Top specular highlight */}
             <span
               aria-hidden
               className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-white/30 via-white/5 to-transparent opacity-70 mix-blend-overlay"
             />
-            {/* Inset edge ring for 3D rim */}
+
             <span
               aria-hidden
               className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/15"
             />
-            {/* Ambient glow */}
+
             <span
               aria-hidden
               className={`pointer-events-none absolute -top-1/2 left-1/2 h-[140%] w-[140%] -translate-x-1/2 rounded-full opacity-60 blur-3xl ${
@@ -114,34 +134,37 @@ export function TicketModal({ tier, onClose }: Props) {
               }`}
             />
 
-            {/* Close */}
             <button
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/15 text-white/95 sm:backdrop-blur-md transition hover:scale-105 hover:bg-white/25"
+              className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/15 text-white/95 transition hover:scale-105 hover:bg-white/25 sm:backdrop-blur-md"
             >
               <X size={16} />
             </button>
 
             <div className="relative z-[1]">
               <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">{tier.tag}</p>
-              <div className="mt-2 flex items-end justify-between gap-4">
+
+              <div className="mt-2 flex items-end justify-between gap-4 pr-10">
                 <h3 className={`font-display text-3xl font-bold sm:text-4xl ${gold ? "text-gold" : "text-white"}`}>
                   {tier.name}
                 </h3>
+
                 {tier.highlight && (
                   <span className="rounded-full bg-gold px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-gold-foreground shadow-[0_8px_20px_-6px_color-mix(in_oklab,var(--gold)_70%,transparent)]">
                     Popular
                   </span>
                 )}
               </div>
-              <p className={`mt-3 font-display text-2xl font-bold ${gold ? "text-gold" : "text-white"}`}>{tier.price}</p>
 
-              {/* Perks */}
+              <p className={`mt-3 font-display text-2xl font-bold ${gold ? "text-gold" : "text-white"}`}>
+                {tier.price}
+              </p>
+
               <ul className="mt-6 space-y-2.5">
-                {perks.map((p) => (
-                  <li key={p} className="flex items-start gap-3 text-sm text-white/85">
+                {perks.map((perk) => (
+                  <li key={perk} className="flex items-start gap-3 text-sm text-white/85">
                     <span
                       className={`mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full ${
                         gold ? "bg-gold text-gold-foreground" : "bg-white text-black"
@@ -149,31 +172,33 @@ export function TicketModal({ tier, onClose }: Props) {
                     >
                       <Check size={12} strokeWidth={3} />
                     </span>
-                    <span>{p}</span>
+                    <span>{perk}</span>
                   </li>
                 ))}
               </ul>
 
-              {/* Quantity */}
-              <div className="mt-7 flex items-center justify-between rounded-2xl border border-white/15 bg-white/[0.1] sm:bg-white/[0.06] p-3 sm:backdrop-blur-md">
+              <div className="mt-7 flex items-center justify-between rounded-2xl border border-white/15 bg-white/[0.1] p-3 sm:bg-white/[0.06] sm:backdrop-blur-md">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.3em] text-white/60">Quantity</p>
                   <p className="mt-0.5 text-sm text-white/90">Max 8 per order</p>
                 </div>
+
                 <div className="flex items-center gap-3">
                   <button
                     type="button"
-                    onClick={() => setQty((q) => Math.max(1, q - 1))}
+                    onClick={() => setQty((current) => Math.max(1, current - 1))}
                     aria-label="Decrease quantity"
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 disabled:opacity-40"
                     disabled={qty <= 1}
                   >
                     <Minus size={14} />
                   </button>
+
                   <span className="w-6 text-center font-display text-xl font-bold text-white">{qty}</span>
+
                   <button
                     type="button"
-                    onClick={() => setQty((q) => Math.min(8, q + 1))}
+                    onClick={() => setQty((current) => Math.min(8, current + 1))}
                     aria-label="Increase quantity"
                     className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 disabled:opacity-40"
                     disabled={qty >= 8}
@@ -183,9 +208,12 @@ export function TicketModal({ tier, onClose }: Props) {
                 </div>
               </div>
 
-              {/* CTA */}
               <Link
                 to="/tickets"
+                search={{
+                  tier: tier.name,
+                  qty,
+                }}
                 onClick={onClose}
                 className={`group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-xs font-bold uppercase tracking-widest transition-all duration-500 ease-out hover:gap-3 ${
                   gold
@@ -193,9 +221,15 @@ export function TicketModal({ tier, onClose }: Props) {
                     : "bg-white text-black shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9),0_14px_36px_-10px_rgba(255,255,255,0.45)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_18px_44px_-10px_rgba(255,255,255,0.6)]"
                 }`}
               >
-                <span>Checkout · {qty} ticket{qty > 1 ? "s" : ""}</span>
-                <ArrowRight size={14} className="transition-transform duration-500 ease-out group-hover:translate-x-1" />
+                <span>
+                  Checkout · {qty} ticket{qty > 1 ? "s" : ""}
+                </span>
+                <ArrowRight
+                  size={14}
+                  className="transition-transform duration-500 ease-out group-hover:translate-x-1"
+                />
               </Link>
+
               <p className="mt-3 text-center text-[10px] uppercase tracking-[0.3em] text-white/50">
                 Secure checkout · Webtickets
               </p>
