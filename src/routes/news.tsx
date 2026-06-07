@@ -1,14 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
+
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
     meta: [
-      { title: "News — Scorpion Kings Live" },
-      { name: "description", content: "Announcements, press releases and updates from Scorpion Kings Live at FNB Stadium, 19 September 2028." },
-      { property: "og:title", content: "News — Scorpion Kings Live" },
-      { property: "og:description", content: "Latest from the Kings — straight from the source." },
+      { title: "News | Scorpion Kings Live" },
+      {
+        name: "description",
+        content:
+          "Announcements, press releases and updates from Scorpion Kings Live at FNB Stadium, 19 September 2026.",
+      },
+      { property: "og:title", content: "News | Scorpion Kings Live" },
+      {
+        property: "og:description",
+        content: "Latest from the Kings, straight from the source.",
+      },
     ],
   }),
   component: NewsPage,
@@ -30,14 +38,13 @@ const POSTS: Post[] = [
     date: "05 May 2026 · 10h00",
     title: "Scorpion Kings Live at FNB Stadium tickets are now available.",
     excerpt:
-      "The highly anticipated return of Scorpion Kings Live is gearing up to deliver the biggest Amapiano celebration the world has ever seen — tickets are officially live.",
+      "The return of Scorpion Kings Live is gearing up to deliver a landmark Amapiano celebration, and tickets are officially live.",
     body: [
-      "Following a historic 2025 edition, this year's show moves to Johannesburg's iconic FNB Stadium, with over 80 000 fans expected to be part of the moment.",
-      "Tickets are now on sale starting from just R400 per person, available via Webtickets, Pick n Pay and Boxer stores nationwide — making it easier than ever for fans to secure their place.",
-      "In an exciting move to welcome a new generation, this year's event is open to ages 14 and up, creating an opportunity for younger audiences to be part of history by experiencing the energy, culture and community of Amapiano on a global stage.",
-      "Curated by Amapiano pioneers DJ Maphorisa and Kabza De Small, Scorpion Kings Live has become a defining cultural experience, known for its world-class production, electrifying performances and unforgettable atmosphere. This year's edition is set to raise the bar even higher.",
-      "While tickets are now live, this is only the beginning — more exciting announcements, including lineup reveals and special moments, are still to come.",
-      "Be part of history and get your tickets now.",
+      "Scorpion Kings Live returns to Johannesburg’s iconic FNB Stadium on 19 September 2026, bringing fans together for a major celebration of Amapiano, performance and culture.",
+      "Tickets start from R400 per person and are available via Webtickets, Pick n Pay and Boxer stores nationwide.",
+      "The event is open to ages 14 and up, giving a new generation of fans the chance to experience the energy and community of Amapiano on a stadium stage.",
+      "Curated by DJ Maphorisa and Kabza De Small, Scorpion Kings Live is built around world-class production, electrifying performances and the unmistakable sound that continues to move from South Africa to the world.",
+      "More announcements, including lineup reveals and special moments, will follow.",
     ],
     href: "https://www.webtickets.co.za",
     hrefLabel: "Buy on Webtickets",
@@ -45,13 +52,12 @@ const POSTS: Post[] = [
   {
     tag: "Announcement",
     date: "Pre-launch",
-    title: "Tickets to Scorpion Kings Live at FNB Stadium available from 05 May 2026.",
-    excerpt:
-      "Scorpion Kings Live at FNB Stadium is officially loading — bigger, and set to redefine the scale of live Amapiano experiences in South Africa and beyond.",
+    title: "Scorpion Kings Live at FNB Stadium is officially loading.",
+    excerpt: "A stadium-scale Amapiano experience is on the way, built for the artists, the fans and the culture.",
     body: [
-      "On 19 September 2028, Johannesburg's iconic FNB Stadium will play host to what is set to become the largest Amapiano celebration the world has ever seen, with over 80 000 fans expected to come together.",
-      "This year's Scorpion Kings Live at FNB Stadium is more than just a concert. It's a powerful reflection of the community that has built and carried Amapiano from local streets to global stages — connection, shared energy and a sound that continues to unite people across cities, countries and cultures.",
-      "Fans can expect an electrifying showcase of the very best in Amapiano, with a dynamic lineup and a stadium-wide atmosphere that captures the spirit of the movement.",
+      "On 19 September 2026, FNB Stadium will host Scorpion Kings Live, a major live music moment shaped around the sound and movement of Amapiano.",
+      "The show is more than a concert. It is a reflection of the community that has carried Amapiano from local streets to global stages through shared energy, connection and rhythm.",
+      "Fans can expect a powerful live showcase, a dynamic lineup and a stadium atmosphere designed around the spirit of the movement.",
       "Tickets will be available via Webtickets, Pick n Pay and Boxer stores nationwide from 05 May 2026.",
       "Secure your ticket. Be part of history.",
     ],
@@ -69,32 +75,56 @@ function NewsPage() {
         description="Announcements, press releases and updates direct from the team."
       />
 
-      <Section className="!pt-0">
-        <div className="space-y-8">
-          {POSTS.map((p, i) => (
-            <FadeIn key={p.title} delay={i * 0.08}>
-              <article className="rounded-2xl border border-border bg-card p-6 md:p-10">
+      <Section className="bg-black text-white">
+        <FadeIn>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Latest updates</p>
+
+              <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
+                The official word.
+              </h2>
+            </div>
+
+            <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
+              Follow confirmed announcements, ticket updates, press notes and event information as the road to FNB
+              Stadium unfolds.
+            </p>
+          </div>
+        </FadeIn>
+
+        <div className="mt-10 space-y-6">
+          {POSTS.map((post, index) => (
+            <FadeIn key={post.title} delay={index * 0.08}>
+              <article className="overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-10">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
-                    {p.tag}
+                  <span className="rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-black">
+                    {post.tag}
                   </span>
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">{p.date}</p>
+
+                  <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">{post.date}</p>
                 </div>
-                <h2 className="mt-4 font-display text-2xl font-bold leading-tight md:text-4xl">{p.title}</h2>
-                <p className="mt-4 text-base text-foreground/80 md:text-lg">{p.excerpt}</p>
-                <div className="mt-5 space-y-3 text-sm text-muted-foreground md:text-base">
-                  {p.body.map((para, idx) => (
-                    <p key={idx}>{para}</p>
+
+                <h2 className="mt-5 font-display text-3xl font-bold leading-tight text-white md:text-5xl">
+                  {post.title}
+                </h2>
+
+                <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">{post.excerpt}</p>
+
+                <div className="mt-6 space-y-3 text-sm leading-relaxed text-white/60 md:text-base">
+                  {post.body.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
                   ))}
                 </div>
-                {p.href && (
+
+                {post.href && (
                   <a
-                    href={p.href}
+                    href={post.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-6 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-background transition-transform hover:scale-105"
+                    className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
                   >
-                    {p.hrefLabel} <ArrowUpRight size={14} />
+                    {post.hrefLabel} <ArrowUpRight size={14} />
                   </a>
                 )}
               </article>
@@ -103,15 +133,16 @@ function NewsPage() {
         </div>
 
         <FadeIn delay={0.3}>
-          <div className="mt-10 rounded-2xl border border-border bg-card p-6 text-sm text-muted-foreground md:p-8">
-            <p className="font-bold uppercase tracking-widest text-foreground">Press queries</p>
+          <div className="mt-10 rounded-3xl border border-white/15 bg-white/[0.06] p-6 text-sm text-white/65 backdrop-blur-xl md:p-8">
+            <p className="font-bold uppercase tracking-widest text-white">Press queries</p>
+
             <p className="mt-2">
               Kim Sineke ·{" "}
-              <a href="mailto:kim@iam4.co.za" className="text-primary hover:underline">
+              <a href="mailto:kim@iam4.co.za" className="text-gold hover:underline">
                 kim@iam4.co.za
               </a>{" "}
               ·{" "}
-              <a href="tel:+27810421076" className="text-primary hover:underline">
+              <a href="tel:+27810421076" className="text-gold hover:underline">
                 +27 81 042 1076
               </a>
             </p>
