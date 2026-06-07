@@ -1,81 +1,143 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { zodValidator, fallback } from "@tanstack/zod-adapter";
-import { z } from "zod";
-import { useMemo } from "react";
-import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+
+import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
 
 const CATEGORIES = ["all", "platinum", "gold", "silver", "bronze"] as const;
+
 type Category = (typeof CATEGORIES)[number];
 
-const searchSchema = z.object({
-  tier: fallback(z.enum(CATEGORIES), "all").default("all"),
-});
+type PartnerPackage = {
+  name: string;
+  tier: Exclude<Category, "all">;
+  blurb: string;
+  status: "Available" | "Confirmed";
+};
 
 export const Route = createFileRoute("/partners")({
-  validateSearch: zodValidator(searchSchema),
   head: () => ({
     meta: [
-      { title: "Partners — Scorpion Kings Live" },
-      { name: "description", content: "Meet the brands powering the moment. Filter by Platinum, Gold, Silver and Bronze partners." },
-      { property: "og:title", content: "Partners — Scorpion Kings Live" },
-      { property: "og:description", content: "Powered by brands that move with the culture." },
+      { title: "Partners | Scorpion Kings Live" },
+      {
+        name: "description",
+        content: "Partner with Scorpion Kings Live and connect with a culture-defining live music audience.",
+      },
+      { property: "og:title", content: "Partners | Scorpion Kings Live" },
+      {
+        property: "og:description",
+        content: "Powered by brands that move with the culture.",
+      },
     ],
   }),
   component: PartnersPage,
 });
 
-type Partner = { name: string; tier: Exclude<Category, "all">; blurb: string };
-
-const PARTNERS: Partner[] = [
-  { name: "Sony Music Africa", tier: "platinum", blurb: "Headline label partner driving the lineup." },
-  { name: "FNB", tier: "platinum", blurb: "Official banking partner of the moment." },
-  { name: "Castle Lite", tier: "gold", blurb: "Pouring the cold ones across every stage." },
-  { name: "MTN", tier: "gold", blurb: "Connectivity that keeps the floor moving." },
-  { name: "Heineken", tier: "gold", blurb: "Refreshing the night, set after set." },
-  { name: "Spotify Africa", tier: "silver", blurb: "Streaming the official festival playlist." },
-  { name: "Apple Music", tier: "silver", blurb: "Spatial audio drops from the main stage." },
-  { name: "Boost Mobile", tier: "silver", blurb: "Powering the charging lounges." },
-  { name: "Webtickets", tier: "silver", blurb: "Official ticketing partner." },
-  { name: "Pick n Pay", tier: "bronze", blurb: "On-the-ground retail partner." },
-  { name: "Adidas", tier: "bronze", blurb: "Official festival apparel drop." },
-  { name: "Bolt", tier: "bronze", blurb: "Door-to-door from the city to FNB." },
-  { name: "Showmax", tier: "bronze", blurb: "Behind-the-scenes streaming partner." },
-  { name: "Red Bull", tier: "bronze", blurb: "Energy partner for late-night sets." },
-];
-
-const TIER_META: Record<Exclude<Category, "all">, { label: string; ring: string; pillBg: string }> = {
-  platinum: { label: "Platinum", ring: "border-foreground/40", pillBg: "bg-foreground/5" },
-  gold:     { label: "Gold",     ring: "border-accent/50",    pillBg: "bg-accent/10" },
-  silver:   { label: "Silver",   ring: "border-muted-foreground/40", pillBg: "bg-muted/60" },
-  bronze:   { label: "Bronze",   ring: "border-primary/40",   pillBg: "bg-primary/5" },
-};
+const PARTNER_PACKAGES: PartnerPackage[] = [
+  {
+    name: "Headline Partner",
+    tier: "platinum",
+    blurb: "Maximum visibility across the event, digital campaign, stage moments and fan communications.",
+    status: "Available",
+  },
+  {
+    name: "Official Ticketing Partner",
+    tier: "platinum",
+    blurb: "Ticketing, access and fan purchase journey integration across the campaign.",
+    status: "Available",
+  },
+  {
+    name: "Stage Partner",
+    tier: "gold",
+    blurb: "Own a key stage moment, visual package or branded fan experience.",
+    status: "Available",
+  },
+  {
+    name: "VIP Experience Partner",
+    tier: "gold",
+    blurb: "Premium hospitality visibility across VIP areas, hosting and guest touchpoints.",
+    status: "Available",
+  },
+  {
+    name: "Digital Content Partner",
+    tier: "silver",
+    blurb: "Social-first content, behind-the-scenes access and digital storytelling opportunities.",
+    status: "Available",
+  },
+  {
+    name: "Merch Partner",
+    tier: "silver",
+    blurb: "Limited-edition merchandise, fan drops and branded retail moments.",
+    status: "Available",
+  },
+  {
+    name: "Food + Beverage Partner",
+    tier: "bronze",
+    blurb: "Vendor visibility, sampling opportunities and on-site fan engagement.",
+    status: "Available",
+  },
+  {
+    name: "Transport Partner",
+    tier: "bronze",
+    blurb: "Ride-share, parking, shuttle or access-support partnership opportunities.",
+    status: "Available",
+  },
+] as const;
 
 const FILTERS: { key: Category; label: string }[] = [
-  { key: "all",      label: "All" },
+  { key: "all", label: "All" },
   { key: "platinum", label: "Platinum" },
-  { key: "gold",     label: "Gold" },
-  { key: "silver",   label: "Silver" },
-  { key: "bronze",   label: "Bronze" },
+  { key: "gold", label: "Gold" },
+  { key: "silver", label: "Silver" },
+  { key: "bronze", label: "Bronze" },
 ];
 
-function PartnersPage() {
-  const { tier } = Route.useSearch();
-  const navigate = useNavigate({ from: "/partners" });
+const TIER_META: Record<Exclude<Category, "all">, { label: string; card: string; badge: string }> = {
+  platinum: {
+    label: "Platinum",
+    card: "border-white/30 bg-white/[0.08]",
+    badge: "bg-white text-black",
+  },
+  gold: {
+    label: "Gold",
+    card: "border-gold/50 bg-gold/[0.12]",
+    badge: "bg-gold text-black",
+  },
+  silver: {
+    label: "Silver",
+    card: "border-white/20 bg-white/[0.06]",
+    badge: "bg-white/80 text-black",
+  },
+  bronze: {
+    label: "Bronze",
+    card: "border-white/15 bg-white/[0.04]",
+    badge: "bg-white/15 text-white",
+  },
+};
 
-  const filtered = useMemo(
-    () => (tier === "all" ? PARTNERS : PARTNERS.filter((s) => s.tier === tier)),
-    [tier],
-  );
+function PartnersPage() {
+  const [activeTier, setActiveTier] = useState<Category>("all");
+
+  const filtered = useMemo(() => {
+    if (activeTier === "all") return PARTNER_PACKAGES;
+
+    return PARTNER_PACKAGES.filter((partner) => partner.tier === activeTier);
+  }, [activeTier]);
 
   const counts = useMemo(() => {
-    const map = { all: PARTNERS.length } as Record<Category, number>;
-    (Object.keys(TIER_META) as Array<keyof typeof TIER_META>).forEach((k) => {
-      map[k] = PARTNERS.filter((s) => s.tier === k).length;
-    });
-    return map;
+    return FILTERS.reduce(
+      (acc, filter) => {
+        acc[filter.key] =
+          filter.key === "all"
+            ? PARTNER_PACKAGES.length
+            : PARTNER_PACKAGES.filter((partner) => partner.tier === filter.key).length;
+
+        return acc;
+      },
+      {} as Record<Category, number>,
+    );
   }, []);
 
   return (
@@ -83,40 +145,57 @@ function PartnersPage() {
       <PageHero
         eyebrow="Our partners"
         title="Powered by the bold."
-        description="The brands moving with us — building unforgettable moments alongside the artists and the fans."
+        description="Partner opportunities for brands that want to move with the artists, the fans and the culture."
       />
 
-      {/* FILTER BAR */}
-      <Section className="!pt-0">
+      <Section className="bg-black text-white">
         <FadeIn>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Partnership tiers</p>
+
+              <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
+                Built for brands with rhythm.
+              </h2>
+            </div>
+
+            <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
+              This page can be updated as partners are confirmed. For now, it presents clean, credible sponsorship
+              opportunities without naming unconfirmed brands.
+            </p>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.1}>
           <div
             role="tablist"
-            aria-label="Filter partners by tier"
-            className="flex flex-wrap gap-2 border-b border-border pb-6"
+            aria-label="Filter partner packages by tier"
+            className="mt-8 flex flex-wrap gap-2 border-b border-white/10 pb-6"
           >
-            {FILTERS.map((f) => {
-              const active = tier === f.key;
+            {FILTERS.map((filter) => {
+              const active = activeTier === filter.key;
+
               return (
                 <button
-                  key={f.key}
+                  key={filter.key}
+                  type="button"
                   role="tab"
                   aria-selected={active}
-                  onClick={() =>
-                    navigate({ search: { tier: f.key }, replace: true })
-                  }
-                  className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all ${
+                  onClick={() => setActiveTier(filter.key)}
+                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all ${
                     active
-                      ? "border-foreground bg-foreground text-background"
-                      : "border-border bg-card text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+                      ? "border-gold bg-gold text-black"
+                      : "border-white/15 bg-white/[0.05] text-white/65 hover:border-white/35 hover:text-white"
                   }`}
                 >
-                  {f.label}
+                  {filter.label}
+
                   <span
                     className={`rounded-full px-1.5 py-0.5 text-[10px] tabular-nums ${
-                      active ? "bg-background/20 text-background" : "bg-muted text-muted-foreground"
+                      active ? "bg-black/10 text-black" : "bg-white/10 text-white/60"
                     }`}
                   >
-                    {counts[f.key]}
+                    {counts[filter.key]}
                   </span>
                 </button>
               );
@@ -124,74 +203,79 @@ function PartnersPage() {
           </div>
         </FadeIn>
 
-        {/* RESULTS */}
         <div className="mt-10">
           <FadeIn>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Showing {filtered.length} {filtered.length === 1 ? "partner" : "partners"}
-              {tier !== "all" ? ` · ${TIER_META[tier as Exclude<Category, "all">].label}` : ""}
+            <p className="text-xs uppercase tracking-widest text-white/50">
+              Showing {filtered.length} {filtered.length === 1 ? "package" : "packages"}
+              {activeTier !== "all" ? ` · ${TIER_META[activeTier].label}` : ""}
             </p>
           </FadeIn>
 
-          {filtered.length === 0 ? (
-            <FadeIn delay={0.1}>
-              <div className="mt-8 rounded-lg border border-dashed border-border p-10 text-center">
-                <p className="text-muted-foreground">No partners in this tier yet.</p>
-              </div>
-            </FadeIn>
-          ) : (
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {filtered.map((s, i) => {
-                const meta = TIER_META[s.tier];
-                const logo = s.tier === "platinum" || s.tier === "gold" ? partnerLogoFull : partnerLogoMark;
-                return (
-                  <FadeIn key={s.name} delay={i * 0.03}>
-                    <article
-                      className={`group relative flex h-full flex-col justify-between rounded-lg border-2 ${meta.ring} ${meta.pillBg} p-5 transition-transform hover:-translate-y-1`}
-                    >
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((partner, index) => {
+              const meta = TIER_META[partner.tier];
+              const logo = partner.tier === "platinum" || partner.tier === "gold" ? partnerLogoFull : partnerLogoMark;
+
+              return (
+                <FadeIn key={partner.name} delay={index * 0.03}>
+                  <article
+                    className={`group relative flex h-full min-h-[320px] flex-col justify-between overflow-hidden rounded-3xl border p-5 backdrop-blur-xl transition-transform hover:-translate-y-1 ${meta.card}`}
+                  >
+                    <div>
                       <div className="flex items-start justify-between gap-3">
-                        <span className="rounded-full bg-background/70 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-foreground backdrop-blur-sm">
+                        <span
+                          className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest ${meta.badge}`}
+                        >
                           {meta.label}
                         </span>
+
                         <ArrowUpRight
                           size={16}
-                          className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground"
+                          className="text-white/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
                         />
                       </div>
-                      <div className="mt-5 aspect-[3/2] overflow-hidden rounded-md">
+
+                      <div className="mt-6 flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/35 p-6">
                         <img
                           src={logo}
-                          alt={`${s.name} — placeholder logo`}
+                          alt={`${partner.name} package visual`}
                           loading="lazy"
-                          className="h-full w-full object-cover"
+                          className="max-h-20 w-auto object-contain"
                         />
                       </div>
-                      <div className="mt-5">
-                        <h3 className="font-display text-2xl font-bold leading-tight">{s.name}</h3>
-                        <p className="mt-2 text-sm text-muted-foreground">{s.blurb}</p>
-                      </div>
-                    </article>
-                  </FadeIn>
-                );
-              })}
-            </div>
-          )}
+                    </div>
+
+                    <div className="mt-6">
+                      <p className="text-[10px] uppercase tracking-[0.35em] text-gold">{partner.status}</p>
+
+                      <h3 className="mt-2 font-display text-2xl font-bold leading-tight text-white">{partner.name}</h3>
+
+                      <p className="mt-2 text-sm leading-relaxed text-white/65">{partner.blurb}</p>
+                    </div>
+                  </article>
+                </FadeIn>
+              );
+            })}
+          </div>
         </div>
       </Section>
 
-      {/* CTA */}
-      <Section className="border-t border-border">
-        <div className="rounded-2xl border border-border bg-gradient-to-br from-primary/15 via-card to-card p-10 md:p-16">
+      <Section className="bg-orange-rich text-white">
+        <div className="rounded-3xl border border-white/15 bg-black/35 p-8 backdrop-blur-xl md:p-12">
           <FadeIn>
-            <h2 className="font-display text-4xl font-bold leading-tight md:text-6xl">
-              Partner with us.
+            <p className="text-xs uppercase tracking-[0.4em] text-gold">Partner with us</p>
+
+            <h2 className="mt-4 font-display text-4xl font-bold leading-tight md:text-6xl">
+              Let’s build something unforgettable.
             </h2>
-            <p className="mt-4 max-w-xl text-lg text-muted-foreground">
-              Reach a passionate, culture-defining audience. Let's build something unforgettable together.
+
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
+              Reach a passionate, culture-defining audience across live, digital, content and on-site experiences.
             </p>
+
             <Link
               to="/contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:scale-105"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
             >
               Get in touch <ArrowUpRight size={16} />
             </Link>
