@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Minus, Plus, X } from "lucide-react";
 
 export type TicketTier = {
@@ -58,172 +57,134 @@ export function TicketModal({ tier, onClose }: Props) {
     };
   }, [tier, onClose]);
 
-  const gold = Boolean(tier?.gold);
-  const perks = tier ? (PERKS[tier.name] ?? []) : [];
+  if (!tier) return null;
+
+  const gold = Boolean(tier.gold);
+  const perks = PERKS[tier.name] ?? [];
+
+  const handleCheckout = () => {
+    onClose();
+    window.open("https://www.webtickets.co.za", "_blank", "noopener,noreferrer");
+  };
 
   return (
     <AnimatePresence>
-      {tier && (
+      <motion.div
+        className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <button
+          type="button"
+          aria-label="Close ticket modal"
+          onClick={onClose}
+          className="absolute inset-0 bg-black/85"
+        />
+
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${tier.name} tickets`}
+          initial={{ opacity: 0, y: 36, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 24, scale: 0.97 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className={`relative max-h-[calc(100dvh-2rem)] w-full max-w-lg overflow-y-auto rounded-3xl border p-6 text-white shadow-2xl sm:p-8 ${
+            gold ? "border-gold/50 bg-black" : "border-white/20 bg-black"
+          }`}
         >
-          <motion.button
+          <button
             type="button"
-            aria-label="Close ticket modal"
             onClick={onClose}
-            className="absolute inset-0 bg-black/85 sm:bg-black/70 sm:backdrop-blur-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          />
-
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-label={`${tier.name} tickets`}
-            initial={{
-              opacity: 0,
-              y: 48,
-              scale: 0.96,
-              filter: "blur(12px)",
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              filter: "blur(0px)",
-            }}
-            exit={{
-              opacity: 0,
-              y: 32,
-              scale: 0.97,
-              filter: "blur(8px)",
-            }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              boxShadow: gold
-                ? "inset 0 1px 0 0 color-mix(in oklab, var(--gold) 60%, transparent), inset 0 -1px 0 0 rgba(0,0,0,0.4), 0 40px 80px -20px rgba(0,0,0,0.7), 0 0 60px -10px color-mix(in oklab, var(--gold) 40%, transparent)"
-                : "inset 0 1px 0 0 rgba(255,255,255,0.4), inset 0 -1px 0 0 rgba(0,0,0,0.4), 0 40px 80px -20px rgba(0,0,0,0.7), 0 0 60px -10px rgba(255,255,255,0.15)",
-            }}
-            className={`relative max-h-[calc(100dvh-2rem)] w-full max-w-lg overflow-y-auto rounded-3xl border p-6 text-white sm:p-8 sm:backdrop-blur-2xl sm:backdrop-saturate-150 ${
-              gold
-                ? "border-gold/45 bg-gradient-to-br from-gold/[0.32] via-gold/[0.14] to-black/80 sm:from-gold/[0.18] sm:via-gold/[0.06] sm:to-black/50"
-                : "border-white/30 bg-gradient-to-br from-white/[0.24] via-white/[0.08] to-black/85 sm:from-white/[0.16] sm:via-white/[0.05] sm:to-black/50"
-            }`}
+            aria-label="Close"
+            className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20"
           >
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-white/30 via-white/5 to-transparent opacity-70 mix-blend-overlay"
-            />
+            <X size={16} />
+          </button>
 
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/15"
-            />
+          <div className="relative z-[1]">
+            <p className="pr-12 text-[10px] uppercase tracking-[0.4em] text-white/60">{tier.tag}</p>
+
+            <div className="mt-2 flex items-start justify-between gap-4 pr-10">
+              <h3 className={`font-display text-3xl font-bold sm:text-4xl ${gold ? "text-gold" : "text-white"}`}>
+                {tier.name}
+              </h3>
+
+              {tier.highlight && (
+                <span className="rounded-full bg-gold px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-black">
+                  Popular
+                </span>
+              )}
+            </div>
+
+            <p className={`mt-3 font-display text-2xl font-bold ${gold ? "text-gold" : "text-white"}`}>{tier.price}</p>
+
+            <ul className="mt-6 space-y-2.5">
+              {perks.map((perk) => (
+                <li key={perk} className="flex items-start gap-3 text-sm text-white/85">
+                  <span
+                    className={`mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full ${
+                      gold ? "bg-gold text-black" : "bg-white text-black"
+                    }`}
+                  >
+                    <Check size={12} strokeWidth={3} />
+                  </span>
+                  <span>{perk}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-7 flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 p-3">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-white/60">Quantity</p>
+                <p className="mt-0.5 text-sm text-white/80">Max 8 per order</p>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setQty((current) => Math.max(1, current - 1))}
+                  aria-label="Decrease quantity"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 disabled:opacity-40"
+                  disabled={qty <= 1}
+                >
+                  <Minus size={14} />
+                </button>
+
+                <span className="w-6 text-center font-display text-xl font-bold text-white">{qty}</span>
+
+                <button
+                  type="button"
+                  onClick={() => setQty((current) => Math.min(8, current + 1))}
+                  aria-label="Increase quantity"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 disabled:opacity-40"
+                  disabled={qty >= 8}
+                >
+                  <Plus size={14} />
+                </button>
+              </div>
+            </div>
 
             <button
               type="button"
-              onClick={onClose}
-              aria-label="Close"
-              className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/15 text-white/95 transition hover:scale-105 hover:bg-white/25 sm:backdrop-blur-md"
+              onClick={handleCheckout}
+              className={`group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:gap-3 ${
+                gold ? "bg-gold text-black" : "bg-white text-black"
+              }`}
             >
-              <X size={16} />
+              <span>
+                Checkout · {qty} ticket{qty > 1 ? "s" : ""}
+              </span>
+              <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
             </button>
 
-            <div className="relative z-[1]">
-              <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">{tier.tag}</p>
-
-              <div className="mt-2 flex items-end justify-between gap-4 pr-10">
-                <h3 className={`font-display text-3xl font-bold sm:text-4xl ${gold ? "text-gold" : "text-white"}`}>
-                  {tier.name}
-                </h3>
-
-                {tier.highlight && (
-                  <span className="rounded-full bg-gold px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-gold-foreground">
-                    Popular
-                  </span>
-                )}
-              </div>
-
-              <p className={`mt-3 font-display text-2xl font-bold ${gold ? "text-gold" : "text-white"}`}>
-                {tier.price}
-              </p>
-
-              <ul className="mt-6 space-y-2.5">
-                {perks.map((perk) => (
-                  <li key={perk} className="flex items-start gap-3 text-sm text-white/85">
-                    <span
-                      className={`mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full ${
-                        gold ? "bg-gold text-gold-foreground" : "bg-white text-black"
-                      }`}
-                    >
-                      <Check size={12} strokeWidth={3} />
-                    </span>
-                    <span>{perk}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-7 flex items-center justify-between rounded-2xl border border-white/15 bg-white/[0.1] p-3 sm:bg-white/[0.06] sm:backdrop-blur-md">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/60">Quantity</p>
-                  <p className="mt-0.5 text-sm text-white/90">Max 8 per order</p>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setQty((current) => Math.max(1, current - 1))}
-                    aria-label="Decrease quantity"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 disabled:opacity-40"
-                    disabled={qty <= 1}
-                  >
-                    <Minus size={14} />
-                  </button>
-
-                  <span className="w-6 text-center font-display text-xl font-bold text-white">{qty}</span>
-
-                  <button
-                    type="button"
-                    onClick={() => setQty((current) => Math.min(8, current + 1))}
-                    aria-label="Increase quantity"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 disabled:opacity-40"
-                    disabled={qty >= 8}
-                  >
-                    <Plus size={14} />
-                  </button>
-                </div>
-              </div>
-
-              <Link
-                to="/tickets"
-                onClick={onClose}
-                className={`group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-xs font-bold uppercase tracking-widest transition-all duration-500 ease-out hover:gap-3 ${
-                  gold
-                    ? "bg-gold text-gold-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.55),0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7),0_18px_44px_-10px_color-mix(in_oklab,var(--gold)_95%,transparent)]"
-                    : "bg-white text-black shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9),0_14px_36px_-10px_rgba(255,255,255,0.45)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_18px_44px_-10px_rgba(255,255,255,0.6)]"
-                }`}
-              >
-                <span>
-                  Checkout · {qty} ticket{qty > 1 ? "s" : ""}
-                </span>
-                <ArrowRight
-                  size={14}
-                  className="transition-transform duration-500 ease-out group-hover:translate-x-1"
-                />
-              </Link>
-
-              <p className="mt-3 text-center text-[10px] uppercase tracking-[0.3em] text-white/50">
-                Secure checkout · Webtickets
-              </p>
-            </div>
-          </motion.div>
+            <p className="mt-3 text-center text-[10px] uppercase tracking-[0.3em] text-white/50">
+              Secure checkout · Webtickets
+            </p>
+          </div>
         </motion.div>
-      )}
+      </motion.div>
     </AnimatePresence>
   );
 }
