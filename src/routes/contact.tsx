@@ -32,7 +32,16 @@ const schema = z.object({
   message: z.string().trim().min(1, "Message is required").max(2000),
 });
 
-const CONTACTS = [
+type ContactEntry = {
+  icon: typeof Newspaper;
+  label: string;
+  name: string;
+  email: string;
+  phone?: string;
+  phoneHref?: string;
+};
+
+const CONTACTS: readonly ContactEntry[] = [
   {
     icon: Newspaper,
     label: "Press",
@@ -53,7 +62,7 @@ const CONTACTS = [
     name: "Partnership enquiries",
     email: "partners@sonymusic.co.za",
   },
-] as const;
+];
 
 type FormState = {
   name: string;
