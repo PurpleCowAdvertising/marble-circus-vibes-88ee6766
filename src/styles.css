@@ -12,6 +12,7 @@
     font-display: swap;
     src: url("https://fonts.gstatic.com/s/syne/v22/8vIS7w4qzmVxsWxjBZRjr0FKM_04uT6k.woff2") format("woff2");
   }
+
   @font-face {
     font-family: "Chinese Rocks";
     font-style: normal;
@@ -23,13 +24,14 @@
 
 @theme inline {
   --font-display: "Chinese Rocks", "Syne", "Bebas Neue", system-ui, sans-serif;
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -59,7 +61,6 @@
 :root {
   --radius: 0.25rem;
 
-  /* Dark mode — warm black with cream foreground */
   --background: oklch(0.11 0.012 60);
   --foreground: oklch(0.96 0.01 85);
 
@@ -78,7 +79,6 @@
   --muted: oklch(0.22 0.015 60);
   --muted-foreground: oklch(0.72 0.02 80);
 
-  /* Scorpion Kings orange */
   --accent: oklch(0.7 0.2 48);
   --accent-foreground: oklch(0.14 0.012 60);
 
@@ -92,35 +92,47 @@
   --marble: oklch(0.96 0.01 85);
   --electric: oklch(0.7 0.2 30);
 
-  /* Scorpion Kings logo gold (yellow-orange center) */
   --gold: oklch(0.83 0.16 80);
   --gold-foreground: oklch(0.14 0.012 60);
 }
 
-.dark {
+/* Optional light theme support.
+   Kept as .light instead of .dark because the default site is already dark. */
+.light {
   --background: oklch(0.985 0.005 85);
   --foreground: oklch(0.14 0.02 40);
+
   --card: oklch(0.97 0.008 85);
   --card-foreground: oklch(0.14 0.02 40);
+
   --popover: oklch(0.98 0.006 85);
   --popover-foreground: oklch(0.14 0.02 40);
+
   --primary: oklch(0.16 0.02 40);
   --primary-foreground: oklch(0.98 0.005 85);
+
   --secondary: oklch(0.94 0.01 85);
   --secondary-foreground: oklch(0.14 0.02 40);
+
   --muted: oklch(0.93 0.012 80);
   --muted-foreground: oklch(0.42 0.03 50);
+
   --accent: oklch(0.66 0.19 45);
   --accent-foreground: oklch(0.98 0.005 85);
+
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.98 0.005 85);
+
   --border: oklch(0.16 0.02 40 / 0.14);
   --input: oklch(0.92 0.012 80);
   --ring: oklch(0.16 0.02 40);
 }
 
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
     border-color: var(--color-border);
   }
 
@@ -135,26 +147,49 @@
 
   body {
     min-height: 100%;
-    background-color: #fff;
+    margin: 0;
+    background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
     overflow-x: hidden;
-    /* Do NOT set overflow-y on body — the html element owns vertical scroll.
-       Two scroll containers on iOS Safari break position: fixed (the floating
-       tab bar drifts mid-page instead of pinning to the visual viewport). */
   }
 
   #root {
-    min-height: 100%;
+    min-height: 100dvh;
   }
 
-  h1, h2, h3, h4, .font-display {
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
 
-  /* Subtle marble grain texture overlay */
   body::before {
     content: "";
     position: fixed;
@@ -176,11 +211,22 @@
 }
 
 @layer utilities {
-  .text-balance { text-wrap: balance; }
-  .text-pretty { text-wrap: pretty; }
+  .text-balance {
+    text-wrap: balance;
+  }
 
-  .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
-  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
   .marquee {
     display: flex;
@@ -190,6 +236,7 @@
     -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
     mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   }
+
   .marquee-track {
     display: flex;
     gap: 1.5rem;
@@ -197,31 +244,49 @@
     animation: marquee 28s linear infinite;
     will-change: transform;
   }
+
   @media (min-width: 768px) {
-    .marquee, .marquee-track { gap: 3rem; }
-    .marquee-track { animation-duration: 50s; }
-  }
-  .marquee:hover .marquee-track,
-  .marquee:focus-within .marquee-track { animation-play-state: paused; }
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track { animation-duration: 90s; }
-  }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
+    .marquee,
+    .marquee-track {
+      gap: 3rem;
+    }
+
+    .marquee-track {
+      animation-duration: 50s;
+    }
   }
 
-  /* Bold 3D extruded text — chunky layered shadow */
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation-duration: 90s;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
   .text-3d {
     text-shadow:
-      1px 1px 0 rgba(0,0,0,0.9),
-      2px 2px 0 rgba(0,0,0,0.9),
-      3px 3px 0 rgba(0,0,0,0.9),
-      4px 4px 0 rgba(0,0,0,0.9),
-      5px 5px 0 rgba(0,0,0,0.9),
-      6px 6px 0 rgba(0,0,0,0.9),
-      7px 7px 12px rgba(0,0,0,0.35);
-    -webkit-text-stroke: 1.5px rgba(0,0,0,0.9);
+      1px 1px 0 rgba(0, 0, 0, 0.9),
+      2px 2px 0 rgba(0, 0, 0, 0.9),
+      3px 3px 0 rgba(0, 0, 0, 0.9),
+      4px 4px 0 rgba(0, 0, 0, 0.9),
+      5px 5px 0 rgba(0, 0, 0, 0.9),
+      6px 6px 0 rgba(0, 0, 0, 0.9),
+      7px 7px 12px rgba(0, 0, 0, 0.35);
+    -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.9);
     paint-order: stroke fill;
   }
 
@@ -232,27 +297,36 @@
     background-size: 80px 80px;
   }
 
-  /* Subtle interaction utilities */
   .hover-lift {
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
   }
+
   .hover-lift:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px -20px color-mix(in oklab, var(--color-accent) 35%, transparent);
   }
 
-  .hover-zoom { overflow: hidden; }
+  .hover-zoom {
+    overflow: hidden;
+  }
+
   .hover-zoom img {
     transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
   }
-  .hover-zoom:hover img { transform: scale(1.06); }
+
+  .hover-zoom:hover img {
+    transform: scale(1.06);
+  }
 
   .story-link {
     position: relative;
     display: inline-block;
   }
+
   .story-link::after {
     content: "";
     position: absolute;
@@ -265,6 +339,7 @@
     transform-origin: right;
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
+
   .story-link:hover::after {
     transform: scaleX(1);
     transform-origin: left;
@@ -273,15 +348,26 @@
   .press {
     transition: transform 0.2s ease-out;
   }
-  .press:active { transform: scale(0.97); }
+
+  .press:active {
+    transform: scale(0.97);
+  }
 
   @keyframes float-soft {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-  .animate-float { animation: float-soft 6s ease-in-out infinite; }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
 
-  /* Dark surface — deep warm black with subtle drifting glass sheen */
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  .animate-float {
+    animation: float-soft 6s ease-in-out infinite;
+  }
+
   .bg-orange-rich {
     position: relative;
     isolation: isolate;
@@ -289,6 +375,7 @@
     background-color: oklch(0.11 0.012 60);
     color: var(--color-foreground);
   }
+
   .bg-orange-rich::before {
     content: "";
     position: absolute;
@@ -296,13 +383,14 @@
     pointer-events: none;
     z-index: 0;
     background:
-      radial-gradient(ellipse 45% 35% at 30% 20%, oklch(0.7 0.2 48 / 0.10), transparent 65%),
+      radial-gradient(ellipse 45% 35% at 30% 20%, oklch(0.7 0.2 48 / 0.1), transparent 65%),
       radial-gradient(ellipse 40% 30% at 75% 80%, oklch(0.55 0.18 30 / 0.09), transparent 65%),
       radial-gradient(ellipse 35% 25% at 80% 15%, oklch(1 0 0 / 0.04), transparent 70%);
     filter: blur(20px);
     animation: surface-drift 28s ease-in-out infinite alternate;
     will-change: transform, opacity;
   }
+
   .bg-orange-rich::after {
     content: "";
     position: absolute;
@@ -320,53 +408,123 @@
       radial-gradient(circle at 64% 60%, oklch(1 0 0 / 0.45) 0.5px, transparent 1.4px),
       radial-gradient(circle at 8% 88%, oklch(1 0 0 / 0.35) 0.5px, transparent 1.4px),
       radial-gradient(circle at 92% 12%, oklch(1 0 0 / 0.4) 0.5px, transparent 1.4px);
-    background-size: 100% 100%, 320px 320px, 380px 380px, 280px 280px, 420px 420px, 360px 360px, 300px 300px, 340px 340px, 400px 400px, 360px 360px;
+    background-size:
+      100% 100%,
+      320px 320px,
+      380px 380px,
+      280px 280px,
+      420px 420px,
+      360px 360px,
+      300px 300px,
+      340px 340px,
+      400px 400px,
+      360px 360px;
     background-repeat: no-repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat;
     animation: particles-drift 60s linear infinite;
     will-change: background-position;
   }
-  .bg-orange-rich > * { position: relative; z-index: 1; }
+
+  .bg-orange-rich > * {
+    position: relative;
+    z-index: 1;
+  }
 
   @keyframes particles-drift {
-    0%   { background-position: 0 0,   0 0,    0 0,    0 0,    0 0,    0 0,    0 0,    0 0,    0 0,    0 0; }
-    100% { background-position: 0 0, 320px -180px, -260px 220px, 180px 240px, -300px -160px, 220px -200px, -180px 160px, 200px -240px, -240px -180px, 280px 220px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .bg-orange-rich::after { animation: none; }
+    0% {
+      background-position:
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+        0 0;
+    }
+
+    100% {
+      background-position:
+        0 0,
+        320px -180px,
+        -260px 220px,
+        180px 240px,
+        -300px -160px,
+        220px -200px,
+        -180px 160px,
+        200px -240px,
+        -240px -180px,
+        280px 220px;
+    }
   }
 
   @keyframes surface-drift {
-    0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0.85; }
-    50%  { transform: translate3d(3%, -2%, 0) scale(1.08); opacity: 1; }
-    100% { transform: translate3d(-2%, 3%, 0) scale(1.05); opacity: 0.9; }
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.85;
+    }
+
+    50% {
+      transform: translate3d(3%, -2%, 0) scale(1.08);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate3d(-2%, 3%, 0) scale(1.05);
+      opacity: 0.9;
+    }
   }
 
-  /* Ken Burns — subtle continuous pan/zoom for in-card image life */
   @keyframes ken-burns {
-    0%   { transform: scale(1.15) translate3d(0, 0, 0); }
-    25%  { transform: scale(1.22) translate3d(-2%, 1.5%, 0); }
-    50%  { transform: scale(1.28) translate3d(2%, -1%, 0); }
-    75%  { transform: scale(1.22) translate3d(1.5%, 2%, 0); }
-    100% { transform: scale(1.15) translate3d(0, 0, 0); }
+    0% {
+      transform: scale(1.15) translate3d(0, 0, 0);
+    }
+
+    25% {
+      transform: scale(1.22) translate3d(-2%, 1.5%, 0);
+    }
+
+    50% {
+      transform: scale(1.28) translate3d(2%, -1%, 0);
+    }
+
+    75% {
+      transform: scale(1.22) translate3d(1.5%, 2%, 0);
+    }
+
+    100% {
+      transform: scale(1.15) translate3d(0, 0, 0);
+    }
   }
+
   .animate-ken-burns {
     animation: ken-burns 18s ease-in-out infinite;
   }
+
   @media (prefers-reduced-motion: reduce) {
-    .animate-ken-burns { animation: none; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .bg-orange-rich::before { animation: none; }
+    .bg-orange-rich::before,
+    .bg-orange-rich::after,
+    .animate-ken-burns {
+      animation: none;
+    }
   }
 
-  /* Light surface — warm off-white with dark text + glass sheen for section contrast */
   .surface-light {
     position: relative;
     isolation: isolate;
     overflow: hidden;
     background-color: oklch(0.96 0.008 85);
     color: oklch(0.16 0.02 50);
+
+    --background: oklch(0.96 0.008 85);
+    --foreground: oklch(0.16 0.02 50);
+    --muted-foreground: oklch(0.42 0.02 60);
+    --card: oklch(0.99 0.005 85);
+    --card-foreground: oklch(0.16 0.02 50);
+    --border: oklch(0.16 0.02 50 / 0.12);
   }
+
   .surface-light::before {
     content: "";
     position: absolute;
@@ -377,47 +535,23 @@
       radial-gradient(ellipse 70% 50% at 50% 0%, oklch(1 0 0 / 0.6), transparent 70%),
       radial-gradient(ellipse 50% 40% at 90% 100%, oklch(0.7 0.2 48 / 0.06), transparent 70%);
   }
-  .surface-light > * { position: relative; z-index: 1; }
-  /* Invert token-based colors inside light surface */
-  .surface-light {
-    --background: oklch(0.96 0.008 85);
-    --foreground: oklch(0.16 0.02 50);
-    --muted-foreground: oklch(0.42 0.02 60);
-    --card: oklch(0.99 0.005 85);
-    --card-foreground: oklch(0.16 0.02 50);
-    --border: oklch(0.16 0.02 50 / 0.12);
+
+  .surface-light > * {
+    position: relative;
+    z-index: 1;
   }
-}
 
-@layer base {
-  /* Smooth behavior is applied per-call in JS (ScrollToTop hash handler).
-     Avoid html { scroll-behavior: smooth } globally — it slows wheel/trackpad scrolling. */
-}
-
-@layer utilities {
-  /* Safe-area spacing for folding sections.
-     Prevents adjacent sections from visually overlapping when one folds
-     over another (negative margin + rounded top + drop shadow). */
-
-  /* Apply to the section ABOVE a fold — guarantees breathing room
-     beneath its content before the next section folds up. */
   .fold-safe-above {
     padding-bottom: clamp(3rem, 8vw, 6rem);
   }
 
-  /* Apply to the folding section ITSELF — pulls it up to create the
-     fold and adds matching top padding so its content never collides
-     with the rounded edge or shadow. */
   .fold-safe {
     margin-top: clamp(-4rem, -4vw, -2.5rem);
     padding-top: clamp(2rem, 5vw, 3.5rem);
   }
 
-  /* Stronger fold (used for hero → carousel where the image has its
-     own bottom padding to absorb the overlap). */
   .fold-safe-strong {
     margin-top: clamp(-8rem, -8vw, -4rem);
     padding-top: clamp(2.5rem, 6vw, 4rem);
   }
 }
-
