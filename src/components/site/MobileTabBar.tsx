@@ -27,8 +27,8 @@ function scrollToHash(hash: string) {
 }
 
 export function MobileTabBar() {
-  const pathname = useRouterState((state) => state.location.pathname);
-  const hash = useRouterState((state) => state.location.hash);
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const hash = useRouterState({ select: (state) => state.location.hash });
 
   const handleScrollTab = (sectionHash: string) => {
     vibrate();
