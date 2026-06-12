@@ -81,9 +81,10 @@ export function MobileTabBar() {
 
           const iconClassName = `flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
             isActive
-              ? "bg-gold text-black shadow-[0_4px_14px_-2px_rgba(248,165,45,0.5)] scale-110"
+              ? "bg-gradient-to-b from-[#ffd76b] via-gold to-[#b8761a] text-black scale-110 shadow-[0_6px_14px_-2px_rgba(248,165,45,0.6),inset_0_1px_0_rgba(255,255,255,0.7),inset_0_-2px_3px_rgba(0,0,0,0.25)]"
               : "text-black/60 group-hover:text-black/90 group-hover:bg-black/5"
           }`;
+
 
           if (tab.kind === "scroll") {
             return (
