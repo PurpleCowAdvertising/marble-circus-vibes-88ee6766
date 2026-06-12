@@ -51,54 +51,58 @@ export function MobileTabBar() {
       style={{
         bottom: "calc(env(safe-area-inset-bottom) + 0.75rem)",
       }}
-      className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-4 md:hidden"
+      className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-6 md:hidden"
     >
-      <div className="pointer-events-auto flex h-16 w-full max-w-md items-center justify-around rounded-full border border-white/10 bg-black/70 px-2 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.7)] backdrop-blur-2xl backdrop-saturate-150">
-      {TABS.map((tab) => {
-        const Icon = tab.icon;
+      <div className="pointer-events-auto flex h-14 w-full max-w-sm items-center justify-between rounded-full border border-white/40 bg-white/80 px-4 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.2)] backdrop-blur-2xl backdrop-saturate-150">
+        {TABS.map((tab) => {
+          const Icon = tab.icon;
 
-        const isActive =
-          tab.kind === "route"
-            ? tab.exact
-              ? pathname === tab.to
-              : pathname.startsWith(tab.to)
-            : pathname === "/" && hash === `#${tab.hash}`;
+          const isActive =
+            tab.kind === "route"
+              ? tab.exact
+                ? pathname === tab.to
+                : pathname.startsWith(tab.to)
+              : pathname === "/" && hash === `#${tab.hash}`;
 
-        const iconClassName = `relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
-          isActive
-            ? "bg-gold text-black shadow-[0_4px_14px_-2px_rgba(248,165,45,0.6)] scale-110"
-            : "text-white/70 group-hover:text-white"
-        }`;
+          const baseClassName =
+            "group flex h-full w-12 items-center justify-center transition-transform duration-200";
 
-        const labelClassName = `font-display text-[10px] tracking-tight transition-colors ${
-          isActive ? "text-gold" : "text-white/55 group-hover:text-white/80"
-        }`;
+          const iconClassName = `flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
+            isActive
+              ? "bg-gold text-black shadow-[0_4px_14px_-2px_rgba(248,165,45,0.5)] scale-110"
+              : "text-black/60 group-hover:text-black/90 group-hover:bg-black/5"
+          }`;
 
-        const inner = (
-          <>
-            <span className={iconClassName}>
-              <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
-            </span>
-            <span className={labelClassName}>{tab.label}</span>
-          </>
-        );
+          if (tab.kind === "scroll") {
+            return (
+              <button
+                key={tab.hash}
+                type="button"
+                aria-label={tab.label}
+                onClick={() => handleScrollTab(tab.hash)}
+                className={baseClassName}
+              >
+                <span className={iconClassName}>
+                  <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+                </span>
+              </button>
+            );
+          }
 
-        const baseClassName = "group flex flex-1 flex-col items-center justify-center gap-0.5 py-1 transition-colors";
-
-        if (tab.kind === "scroll") {
           return (
-            <button key={tab.hash} type="button" onClick={() => handleScrollTab(tab.hash)} className={baseClassName}>
-              {inner}
-            </button>
+            <Link
+              key={tab.to}
+              to={tab.to}
+              onClick={vibrate}
+              aria-label={tab.label}
+              className={baseClassName}
+            >
+              <span className={iconClassName}>
+                <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+              </span>
+            </Link>
           );
-        }
-
-        return (
-          <Link key={tab.to} to={tab.to} onClick={vibrate} className={baseClassName}>
-            {inner}
-          </Link>
-        );
-      })}
+        })}
       </div>
     </nav>
   );
