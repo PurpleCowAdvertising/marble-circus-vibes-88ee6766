@@ -111,7 +111,7 @@ function TicketsPage() {
               <article
                 key={tier.name}
                 className={`relative overflow-hidden rounded-3xl border p-6 backdrop-blur-xl ${
-                  tier.featured ? "border-gold bg-white/[0.10]" : "border-white/15 bg-white/[0.06]"
+                  tier.featured ? "border-gold bg-white/90" : "border-white/40 bg-white/80"
                 }`}
               >
                 {tier.featured && (
@@ -120,16 +120,16 @@ function TicketsPage() {
                   </span>
                 )}
 
-                <h2 className="font-display text-3xl font-bold text-white">{tier.name}</h2>
+                <h2 className="font-display text-3xl font-bold text-black">{tier.name}</h2>
 
-                <p className="mt-2 font-display text-2xl font-bold text-gold">{tier.price}</p>
+                <p className="mt-2 font-display text-2xl font-bold text-black">{tier.price}</p>
 
-                <p className="mt-3 text-sm leading-relaxed text-white/70">{tier.description}</p>
+                <p className="mt-3 text-sm leading-relaxed text-black/70">{tier.description}</p>
 
                 <ul className="mt-5 space-y-2.5">
                   {tier.perks.map((perk) => (
-                    <li key={perk} className="flex items-start gap-3 text-sm text-white/80">
-                      <span className="mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full bg-gold text-black">
+                    <li key={perk} className="flex items-start gap-3 text-sm text-black/80">
+                      <span className="mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full bg-black text-gold">
                         <Check size={12} strokeWidth={3} />
                       </span>
                       <span>{perk}</span>
