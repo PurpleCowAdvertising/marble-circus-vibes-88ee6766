@@ -53,7 +53,8 @@ export function MobileTabBar() {
       }}
       className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-6 md:hidden"
     >
-      <div className="pointer-events-auto flex h-14 w-full max-w-sm items-center justify-between rounded-full border border-white/40 bg-white/80 px-4 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.2)] backdrop-blur-2xl backdrop-saturate-150">
+      <div className="pointer-events-auto relative flex h-14 w-full max-w-sm items-center justify-between rounded-full border border-white/50 bg-white/80 px-4 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.2)] backdrop-blur-2xl backdrop-saturate-150">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-full bg-gradient-to-b from-white/60 to-transparent" />
         {TABS.map((tab) => {
           const Icon = tab.icon;
 
