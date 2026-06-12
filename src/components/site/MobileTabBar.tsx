@@ -49,7 +49,7 @@ export function MobileTabBar() {
     <nav
       aria-label="Mobile tab bar"
       style={{
-        bottom: "calc(env(safe-area-inset-bottom) + 0.75rem)",
+        top: "calc(env(safe-area-inset-top) + 0.75rem)",
       }}
       className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-6 md:hidden"
     >
