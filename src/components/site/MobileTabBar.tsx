@@ -49,11 +49,11 @@ export function MobileTabBar() {
     <nav
       aria-label="Mobile tab bar"
       style={{
-        paddingBottom: "env(safe-area-inset-bottom)",
-        bottom: 0,
+        bottom: "calc(env(safe-area-inset-bottom) + 0.75rem)",
       }}
-      className="fixed inset-x-0 z-50 flex h-16 items-center justify-around border-t border-white/10 bg-black/90 backdrop-blur-xl backdrop-saturate-150 md:hidden"
+      className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-4 md:hidden"
     >
+      <div className="pointer-events-auto flex h-16 w-full max-w-md items-center justify-around rounded-full border border-white/10 bg-black/70 px-2 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.7)] backdrop-blur-2xl backdrop-saturate-150">
       {TABS.map((tab) => {
         const Icon = tab.icon;
 
@@ -64,20 +64,20 @@ export function MobileTabBar() {
               : pathname.startsWith(tab.to)
             : pathname === "/" && hash === `#${tab.hash}`;
 
-        const iconClassName = `relative flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 ${
+        const iconClassName = `relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
           isActive
-            ? "bg-gold text-black shadow-[0_4px_12px_-2px_rgba(248,165,45,0.45)]"
-            : "text-white/60 group-hover:text-white"
+            ? "bg-gold text-black shadow-[0_4px_14px_-2px_rgba(248,165,45,0.6)] scale-110"
+            : "text-white/70 group-hover:text-white"
         }`;
 
         const labelClassName = `font-display text-[10px] tracking-tight transition-colors ${
-          isActive ? "text-gold" : "text-white/50 group-hover:text-white/80"
+          isActive ? "text-gold" : "text-white/55 group-hover:text-white/80"
         }`;
 
         const inner = (
           <>
             <span className={iconClassName}>
-              <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
+              <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
             </span>
             <span className={labelClassName}>{tab.label}</span>
           </>
@@ -99,6 +99,7 @@ export function MobileTabBar() {
           </Link>
         );
       })}
+      </div>
     </nav>
   );
 }
