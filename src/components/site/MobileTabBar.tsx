@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, Music, Ticket, Map, Newspaper } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const TABS = [
   { kind: "route", to: "/", label: "Home", icon: Home, exact: true },
@@ -17,21 +18,47 @@ function vibrate() {
 
 function scrollToHash(hash: string) {
   const target = document.getElementById(hash);
-
   if (!target) return;
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
-  target.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
+function useHideOnScroll() {
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+
+  useEffect(() => {
+    lastY.current = window.scrollY;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const delta = y - lastY.current;
+        if (Math.abs(delta) > 6) {
+          if (delta > 0 && y > 80) setHidden(true);
+          else if (delta < 0) setHidden(false);
+          lastY.current = y;
+        }
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return hidden;
 }
 
 export function MobileTabBar() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const hash = useRouterState({ select: (state) => state.location.hash });
+  const hidden = useHideOnScroll();
+  const [drawKey, setDrawKey] = useState(0);
 
   const handleScrollTab = (sectionHash: string) => {
     vibrate();
+    setDrawKey((k) => k + 1);
 
     if (pathname !== "/") {
       window.location.href = `/#${sectionHash}`;
@@ -39,84 +66,110 @@ export function MobileTabBar() {
     }
 
     window.history.pushState(null, "", `/#${sectionHash}`);
-
-    window.setTimeout(() => {
-      scrollToHash(sectionHash);
-    }, 50);
+    window.setTimeout(() => scrollToHash(sectionHash), 50);
   };
 
   return (
-    <nav
-      aria-label="Mobile tab bar"
-      style={{
-        top: "calc(env(safe-area-inset-top) + 0.75rem)",
-      }}
-      className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-6 md:hidden"
-    >
-      <div
-        className="pointer-events-auto relative flex h-14 w-full max-w-sm items-center justify-between rounded-full border border-white/70 px-4 backdrop-blur-2xl backdrop-saturate-150"
+    <>
+      <style>{`
+        @keyframes tabbar-draw {
+          0% { stroke-dasharray: 80; stroke-dashoffset: 80; opacity: 0.4; }
+          100% { stroke-dasharray: 80; stroke-dashoffset: 0; opacity: 1; }
+        }
+        .tabbar-icon svg * {
+          animation: tabbar-draw 0.7s ease-out both;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        .tabbar-icon.is-active svg * {
+          animation-duration: 0.9s;
+        }
+        .tabbar-icon:hover svg *,
+        .tabbar-icon:active svg * {
+          animation: tabbar-draw 0.6s ease-out both;
+        }
+      `}</style>
+      <nav
+        aria-label="Mobile tab bar"
         style={{
-          background:
-            "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.85) 45%, rgba(210,210,215,0.85) 100%)",
-          boxShadow:
-            "0 18px 40px -12px rgba(0,0,0,0.45), 0 6px 14px -6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -2px 4px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.35)",
-          transform: "perspective(600px) rotateX(6deg)",
+          top: "calc(env(safe-area-inset-top) + 0.75rem)",
+          transform: hidden
+            ? "translateY(-150%)"
+            : "translateY(0)",
+          opacity: hidden ? 0 : 1,
+          transition: "transform 400ms cubic-bezier(0.4,0,0.2,1), opacity 300ms ease",
         }}
+        className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-6 md:hidden"
       >
-        <div className="pointer-events-none absolute inset-x-3 top-0.5 h-1/2 rounded-full bg-gradient-to-b from-white/90 via-white/40 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-6 bottom-0.5 h-1/3 rounded-full bg-gradient-to-t from-black/15 to-transparent blur-[2px]" />
+        <div
+          className="pointer-events-auto relative flex h-14 w-full max-w-sm items-center justify-between rounded-full border border-white/70 px-4 backdrop-blur-2xl backdrop-saturate-150"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.85) 45%, rgba(210,210,215,0.85) 100%)",
+            boxShadow:
+              "0 18px 40px -12px rgba(0,0,0,0.45), 0 6px 14px -6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -2px 4px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.35)",
+            transform: "perspective(600px) rotateX(6deg)",
+          }}
+        >
+          <div className="pointer-events-none absolute inset-x-3 top-0.5 h-1/2 rounded-full bg-gradient-to-b from-white/90 via-white/40 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-6 bottom-0.5 h-1/3 rounded-full bg-gradient-to-t from-black/15 to-transparent blur-[2px]" />
 
-        {TABS.map((tab) => {
-          const Icon = tab.icon;
+          {TABS.map((tab) => {
+            const Icon = tab.icon;
 
-          const isActive =
-            tab.kind === "route"
-              ? tab.exact
-                ? pathname === tab.to
-                : pathname.startsWith(tab.to)
-              : pathname === "/" && hash === `#${tab.hash}`;
+            const isActive =
+              tab.kind === "route"
+                ? tab.exact
+                  ? pathname === tab.to
+                  : pathname.startsWith(tab.to)
+                : pathname === "/" && hash === `#${tab.hash}`;
 
-          const baseClassName =
-            "group flex h-full w-12 items-center justify-center transition-transform duration-200";
+            const baseClassName =
+              "group flex h-full w-12 items-center justify-center transition-transform duration-200 active:scale-95";
 
-          const iconClassName = `flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
-            isActive
-              ? "bg-gradient-to-b from-[#ffd76b] via-gold to-[#b8761a] text-black scale-110 shadow-[0_4px_10px_-2px_rgba(248,165,45,0.35),inset_0_1px_0_rgba(255,255,255,0.6)]"
-              : "text-black/60 group-hover:text-black/90 group-hover:bg-black/5"
-          }`;
+            const iconClassName = `tabbar-icon ${isActive ? "is-active" : ""} flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
+              isActive
+                ? "bg-gradient-to-b from-[#ffd76b] via-gold to-[#b8761a] text-black scale-110 shadow-[0_4px_10px_-2px_rgba(248,165,45,0.35),inset_0_1px_0_rgba(255,255,255,0.6)]"
+                : "text-black/60 group-hover:text-black/90 group-hover:bg-black/5"
+            }`;
 
+            const iconKey = `${isActive ? "a" : "i"}-${drawKey}`;
 
-          if (tab.kind === "scroll") {
+            if (tab.kind === "scroll") {
+              return (
+                <button
+                  key={tab.hash}
+                  type="button"
+                  aria-label={tab.label}
+                  onClick={() => handleScrollTab(tab.hash)}
+                  className={baseClassName}
+                >
+                  <span className={iconClassName} key={iconKey}>
+                    <Icon size={22} strokeWidth={1.5} />
+                  </span>
+                </button>
+              );
+            }
+
             return (
-              <button
-                key={tab.hash}
-                type="button"
+              <Link
+                key={tab.to}
+                to={tab.to}
+                onClick={() => {
+                  vibrate();
+                  setDrawKey((k) => k + 1);
+                }}
                 aria-label={tab.label}
-                onClick={() => handleScrollTab(tab.hash)}
                 className={baseClassName}
               >
-                <span className={iconClassName}>
-                <Icon size={22} strokeWidth={1.5} />
+                <span className={iconClassName} key={iconKey}>
+                  <Icon size={22} strokeWidth={1.5} />
                 </span>
-              </button>
+              </Link>
             );
-          }
-
-          return (
-            <Link
-              key={tab.to}
-              to={tab.to}
-              onClick={vibrate}
-              aria-label={tab.label}
-              className={baseClassName}
-            >
-              <span className={iconClassName}>
-                <Icon size={22} strokeWidth={1.5} />
-              </span>
-            </Link>
-          );
-        })}
-      </div>
-    </nav>
+          })}
+        </div>
+      </nav>
+    </>
   );
 }
