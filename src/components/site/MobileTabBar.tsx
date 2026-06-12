@@ -96,7 +96,7 @@ export function MobileTabBar() {
                 className={baseClassName}
               >
                 <span className={iconClassName}>
-                  <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+                <Icon size={22} strokeWidth={1.5} />
                 </span>
               </button>
             );
