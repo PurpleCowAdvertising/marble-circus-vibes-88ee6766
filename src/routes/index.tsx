@@ -196,7 +196,7 @@ function HomePage() {
 
   return (
     <>
-      <LaunchCountdown />
+      
       <section ref={heroRef} aria-labelledby="hero-heading" className="relative isolate z-0 overflow-hidden bg-black">
 
         <h1 id="hero-heading" className="sr-only">
