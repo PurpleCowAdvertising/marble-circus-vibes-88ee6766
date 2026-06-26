@@ -228,6 +228,7 @@ function RootComponent() {
         </div>
 
         <ConsentBanner />
+        <LaunchCountdown />
         <Toaster />
       </SubscribeProvider>
     </QueryClientProvider>
