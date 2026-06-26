@@ -220,44 +220,8 @@ function HomePage() {
                   className="relative h-full w-full object-cover"
                 />
 
-                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[calc(8svh+4.5rem)] md:gap-5 md:pb-[calc(10vh+3rem)]">
-                  <motion.div
-                    key={`date-${cycle}`}
-                    initial={{
-                      opacity: 0,
-                      y: 22,
-                      letterSpacing: "0.7em",
-                      filter: "blur(10px)",
-                    }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      letterSpacing: "0.35em",
-                      filter: "blur(0px)",
-                    }}
-                    transition={{ duration: 8, ease: "easeOut" }}
-                    className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[19px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
-                  >
-                    <span>19 Sep 26</span>
-                    <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-gold" />
-                    <span>FNB Stadium</span>
-                  </motion.div>
+                <div className="pointer-events-none absolute inset-0" />
 
-                  <motion.a
-                    key={`cta-${cycle}`}
-                    href="#tickets"
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 8, ease: "easeOut" }}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      scrollToSection("tickets");
-                    }}
-                    className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150 transition-transform hover:scale-105 sm:text-base"
-                  >
-                    Buy Tickets
-                  </motion.a>
-                </div>
 
                 <figcaption className="sr-only">
                   Scorpion Kings Live footage of DJ Maphorisa and Kabza De Small on stage.
