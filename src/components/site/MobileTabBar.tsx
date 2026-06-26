@@ -112,8 +112,8 @@ export function MobileTabBar() {
               "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.85) 45%, rgba(210,210,215,0.85) 100%)",
             boxShadow:
               "0 18px 40px -12px rgba(0,0,0,0.45), 0 6px 14px -6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -2px 4px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.35)",
-            transform: "perspective(600px) rotateX(6deg)",
           }}
+
         >
           <div className="pointer-events-none absolute inset-x-3 top-0.5 h-1/2 rounded-full bg-gradient-to-b from-white/90 via-white/40 to-transparent" />
           <div className="pointer-events-none absolute inset-x-6 bottom-0.5 h-1/3 rounded-full bg-gradient-to-t from-black/15 to-transparent blur-[2px]" />
@@ -134,7 +134,7 @@ export function MobileTabBar() {
             const iconClassName = `tabbar-icon ${isActive ? "is-active" : ""} flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
               isActive
                 ? "bg-gradient-to-b from-[#ffd76b] via-gold to-[#b8761a] text-black scale-110 shadow-[0_4px_10px_-2px_rgba(248,165,45,0.35),inset_0_1px_0_rgba(255,255,255,0.6)]"
-                : "text-black/60 group-hover:text-black/90 group-hover:bg-black/5"
+                : "text-black group-hover:bg-black/5"
             }`;
 
             const iconKey = `${isActive ? "a" : "i"}-${drawKey}`;
@@ -149,7 +149,8 @@ export function MobileTabBar() {
                   className={baseClassName}
                 >
                   <span className={iconClassName} key={iconKey}>
-                    <Icon size={22} strokeWidth={1.5} />
+                    <Icon size={22} strokeWidth={2.25} absoluteStrokeWidth />
+
                   </span>
                 </button>
               );
@@ -167,7 +168,7 @@ export function MobileTabBar() {
                 className={baseClassName}
               >
                 <span className={iconClassName} key={iconKey}>
-                  <Icon size={22} strokeWidth={1.5} />
+                  <Icon size={22} strokeWidth={2.25} absoluteStrokeWidth />
                 </span>
               </Link>
             );
