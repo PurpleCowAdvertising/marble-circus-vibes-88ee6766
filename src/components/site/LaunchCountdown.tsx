@@ -137,15 +137,6 @@ export function LaunchCountdown() {
             >
               19 Sep 26 · FNB
             </span>
-
-            <button
-              type="button"
-              onClick={() => setVisible(false)}
-              aria-label="Dismiss countdown"
-              className="ml-1 flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition hover:bg-white/15 hover:text-white"
-            >
-              <X size={13} strokeWidth={1.75} />
-            </button>
           </div>
         </motion.div>
       )}
