@@ -24,6 +24,7 @@ export function LaunchCountdown() {
   const [mounted, setMounted] = useState(false);
   const [parts, setParts] = useState<Parts>(() => diff());
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [localLabel, setLocalLabel] = useState<string>("");
   const [localTz, setLocalTz] = useState<string>("local");
 
@@ -48,9 +49,15 @@ export function LaunchCountdown() {
     }
 
     const onScroll = () => setScrolled(window.scrollY > 120);
+    const onResize = () => setIsMobile(window.matchMedia("(max-width: 639px)").matches);
     onScroll();
+    onResize();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -67,7 +74,7 @@ export function LaunchCountdown() {
           initial={false}
           animate={{
             opacity: 1,
-            bottom: scrolled ? 24 : "30vh",
+            bottom: scrolled ? 24 : isMobile ? "calc(30vh - 208px)" : "30vh",
           }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
