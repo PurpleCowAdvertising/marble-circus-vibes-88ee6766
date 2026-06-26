@@ -13,6 +13,23 @@ import blackCoffee from "@/assets/artists/black-coffee.webp";
 import nastyC from "@/assets/artists/nasty-c.webp";
 import musaKeys from "@/assets/artists/musa-keys.webp";
 import uncleWaffles from "@/assets/artists/uncle-waffles.webp";
+import maphorisa from "@/assets/artists/dj-maphorisa.jpg";
+import kabza from "@/assets/artists/kabza.jpg";
+
+const SCORPION_KINGS = [
+  {
+    name: "DJ Maphorisa",
+    role: "Producer · Architect",
+    image: maphorisa,
+    bio: "Themba Sekowe — the global hitmaker behind Y-Tjukutja, Khona and Particula. A decade of shaping African pop, Afrobeats and Amapiano into a worldwide sound.",
+  },
+  {
+    name: "Kabza De Small",
+    role: "King of Amapiano",
+    image: kabza,
+    bio: "Kabelo Motha — the producer who turned a township sound into a global movement. From Piano Hub to KOA II and a first-of-its-kind Red Bull Symphonic.",
+  },
+] as const;
 
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
