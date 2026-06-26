@@ -134,9 +134,6 @@ export function LaunchCountdown() {
             >
               19 Sep 26 · FNB
             </span>
-                </>
-              )}
-            </span>
 
             <button
               type="button"
