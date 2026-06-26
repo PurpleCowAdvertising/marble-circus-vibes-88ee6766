@@ -22,9 +22,10 @@ function scrollToHash(hash: string) {
   target.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function useHideOnScroll() {
-  const [hidden, setHidden] = useState(false);
+function useScrollDim() {
+  const [dim, setDim] = useState(false);
   const lastY = useRef(0);
+  const idleTimer = useRef<number | null>(null);
 
   useEffect(() => {
     lastY.current = window.scrollY;
@@ -35,25 +36,30 @@ function useHideOnScroll() {
       window.requestAnimationFrame(() => {
         const y = window.scrollY;
         const delta = y - lastY.current;
-        if (Math.abs(delta) > 6) {
-          if (delta > 0 && y > 80) setHidden(true);
-          else if (delta < 0) setHidden(false);
+        if (Math.abs(delta) > 4) {
+          if (delta > 0 && y > 80) setDim(true);
+          else if (delta < 0) setDim(false);
           lastY.current = y;
         }
+        if (idleTimer.current) window.clearTimeout(idleTimer.current);
+        idleTimer.current = window.setTimeout(() => setDim(false), 350);
         ticking = false;
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (idleTimer.current) window.clearTimeout(idleTimer.current);
+    };
   }, []);
 
-  return hidden;
+  return dim;
 }
 
 export function MobileTabBar() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const hash = useRouterState({ select: (state) => state.location.hash });
-  const hidden = useHideOnScroll();
+  const dim = useScrollDim();
   const [drawKey, setDrawKey] = useState(0);
 
   const handleScrollTab = (sectionHash: string) => {
@@ -93,11 +99,9 @@ export function MobileTabBar() {
         aria-label="Mobile tab bar"
         style={{
           top: "calc(env(safe-area-inset-top) + 0.75rem)",
-          transform: hidden
-            ? "translateY(-150%)"
-            : "translateY(0)",
-          opacity: hidden ? 0 : 1,
-          transition: "transform 400ms cubic-bezier(0.4,0,0.2,1), opacity 300ms ease",
+          transform: "translateY(0)",
+          opacity: dim ? 0.75 : 1,
+          transition: "opacity 250ms ease",
         }}
         className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-6 md:hidden"
       >
