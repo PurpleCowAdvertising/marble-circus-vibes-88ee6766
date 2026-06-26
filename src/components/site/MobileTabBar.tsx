@@ -99,11 +99,9 @@ export function MobileTabBar() {
         aria-label="Mobile tab bar"
         style={{
           top: "calc(env(safe-area-inset-top) + 0.75rem)",
-          transform: hidden
-            ? "translateY(-150%)"
-            : "translateY(0)",
-          opacity: hidden ? 0 : 1,
-          transition: "transform 400ms cubic-bezier(0.4,0,0.2,1), opacity 300ms ease",
+          transform: "translateY(0)",
+          opacity: dim ? 0.75 : 1,
+          transition: "opacity 250ms ease",
         }}
         className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-6 md:hidden"
       >
