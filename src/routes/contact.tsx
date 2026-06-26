@@ -47,8 +47,6 @@ const CONTACTS: readonly ContactEntry[] = [
     label: "Press",
     name: "Kim Sineke",
     email: "kim@iam4.co.za",
-    phone: "+27 81 042 1076",
-    phoneHref: "tel:+27810421076",
   },
   {
     icon: Mail,
