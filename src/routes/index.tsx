@@ -217,7 +217,7 @@ function HomePage() {
                   playsInline
                   preload="metadata"
                   aria-label="Scorpion Kings Live logo reveal"
-                  className="relative h-full w-full object-cover"
+                  className="relative h-full w-full object-contain md:object-cover"
                 />
 
                 <div className="pointer-events-none absolute inset-0" />
