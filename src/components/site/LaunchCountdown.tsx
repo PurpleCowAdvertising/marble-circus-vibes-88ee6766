@@ -130,14 +130,10 @@ export function LaunchCountdown() {
 
             <span
               className="hidden text-[10px] uppercase tracking-[0.24em] text-white/70 md:inline"
-              title={localLabel ? `Local to you (${localTz}): ${localLabel}` : undefined}
               suppressHydrationWarning
             >
               19 Sep 26 · FNB
-              {localLabel && (
-                <>
-                  {" · "}
-                  <span className="text-white/55 normal-case tracking-normal">your time {localLabel}</span>
+            </span>
                 </>
               )}
             </span>
