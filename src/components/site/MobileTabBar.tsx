@@ -149,7 +149,8 @@ export function MobileTabBar() {
                   className={baseClassName}
                 >
                   <span className={iconClassName} key={iconKey}>
-                    <Icon size={22} strokeWidth={1.5} />
+                    <Icon size={22} strokeWidth={2.25} absoluteStrokeWidth />
+
                   </span>
                 </button>
               );
