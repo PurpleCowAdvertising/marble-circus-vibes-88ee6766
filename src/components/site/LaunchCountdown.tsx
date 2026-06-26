@@ -24,6 +24,7 @@ export function LaunchCountdown() {
   const [mounted, setMounted] = useState(false);
   const [parts, setParts] = useState<Parts>(() => diff());
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [localLabel, setLocalLabel] = useState<string>("");
   const [localTz, setLocalTz] = useState<string>("local");
 
