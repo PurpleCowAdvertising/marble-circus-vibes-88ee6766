@@ -86,9 +86,12 @@ export function LaunchCountdown() {
           }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="pointer-events-none fixed inset-x-0 z-[80] flex justify-center px-4"
+          className="pointer-events-none fixed inset-x-0 z-[80] flex flex-col items-center px-4"
           aria-live="polite"
         >
+          <span className="mb-2 rounded-full bg-black/55 px-3 py-1 font-display text-[10px] font-bold uppercase tracking-[0.28em] text-gold shadow-[0_8px_20px_-8px_rgba(0,0,0,0.55)] backdrop-blur-md sm:hidden">
+            19 Sep 26 · FNB
+          </span>
           <div className="pointer-events-auto relative flex items-center gap-3 rounded-full border border-white/20 bg-black/55 px-4 py-2.5 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_18px_40px_-12px_rgba(0,0,0,0.6)] backdrop-blur-xl backdrop-saturate-150 sm:gap-4 sm:px-5 sm:py-3">
             <span className="hidden font-display text-[10px] font-bold uppercase tracking-[0.32em] text-gold sm:inline">
               Countdown
