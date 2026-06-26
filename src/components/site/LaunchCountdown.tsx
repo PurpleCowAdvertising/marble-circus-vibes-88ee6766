@@ -5,16 +5,6 @@ import { X } from "lucide-react";
 // Event starts 19 Sep 2026, 18:00 SAST (Africa/Johannesburg, UTC+02:00, no DST).
 const EVENT_ISO = "2026-09-19T18:00:00+02:00";
 const EVENT_DATE = new Date(EVENT_ISO).getTime();
-const LOCAL_TZ = typeof Intl !== "undefined" ? Intl.DateTimeFormat().resolvedOptions().timeZone : "local";
-const LOCAL_EVENT_LABEL = new Intl.DateTimeFormat(undefined, {
-  weekday: "short",
-  day: "2-digit",
-  month: "short",
-  hour: "2-digit",
-  minute: "2-digit",
-  timeZoneName: "short",
-}).format(new Date(EVENT_ISO));
-const STORAGE_KEY = "sk-launch-countdown-seen";
 
 type Parts = { days: number; hours: number; minutes: number; seconds: number };
 
@@ -31,7 +21,37 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 export function LaunchCountdown() {
   const [visible, setVisible] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const [parts, setParts] = useState<Parts>(() => diff());
+  const [scrolled, setScrolled] = useState(false);
+  const [localLabel, setLocalLabel] = useState<string>("");
+  const [localTz, setLocalTz] = useState<string>("local");
+
+  useEffect(() => {
+    setMounted(true);
+    setParts(diff());
+
+    try {
+      setLocalTz(Intl.DateTimeFormat().resolvedOptions().timeZone);
+      setLocalLabel(
+        new Intl.DateTimeFormat(undefined, {
+          weekday: "short",
+          day: "2-digit",
+          month: "short",
+          hour: "2-digit",
+          minute: "2-digit",
+          timeZoneName: "short",
+        }).format(new Date(EVENT_ISO)),
+      );
+    } catch {
+      /* ignore */
+    }
+
+    const onScroll = () => setScrolled(window.scrollY > 120);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!visible) return;
@@ -44,11 +64,14 @@ export function LaunchCountdown() {
       {visible && (
         <motion.div
           key="sk-countdown"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={false}
+          animate={{
+            opacity: 1,
+            bottom: scrolled ? 24 : "30vh",
+          }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="pointer-events-none fixed inset-x-0 bottom-6 z-[80] flex justify-center px-4 sm:bottom-8"
+          className="pointer-events-none fixed inset-x-0 z-[80] flex justify-center px-4"
           aria-live="polite"
         >
           <div className="pointer-events-auto relative flex items-center gap-3 rounded-full border border-white/20 bg-black/55 px-4 py-2.5 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_18px_40px_-12px_rgba(0,0,0,0.6)] backdrop-blur-xl backdrop-saturate-150 sm:gap-4 sm:px-5 sm:py-3">
@@ -69,8 +92,11 @@ export function LaunchCountdown() {
               ).map(([label, value], index) => (
                 <li key={label} className="flex items-center gap-2 sm:gap-3">
                   <div className="flex flex-col items-center leading-none">
-                    <span className="font-display text-base font-bold tabular-nums sm:text-lg">
-                      {label === "Days" ? value : pad(value)}
+                    <span
+                      className="font-display text-base font-bold tabular-nums sm:text-lg"
+                      suppressHydrationWarning
+                    >
+                      {mounted ? (label === "Days" ? value : pad(value)) : "--"}
                     </span>
                     <span className="mt-0.5 text-[8px] uppercase tracking-[0.24em] text-white/55 sm:text-[9px]">
                       {label}
@@ -89,9 +115,16 @@ export function LaunchCountdown() {
 
             <span
               className="hidden text-[10px] uppercase tracking-[0.24em] text-white/70 md:inline"
-              title={`Local to you (${LOCAL_TZ}): ${LOCAL_EVENT_LABEL}`}
+              title={localLabel ? `Local to you (${localTz}): ${localLabel}` : undefined}
+              suppressHydrationWarning
             >
-              19 Sep 26 · FNB · <span className="text-white/55 normal-case tracking-normal">your time {LOCAL_EVENT_LABEL}</span>
+              19 Sep 26 · FNB
+              {localLabel && (
+                <>
+                  {" · "}
+                  <span className="text-white/55 normal-case tracking-normal">your time {localLabel}</span>
+                </>
+              )}
             </span>
 
             <button
