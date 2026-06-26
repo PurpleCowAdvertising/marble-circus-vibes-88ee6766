@@ -22,9 +22,10 @@ function scrollToHash(hash: string) {
   target.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function useHideOnScroll() {
-  const [hidden, setHidden] = useState(false);
+function useScrollDim() {
+  const [dim, setDim] = useState(false);
   const lastY = useRef(0);
+  const idleTimer = useRef<number | null>(null);
 
   useEffect(() => {
     lastY.current = window.scrollY;
@@ -35,19 +36,24 @@ function useHideOnScroll() {
       window.requestAnimationFrame(() => {
         const y = window.scrollY;
         const delta = y - lastY.current;
-        if (Math.abs(delta) > 6) {
-          if (delta > 0 && y > 80) setHidden(true);
-          else if (delta < 0) setHidden(false);
+        if (Math.abs(delta) > 4) {
+          if (delta > 0 && y > 80) setDim(true);
+          else if (delta < 0) setDim(false);
           lastY.current = y;
         }
+        if (idleTimer.current) window.clearTimeout(idleTimer.current);
+        idleTimer.current = window.setTimeout(() => setDim(false), 350);
         ticking = false;
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (idleTimer.current) window.clearTimeout(idleTimer.current);
+    };
   }, []);
 
-  return hidden;
+  return dim;
 }
 
 export function MobileTabBar() {
