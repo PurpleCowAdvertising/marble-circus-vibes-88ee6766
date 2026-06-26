@@ -17,6 +17,7 @@ import { ConsentBanner } from "@/components/site/ConsentBanner";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { MobileTabBar } from "@/components/site/MobileTabBar";
+import { LaunchCountdown } from "@/components/site/LaunchCountdown";
 import { SubscribeProvider } from "@/components/site/SubscribePopup";
 import { Toaster } from "@/components/ui/sonner";
 
