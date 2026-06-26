@@ -59,7 +59,7 @@ function useScrollDim() {
 export function MobileTabBar() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const hash = useRouterState({ select: (state) => state.location.hash });
-  const hidden = useHideOnScroll();
+  const dim = useScrollDim();
   const [drawKey, setDrawKey] = useState(0);
 
   const handleScrollTab = (sectionHash: string) => {
