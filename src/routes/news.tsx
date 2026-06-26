@@ -140,10 +140,6 @@ function NewsPage() {
               Kim Sineke ·{" "}
               <a href="mailto:kim@iam4.co.za" className="text-gold hover:underline">
                 kim@iam4.co.za
-              </a>{" "}
-              ·{" "}
-              <a href="tel:+27810421076" className="text-gold hover:underline">
-                +27 81 042 1076
               </a>
             </p>
           </div>
