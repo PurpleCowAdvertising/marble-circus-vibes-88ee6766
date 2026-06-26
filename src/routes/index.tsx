@@ -232,6 +232,56 @@ function HomePage() {
         </div>
       </section>
 
+      <div id="scorpion-kings" className="relative isolate z-20 bg-black text-white">
+        <Section className="!pb-12 !pt-10 md:!pb-20 md:!pt-16">
+          <FadeIn>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">The Headliners</p>
+                <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
+                  The Scorpion Kings.
+                </h2>
+              </div>
+              <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
+                Two producers. One movement. The duo that turned Amapiano into a global sound.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="mt-10 grid gap-6 md:mt-14 md:grid-cols-2 md:gap-8">
+            {SCORPION_KINGS.map((king, index) => (
+              <motion.article
+                key={king.name}
+                initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.2, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative overflow-hidden rounded-3xl bg-white/[0.04] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/10"
+              >
+                <div className="relative aspect-[4/5] w-full overflow-hidden md:aspect-[5/6]">
+                  <img
+                    src={king.image}
+                    alt={king.name}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                    <p className="text-[10px] uppercase tracking-[0.32em] text-gold">{king.role}</p>
+                    <h3 className="mt-2 font-display text-4xl font-bold leading-none text-white md:text-5xl">
+                      {king.name}
+                    </h3>
+                    <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">
+                      {king.bio}
+                    </p>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </Section>
+      </div>
+
       <div id="lineup" className="fold-safe-strong relative isolate z-10 scroll-mt-24">
         <ArtistCarousel />
       </div>
@@ -318,56 +368,6 @@ function HomePage() {
               </ul>
             </div>
           </FadeIn>
-        </Section>
-      </div>
-
-      <div id="scorpion-kings" className="relative isolate z-20 bg-black text-white">
-        <Section className="!pb-12 !pt-10 md:!pb-20 md:!pt-16">
-          <FadeIn>
-            <div className="flex flex-wrap items-end justify-between gap-6">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">The Headliners</p>
-                <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
-                  The Scorpion Kings.
-                </h2>
-              </div>
-              <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
-                Two producers. One movement. The duo that turned Amapiano into a global sound.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="mt-10 grid gap-6 md:mt-14 md:grid-cols-2 md:gap-8">
-            {SCORPION_KINGS.map((king, index) => (
-              <motion.article
-                key={king.name}
-                initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.2, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative overflow-hidden rounded-3xl bg-white/[0.04] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/10"
-              >
-                <div className="relative aspect-[4/5] w-full overflow-hidden md:aspect-[5/6]">
-                  <img
-                    src={king.image}
-                    alt={king.name}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-                    <p className="text-[10px] uppercase tracking-[0.32em] text-gold">{king.role}</p>
-                    <h3 className="mt-2 font-display text-4xl font-bold leading-none text-white md:text-5xl">
-                      {king.name}
-                    </h3>
-                    <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">
-                      {king.bio}
-                    </p>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
         </Section>
       </div>
 
