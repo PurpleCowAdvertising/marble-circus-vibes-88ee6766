@@ -82,7 +82,7 @@ export function LaunchCountdown() {
               ? 24
               : isMobile
                 ? Math.max(24, vh * 0.3 - 208)
-                : vh * 0.3,
+                : Math.max(24, vh * 0.3 - 26),
           }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
