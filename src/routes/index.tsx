@@ -13,8 +13,8 @@ import blackCoffee from "@/assets/artists/black-coffee.webp";
 import nastyC from "@/assets/artists/nasty-c.webp";
 import musaKeys from "@/assets/artists/musa-keys.webp";
 import uncleWaffles from "@/assets/artists/uncle-waffles.webp";
-import maphorisa from "@/assets/artists/dj-maphorisa.jpg";
-import kabza from "@/assets/artists/kabza.jpg";
+import maphorisa from "@/assets/artists/dj-maphorisa.png";
+import kabza from "@/assets/artists/kabza.png";
 
 const SCORPION_KINGS = [
   {
