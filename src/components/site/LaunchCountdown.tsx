@@ -50,7 +50,10 @@ export function LaunchCountdown() {
     }
 
     const onScroll = () => setScrolled(window.scrollY > 120);
-    const onResize = () => setIsMobile(window.matchMedia("(max-width: 639px)").matches);
+    const onResize = () => {
+      setIsMobile(window.matchMedia("(max-width: 639px)").matches);
+      setVh(window.innerHeight);
+    };
     onScroll();
     onResize();
     window.addEventListener("scroll", onScroll, { passive: true });
