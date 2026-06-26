@@ -25,6 +25,7 @@ export function LaunchCountdown() {
   const [parts, setParts] = useState<Parts>(() => diff());
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [vh, setVh] = useState(0);
   const [localLabel, setLocalLabel] = useState<string>("");
   const [localTz, setLocalTz] = useState<string>("local");
 
@@ -49,7 +50,10 @@ export function LaunchCountdown() {
     }
 
     const onScroll = () => setScrolled(window.scrollY > 120);
-    const onResize = () => setIsMobile(window.matchMedia("(max-width: 639px)").matches);
+    const onResize = () => {
+      setIsMobile(window.matchMedia("(max-width: 639px)").matches);
+      setVh(window.innerHeight);
+    };
     onScroll();
     onResize();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -74,7 +78,11 @@ export function LaunchCountdown() {
           initial={false}
           animate={{
             opacity: 1,
-            bottom: scrolled ? 24 : isMobile ? "calc(30vh - 208px)" : "30vh",
+            bottom: scrolled
+              ? 24
+              : isMobile
+                ? Math.max(24, vh * 0.3 - 208)
+                : vh * 0.3,
           }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
