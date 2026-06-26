@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { FadeIn, Section } from "@/components/site/Section";
-import { LaunchCountdown } from "@/components/site/LaunchCountdown";
+
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -196,7 +196,7 @@ function HomePage() {
 
   return (
     <>
-      <LaunchCountdown />
+      
       <section ref={heroRef} aria-labelledby="hero-heading" className="relative isolate z-0 overflow-hidden bg-black">
 
         <h1 id="hero-heading" className="sr-only">

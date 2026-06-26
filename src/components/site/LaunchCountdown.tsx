@@ -30,25 +30,8 @@ function diff(): Parts {
 const pad = (n: number) => String(n).padStart(2, "0");
 
 export function LaunchCountdown() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [parts, setParts] = useState<Parts>(() => diff());
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      if (window.sessionStorage.getItem(STORAGE_KEY)) return;
-      window.sessionStorage.setItem(STORAGE_KEY, "1");
-    } catch {
-      /* ignore */
-    }
-
-    const show = window.setTimeout(() => setVisible(true), 600);
-    const auto = window.setTimeout(() => setVisible(false), 9_000);
-    return () => {
-      window.clearTimeout(show);
-      window.clearTimeout(auto);
-    };
-  }, []);
 
   useEffect(() => {
     if (!visible) return;
