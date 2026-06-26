@@ -2,7 +2,18 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
-const EVENT_DATE = new Date("2026-09-19T18:00:00+02:00").getTime();
+// Event starts 19 Sep 2026, 18:00 SAST (Africa/Johannesburg, UTC+02:00, no DST).
+const EVENT_ISO = "2026-09-19T18:00:00+02:00";
+const EVENT_DATE = new Date(EVENT_ISO).getTime();
+const LOCAL_TZ = typeof Intl !== "undefined" ? Intl.DateTimeFormat().resolvedOptions().timeZone : "local";
+const LOCAL_EVENT_LABEL = new Intl.DateTimeFormat(undefined, {
+  weekday: "short",
+  day: "2-digit",
+  month: "short",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZoneName: "short",
+}).format(new Date(EVENT_ISO));
 const STORAGE_KEY = "sk-launch-countdown-seen";
 
 type Parts = { days: number; hours: number; minutes: number; seconds: number };
