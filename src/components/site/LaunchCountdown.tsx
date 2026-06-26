@@ -76,7 +76,7 @@ export function LaunchCountdown() {
   const ease = t * t * (3 - 2 * t); // smoothstep
   const restBottom = isMobile
     ? Math.max(24, vh * 0.3 - 208)
-    : Math.max(24, vh * 0.3 - 26);
+    : Math.max(24, vh * 0.3 - 26 - 52);
   const bottom = restBottom + (24 - restBottom) * ease;
   // Never fully disappears — fades to ~55% on scroll.
   const opacity = 1 - 0.45 * ease;
