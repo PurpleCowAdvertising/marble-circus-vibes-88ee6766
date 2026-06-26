@@ -89,6 +89,38 @@ function AboutPage() {
         </div>
       </Section>
 
+      <Section className="bg-black text-white">
+        <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+          <FadeIn>
+            <p className="text-xs uppercase tracking-[0.4em] text-gold">The duo</p>
+
+            <h2 className="mt-4 font-display text-5xl font-bold leading-tight text-white md:text-7xl">
+              About Scorpion Kings.
+            </h2>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <div className="space-y-5 text-base leading-relaxed text-white/70 md:text-lg">
+              <p>
+                Scorpion Kings is the genre-defining partnership of Kabza De Small and DJ Maphorisa, the duo that
+                pioneered and globalised Amapiano from township floors to the world stage.
+              </p>
+
+              <p>
+                Across a string of platinum projects and sold-out shows, including 50,000 fans at Loftus Versfeld in
+                2025, they have turned the sound into a movement, an export and a cultural identity.
+              </p>
+
+              <p>
+                Their legacy stands as one of Africa’s most influential musical collaborations, and FNB Stadium 2026
+                is the next chapter.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </Section>
+
+
       <Section className="bg-orange-rich text-white">
         <div className="grid gap-6 md:grid-cols-3">
           {PRINCIPLES.map((item, index) => (
