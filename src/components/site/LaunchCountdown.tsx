@@ -23,7 +23,7 @@ export function LaunchCountdown() {
   const [visible, setVisible] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [parts, setParts] = useState<Parts>(() => diff());
-  const [scrolled, setScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [vh, setVh] = useState(0);
   const [localLabel, setLocalLabel] = useState<string>("");
@@ -49,7 +49,7 @@ export function LaunchCountdown() {
       /* ignore */
     }
 
-    const onScroll = () => setScrolled(window.scrollY > 120);
+    const onScroll = () => setScrollY(window.scrollY);
     const onResize = () => {
       setIsMobile(window.matchMedia("(max-width: 639px)").matches);
       setVh(window.innerHeight);
@@ -70,22 +70,26 @@ export function LaunchCountdown() {
     return () => window.clearInterval(id);
   }, [visible]);
 
+  // Smooth scroll-driven interpolation across a longer range for a gentler glide.
+  const range = isMobile ? 480 : 640;
+  const t = Math.min(1, Math.max(0, scrollY / range));
+  const ease = t * t * (3 - 2 * t); // smoothstep
+  const restBottom = isMobile
+    ? Math.max(24, vh * 0.3 - 208)
+    : Math.max(24, vh * 0.3 - 26);
+  const bottom = restBottom + (24 - restBottom) * ease;
+  // Never fully disappears — fades to ~55% on scroll.
+  const opacity = 1 - 0.45 * ease;
+
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
           key="sk-countdown"
           initial={false}
-          animate={{
-            opacity: 1,
-            bottom: scrolled
-              ? 24
-              : isMobile
-                ? Math.max(24, vh * 0.3 - 208)
-                : Math.max(24, vh * 0.3 - 26),
-          }}
+          animate={{ opacity, bottom }}
           exit={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="pointer-events-none fixed inset-x-0 z-[80] flex flex-col items-center px-4"
           aria-live="polite"
         >
