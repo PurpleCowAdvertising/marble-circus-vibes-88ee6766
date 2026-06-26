@@ -104,8 +104,11 @@ export function LaunchCountdown() {
 
             <span aria-hidden className="hidden h-4 w-px bg-white/20 sm:inline-block" />
 
-            <span className="hidden text-[10px] uppercase tracking-[0.24em] text-white/70 md:inline">
-              19 Sep 26 · FNB
+            <span
+              className="hidden text-[10px] uppercase tracking-[0.24em] text-white/70 md:inline"
+              title={`Local to you (${LOCAL_TZ}): ${LOCAL_EVENT_LABEL}`}
+            >
+              19 Sep 26 · FNB · <span className="text-white/55 normal-case tracking-normal">your time {LOCAL_EVENT_LABEL}</span>
             </span>
 
             <button
