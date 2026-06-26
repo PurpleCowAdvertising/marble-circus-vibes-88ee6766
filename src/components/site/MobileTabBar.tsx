@@ -134,7 +134,7 @@ export function MobileTabBar() {
             const iconClassName = `tabbar-icon ${isActive ? "is-active" : ""} flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
               isActive
                 ? "bg-gradient-to-b from-[#ffd76b] via-gold to-[#b8761a] text-black scale-110 shadow-[0_4px_10px_-2px_rgba(248,165,45,0.35),inset_0_1px_0_rgba(255,255,255,0.6)]"
-                : "text-black/60 group-hover:text-black/90 group-hover:bg-black/5"
+                : "text-black group-hover:bg-black/5"
             }`;
 
             const iconKey = `${isActive ? "a" : "i"}-${drawKey}`;
