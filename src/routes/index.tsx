@@ -217,10 +217,10 @@ function HomePage() {
                   playsInline
                   preload="metadata"
                   aria-label="Scorpion Kings Live logo reveal"
-                  className="relative h-full w-full object-cover"
+                  className="relative h-full w-full object-contain md:object-cover"
                 />
 
-                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[calc(8svh+4.5rem)] md:gap-5 md:pb-[calc(10vh+3rem)]">
+                <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-6 md:gap-5 md:pb-10">
                   <motion.div
                     key={`date-${cycle}`}
                     initial={{
