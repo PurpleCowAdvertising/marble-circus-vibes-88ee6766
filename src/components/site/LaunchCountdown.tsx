@@ -49,9 +49,15 @@ export function LaunchCountdown() {
     }
 
     const onScroll = () => setScrolled(window.scrollY > 120);
+    const onResize = () => setIsMobile(window.matchMedia("(max-width: 639px)").matches);
     onScroll();
+    onResize();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   useEffect(() => {
