@@ -134,6 +134,16 @@ export const Route = createRootRouteWithContext<{
         href: appCss,
       },
     ],
+    scripts: [
+      {
+        async: true,
+        src: "https://www.googletagmanager.com/gtag/js?id=G-LJ7VS3262G",
+      },
+      {
+        children:
+          "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-LJ7VS3262G');",
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
