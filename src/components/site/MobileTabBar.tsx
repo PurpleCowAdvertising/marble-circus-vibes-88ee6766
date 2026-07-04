@@ -9,7 +9,7 @@ const TABS = [
   { kind: "scroll", hash: "lineup", label: "Line-Up", icon: Music },
   { kind: "external", href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", label: "Tickets", icon: Ticket },
   { kind: "scroll", hash: "experience", label: "Experience", icon: Map },
-  { kind: "route", to: "/news", label: "News", icon: Newspaper, exact: false },
+  { kind: "route", to: "/contact", label: "Contact", icon: Mail, exact: false },
 ] as const;
 
 function vibrate() {
