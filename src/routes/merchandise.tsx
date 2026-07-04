@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate } from "@/components/site/visibility";
 
 import tourTee from "@/assets/merch/tour-tee.jpg";
 import tourHoodie from "@/assets/merch/tour-hoodie.jpg";
@@ -55,7 +56,7 @@ const PRODUCTS = [
 
 function MerchandisePage() {
   return (
-    <>
+    <PageGate keyName="page:merchandise">
       <PageHero
         eyebrow="Merchandise"
         title="Official drops."
@@ -134,6 +135,6 @@ function MerchandisePage() {
           </div>
         </FadeIn>
       </Section>
-    </>
+    </PageGate>
   );
 }

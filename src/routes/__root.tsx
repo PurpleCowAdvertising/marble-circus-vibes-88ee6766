@@ -84,9 +84,17 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+import { getPublicVisibility } from "@/lib/visibility.functions";
+
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
+  loader: ({ context }) =>
+    context.queryClient.ensureQueryData({
+      queryKey: ["public-visibility"],
+      queryFn: () => getPublicVisibility(),
+      staleTime: 60_000,
+    }),
   head: () => ({
     meta: [
       { charSet: "utf-8" },

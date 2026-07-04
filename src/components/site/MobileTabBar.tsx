@@ -1,6 +1,8 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, Music, Ticket, Map, Newspaper } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+import { useVisiblePageRoutes } from "./visibility";
 
 const TABS = [
   { kind: "route", to: "/", label: "Home", icon: Home, exact: true },
@@ -61,6 +63,11 @@ export function MobileTabBar() {
   const hash = useRouterState({ select: (state) => state.location.hash });
   const dim = useScrollDim();
   const [drawKey, setDrawKey] = useState(0);
+  const visibleRoutes = useVisiblePageRoutes();
+  const tabs = useMemo(
+    () => TABS.filter((t) => (t.kind === "route" ? visibleRoutes.has(t.to) : true)),
+    [visibleRoutes],
+  );
 
   const handleScrollTab = (sectionHash: string) => {
     vibrate();

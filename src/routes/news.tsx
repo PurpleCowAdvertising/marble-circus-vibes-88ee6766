@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate } from "@/components/site/visibility";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -68,7 +69,7 @@ const POSTS: Post[] = [
 
 function NewsPage() {
   return (
-    <>
+    <PageGate keyName="page:news">
       <PageHero
         eyebrow="News"
         title="From the Kings."
@@ -145,6 +146,6 @@ function NewsPage() {
           </div>
         </FadeIn>
       </Section>
-    </>
+    </PageGate>
   );
 }

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate } from "@/components/site/visibility";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -65,7 +66,7 @@ const SECTIONS = [
 
 function PrivacyPage() {
   return (
-    <>
+    <PageGate keyName="page:privacy">
       <PageHero eyebrow="Legal" title="Privacy Policy" description="Last updated: pending final legal review." />
 
       <Section className="bg-black text-white">
@@ -94,6 +95,6 @@ function PrivacyPage() {
           </div>
         </div>
       </Section>
-    </>
+    </PageGate>
   );
 }

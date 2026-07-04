@@ -1,8 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 import { useSubscribePopup } from "./SubscribePopup";
+import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.png";
 
 type NavItem =
@@ -37,6 +38,12 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { open: openSubscribe } = useSubscribePopup();
+
+  const visibleRoutes = useVisiblePageRoutes();
+  const nav = useMemo(
+    () => NAV.filter((item) => (item.kind === "route" ? visibleRoutes.has(item.to) : true)),
+    [visibleRoutes],
+  );
 
   useEffect(() => {
     let ticking = false;
@@ -119,7 +126,7 @@ export function Header() {
                   : "border-white/25 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)]"
               }`}
             >
-              {NAV.map((item) => {
+              {nav.map((item) => {
                 const className =
                   "group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-white transition-all duration-300 hover:text-white sm:px-3 sm:py-1.5 sm:text-[12px] lg:px-3.5 lg:text-[13px]";
 
@@ -220,7 +227,7 @@ export function Header() {
 
           <nav aria-label="Mobile" className="px-4 pb-8 pt-6 sm:px-6">
             <ul className="divide-y divide-white/10">
-              {NAV.map((item) => {
+              {nav.map((item) => {
                 const linkClass =
                   "flex w-full items-center justify-between py-4 text-left font-display text-2xl font-bold tracking-tight text-white transition-colors hover:text-[#f8a52d]";
 

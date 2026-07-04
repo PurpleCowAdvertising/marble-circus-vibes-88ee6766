@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate } from "@/components/site/visibility";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/faqs")({
@@ -102,7 +103,7 @@ const CATEGORIES = [
 
 function FaqsPage() {
   return (
-    <>
+    <PageGate keyName="page:faqs">
       <PageHero
         eyebrow="FAQs"
         title="Everything you need."
@@ -176,6 +177,6 @@ function FaqsPage() {
           </div>
         </FadeIn>
       </Section>
-    </>
+    </PageGate>
   );
 }
