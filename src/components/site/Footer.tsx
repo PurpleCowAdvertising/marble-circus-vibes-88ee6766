@@ -7,7 +7,7 @@ import ticketsAvailable from "@/assets/tickets-available.png";
 
 const EXPLORE_LINKS = [
   { to: "/music", label: "Line-Up" },
-  { to: "/tickets", label: "Tickets" },
+  { href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", label: "Tickets", external: true as const },
   { to: "/experience", label: "Experience" },
   { to: "/about", label: "About" },
   { to: "/partners", label: "Partners" },
