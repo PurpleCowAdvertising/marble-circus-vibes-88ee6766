@@ -504,15 +504,17 @@ function HomePage() {
                   tag: "Stage front to floor",
                 },
                 {
-                  name: "VIP",
-                  price: "TBA",
+                  name: "general seated",
+                  price: "FROM R 500.00",
                   tag: "Elevated view, fast lines",
                   highlight: true,
+                  status: "SOLD OUT",
                 },
                 {
-                  name: "Premium Table",
-                  price: "TBA",
+                  name: "experiences",
+                  price: "TBC",
                   tag: "Hospitality + bottle service",
+                  status: "COMING SOON",
                 },
               ].map((tier, index) => {
                 const gold = index % 2 === 0;
@@ -598,7 +600,7 @@ function HomePage() {
                             : "bg-white text-black shadow-[0_6px_18px_-8px_rgba(255,255,255,0.25)] hover:shadow-[0_14px_36px_-10px_rgba(255,255,255,0.4)]"
                         }`}
                       >
-                        <span>Buy</span>
+                        <span>{tier.status || "Buy"}</span>
                         <ArrowRight
                           size={14}
                           className="transition-transform duration-500 ease-out group-hover:translate-x-1"
