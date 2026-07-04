@@ -68,7 +68,7 @@ export function HeroVideo() {
     <section
       ref={heroRef}
       aria-label="Scorpion Kings Live hero"
-      className="relative isolate z-0 overflow-hidden bg-black"
+      className="relative isolate z-0 bg-black"
     >
       <div className="w-full">
         <FadeIn>
