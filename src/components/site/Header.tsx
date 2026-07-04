@@ -154,6 +154,21 @@ export function Header() {
                   );
                 }
 
+                if (item.kind === "external") {
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={closeMenu}
+                      className={className}
+                    >
+                      {inner}
+                    </a>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.to}
