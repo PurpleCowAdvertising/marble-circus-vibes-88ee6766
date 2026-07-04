@@ -261,7 +261,7 @@ function HomePage() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1.2, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative overflow-hidden rounded-3xl bg-white/[0.04] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/10"
+                className="group relative overflow-hidden rounded-3xl border border-white/30 bg-white/[0.08] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.75),inset_0_1px_0_0_rgba(255,255,255,0.2)] ring-1 ring-inset ring-white/10 backdrop-blur-xl backdrop-saturate-150"
               >
                 <div className="relative aspect-[4/5] w-full overflow-hidden md:aspect-[5/6]">
                   <img
@@ -438,7 +438,7 @@ function HomePage() {
                   ease: [0.16, 1, 0.3, 1],
                 }}
               >
-                <div className="group relative block aspect-[3/4] w-full overflow-hidden rounded-3xl bg-card text-left shadow-[0_30px_60px_-20px_rgba(0,0,0,0.55),0_12px_24px_-12px_rgba(0,0,0,0.4),inset_0_1px_0_0_rgba(255,255,255,0.08)] ring-1 ring-black/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.65),0_18px_36px_-12px_rgba(0,0,0,0.5)]">
+                <div className="group relative block aspect-[3/4] w-full overflow-hidden rounded-3xl border border-black/20 bg-card text-left shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6),0_12px_24px_-12px_rgba(0,0,0,0.4),inset_0_1px_0_0_rgba(255,255,255,0.5)] ring-1 ring-inset ring-black/10 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7),0_18px_36px_-12px_rgba(0,0,0,0.5)]">
                   <img
                     src={artist.image}
                     alt={artist.name}
@@ -948,7 +948,7 @@ function ArtistCarousel() {
             aria-label={`Featured artist: ${artist.name}`}
             aria-hidden={index >= CAROUSEL_ARTISTS.length || undefined}
             tabIndex={index >= CAROUSEL_ARTISTS.length ? -1 : 0}
-            className="group relative block aspect-[3/4] w-[68%] flex-none overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03] transition-shadow hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 sm:w-[42%] md:w-[28%] lg:w-[22%]"
+            className="group relative block aspect-[3/4] w-[68%] flex-none overflow-hidden rounded-2xl border border-foreground/25 bg-foreground/[0.05] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55),inset_0_1px_0_0_rgba(255,255,255,0.5)] ring-1 ring-inset ring-foreground/10 backdrop-blur-xl backdrop-saturate-150 transition-shadow hover:shadow-[0_40px_100px_-30px_rgba(0,0,0,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 sm:w-[42%] md:w-[28%] lg:w-[22%]"
           >
             <img
               src={artist.image}
