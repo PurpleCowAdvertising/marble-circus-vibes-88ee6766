@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, Twitter, Youtube, Music } from "lucide-react";
 
 import { SITE_CREDIT } from "@/config/credits";
+import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.png";
 import ticketsAvailable from "@/assets/tickets-available.png";
 
