@@ -27,10 +27,11 @@ export function FadeIn({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24, scale: 0.985, filter: "blur(16px) brightness(1.35)" }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px) brightness(1)" }}
+      style={{ transformPerspective: 1400, transformStyle: "preserve-3d", willChange: "transform, filter, opacity" }}
+      initial={{ opacity: 0, y: 42, z: -160, rotateX: 9, scale: 0.955, filter: "blur(14px)" }}
+      whileInView={{ opacity: 1, y: 0, z: 0, rotateX: 0, scale: 1, filter: "blur(0px)" }}
       viewport={{ once, margin: "-12% 0px -12% 0px", amount: 0.15 }}
-      transition={{ duration: 1.1, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1.15, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
 
