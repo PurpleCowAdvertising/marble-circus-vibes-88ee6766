@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef, type ReactNode } from "react";
 
 import { HeroVideo } from "@/components/site/HeroVideo";
 
@@ -16,29 +16,55 @@ export function Section({ children, className = "", id }: { children: ReactNode;
 
 export function FadeIn({
   children,
-  delay = 0,
+  delay: _delay = 0,
   className = "",
-  once = false,
+  once: _once = false,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   once?: boolean;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  // Scroll progress across the element's full pass through the viewport:
+  // 0 = just entering from bottom, 0.5 = centered, 1 = just leaving off the top.
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const smooth = useSpring(scrollYProgress, { stiffness: 120, damping: 24, mass: 0.4 });
+
+  // Peak at center (0.5): scale forward, sharpen, fully opaque.
+  // Recede at edges: smaller, blurred, slightly transparent.
+  const scale = useTransform(smooth, [0, 0.5, 1], [0.9, 1.03, 0.9]);
+  const z = useTransform(smooth, [0, 0.5, 1], [-160, 40, -160]);
+  const opacity = useTransform(smooth, [0, 0.2, 0.5, 0.8, 1], [0, 1, 1, 1, 0]);
+  const filter = useTransform(
+    smooth,
+    [0, 0.35, 0.5, 0.65, 1],
+    ["blur(12px)", "blur(1px)", "blur(0px)", "blur(1px)", "blur(12px)"],
+  );
+
   return (
     <motion.div
-      style={{ transformPerspective: 1400, transformStyle: "preserve-3d", willChange: "transform, filter, opacity" }}
-      initial={{ opacity: 0, y: 42, z: -160, rotateX: 9, scale: 0.955, filter: "blur(14px)" }}
-      whileInView={{ opacity: 1, y: 0, z: 0, rotateX: 0, scale: 1, filter: "blur(0px)" }}
-      viewport={{ once, margin: "-12% 0px -12% 0px", amount: 0.15 }}
-      transition={{ duration: 1.15, delay, ease: [0.22, 1, 0.36, 1] }}
+      ref={ref}
+      style={{
+        transformPerspective: 1400,
+        transformStyle: "preserve-3d",
+        willChange: "transform, filter, opacity",
+        scale,
+        z,
+        opacity,
+        filter,
+      }}
       className={className}
     >
-
       {children}
     </motion.div>
   );
 }
+
 
 
 export function PageHero({ eyebrow, title, description }: { eyebrow?: string; title?: string; description?: string }) {
