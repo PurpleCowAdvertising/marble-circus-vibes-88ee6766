@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Car, Crown, Map, Mic2, ShieldCheck, Utensils } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
-import { PageGate } from "@/components/site/visibility";
+import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
 export const Route = createFileRoute("/experience")({
   head: () => ({
@@ -79,66 +79,72 @@ function ExperiencePage() {
       />
 
       <Section className="bg-black text-white">
-        <FadeIn>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Event experience</p>
+        <VisibilityGate keyName="section:experience.intro">
+          <FadeIn>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Event experience</p>
 
-              <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
-                Built for movement, music and memory.
-              </h2>
-            </div>
-
-            <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
-              This page will become the fan guide for the event. As production, access and venue details are confirmed,
-              the information here can update without changing the whole site.
-            </p>
-          </div>
-        </FadeIn>
-
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {BLOCKS.map((block, index) => {
-            const Icon = block.icon;
-
-            return (
-              <FadeIn key={block.title} delay={index * 0.06}>
-                <article className="group relative h-full overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1 md:p-7">
-                  <div
-                    className={`relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gradient-to-br ${block.accent}`}
-                  >
-                    <div className="absolute inset-0 bg-black/35" />
-
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Icon
-                        size={56}
-                        className="text-white transition-transform duration-500 group-hover:scale-110"
-                        strokeWidth={1.25}
-                      />
-                    </div>
-                  </div>
-
-                  <h2 className="mt-5 font-display text-2xl font-bold leading-tight text-white md:text-3xl">
-                    {block.title}
-                  </h2>
-
-                  <p className="mt-2 text-sm leading-relaxed text-white/70">{block.body}</p>
-                </article>
-              </FadeIn>
-            );
-          })}
-        </div>
-
-        <FadeIn delay={0.2}>
-          <div className="mt-12 grid gap-4 rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:grid-cols-4 md:p-10">
-            {FACTS.map((fact) => (
-              <div key={fact.label}>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">{fact.label}</p>
-
-                <p className="mt-2 font-display text-2xl font-bold leading-tight text-white">{fact.value}</p>
+                <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
+                  Built for movement, music and memory.
+                </h2>
               </div>
-            ))}
+
+              <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
+                This page will become the fan guide for the event. As production, access and venue details are confirmed,
+                the information here can update without changing the whole site.
+              </p>
+            </div>
+          </FadeIn>
+        </VisibilityGate>
+
+        <VisibilityGate keyName="section:experience.blocks">
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {BLOCKS.map((block, index) => {
+              const Icon = block.icon;
+
+              return (
+                <FadeIn key={block.title} delay={index * 0.06}>
+                  <article className="group relative h-full overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1 md:p-7">
+                    <div
+                      className={`relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gradient-to-br ${block.accent}`}
+                    >
+                      <div className="absolute inset-0 bg-black/35" />
+
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Icon
+                          size={56}
+                          className="text-white transition-transform duration-500 group-hover:scale-110"
+                          strokeWidth={1.25}
+                        />
+                      </div>
+                    </div>
+
+                    <h2 className="mt-5 font-display text-2xl font-bold leading-tight text-white md:text-3xl">
+                      {block.title}
+                    </h2>
+
+                    <p className="mt-2 text-sm leading-relaxed text-white/70">{block.body}</p>
+                  </article>
+                </FadeIn>
+              );
+            })}
           </div>
-        </FadeIn>
+        </VisibilityGate>
+
+        <VisibilityGate keyName="section:experience.facts">
+          <FadeIn delay={0.2}>
+            <div className="mt-12 grid gap-4 rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:grid-cols-4 md:p-10">
+              {FACTS.map((fact) => (
+                <div key={fact.label}>
+                  <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">{fact.label}</p>
+
+                  <p className="mt-2 font-display text-2xl font-bold leading-tight text-white">{fact.value}</p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </VisibilityGate>
       </Section>
     </PageGate>
   );
