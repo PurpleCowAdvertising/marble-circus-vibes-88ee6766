@@ -266,6 +266,22 @@ export function Header() {
                   );
                 }
 
+                if (item.kind === "external") {
+                  return (
+                    <li key={item.href}>
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={closeMenu}
+                        className={linkClass}
+                      >
+                        {inner}
+                      </a>
+                    </li>
+                  );
+                }
+
                 return (
                   <li key={item.to}>
                     <Link
