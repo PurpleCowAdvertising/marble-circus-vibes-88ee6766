@@ -52,6 +52,42 @@ export const VISIBILITY_REGISTRY: RegistryEntry[] = [
   // -------- Partners sections --------
   { key: "section:partners.packages", kind: "section", label: "Package tiers + filters", parentKey: "page:partners", sortOrder: 10 },
   { key: "section:partners.cta", kind: "section", label: "Partner-with-us CTA", parentKey: "page:partners", sortOrder: 20 },
+
+  // -------- News sections --------
+  { key: "section:news.header", kind: "section", label: "Header ('The official word.')", parentKey: "page:news", sortOrder: 10 },
+  { key: "section:news.posts", kind: "section", label: "News posts list", parentKey: "page:news", sortOrder: 20 },
+  { key: "section:news.press", kind: "section", label: "Press queries card", parentKey: "page:news", sortOrder: 30 },
+
+  // -------- Tickets sections --------
+  { key: "section:tickets.featured", kind: "section", label: "Featured 'From R400' card", parentKey: "page:tickets", sortOrder: 10 },
+  { key: "section:tickets.tiers", kind: "section", label: "Ticket tier cards", parentKey: "page:tickets", sortOrder: 20 },
+  { key: "section:tickets.retailers", kind: "section", label: "Retailers row", parentKey: "page:tickets", sortOrder: 30 },
+  { key: "section:tickets.facts", kind: "section", label: "Event facts grid", parentKey: "page:tickets", sortOrder: 40 },
+  { key: "section:tickets.disclaimer", kind: "section", label: "Disclaimer text", parentKey: "page:tickets", sortOrder: 50 },
+
+  // -------- Experience sections --------
+  { key: "section:experience.intro", kind: "section", label: "Intro header", parentKey: "page:experience", sortOrder: 10 },
+  { key: "section:experience.blocks", kind: "section", label: "Experience blocks grid", parentKey: "page:experience", sortOrder: 20 },
+  { key: "section:experience.facts", kind: "section", label: "Facts row", parentKey: "page:experience", sortOrder: 30 },
+
+  // -------- Merchandise sections --------
+  { key: "section:merchandise.intro", kind: "section", label: "Intro header", parentKey: "page:merchandise", sortOrder: 10 },
+  { key: "section:merchandise.products", kind: "section", label: "Product preview grid", parentKey: "page:merchandise", sortOrder: 20 },
+  { key: "section:merchandise.cta", kind: "section", label: "Store-coming-soon CTA", parentKey: "page:merchandise", sortOrder: 30 },
+
+  // -------- Legacy sections --------
+  { key: "section:legacy.intro", kind: "section", label: "Intro header", parentKey: "page:legacy", sortOrder: 10 },
+  { key: "section:legacy.pillars", kind: "section", label: "Pillars grid", parentKey: "page:legacy", sortOrder: 20 },
+  { key: "section:legacy.coming-next", kind: "section", label: "Coming-next card", parentKey: "page:legacy", sortOrder: 30 },
+
+  // -------- Contact sections --------
+  { key: "section:contact.info", kind: "section", label: "Contact info column", parentKey: "page:contact", sortOrder: 10 },
+  { key: "section:contact.form", kind: "section", label: "Contact form", parentKey: "page:contact", sortOrder: 20 },
+
+  // -------- FAQs sections --------
+  { key: "section:faqs.intro", kind: "section", label: "Intro header", parentKey: "page:faqs", sortOrder: 10 },
+  { key: "section:faqs.categories", kind: "section", label: "FAQ categories accordion", parentKey: "page:faqs", sortOrder: 20 },
+  { key: "section:faqs.cta", kind: "section", label: "'Send the team a message' CTA", parentKey: "page:faqs", sortOrder: 30 },
 ];
 
 export const REGISTRY_BY_KEY: Record<string, RegistryEntry> = Object.fromEntries(
