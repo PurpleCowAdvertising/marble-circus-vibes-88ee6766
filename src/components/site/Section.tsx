@@ -18,23 +18,26 @@ export function FadeIn({
   children,
   delay = 0,
   className = "",
+  once = false,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
+  once?: boolean;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 56, scale: 0.98, filter: "blur(6px)" }}
+      initial={{ opacity: 0, y: 48, scale: 0.98, filter: "blur(8px)" }}
       whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once, margin: "-15% 0px -15% 0px", amount: 0.15 }}
+      transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
     </motion.div>
   );
 }
+
 
 export function PageHero({ eyebrow, title, description }: { eyebrow?: string; title?: string; description?: string }) {
   return (
@@ -43,7 +46,7 @@ export function PageHero({ eyebrow, title, description }: { eyebrow?: string; ti
 
       {(eyebrow || title || description) && (
         <section className="relative z-10 mx-auto max-w-[1400px] bg-black px-5 pb-8 pt-10 text-white sm:px-6 sm:pb-10 sm:pt-14 md:px-10 md:pb-14 md:pt-20">
-          <FadeIn>
+          <FadeIn once>
             {eyebrow && <p className="text-[10px] uppercase tracking-[0.4em] text-gold sm:text-xs">{eyebrow}</p>}
 
             {title && (
