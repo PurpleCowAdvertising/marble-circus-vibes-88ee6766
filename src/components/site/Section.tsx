@@ -59,24 +59,27 @@ export function FadeIn({
 
   // Text: near-still, just a whisper of settle + fade.
   // Cards (bubble): pronounced expand-in / recede-out with soft focus.
-  const scale = useTransform(
-    smooth,
-    [0, 0.5, 1],
-    bubble ? [0.88, 1.04, 0.88] : [0.995, 1, 0.995],
-  );
-  const z = useTransform(smooth, [0, 0.5, 1], bubble ? [-140, 30, -140] : [0, 0, 0]);
-  const opacity = useTransform(
-    smooth,
-    [0, 0.2, 0.5, 0.8, 1],
-    bubble ? [0, 1, 1, 1, 0] : [0, 1, 1, 1, 1],
-  );
-  const filter = useTransform(
-    smooth,
-    [0, 0.35, 0.5, 0.65, 1],
-    bubble
-      ? ["blur(10px)", "blur(1px)", "blur(0px)", "blur(1px)", "blur(10px)"]
-      : ["blur(0px)", "blur(0px)", "blur(0px)", "blur(0px)", "blur(0px)"],
-  );
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+  const tri = (p: number) => 1 - Math.abs(p - 0.5) * 2; // 0 at edges, 1 at center
+
+  const scale = useTransform(smooth, (p) => {
+    const c = tri(p);
+    return isBubble ? lerp(0.88, 1.04, c) : lerp(0.995, 1, c);
+  });
+  const z = useTransform(smooth, (p) => (isBubble ? lerp(-140, 30, tri(p)) : 0));
+  const opacity = useTransform(smooth, (p) => {
+    if (!isBubble) return p < 0.2 ? p / 0.2 : 1;
+    if (p < 0.2) return p / 0.2;
+    if (p > 0.8) return (1 - p) / 0.2;
+    return 1;
+  });
+  const filter = useTransform(smooth, (p) => {
+    if (!isBubble) return "blur(0px)";
+    const c = tri(p);
+    const b = lerp(10, 0, Math.min(1, c * 1.4));
+    return `blur(${b.toFixed(2)}px)`;
+  });
+
 
   return (
     <motion.div
