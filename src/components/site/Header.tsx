@@ -7,7 +7,7 @@ import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.png";
 
 type NavItem =
-  | { kind: "route"; to: "/" | "/news" | "/merchandise"; label: string }
+  | { kind: "route"; to: "/" | "/news" | "/merchandise" | "/contact"; label: string }
   | { kind: "scroll"; hash: string; label: string }
   | { kind: "external"; href: string; label: string };
 
@@ -15,7 +15,7 @@ const NAV: readonly NavItem[] = [
   { kind: "route", to: "/", label: "Home" },
   { kind: "external", href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", label: "Tickets" },
   { kind: "scroll", hash: "experience", label: "Experience" },
-  { kind: "scroll", hash: "partners", label: "Partners" },
+  { kind: "route", to: "/contact", label: "Partners" },
   { kind: "route", to: "/news", label: "News" },
   { kind: "route", to: "/merchandise", label: "Merch" },
 ] as const;
