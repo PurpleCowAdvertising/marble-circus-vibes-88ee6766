@@ -499,7 +499,7 @@ function HomePage() {
             <div className="grid gap-4 md:grid-cols-3">
               {[
                 {
-                  name: "Field",
+                  name: "Field - selling out!",
                   price: "From R 990.00",
                   tag: "Stage front to floor",
                 },
