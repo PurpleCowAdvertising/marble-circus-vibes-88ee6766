@@ -1,66 +1,86 @@
-# Sony Music SA — Festival Website Plan
+# Content Visibility Manager — Phase 1
 
 ## Goal
-Design and build an 8-page festival/event site with a working subscribe popup, inspired by the bold, immersive aesthetic of Luxurious Marble Fest and Ultra South Africa. Sony Music handles hosting and domain — we deliver design + build only.
+Admin-only dashboard at `/admin` to toggle visibility of pages and sections
+across the site, with a draft/live workflow (edit → preview → publish).
+Zero visual change to the public site until an admin publishes.
 
-## Visual direction (until CI lands)
-Bold editorial-meets-rave aesthetic:
-- Deep dark base (near-black) with a single saturated accent (electric coral / hot magenta) and a subtle marble/grain texture layer
-- Oversized display type (Syne or Bebas Neue style) paired with a clean grotesk for body
-- Generous negative space, asymmetric hero, parallax/scroll-driven motion via framer-motion
-- Sticky top nav with bold hover states; full-bleed imagery; ticker/marquee bands between sections
+## Auth
+- Google sign-in via Lovable Cloud managed OAuth.
+- Admin allowlist: `ADMIN_EMAILS` secret (comma-separated). Only listed
+  emails see `/admin`; everyone else is redirected to `/`.
+- `/auth` route: single "Sign in with Google" button.
+- No public signup, no email/password — this is a private admin surface.
 
-Once you upload the CI, I'll swap colors, fonts and logo to match — design tokens are centralized so this is a clean swap, not a rebuild.
+## Data model
+Single table `content_visibility`:
+- `key` text primary key — stable identifier, e.g. `page:music`, `section:home.hero`.
+- `kind` text — `page` | `section`.
+- `label` text — human label shown in admin ("Home / Hero", "Music page").
+- `parent_key` text nullable — for section→page grouping.
+- `draft_hidden` boolean default false — pending state.
+- `live_hidden` boolean default false — what the public site sees.
+- `updated_at`, `updated_by` — audit trail.
 
-## Pages & content structure
+RLS:
+- Public `SELECT` allowed for `live_hidden` reads (needed at SSR for every visitor).
+- All writes and `draft_hidden` reads require admin role check via server functions.
 
-1. **Home (`/`)** — Hero with event name + date/location + CTA, marquee artist strip, "About in 30 seconds" teaser, featured sponsors row, latest music preview, newsletter CTA
-2. **Sponsors (`/sponsors`)** — Tiered sponsor grid (Headline / Major / Supporting), each with logo + blurb, partnership inquiry CTA
-3. **FAQs (`/faqs`)** — Categorized accordion (Tickets, Venue, Travel, Policies)
-4. **About (`/about`)** — Story, mission, team, past editions gallery
-5. **Music (`/music`)** — Artist lineup grid (cards with image, name, genre), artist detail modal, embedded Spotify/YouTube previews
-6. **Contact Us (`/contact`)** — Form (name, email, subject, message) writing to Cloud DB + general/press/sponsorship contact blocks
-7. **Privacy Policy (`/privacy`)** — Long-form legal template with placeholder copy for legal team to refine
-8. **Terms of Use (`/terms`)** — Same treatment as Privacy
+## Registry
+`src/lib/visibility-registry.ts` — the canonical list of every toggleable key
+on the site. Seed migration inserts a row per registry entry. When a section
+is added to a route, the developer adds one line to the registry; a startup
+sync (server fn callable from admin) inserts missing keys into the DB.
 
-Shared: header (logo + nav + CTA), footer (socials, quick links, Sony Music attribution), subscribe popup.
+## Component wiring
+- Hook `useVisibility()` fetches all live visibility rows once, caches in
+  QueryClient with a long stale time.
+- `<VisibilityGate keyName="section:home.hero">…</VisibilityGate>` wraps each
+  section. Hidden = renders nothing (layout reflows naturally, no placeholder).
+- Route-level: each page's `beforeLoad` throws `notFound()` when the page is
+  hidden and preview mode is off.
+- Header/MobileTabBar nav: filter out links whose page is hidden.
 
-## Subscribe popup (Lovable Cloud)
-- Auto-triggers after ~15s on first visit OR on exit-intent (whichever first), dismissible, remembers dismissal in localStorage
-- Manual trigger from header CTA + footer
-- Fields: email (required), name (optional), marketing consent checkbox
-- Zod validation client-side
-- Submits to a Cloud database table `subscribers` (email, name, consent, source, created_at) with RLS allowing public insert only
-- Success state with confirmation message; duplicate emails handled gracefully
-- Designed so Sony's international team can later swap the insert call for their integration endpoint without touching UI
+## Preview mode
+- Admin toggle in the dashboard sets a `?preview=draft` search param or a
+  `lovable-preview` cookie via a server fn (httpOnly, admin-only).
+- `useVisibility()` reads `draft_hidden` instead of `live_hidden` when the
+  preview cookie is present AND the caller is admin.
+- Draft badge fixed at top of screen while preview is on, with "Back to live".
 
-## Contact form
-Same Cloud pattern — `contact_messages` table, public insert only, admin read later.
+## Publish workflow
+- Admin edits change `draft_hidden` only. UI shows unsaved-change count.
+- "Publish changes" server fn copies `draft_hidden → live_hidden` for all
+  changed rows in a transaction, bumps a `visibility_version` value so
+  clients revalidate.
+- "Discard changes" resets `draft_hidden = live_hidden`.
 
-## Tech notes
-- TanStack Start file-based routing: one route file per page under `src/routes/`
-- Each route gets its own SEO `head()` (title, description, og tags)
-- Design tokens in `src/styles.css` (oklch); shadcn components themed via tokens — no hardcoded colors
-- framer-motion for hero animations, scroll reveals, marquee
-- Lovable Cloud enabled for the two tables above
-- Mobile-first responsive across all pages
+## Admin UI (`/admin`)
+- Left sidebar: search + tree (Pages → Sections).
+- Right pane: selected page/section detail with toggle, status pill
+  (Live / Hidden / Draft change pending), last-edited-by.
+- Top bar: unsaved count, Preview toggle, Publish, Discard.
+- Bulk actions per page: Hide all sections / Show all sections.
 
-## What I need from you
-- **CI document** (logo, brand colors, fonts) — upload anytime; I'll start with the inspired direction and swap in
-- **Event name + dates + location** — placeholder used until provided
-- **Artist lineup, sponsor logos, real copy** — placeholders used; easy to swap
+## Route/page inventory (initial registry)
+Pages: `/`, `/about`, `/music`, `/news`, `/tickets`, `/partners`,
+`/experience`, `/merchandise`, `/legacy`, `/contact`, `/faqs`, `/privacy`,
+`/terms`. `/auth` and `/admin` are never toggleable.
 
-## Out of scope (this pass)
-- Hosting/domain setup (Sony Music handles)
-- Ticketing integration
-- International audience-DB integration (UI shell ready for handoff)
-- Real legal copy (placeholders only)
+Sections per page — enumerated during the wiring pass by reading each route
+file and adding one `<VisibilityGate>` per top-level section, with matching
+registry entries.
 
-## Suggested order of build
-1. Enable Lovable Cloud + create `subscribers` and `contact_messages` tables
-2. Design tokens + shared layout (header, footer, subscribe popup)
-3. Home page (sets the visual bar)
-4. About, Music, Sponsors
-5. Contact (with working form)
-6. FAQs, Privacy, Terms
-7. SEO + responsive polish pass
+## Out of scope (Phase 2)
+- Individual component/card toggles (each artist, each FAQ).
+- Inline text editing.
+- Scheduled publish, role tiers, version history, undo/redo, recycle bin.
+- Multi-admin sync conflict resolution (single-admin assumption for now).
+
+## Build order
+1. `ADMIN_EMAILS` secret + Google OAuth config + migration.
+2. `/auth` route + admin middleware + `/admin` shell (empty tree, wired auth).
+3. Registry + `useVisibility` + `<VisibilityGate>` + nav filtering.
+4. Instrument every route with section gates + seed registry.
+5. Preview mode + publish/discard.
+6. Polish: search, bulk actions, status pills, audit display.
