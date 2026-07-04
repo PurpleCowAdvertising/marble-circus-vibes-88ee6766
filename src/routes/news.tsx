@@ -47,7 +47,7 @@ const POSTS: Post[] = [
       "Curated by DJ Maphorisa and Kabza De Small, Scorpion Kings Live is built around world-class production, electrifying performances and the unmistakable sound that continues to move from South Africa to the world.",
       "More announcements, including lineup reveals and special moments, will follow.",
     ],
-    href: "https://www.webtickets.co.za",
+    href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143",
     hrefLabel: "Buy on Webtickets",
   },
   {
