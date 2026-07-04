@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, Music, Ticket, Map, Newspaper } from "lucide-react";
+import { Home, Music, Ticket, Map, Mail } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useVisiblePageRoutes } from "./visibility";
