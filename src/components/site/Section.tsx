@@ -20,26 +20,42 @@ export function FadeIn({
   delay: _delay = 0,
   className = "",
   once: _once = false,
-  bubble = false,
+  bubble,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   once?: boolean;
-  /** Card-style bubble expansion — bigger scale pop at viewport center. */
+  /** Force card-style bubble expansion. Auto-detected when omitted. */
   bubble?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [autoBubble, setAutoBubble] = useState(false);
+
+  // Auto-detect card-like content: rounded surfaces, image tiles, or grid layouts.
+  useEffect(() => {
+    if (bubble !== undefined || !ref.current) return;
+    const el = ref.current;
+    const looksLikeCard =
+      el.querySelector(
+        '[class*="rounded-3xl"],[class*="rounded-2xl"],[class*="backdrop-blur"],img,video',
+      ) !== null;
+    if (looksLikeCard) setAutoBubble(true);
+  }, [bubble]);
+
+  const isBubble = bubble ?? autoBubble;
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
   const smooth = useSpring(scrollYProgress, {
-    stiffness: bubble ? 90 : 140,
-    damping: bubble ? 20 : 28,
-    mass: bubble ? 0.5 : 0.3,
+    stiffness: isBubble ? 90 : 140,
+    damping: isBubble ? 20 : 28,
+    mass: isBubble ? 0.5 : 0.3,
   });
+
 
   // Text: near-still, just a whisper of settle + fade.
   // Cards (bubble): pronounced expand-in / recede-out with soft focus.
