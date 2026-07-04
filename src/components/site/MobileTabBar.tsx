@@ -133,7 +133,9 @@ export function MobileTabBar() {
                 ? tab.exact
                   ? pathname === tab.to
                   : pathname.startsWith(tab.to)
-                : pathname === "/" && hash === `#${tab.hash}`;
+                : tab.kind === "scroll"
+                  ? pathname === "/" && hash === `#${tab.hash}`
+                  : false;
 
             const baseClassName =
               "group flex h-full w-12 items-center justify-center transition-transform duration-200 active:scale-95";
@@ -157,10 +159,29 @@ export function MobileTabBar() {
                 >
                   <span className={iconClassName} key={iconKey}>
                     <Icon size={28} strokeWidth={1.25} absoluteStrokeWidth />
-
-
                   </span>
                 </button>
+              );
+            }
+
+            if (tab.kind === "external") {
+              return (
+                <a
+                  key={tab.href}
+                  href={tab.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={tab.label}
+                  onClick={() => {
+                    vibrate();
+                    setDrawKey((k) => k + 1);
+                  }}
+                  className={baseClassName}
+                >
+                  <span className={iconClassName} key={iconKey}>
+                    <Icon size={28} strokeWidth={1.25} absoluteStrokeWidth />
+                  </span>
+                </a>
               );
             }
 
