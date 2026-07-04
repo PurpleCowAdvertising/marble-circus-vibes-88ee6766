@@ -261,7 +261,7 @@ function HomePage() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1.2, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative overflow-hidden rounded-3xl bg-white/[0.04] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/10"
+                className="group relative overflow-hidden rounded-3xl border border-white/30 bg-white/[0.08] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.75),inset_0_1px_0_0_rgba(255,255,255,0.2)] ring-1 ring-inset ring-white/10 backdrop-blur-xl backdrop-saturate-150"
               >
                 <div className="relative aspect-[4/5] w-full overflow-hidden md:aspect-[5/6]">
                   <img
