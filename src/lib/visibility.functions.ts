@@ -29,9 +29,9 @@ export const getPublicVisibility = createServerFn({ method: "GET" }).handler(asy
   });
 
   const [rowsRes, metaRes] = await Promise.all([
-    // Narrow read via SECURITY DEFINER function — only returns `key` of rows
+    // Narrow read via a restricted view — only exposes `key` of rows
     // currently hidden on live. Draft state is never exposed to the public.
-    supa.rpc("get_hidden_live_keys"),
+    supa.from("content_visibility_live_hidden").select("key"),
     supa.from("content_visibility_meta").select("version").eq("id", 1).single(),
   ]);
 
