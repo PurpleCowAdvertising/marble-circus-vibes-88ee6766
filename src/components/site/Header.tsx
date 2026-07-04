@@ -7,7 +7,7 @@ import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.png";
 
 type NavItem =
-  | { kind: "route"; to: "/" | "/news" | "/merchandise"; label: string }
+  | { kind: "route"; to: "/" | "/news" | "/merchandise" | "/contact"; label: string }
   | { kind: "scroll"; hash: string; label: string }
   | { kind: "external"; href: string; label: string };
 
