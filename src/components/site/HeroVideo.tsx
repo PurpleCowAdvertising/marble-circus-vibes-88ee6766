@@ -73,7 +73,7 @@ export function HeroVideo() {
       <div className="w-full">
         <FadeIn>
           <motion.div style={{ y, opacity }} className="relative">
-            <figure className="relative h-[88svh] min-h-[560px] w-full overflow-hidden bg-black md:h-[82vh] md:min-h-[520px] md:max-h-[820px]">
+            <figure className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-black md:h-screen">
               <video
                 ref={videoRef}
                 key={isMobile ? "mobile" : "desktop"}
