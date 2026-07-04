@@ -600,7 +600,7 @@ function HomePage() {
                             : "bg-white text-black shadow-[0_6px_18px_-8px_rgba(255,255,255,0.25)] hover:shadow-[0_14px_36px_-10px_rgba(255,255,255,0.4)]"
                         }`}
                       >
-                        <span>Buy</span>
+                        <span>{tier.status || "Buy"}</span>
                         <ArrowRight
                           size={14}
                           className="transition-transform duration-500 ease-out group-hover:translate-x-1"
