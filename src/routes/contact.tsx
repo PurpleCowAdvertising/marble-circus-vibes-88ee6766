@@ -284,6 +284,7 @@ function ContactPage() {
               )}
             </form>
           </FadeIn>
+          </VisibilityGate>
         </div>
       </Section>
     </PageGate>
