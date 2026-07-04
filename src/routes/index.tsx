@@ -465,7 +465,9 @@ function HomePage() {
           </div>
         </Section>
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.tickets">
       <div id="tickets" className="scroll-mt-24 bg-black text-white">
         <div className="bg-black">
           <Section className="!bg-black !pb-4 !pt-8 sm:!pt-10 md:!pb-6 md:!pt-14">
@@ -612,7 +614,9 @@ function HomePage() {
           </Section>
         </div>
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.experience">
       <div id="experience" className="relative isolate z-30 scroll-mt-24 bg-orange-rich">
         <Section className="!py-10 text-foreground md:!py-14">
           <FadeIn>
@@ -694,7 +698,9 @@ function HomePage() {
           </div>
         </Section>
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.partners">
       <div id="partners" className="relative isolate z-30 scroll-mt-24 bg-black text-white">
         <Section className="!py-10 md:!py-14">
           <FadeIn>
@@ -747,9 +753,10 @@ function HomePage() {
           </FadeIn>
         </Section>
       </div>
+      </VisibilityGate>
 
       <TicketModal tier={activeTier} onClose={() => setActiveTier(null)} />
-    </>
+    </PageGate>
   );
 }
 
