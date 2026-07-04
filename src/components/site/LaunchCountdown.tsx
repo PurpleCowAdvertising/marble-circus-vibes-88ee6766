@@ -26,6 +26,8 @@ export function LaunchCountdown() {
   const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [vh, setVh] = useState(0);
+  const [footerVisible, setFooterVisible] = useState(false);
+
   const [localLabel, setLocalLabel] = useState<string>("");
   const [localTz, setLocalTz] = useState<string>("local");
 
