@@ -68,7 +68,7 @@ export function HeroVideo() {
     <section
       ref={heroRef}
       aria-label="Scorpion Kings Live hero"
-      className="relative isolate z-0 overflow-hidden bg-black"
+      className="relative isolate z-0 bg-black"
     >
       <div className="w-full">
         <FadeIn>
@@ -88,6 +88,14 @@ export function HeroVideo() {
               />
 
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/20" />
+
+              {/* Soft blend into the next section — dissolves the hard bottom edge on scroll */}
+              <motion.div
+                aria-hidden
+                style={{ opacity: useTransform(scrollYProgress, [0, 0.6], [1, 0.85]) }}
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-black/70 to-black md:h-56"
+              />
+
 
               <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[calc(7svh+4.5rem)] md:gap-5 md:pb-[calc(8vh+3rem)]">
                 <motion.div
@@ -129,9 +137,16 @@ export function HeroVideo() {
                 Scorpion Kings Live, 19 September 2026 at FNB Stadium, Johannesburg.
               </figcaption>
             </figure>
+
+            {/* Bleeds a soft black-to-transparent taper down into the next section for a seamless seam */}
+            <div
+              aria-hidden
+              className="pointer-events-none relative z-10 -mt-24 h-24 w-full bg-gradient-to-b from-black to-transparent md:-mt-32 md:h-32"
+            />
           </motion.div>
         </FadeIn>
       </div>
     </section>
   );
 }
+
