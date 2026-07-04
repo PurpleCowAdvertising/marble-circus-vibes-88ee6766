@@ -240,7 +240,7 @@ function MusicPage() {
                   <button
                     type="button"
                     aria-label={`Read more about ${artist.name}`}
-                    className="group relative block aspect-[3/4] w-full overflow-hidden rounded-3xl border border-white/15 bg-white/[0.05] text-left shadow-[0_24px_60px_-28px_rgba(0,0,0,0.9)] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                    className="group relative block aspect-[3/4] w-full overflow-hidden rounded-3xl border border-white/30 bg-white/[0.08] text-left shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.18)] ring-1 ring-inset ring-white/10 backdrop-blur-xl backdrop-saturate-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
                   >
                     <img
                       src={artist.image}
