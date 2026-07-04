@@ -26,6 +26,8 @@ export function LaunchCountdown() {
   const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [vh, setVh] = useState(0);
+  const [footerVisible, setFooterVisible] = useState(false);
+
   const [localLabel, setLocalLabel] = useState<string>("");
   const [localTz, setLocalTz] = useState<string>("local");
 
@@ -58,11 +60,24 @@ export function LaunchCountdown() {
     onResize();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
+
+    const footerEl = document.getElementById("site-footer");
+    let observer: IntersectionObserver | undefined;
+    if (footerEl && "IntersectionObserver" in window) {
+      observer = new IntersectionObserver(
+        ([entry]) => setFooterVisible(entry.isIntersecting),
+        { rootMargin: "0px 0px 0px 0px", threshold: 0 },
+      );
+      observer.observe(footerEl);
+    }
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
+      observer?.disconnect();
     };
   }, []);
+
 
   useEffect(() => {
     if (!visible) return;
@@ -87,12 +102,14 @@ export function LaunchCountdown() {
         <motion.div
           key="sk-countdown"
           initial={false}
-          animate={{ opacity, bottom }}
+          animate={{ opacity: footerVisible ? 0 : opacity, bottom }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="pointer-events-none fixed inset-x-0 z-[80] flex flex-col items-center px-4"
+          style={{ visibility: footerVisible ? "hidden" : "visible" }}
           aria-live="polite"
         >
+
           <span className="mb-2 rounded-full bg-black/55 px-3 py-1 font-display text-[10px] font-bold uppercase tracking-[0.28em] text-gold shadow-[0_8px_20px_-8px_rgba(0,0,0,0.55)] backdrop-blur-md sm:hidden">
             19 Sep 26 · FNB
           </span>
