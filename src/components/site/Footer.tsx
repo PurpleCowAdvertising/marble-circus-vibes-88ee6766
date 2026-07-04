@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, Twitter, Youtube, Music } from "lucide-react";
 
 import { SITE_CREDIT } from "@/config/credits";
+import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.png";
 import ticketsAvailable from "@/assets/tickets-available.png";
 
@@ -31,6 +32,10 @@ const SOCIAL_LINKS = [
 ] as const;
 
 export function Footer() {
+  const visibleRoutes = useVisiblePageRoutes();
+  const exploreLinks = EXPLORE_LINKS.filter((link) =>
+    "external" in link ? true : visibleRoutes.has(link.to),
+  );
   return (
     <footer className="relative z-10 border-t border-black/10 bg-white pb-[env(safe-area-inset-bottom)] text-black md:pb-0">
       <div className="mx-auto max-w-[1400px] px-6 py-8 md:px-10 md:py-10">
@@ -63,7 +68,7 @@ export function Footer() {
             <h4 className="mb-3 text-[10px] uppercase tracking-widest text-black/60 md:mb-4 md:text-xs">Explore</h4>
 
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm md:block md:space-y-2">
-              {EXPLORE_LINKS.map((link) => (
+              {exploreLinks.map((link) => (
                 <li key={link.label}>
                   {"external" in link ? (
                     <a
