@@ -113,13 +113,6 @@ export type Database = {
             referencedRelation: "content_visibility"
             referencedColumns: ["key"]
           },
-          {
-            foreignKeyName: "content_visibility_parent_key_fkey"
-            columns: ["parent_key"]
-            isOneToOne: false
-            referencedRelation: "content_visibility_public"
-            referencedColumns: ["key"]
-          },
         ]
       }
       content_visibility_meta: {
@@ -175,21 +168,15 @@ export type Database = {
       }
     }
     Views: {
-      content_visibility_public: {
-        Row: {
-          key: string | null
-        }
-        Insert: {
-          key?: string | null
-        }
-        Update: {
-          key?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_hidden_live_keys: {
+        Args: never
+        Returns: {
+          key: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
