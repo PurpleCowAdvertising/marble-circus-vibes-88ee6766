@@ -71,80 +71,78 @@ export function HeroVideo() {
       className="relative isolate z-0 bg-black"
     >
       <div className="w-full">
-        <FadeIn>
-          <motion.div style={{ y, opacity }} className="relative">
-            <figure className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-black md:h-screen">
-              <video
-                ref={videoRef}
-                key={isMobile ? "mobile" : "desktop"}
-                src={isMobile ? "/hero-video-mobile.mp4" : "/hero-video.mp4"}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                aria-label="Scorpion Kings Live logo reveal"
-                className="relative h-full w-full object-cover"
-              />
-
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/20" />
-
-              {/* Soft blend into the next section — dissolves the hard bottom edge on scroll */}
-              <motion.div
-                aria-hidden
-                style={{ opacity: useTransform(scrollYProgress, [0, 0.6], [1, 0.85]) }}
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-black/70 to-black md:h-56"
-              />
-
-
-              <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[calc(7svh+4.5rem)] md:gap-5 md:pb-[calc(8vh+3rem)]">
-                <motion.div
-                  key={`date-${cycle}`}
-                  initial={{
-                    opacity: 0,
-                    y: 22,
-                    letterSpacing: "0.7em",
-                    filter: "blur(10px)",
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    letterSpacing: "0.35em",
-                    filter: "blur(0px)",
-                  }}
-                  transition={{ duration: 8, ease: "easeOut" }}
-                  className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[19px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
-                >
-                  <span>19 Sep 26</span>
-                  <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-gold" />
-                  <span>FNB Stadium</span>
-                </motion.div>
-
-                <motion.button
-                  key={`cta-${cycle}`}
-                  type="button"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 8, ease: "easeOut" }}
-                  onClick={handleTicketsClick}
-                  className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150 transition-transform hover:scale-105 sm:text-base"
-                >
-                  Buy Tickets
-                </motion.button>
-              </div>
-
-              <figcaption className="sr-only">
-                Scorpion Kings Live, 19 September 2026 at FNB Stadium, Johannesburg.
-              </figcaption>
-            </figure>
-
-            {/* Bleeds a soft black-to-transparent taper down into the next section for a seamless seam */}
-            <div
-              aria-hidden
-              className="pointer-events-none relative z-10 -mt-24 h-24 w-full bg-gradient-to-b from-black to-transparent md:-mt-32 md:h-32"
+        <motion.div style={{ y, opacity }} className="relative">
+          <figure className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-black md:h-screen">
+            <video
+              ref={videoRef}
+              key={isMobile ? "mobile" : "desktop"}
+              src={isMobile ? "/hero-video-mobile.mp4" : "/hero-video.mp4"}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-label="Scorpion Kings Live logo reveal"
+              className="relative h-full w-full object-cover"
             />
-          </motion.div>
-        </FadeIn>
+
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/20" />
+
+            {/* Soft blend into the next section — dissolves the hard bottom edge on scroll */}
+            <motion.div
+              aria-hidden
+              style={{ opacity: useTransform(scrollYProgress, [0, 0.6], [1, 0.85]) }}
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-black/70 to-black md:h-56"
+            />
+
+
+            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[calc(7svh+4.5rem)] md:gap-5 md:pb-[calc(8vh+3rem)]">
+              <motion.div
+                key={`date-${cycle}`}
+                initial={{
+                  opacity: 0,
+                  y: 22,
+                  letterSpacing: "0.7em",
+                  filter: "blur(10px)",
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  letterSpacing: "0.35em",
+                  filter: "blur(0px)",
+                }}
+                transition={{ duration: 8, ease: "easeOut" }}
+                className="flex flex-wrap items-center justify-center gap-2.5 font-display text-[19px] font-bold uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)] sm:gap-4 sm:text-[25px] md:text-[28px]"
+              >
+                <span>19 Sep 26</span>
+                <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-gold" />
+                <span>FNB Stadium</span>
+              </motion.div>
+
+              <motion.button
+                key={`cta-${cycle}`}
+                type="button"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 8, ease: "easeOut" }}
+                onClick={handleTicketsClick}
+                className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150 transition-transform hover:scale-105 sm:text-base"
+              >
+                Buy Tickets
+              </motion.button>
+            </div>
+
+            <figcaption className="sr-only">
+              Scorpion Kings Live, 19 September 2026 at FNB Stadium, Johannesburg.
+            </figcaption>
+          </figure>
+
+          {/* Bleeds a soft black-to-transparent taper down into the next section for a seamless seam */}
+          <div
+            aria-hidden
+            className="pointer-events-none relative z-10 -mt-24 h-24 w-full bg-gradient-to-b from-black to-transparent md:-mt-32 md:h-32"
+          />
+        </motion.div>
       </div>
     </section>
   );
