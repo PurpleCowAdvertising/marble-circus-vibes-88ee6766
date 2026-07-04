@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+
 
 import { HeroVideo } from "@/components/site/HeroVideo";
 
