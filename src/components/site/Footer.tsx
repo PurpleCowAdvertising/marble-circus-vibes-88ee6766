@@ -56,12 +56,6 @@ export function Footer() {
               Drops, lineup reveals, ticket waves and exclusive behind-the-scenes updates.
             </p>
 
-            <Link
-              to="/contact"
-              className="mt-5 inline-block rounded-full bg-black px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-105"
-            >
-              Contact
-            </Link>
           </div>
 
           <div>
