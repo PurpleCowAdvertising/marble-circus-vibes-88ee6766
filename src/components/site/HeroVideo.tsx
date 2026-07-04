@@ -1,16 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { useRouterState } from "@tanstack/react-router";
 
 import { FadeIn } from "@/components/site/Section";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-}
 
 /**
  * Looping hero video used on inner landing pages.
