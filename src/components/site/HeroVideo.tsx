@@ -89,6 +89,14 @@ export function HeroVideo() {
 
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/20" />
 
+              {/* Soft blend into the next section — dissolves the hard bottom edge on scroll */}
+              <motion.div
+                aria-hidden
+                style={{ opacity: useTransform(scrollYProgress, [0, 0.6], [1, 0.85]) }}
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-black/70 to-black md:h-56"
+              />
+
+
               <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[calc(7svh+4.5rem)] md:gap-5 md:pb-[calc(8vh+3rem)]">
                 <motion.div
                   key={`date-${cycle}`}
