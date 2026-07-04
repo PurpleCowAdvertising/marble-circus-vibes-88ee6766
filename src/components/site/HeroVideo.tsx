@@ -9,8 +9,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
  * Video background + date row + Buy Tickets CTA.
  */
 export function HeroVideo() {
-  const pathname = useRouterState({ select: (state) => state.location.pathname });
-
   const isMobile = useIsMobile();
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
