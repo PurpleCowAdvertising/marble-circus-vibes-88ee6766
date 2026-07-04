@@ -107,14 +107,13 @@ export function Footer() {
                 const Icon = social.icon;
 
                 return (
-                  <a
+                  <span
                     key={social.label}
-                    href={social.href}
                     aria-label={social.label}
-                    className="text-black transition-colors hover:text-black/60"
+                    className="pointer-events-none text-black/60"
                   >
                     <Icon size={18} />
-                  </a>
+                  </span>
                 );
               })}
             </div>
