@@ -7,7 +7,7 @@ import { useVisiblePageRoutes } from "./visibility";
 const TABS = [
   { kind: "route", to: "/", label: "Home", icon: Home, exact: true },
   { kind: "scroll", hash: "lineup", label: "Line-Up", icon: Music },
-  { kind: "scroll", hash: "tickets", label: "Tickets", icon: Ticket },
+  { kind: "external", href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", label: "Tickets", icon: Ticket },
   { kind: "scroll", hash: "experience", label: "Experience", icon: Map },
   { kind: "route", to: "/news", label: "News", icon: Newspaper, exact: false },
 ] as const;
