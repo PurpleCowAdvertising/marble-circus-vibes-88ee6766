@@ -504,15 +504,17 @@ function HomePage() {
                   tag: "Stage front to floor",
                 },
                 {
-                  name: "VIP",
-                  price: "TBA",
+                  name: "general seated",
+                  price: "FROM R 500.00",
                   tag: "Elevated view, fast lines",
                   highlight: true,
+                  status: "SOLD OUT",
                 },
                 {
-                  name: "Premium Table",
-                  price: "TBA",
+                  name: "experiences",
+                  price: "TBC",
                   tag: "Hospitality + bottle service",
+                  status: "COMING SOON",
                 },
               ].map((tier, index) => {
                 const gold = index % 2 === 0;
