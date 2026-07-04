@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Music2 } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 import majorLeague from "@/assets/artists/major-league.jpg";
@@ -206,14 +207,14 @@ const ARTISTS: readonly Artist[] = [
 
 function MusicPage() {
   return (
-    <>
+    <PageGate keyName="page:music">
       <PageHero
         eyebrow="The lineup"
         title="Sound. Story. Stage."
         description="The artists pushing the next wave, from underground floors to global charts."
       />
 
-      <Section className="bg-black text-white">
+      <VisibilityGate keyName="section:music.artists"><Section className="bg-black text-white">
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -299,9 +300,9 @@ function MusicPage() {
             </FadeIn>
           ))}
         </div>
-      </Section>
+      </Section></VisibilityGate>
 
-      <Section className="bg-orange-rich text-white">
+      <VisibilityGate keyName="section:music.releases"><Section className="bg-orange-rich text-white">
         <FadeIn>
           <p className="text-xs uppercase tracking-[0.4em] text-gold">Latest releases</p>
 
@@ -312,7 +313,7 @@ function MusicPage() {
             can stream live updates from the artists and the event.
           </p>
         </FadeIn>
-      </Section>
-    </>
+      </Section></VisibilityGate>
+    </PageGate>
   );
 }

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -51,14 +52,14 @@ const EXPERIENCE_POINTS = [
 
 function AboutPage() {
   return (
-    <>
+    <PageGate keyName="page:about">
       <PageHero
         eyebrow="About us"
         title="Built for the artists, powered by the fans."
         description="Scorpion Kings Live is a celebration of Amapiano, performance and the culture carrying South African sound to the world."
       />
 
-      <Section className="bg-black text-white">
+      <VisibilityGate keyName="section:about.story"><Section className="bg-black text-white">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           <FadeIn>
             <p className="text-xs uppercase tracking-[0.4em] text-gold">Our story</p>
@@ -87,9 +88,9 @@ function AboutPage() {
             </div>
           </FadeIn>
         </div>
-      </Section>
+      </Section></VisibilityGate>
 
-      <Section className="bg-black text-white">
+      <VisibilityGate keyName="section:about.duo"><Section className="bg-black text-white">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           <FadeIn>
             <p className="text-xs uppercase tracking-[0.4em] text-gold">The duo</p>
@@ -118,10 +119,10 @@ function AboutPage() {
             </div>
           </FadeIn>
         </div>
-      </Section>
+      </Section></VisibilityGate>
 
 
-      <Section className="bg-orange-rich text-white">
+      <VisibilityGate keyName="section:about.principles"><Section className="bg-orange-rich text-white">
         <div className="grid gap-6 md:grid-cols-3">
           {PRINCIPLES.map((item, index) => (
             <FadeIn key={item.number} delay={index * 0.08}>
@@ -135,9 +136,9 @@ function AboutPage() {
             </FadeIn>
           ))}
         </div>
-      </Section>
+      </Section></VisibilityGate>
 
-      <Section className="bg-black text-white">
+      <VisibilityGate keyName="section:about.platform"><Section className="bg-black text-white">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:gap-16">
           <FadeIn>
             <p className="text-xs uppercase tracking-[0.4em] text-gold">The experience</p>
@@ -160,7 +161,7 @@ function AboutPage() {
             </div>
           </FadeIn>
         </div>
-      </Section>
-    </>
+      </Section></VisibilityGate>
+    </PageGate>
   );
 }
