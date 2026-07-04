@@ -218,6 +218,8 @@ function AnimatedOutlet() {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isBareRoute = pathname.startsWith("/admin") || pathname.startsWith("/auth");
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -225,18 +227,18 @@ function RootComponent() {
         <ScrollToTop />
 
         <div className="relative flex min-h-[100dvh] flex-col bg-background text-foreground">
-          <Header />
+          {!isBareRoute && <Header />}
 
           <main className="relative z-10 flex-1">
             <AnimatedOutlet />
           </main>
 
-          <Footer />
-          <MobileTabBar />
+          {!isBareRoute && <Footer />}
+          {!isBareRoute && <MobileTabBar />}
         </div>
 
-        <ConsentBanner />
-        <LaunchCountdown />
+        {!isBareRoute && <ConsentBanner />}
+        {!isBareRoute && <LaunchCountdown />}
         <Toaster />
       </SubscribeProvider>
     </QueryClientProvider>
