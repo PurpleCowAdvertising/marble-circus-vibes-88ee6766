@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Briefcase, Mail, Newspaper } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate } from "@/components/site/visibility";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/contact")({
@@ -121,7 +122,7 @@ function ContactPage() {
   };
 
   return (
-    <>
+    <PageGate keyName="page:contact">
       <PageHero
         eyebrow="Contact"
         title="Let’s talk."
@@ -282,6 +283,6 @@ function ContactPage() {
           </FadeIn>
         </div>
       </Section>
-    </>
+    </PageGate>
   );
 }

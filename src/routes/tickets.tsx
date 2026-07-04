@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Check } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate } from "@/components/site/visibility";
 
 export const Route = createFileRoute("/tickets")({
   head: () => ({
@@ -59,7 +60,7 @@ const TICKET_TIERS: readonly TicketTier[] = [
 
 function TicketsPage() {
   return (
-    <>
+    <PageGate keyName="page:tickets">
       <PageHero
         eyebrow="Tickets · On sale now"
         title="Be part of history."
@@ -177,6 +178,6 @@ function TicketsPage() {
           </p>
         </FadeIn>
       </Section>
-    </>
+    </PageGate>
   );
 }

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate } from "@/components/site/visibility";
 
 export const Route = createFileRoute("/legacy")({
   head: () => ({
@@ -48,7 +49,7 @@ const PILLARS = [
 
 function LegacyPage() {
   return (
-    <>
+    <PageGate keyName="page:legacy">
       <PageHero
         eyebrow="Legacy / CSI"
         title="More than a show."
@@ -112,6 +113,6 @@ function LegacyPage() {
           </div>
         </FadeIn>
       </Section>
-    </>
+    </PageGate>
   );
 }

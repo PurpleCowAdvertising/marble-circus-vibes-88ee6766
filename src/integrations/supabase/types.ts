@@ -71,6 +71,68 @@ export type Database = {
         }
         Relationships: []
       }
+      content_visibility: {
+        Row: {
+          draft_hidden: boolean
+          key: string
+          kind: string
+          label: string
+          live_hidden: boolean
+          parent_key: string | null
+          sort_order: number
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          draft_hidden?: boolean
+          key: string
+          kind: string
+          label: string
+          live_hidden?: boolean
+          parent_key?: string | null
+          sort_order?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          draft_hidden?: boolean
+          key?: string
+          kind?: string
+          label?: string
+          live_hidden?: boolean
+          parent_key?: string | null
+          sort_order?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_visibility_parent_key_fkey"
+            columns: ["parent_key"]
+            isOneToOne: false
+            referencedRelation: "content_visibility"
+            referencedColumns: ["key"]
+          },
+        ]
+      }
+      content_visibility_meta: {
+        Row: {
+          id: number
+          published_at: string
+          version: number
+        }
+        Insert: {
+          id?: number
+          published_at?: string
+          version?: number
+        }
+        Update: {
+          id?: number
+          published_at?: string
+          version?: number
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           consent_at: string | null

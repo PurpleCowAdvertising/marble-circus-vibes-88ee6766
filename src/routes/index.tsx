@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { FadeIn, Section } from "@/components/site/Section";
+import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -195,9 +196,11 @@ function HomePage() {
   }, []);
 
   return (
-    <>
-      
+    <PageGate keyName="page:home">
+
+      <VisibilityGate keyName="section:home.hero">
       <section ref={heroRef} aria-labelledby="hero-heading" className="relative isolate z-0 overflow-hidden bg-black">
+
 
         <h1 id="hero-heading" className="sr-only">
           Scorpion Kings Live, DJ Maphorisa and Kabza De Small headline FNB Stadium, Johannesburg, on 19 September 2026
@@ -231,7 +234,9 @@ function HomePage() {
           </FadeIn>
         </div>
       </section>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.scorpion-kings">
       <div id="scorpion-kings" className="relative isolate z-20 bg-black text-white">
         <Section className="!pb-12 !pt-10 md:!pb-20 md:!pt-16">
           <FadeIn>
@@ -281,11 +286,15 @@ function HomePage() {
           </div>
         </Section>
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.lineup-carousel">
       <div id="lineup" className="fold-safe-strong relative isolate z-10 scroll-mt-24">
         <ArtistCarousel />
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.about-band">
       <div className="relative isolate z-20 bg-orange-rich">
         <Section className="fold-safe-above !pb-6 text-foreground sm:!pb-10 md:!pb-16">
           <div className="grid gap-3 md:grid-cols-2 md:gap-20">
@@ -319,7 +328,9 @@ function HomePage() {
           </div>
         </Section>
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.past-photos">
       <div className="relative isolate z-20 bg-orange-rich">
         <Section className="!pb-10 !pt-4 text-foreground md:!pb-14 md:!pt-8">
           <FadeIn>
@@ -370,7 +381,9 @@ function HomePage() {
           </FadeIn>
         </Section>
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.lineup-grid">
       <div className="hidden bg-white text-black md:block">
 
         <Section className="!bg-white !pt-2 sm:!pt-3 md:!pt-6">
@@ -452,7 +465,9 @@ function HomePage() {
           </div>
         </Section>
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.tickets">
       <div id="tickets" className="scroll-mt-24 bg-black text-white">
         <div className="bg-black">
           <Section className="!bg-black !pb-4 !pt-8 sm:!pt-10 md:!pb-6 md:!pt-14">
@@ -599,7 +614,9 @@ function HomePage() {
           </Section>
         </div>
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.experience">
       <div id="experience" className="relative isolate z-30 scroll-mt-24 bg-orange-rich">
         <Section className="!py-10 text-foreground md:!py-14">
           <FadeIn>
@@ -681,7 +698,9 @@ function HomePage() {
           </div>
         </Section>
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.partners">
       <div id="partners" className="relative isolate z-30 scroll-mt-24 bg-black text-white">
         <Section className="!py-10 md:!py-14">
           <FadeIn>
@@ -734,9 +753,10 @@ function HomePage() {
           </FadeIn>
         </Section>
       </div>
+      </VisibilityGate>
 
       <TicketModal tier={activeTier} onClose={() => setActiveTier(null)} />
-    </>
+    </PageGate>
   );
 }
 

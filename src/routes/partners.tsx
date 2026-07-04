@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
 
@@ -141,14 +142,14 @@ function PartnersPage() {
   }, []);
 
   return (
-    <>
+    <PageGate keyName="page:partners">
       <PageHero
         eyebrow="Our partners"
         title="Powered by the bold."
         description="Partner opportunities for brands that want to move with the artists, the fans and the culture."
       />
 
-      <Section className="bg-black text-white">
+      <VisibilityGate keyName="section:partners.packages"><Section className="bg-black text-white">
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -258,9 +259,9 @@ function PartnersPage() {
             })}
           </div>
         </div>
-      </Section>
+      </Section></VisibilityGate>
 
-      <Section className="bg-orange-rich text-white">
+      <VisibilityGate keyName="section:partners.cta"><Section className="bg-orange-rich text-white">
         <div className="rounded-3xl border border-white/15 bg-black/35 p-8 backdrop-blur-xl md:p-12">
           <FadeIn>
             <p className="text-xs uppercase tracking-[0.4em] text-gold">Partner with us</p>
@@ -281,7 +282,7 @@ function PartnersPage() {
             </Link>
           </FadeIn>
         </div>
-      </Section>
-    </>
+      </Section></VisibilityGate>
+    </PageGate>
   );
 }

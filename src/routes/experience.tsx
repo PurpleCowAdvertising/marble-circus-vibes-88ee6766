@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Car, Crown, Map, Mic2, ShieldCheck, Utensils } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
+import { PageGate } from "@/components/site/visibility";
 
 export const Route = createFileRoute("/experience")({
   head: () => ({
@@ -70,7 +71,7 @@ const FACTS = [
 
 function ExperiencePage() {
   return (
-    <>
+    <PageGate keyName="page:experience">
       <PageHero
         eyebrow="Experience"
         title="Inside the show."
@@ -139,6 +140,6 @@ function ExperiencePage() {
           </div>
         </FadeIn>
       </Section>
-    </>
+    </PageGate>
   );
 }
