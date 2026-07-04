@@ -32,6 +32,10 @@ const SOCIAL_LINKS = [
 ] as const;
 
 export function Footer() {
+  const visibleRoutes = useVisiblePageRoutes();
+  const exploreLinks = EXPLORE_LINKS.filter((link) =>
+    "external" in link ? true : visibleRoutes.has(link.to),
+  );
   return (
     <footer className="relative z-10 border-t border-black/10 bg-white pb-[env(safe-area-inset-bottom)] text-black md:pb-0">
       <div className="mx-auto max-w-[1400px] px-6 py-8 md:px-10 md:py-10">
