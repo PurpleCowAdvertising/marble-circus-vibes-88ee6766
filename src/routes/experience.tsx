@@ -134,7 +134,7 @@ function ExperiencePage() {
 
         <VisibilityGate keyName="section:experience.facts">
           <FadeIn delay={0.2}>
-            <div className="mt-12 grid gap-4 rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:grid-cols-4 md:p-10">
+            <div className="mt-12 grid gap-4 rounded-3xl border border-white/30 bg-white/[0.08] p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.18)] ring-1 ring-inset ring-white/10 backdrop-blur-xl backdrop-saturate-150 md:grid-cols-4 md:p-10">
               {FACTS.map((fact) => (
                 <div key={fact.label}>
                   <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">{fact.label}</p>
