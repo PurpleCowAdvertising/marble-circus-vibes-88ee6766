@@ -105,7 +105,7 @@ function ExperiencePage() {
 
               return (
                 <FadeIn key={block.title} delay={index * 0.06}>
-                  <article className="group relative h-full overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1 md:p-7">
+                  <article className="group relative h-full overflow-hidden rounded-3xl border border-white/30 bg-white/[0.08] p-5 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.18)] ring-1 ring-inset ring-white/10 backdrop-blur-xl backdrop-saturate-150 transition-transform duration-300 hover:-translate-y-1 md:p-7">
                     <div
                       className={`relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gradient-to-br ${block.accent}`}
                     >
