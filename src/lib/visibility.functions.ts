@@ -29,11 +29,13 @@ export const getPublicVisibility = createServerFn({ method: "GET" }).handler(asy
   });
 
   const [rowsRes, metaRes] = await Promise.all([
-    supa.from("content_visibility").select("key,live_hidden").eq("live_hidden", true),
+    // Narrow read via SECURITY DEFINER function — only returns `key` of rows
+    // currently hidden on live. Draft state is never exposed to the public.
+    supa.rpc("get_hidden_live_keys"),
     supa.from("content_visibility_meta").select("version").eq("id", 1).single(),
   ]);
 
-  const hiddenLive = (rowsRes.data ?? []).map((r) => r.key as string);
+  const hiddenLive = ((rowsRes.data ?? []) as { key: string }[]).map((r) => r.key);
   const version = metaRes.data?.version ?? 1;
   return { hiddenLive, version } satisfies PublicVisibility;
 });

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
-import { PageGate } from "@/components/site/visibility";
+import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/faqs")({
@@ -111,71 +111,77 @@ function FaqsPage() {
       />
 
       <Section className="bg-black text-white">
-        <FadeIn>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Fan guide</p>
+        <VisibilityGate keyName="section:faqs.intro">
+          <FadeIn>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Fan guide</p>
 
-              <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
-                Know before you go.
-              </h2>
-            </div>
-
-            <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
-              Details will be updated as the event gets closer. Always use official channels for the latest ticket,
-              venue and access information.
-            </p>
-          </div>
-        </FadeIn>
-
-        <div className="mt-10 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
-          {CATEGORIES.map((category, categoryIndex) => (
-            <FadeIn key={category.title} delay={categoryIndex * 0.05} className="contents">
-              <div className="md:sticky md:top-24 md:self-start">
-                <p className="text-xs uppercase tracking-[0.4em] text-gold">
-                  {String(categoryIndex + 1).padStart(2, "0")}
-                </p>
-
-                <h2 className="mt-2 font-display text-4xl font-bold text-white md:text-5xl">{category.title}</h2>
+                <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
+                  Know before you go.
+                </h2>
               </div>
 
-              <Accordion
-                type="single"
-                collapsible
-                className="overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] backdrop-blur-xl"
-              >
-                {category.items.map((item, itemIndex) => (
-                  <AccordionItem key={item.q} value={`${categoryIndex}-${itemIndex}`} className="border-white/10 px-5">
-                    <AccordionTrigger className="py-6 text-left font-display text-xl text-white hover:text-gold hover:no-underline">
-                      {item.q}
-                    </AccordionTrigger>
-
-                    <AccordionContent className="pb-6 text-base leading-relaxed text-white/65">
-                      {item.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </FadeIn>
-          ))}
-        </div>
-
-        <FadeIn delay={0.25}>
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-8">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Still need help?</p>
-
-              <h2 className="mt-2 font-display text-3xl font-bold text-white md:text-4xl">Send the team a message.</h2>
+              <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
+                Details will be updated as the event gets closer. Always use official channels for the latest ticket,
+                venue and access information.
+              </p>
             </div>
+          </FadeIn>
+        </VisibilityGate>
 
-            <Link
-              to="/contact"
-              className="rounded-full bg-gold px-6 py-3 text-xs font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
-            >
-              Contact us
-            </Link>
+        <VisibilityGate keyName="section:faqs.categories">
+          <div className="mt-10 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
+            {CATEGORIES.map((category, categoryIndex) => (
+              <FadeIn key={category.title} delay={categoryIndex * 0.05} className="contents">
+                <div className="md:sticky md:top-24 md:self-start">
+                  <p className="text-xs uppercase tracking-[0.4em] text-gold">
+                    {String(categoryIndex + 1).padStart(2, "0")}
+                  </p>
+
+                  <h2 className="mt-2 font-display text-4xl font-bold text-white md:text-5xl">{category.title}</h2>
+                </div>
+
+                <Accordion
+                  type="single"
+                  collapsible
+                  className="overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] backdrop-blur-xl"
+                >
+                  {category.items.map((item, itemIndex) => (
+                    <AccordionItem key={item.q} value={`${categoryIndex}-${itemIndex}`} className="border-white/10 px-5">
+                      <AccordionTrigger className="py-6 text-left font-display text-xl text-white hover:text-gold hover:no-underline">
+                        {item.q}
+                      </AccordionTrigger>
+
+                      <AccordionContent className="pb-6 text-base leading-relaxed text-white/65">
+                        {item.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </FadeIn>
+            ))}
           </div>
-        </FadeIn>
+        </VisibilityGate>
+
+        <VisibilityGate keyName="section:faqs.cta">
+          <FadeIn delay={0.25}>
+            <div className="mt-12 flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-8">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Still need help?</p>
+
+                <h2 className="mt-2 font-display text-3xl font-bold text-white md:text-4xl">Send the team a message.</h2>
+              </div>
+
+              <Link
+                to="/contact"
+                className="rounded-full bg-gold px-6 py-3 text-xs font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
+              >
+                Contact us
+              </Link>
+            </div>
+          </FadeIn>
+        </VisibilityGate>
       </Section>
     </PageGate>
   );

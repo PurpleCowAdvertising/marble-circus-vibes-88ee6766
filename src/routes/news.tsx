@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
-import { PageGate } from "@/components/site/visibility";
+import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -77,74 +77,80 @@ function NewsPage() {
       />
 
       <Section className="bg-black text-white">
-        <FadeIn>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Latest updates</p>
+        <VisibilityGate keyName="section:news.header">
+          <FadeIn>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Latest updates</p>
 
-              <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
-                The official word.
-              </h2>
-            </div>
-
-            <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
-              Follow confirmed announcements, ticket updates, press notes and event information as the road to FNB
-              Stadium unfolds.
-            </p>
-          </div>
-        </FadeIn>
-
-        <div className="mt-10 space-y-6">
-          {POSTS.map((post, index) => (
-            <FadeIn key={post.title} delay={index * 0.08}>
-              <article className="overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-10">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-black">
-                    {post.tag}
-                  </span>
-
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">{post.date}</p>
-                </div>
-
-                <h2 className="mt-5 font-display text-3xl font-bold leading-tight text-white md:text-5xl">
-                  {post.title}
+                <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
+                  The official word.
                 </h2>
+              </div>
 
-                <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">{post.excerpt}</p>
+              <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
+                Follow confirmed announcements, ticket updates, press notes and event information as the road to FNB
+                Stadium unfolds.
+              </p>
+            </div>
+          </FadeIn>
+        </VisibilityGate>
 
-                <div className="mt-6 space-y-3 text-sm leading-relaxed text-white/60 md:text-base">
-                  {post.body.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
+        <VisibilityGate keyName="section:news.posts">
+          <div className="mt-10 space-y-6">
+            {POSTS.map((post, index) => (
+              <FadeIn key={post.title} delay={index * 0.08}>
+                <article className="overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-10">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-black">
+                      {post.tag}
+                    </span>
 
-                {post.href && (
-                  <a
-                    href={post.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
-                  >
-                    {post.hrefLabel} <ArrowUpRight size={14} />
-                  </a>
-                )}
-              </article>
-            </FadeIn>
-          ))}
-        </div>
+                    <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">{post.date}</p>
+                  </div>
 
-        <FadeIn delay={0.3}>
-          <div className="mt-10 rounded-3xl border border-white/15 bg-white/[0.06] p-6 text-sm text-white/65 backdrop-blur-xl md:p-8">
-            <p className="font-bold uppercase tracking-widest text-white">Press queries</p>
+                  <h2 className="mt-5 font-display text-3xl font-bold leading-tight text-white md:text-5xl">
+                    {post.title}
+                  </h2>
 
-            <p className="mt-2">
-              Kim Sineke ·{" "}
-              <a href="mailto:kim@iam4.co.za" className="text-gold hover:underline">
-                kim@iam4.co.za
-              </a>
-            </p>
+                  <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">{post.excerpt}</p>
+
+                  <div className="mt-6 space-y-3 text-sm leading-relaxed text-white/60 md:text-base">
+                    {post.body.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+
+                  {post.href && (
+                    <a
+                      href={post.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
+                    >
+                      {post.hrefLabel} <ArrowUpRight size={14} />
+                    </a>
+                  )}
+                </article>
+              </FadeIn>
+            ))}
           </div>
-        </FadeIn>
+        </VisibilityGate>
+
+        <VisibilityGate keyName="section:news.press">
+          <FadeIn delay={0.3}>
+            <div className="mt-10 rounded-3xl border border-white/15 bg-white/[0.06] p-6 text-sm text-white/65 backdrop-blur-xl md:p-8">
+              <p className="font-bold uppercase tracking-widest text-white">Press queries</p>
+
+              <p className="mt-2">
+                Kim Sineke ·{" "}
+                <a href="mailto:kim@iam4.co.za" className="text-gold hover:underline">
+                  kim@iam4.co.za
+                </a>
+              </p>
+            </div>
+          </FadeIn>
+        </VisibilityGate>
       </Section>
     </PageGate>
   );

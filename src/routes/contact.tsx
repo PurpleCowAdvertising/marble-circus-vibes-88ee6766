@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Briefcase, Mail, Newspaper } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
-import { PageGate } from "@/components/site/visibility";
+import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/contact")({
@@ -131,6 +131,7 @@ function ContactPage() {
 
       <Section className="bg-black text-white">
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-16">
+          <VisibilityGate keyName="section:contact.info">
           <FadeIn>
             <div>
               <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Get in touch</p>
@@ -189,7 +190,9 @@ function ContactPage() {
               </div>
             </div>
           </FadeIn>
+          </VisibilityGate>
 
+          <VisibilityGate keyName="section:contact.form">
           <FadeIn delay={0.1}>
             <form
               onSubmit={onSubmit}
@@ -281,6 +284,7 @@ function ContactPage() {
               )}
             </form>
           </FadeIn>
+          </VisibilityGate>
         </div>
       </Section>
     </PageGate>
