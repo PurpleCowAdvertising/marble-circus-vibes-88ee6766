@@ -67,16 +67,11 @@ export function HeroVideo() {
   }, []);
 
   const handleTicketsClick = () => {
-    if (pathname !== "/") {
-      window.location.href = "/#tickets";
-      return;
-    }
-
-    window.history.pushState(null, "", "/#tickets");
-
-    window.setTimeout(() => {
-      scrollToSection("tickets");
-    }, 50);
+    window.open(
+      "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143",
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   return (
