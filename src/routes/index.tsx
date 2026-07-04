@@ -381,7 +381,9 @@ function HomePage() {
           </FadeIn>
         </Section>
       </div>
+      </VisibilityGate>
 
+      <VisibilityGate keyName="section:home.lineup-grid">
       <div className="hidden bg-white text-black md:block">
 
         <Section className="!bg-white !pt-2 sm:!pt-3 md:!pt-6">
