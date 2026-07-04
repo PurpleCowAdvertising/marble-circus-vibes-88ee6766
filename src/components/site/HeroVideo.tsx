@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-import { FadeIn } from "@/components/site/Section";
+
 import { useIsMobile } from "@/hooks/use-mobile";
 
 /**
