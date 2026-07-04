@@ -481,11 +481,9 @@ function HomePage() {
                 </div>
 
                 <a
-                  href="#tickets"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    scrollToSection("tickets");
-                  }}
+                  href="https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/60"
                 >
                   Ticket options
