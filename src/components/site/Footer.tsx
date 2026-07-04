@@ -7,7 +7,7 @@ import ticketsAvailable from "@/assets/tickets-available.png";
 
 const EXPLORE_LINKS = [
   { to: "/music", label: "Line-Up" },
-  { to: "/tickets", label: "Tickets" },
+  { href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", label: "Tickets", external: true as const },
   { to: "/experience", label: "Experience" },
   { to: "/about", label: "About" },
   { to: "/partners", label: "Partners" },
@@ -64,10 +64,21 @@ export function Footer() {
 
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm md:block md:space-y-2">
               {EXPLORE_LINKS.map((link) => (
-                <li key={link.to}>
-                  <Link to={link.to} className="text-black transition-colors hover:text-black/60">
-                    {link.label}
-                  </Link>
+                <li key={link.label}>
+                  {"external" in link ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-black transition-colors hover:text-black/60"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link to={link.to} className="text-black transition-colors hover:text-black/60">
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

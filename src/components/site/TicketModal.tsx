@@ -64,7 +64,7 @@ export function TicketModal({ tier, onClose }: Props) {
 
   const handleCheckout = () => {
     onClose();
-    window.open("https://www.webtickets.co.za", "_blank", "noopener,noreferrer");
+    window.open("https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", "_blank", "noopener,noreferrer");
   };
 
   return (

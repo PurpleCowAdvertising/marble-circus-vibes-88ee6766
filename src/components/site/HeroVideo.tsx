@@ -1,24 +1,14 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { useRouterState } from "@tanstack/react-router";
 
 import { FadeIn } from "@/components/site/Section";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-}
 
 /**
  * Looping hero video used on inner landing pages.
  * Video background + date row + Buy Tickets CTA.
  */
 export function HeroVideo() {
-  const pathname = useRouterState({ select: (state) => state.location.pathname });
-
   const isMobile = useIsMobile();
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -67,16 +57,11 @@ export function HeroVideo() {
   }, []);
 
   const handleTicketsClick = () => {
-    if (pathname !== "/") {
-      window.location.href = "/#tickets";
-      return;
-    }
-
-    window.history.pushState(null, "", "/#tickets");
-
-    window.setTimeout(() => {
-      scrollToSection("tickets");
-    }, 50);
+    window.open(
+      "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143",
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   return (

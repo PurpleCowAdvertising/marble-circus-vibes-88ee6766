@@ -8,12 +8,13 @@ import logo from "@/assets/logo.png";
 
 type NavItem =
   | { kind: "route"; to: "/" | "/news" | "/merchandise"; label: string }
-  | { kind: "scroll"; hash: string; label: string };
+  | { kind: "scroll"; hash: string; label: string }
+  | { kind: "external"; href: string; label: string };
 
 const NAV: readonly NavItem[] = [
   { kind: "route", to: "/", label: "Home" },
   { kind: "scroll", hash: "lineup", label: "Line-Up" },
-  { kind: "scroll", hash: "tickets", label: "Tickets" },
+  { kind: "external", href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", label: "Tickets" },
   { kind: "scroll", hash: "experience", label: "Experience" },
   { kind: "scroll", hash: "partners", label: "Partners" },
   { kind: "route", to: "/news", label: "News" },
@@ -153,6 +154,21 @@ export function Header() {
                   );
                 }
 
+                if (item.kind === "external") {
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={closeMenu}
+                      className={className}
+                    >
+                      {inner}
+                    </a>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.to}
@@ -246,6 +262,22 @@ export function Header() {
                       <button type="button" onClick={() => handleScrollNav(item.hash)} className={linkClass}>
                         {inner}
                       </button>
+                    </li>
+                  );
+                }
+
+                if (item.kind === "external") {
+                  return (
+                    <li key={item.href}>
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={closeMenu}
+                        className={linkClass}
+                      >
+                        {inner}
+                      </a>
                     </li>
                   );
                 }
