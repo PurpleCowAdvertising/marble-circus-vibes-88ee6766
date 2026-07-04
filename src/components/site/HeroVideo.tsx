@@ -137,9 +137,16 @@ export function HeroVideo() {
                 Scorpion Kings Live, 19 September 2026 at FNB Stadium, Johannesburg.
               </figcaption>
             </figure>
+
+            {/* Bleeds a soft black-to-transparent taper down into the next section for a seamless seam */}
+            <div
+              aria-hidden
+              className="pointer-events-none relative z-10 -mt-24 h-24 w-full bg-gradient-to-b from-black to-transparent md:-mt-32 md:h-32"
+            />
           </motion.div>
         </FadeIn>
       </div>
     </section>
   );
 }
+
