@@ -19,31 +19,46 @@ export function FadeIn({
   delay: _delay = 0,
   className = "",
   once: _once = false,
+  bubble = false,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   once?: boolean;
+  /** Card-style bubble expansion — bigger scale pop at viewport center. */
+  bubble?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  // Scroll progress across the element's full pass through the viewport:
-  // 0 = just entering from bottom, 0.5 = centered, 1 = just leaving off the top.
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
-  const smooth = useSpring(scrollYProgress, { stiffness: 120, damping: 24, mass: 0.4 });
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: bubble ? 90 : 140,
+    damping: bubble ? 20 : 28,
+    mass: bubble ? 0.5 : 0.3,
+  });
 
-  // Peak at center (0.5): scale forward, sharpen, fully opaque.
-  // Recede at edges: smaller, blurred, slightly transparent.
-  const scale = useTransform(smooth, [0, 0.5, 1], [0.9, 1.03, 0.9]);
-  const z = useTransform(smooth, [0, 0.5, 1], [-160, 40, -160]);
-  const opacity = useTransform(smooth, [0, 0.2, 0.5, 0.8, 1], [0, 1, 1, 1, 0]);
+  // Text: near-still, just a whisper of settle + fade.
+  // Cards (bubble): pronounced expand-in / recede-out with soft focus.
+  const scale = useTransform(
+    smooth,
+    [0, 0.5, 1],
+    bubble ? [0.88, 1.04, 0.88] : [0.995, 1, 0.995],
+  );
+  const z = useTransform(smooth, [0, 0.5, 1], bubble ? [-140, 30, -140] : [0, 0, 0]);
+  const opacity = useTransform(
+    smooth,
+    [0, 0.2, 0.5, 0.8, 1],
+    bubble ? [0, 1, 1, 1, 0] : [0, 1, 1, 1, 1],
+  );
   const filter = useTransform(
     smooth,
     [0, 0.35, 0.5, 0.65, 1],
-    ["blur(12px)", "blur(1px)", "blur(0px)", "blur(1px)", "blur(12px)"],
+    bubble
+      ? ["blur(10px)", "blur(1px)", "blur(0px)", "blur(1px)", "blur(10px)"]
+      : ["blur(0px)", "blur(0px)", "blur(0px)", "blur(0px)", "blur(0px)"],
   );
 
   return (
@@ -64,6 +79,7 @@ export function FadeIn({
     </motion.div>
   );
 }
+
 
 
 
