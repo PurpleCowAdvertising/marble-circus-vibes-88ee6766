@@ -60,11 +60,24 @@ export function LaunchCountdown() {
     onResize();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
+
+    const footerEl = document.getElementById("site-footer");
+    let observer: IntersectionObserver | undefined;
+    if (footerEl && "IntersectionObserver" in window) {
+      observer = new IntersectionObserver(
+        ([entry]) => setFooterVisible(entry.isIntersecting),
+        { rootMargin: "0px 0px 0px 0px", threshold: 0 },
+      );
+      observer.observe(footerEl);
+    }
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
+      observer?.disconnect();
     };
   }, []);
+
 
   useEffect(() => {
     if (!visible) return;
