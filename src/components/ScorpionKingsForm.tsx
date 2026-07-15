@@ -18,7 +18,6 @@ type FormState = {
 };
 
 type ScorpionKingsFormProps = {
-  tableName?: string;
   title?: string;
   description?: string;
   successMessage?: string;
