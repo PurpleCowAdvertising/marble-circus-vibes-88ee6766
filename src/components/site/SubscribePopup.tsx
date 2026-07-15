@@ -86,12 +86,12 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Prepare Sony Music body submission parameters[cite: 1]
+    // Prepare Sony Music body submission parameters
     const urlParams = new URLSearchParams();
-    urlParams.append("js_url", "https://subs.sonymusicfans.com/submit");[cite: 1]
-    urlParams.append("ae_segment_id", "2815861");[cite: 1]
-    urlParams.append("ae_brand_id", "4307835");[cite: 1]
-    urlParams.append("form", "764269");[cite: 1]
+    urlParams.append("js_url", "https://subs.sonymusicfans.com/submit");
+    urlParams.append("ae_segment_id", "2815861");
+    urlParams.append("ae_brand_id", "4307835");
+    urlParams.append("form", "764269");
     urlParams.append("field_first_name", firstName);
     urlParams.append("field_last_name", lastName);
     urlParams.append("field_mobile_phone", mobilePhone);
@@ -99,22 +99,22 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
     urlParams.append("field_country_region", country);
     urlParams.append("triggered_sends[]", "");
 
-    // Add hidden newsletter mailing list IDs[cite: 1]
+    // Add hidden newsletter mailing list IDs
     const mailingLists = [
-      "a0S1p00000UGdJTEA1", // DJ Maphorisa[cite: 1]
-      "a0S0800000W7JEvEAN", // Kabza De Small[cite: 1]
-      "a0S0800000W81P9EAJ", // Dance[cite: 1]
-      "a0S24000005SowPEAS", // Sony Music Africa[cite: 1]
-      "a0S0800000VfjfuEAB", // Sony Music South Africa[cite: 1]
+      "a0S1p00000UGdJTEA1", // DJ Maphorisa
+      "a0S0800000W7JEvEAN", // Kabza De Small
+      "a0S0800000W81P9EAJ", // Dance
+      "a0S24000005SowPEAS", // Sony Music Africa
+      "a0S0800000VfjfuEAB", // Sony Music South Africa
     ];
 
     mailingLists.forEach((id, index) => {
-      urlParams.append(`mailing-list-id[${index}]`, id);[cite: 1]
+      urlParams.append(`mailing-list-id[${index}]`, id);
     });
 
     try {
-      // 1. Submit to Sony Music Fans[cite: 1]
-      const sonyResponse = await fetch("https://subs.sonymusicfans.com/submit", {[cite: 1]
+      // 1. Submit to Sony Music Fans
+      const sonyResponse = await fetch("https://subs.sonymusicfans.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
