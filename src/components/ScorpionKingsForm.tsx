@@ -62,7 +62,7 @@ export function ScorpionKingsForm({
     setSubmitting(true);
 
     try {
-      const { error } = await supabase.from(tableName).insert({
+      const { error } = await supabase.from("contact_messages").insert({
         name: parsed.data.name,
         email: parsed.data.email,
         subject: parsed.data.subject || null,
