@@ -230,31 +230,43 @@ export type Database = {
       subscribers: {
         Row: {
           consent_at: string | null
+          country: string | null
           created_at: string
           email: string
+          first_name: string | null
           id: string
+          last_name: string | null
           marketing_consent: boolean
           name: string | null
+          phone: string | null
           privacy_consent: boolean
           source: string | null
         }
         Insert: {
           consent_at?: string | null
+          country?: string | null
           created_at?: string
           email: string
+          first_name?: string | null
           id?: string
+          last_name?: string | null
           marketing_consent?: boolean
           name?: string | null
+          phone?: string | null
           privacy_consent?: boolean
           source?: string | null
         }
         Update: {
           consent_at?: string | null
+          country?: string | null
           created_at?: string
           email?: string
+          first_name?: string | null
           id?: string
+          last_name?: string | null
           marketing_consent?: boolean
           name?: string | null
+          phone?: string | null
           privacy_consent?: boolean
           source?: string | null
         }
