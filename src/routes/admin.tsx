@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
-import { Eye, EyeOff, LogOut, Search, ExternalLink, Loader2 } from "lucide-react";
+import { Eye, EyeOff, LogOut, Search, ExternalLink, Loader2, Download } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -14,6 +14,7 @@ import {
   setDraftHidden,
   type AdminRow,
 } from "@/lib/visibility.functions";
+import { exportSubscribersCsv } from "@/lib/subscribers.functions";
 import { useInvalidatePublicVisibility } from "@/components/site/visibility";
 
 export const Route = createFileRoute("/admin")({
@@ -37,6 +38,29 @@ function AdminPage() {
   const toggleFn = useServerFn(setDraftHidden);
   const publishFn = useServerFn(publishVisibility);
   const discardFn = useServerFn(discardVisibility);
+  const exportCsvFn = useServerFn(exportSubscribersCsv);
+  const [exporting, setExporting] = useState(false);
+
+  const downloadSubscribersCsv = async () => {
+    try {
+      setExporting(true);
+      const { csv, count } = await exportCsvFn();
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `subscribers-${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      toast.success(`Exported ${count} subscribers`);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Export failed");
+    } finally {
+      setExporting(false);
+    }
+  };
 
   const [authState, setAuthState] = useState<"checking" | "unauth" | "notAdmin" | "ok">("checking");
   const [email, setEmail] = useState<string | null>(null);
@@ -220,6 +244,17 @@ function AdminPage() {
             >
               <ExternalLink size={12} /> Live
             </a>
+
+            <button
+              type="button"
+              onClick={downloadSubscribersCsv}
+              disabled={exporting}
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-xs text-white/80 transition hover:text-white disabled:opacity-40"
+              title="Export subscribers as CSV"
+            >
+              {exporting ? <Loader2 size={12} className="animate-spin" /> : <Download size={12} />}
+              Subscribers CSV
+            </button>
 
             <button
               type="button"
