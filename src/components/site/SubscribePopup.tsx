@@ -129,16 +129,13 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
       // 2. Also save to your backup Supabase database if configured
       try {
         await supabase.from("subscribers").insert([
-          { 
-            email, 
-            metadata: { 
-              first_name: firstName, 
-              last_name: lastName, 
-              phone: mobilePhone, 
-              country, 
-              source 
-            } 
-          }
+          {
+            email,
+            name: `${firstName} ${lastName}`.trim(),
+            marketing_consent: marketingConsent,
+            privacy_consent: privacyConsent,
+            source,
+          },
         ]);
       } catch (dbError) {
         console.warn("Database backup skipped or failed:", dbError);
