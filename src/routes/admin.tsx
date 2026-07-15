@@ -247,6 +247,17 @@ function AdminPage() {
 
             <button
               type="button"
+              onClick={downloadSubscribersCsv}
+              disabled={exporting}
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-xs text-white/80 transition hover:text-white disabled:opacity-40"
+              title="Export subscribers as CSV"
+            >
+              {exporting ? <Loader2 size={12} className="animate-spin" /> : <Download size={12} />}
+              Subscribers CSV
+            </button>
+
+            <button
+              type="button"
               onClick={async () => {
                 await supabase.auth.signOut();
                 navigate({ to: "/auth", replace: true });
