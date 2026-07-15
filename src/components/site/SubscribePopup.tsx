@@ -7,9 +7,13 @@ import { toast } from "sonner";
 
 const SESSION_KEY = "sk_subscribe_seen";
 
+// Updated validation schema to handle the new Sony Music requirements
 const schema = z.object({
   email: z.string().trim().email({ message: "Enter a valid email" }).max(255),
-  name: z.string().trim().max(100).optional().or(z.literal("")),
+  firstName: z.string().trim().min(1, { message: "Enter your first name" }).max(100),
+  lastName: z.string().trim().min(1, { message: "Enter your last name" }).max(100),
+  mobilePhone: z.string().trim().min(1, { message: "Enter your mobile phone number" }).max(50),
+  country: z.string().min(1, { message: "Enter your country or region" }),
   marketingConsent: z.boolean(),
   privacyConsent: z.literal(true, {
     errorMap: () => ({ message: "You must accept the Privacy Policy to subscribe" }),
@@ -27,11 +31,16 @@ export function useSubscribePopup() {
 
 export function SubscribeProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [source, setSource] = useState<string>("auto");
+  const [source, setSource] = useState("auto");
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  
+  // Form fields state
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [mobilePhone, setMobilePhone] = useState("");
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [country, setCountry] = useState("ZA"); // South Africa default
   const [marketingConsent, setMarketingConsent] = useState(true);
   const [privacyConsent, setPrivacyConsent] = useState(false);
 
@@ -43,48 +52,116 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
 
   const close = useCallback(() => {
     setIsOpen(false);
+    localStorage.setItem(SESSION_KEY, "true");
   }, []);
 
-  // Auto-open disabled — popup now only opens via explicit Subscribe triggers
-  // (Header, Footer, etc.). Re-enable by restoring the timeout effect if needed.
-
   useEffect(() => {
-    if (success) {
-      try { sessionStorage.setItem(SESSION_KEY, "1"); } catch {}
-    }
-  }, [success]);
+    const timer = setTimeout(() => {
+      const hasSeen = localStorage.getItem(SESSION_KEY);
+      if (!hasSeen) {
+        open("auto");
+      }
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [open]);
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const parsed = schema.safeParse({ email, name, marketingConsent, privacyConsent });
-    if (!parsed.success) {
-      toast.error(parsed.error.issues[0]?.message ?? "Invalid input");
+    setSubmitting(true);
+
+    // Validate using our Zod schema
+    const validation = schema.safeParse({
+      email,
+      firstName,
+      lastName,
+      mobilePhone,
+      country,
+      marketingConsent,
+      privacyConsent,
+    });
+
+    if (!validation.success) {
+      toast.error(validation.error.issues[0].message);
+      setSubmitting(false);
       return;
     }
-    setSubmitting(true);
+
+    // Prepare Sony Music body submission parameters[cite: 1]
+    const urlParams = new URLSearchParams();
+    urlParams.append("js_url", "https://subs.sonymusicfans.com/submit");[cite: 1]
+    urlParams.append("ae_segment_id", "2815861");[cite: 1]
+    urlParams.append("ae_brand_id", "4307835");[cite: 1]
+    urlParams.append("form", "764269");[cite: 1]
+    urlParams.append("field_first_name", firstName);
+    urlParams.append("field_last_name", lastName);
+    urlParams.append("field_mobile_phone", mobilePhone);
+    urlParams.append("field_email_address", email);
+    urlParams.append("field_country_region", country);
+    urlParams.append("triggered_sends[]", "");
+
+    // Add hidden newsletter mailing list IDs[cite: 1]
+    const mailingLists = [
+      "a0S1p00000UGdJTEA1", // DJ Maphorisa[cite: 1]
+      "a0S0800000W7JEvEAN", // Kabza De Small[cite: 1]
+      "a0S0800000W81P9EAJ", // Dance[cite: 1]
+      "a0S24000005SowPEAS", // Sony Music Africa[cite: 1]
+      "a0S0800000VfjfuEAB", // Sony Music South Africa[cite: 1]
+    ];
+
+    mailingLists.forEach((id, index) => {
+      urlParams.append(`mailing-list-id[${index}]`, id);[cite: 1]
+    });
+
     try {
-      const { error } = await supabase.from("subscribers").insert({
-        email: parsed.data.email,
-        name: parsed.data.name || null,
-        marketing_consent: parsed.data.marketingConsent,
-        privacy_consent: parsed.data.privacyConsent,
-        consent_at: new Date().toISOString(),
-        source,
+      // 1. Submit to Sony Music Fans[cite: 1]
+      const sonyResponse = await fetch("https://subs.sonymusicfans.com/submit", {[cite: 1]
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: urlParams.toString(),
       });
-      if (error) {
-        if (error.code === "23505") {
-          setSuccess(true);
-        } else {
-          throw error;
-        }
-      } else {
-        setSuccess(true);
+
+      if (!sonyResponse.ok) {
+        throw new Error("Sony API submission error");
       }
+
+      // 2. Also save to your backup Supabase database if configured
+      try {
+        await supabase.from("subscribers").insert([
+          { 
+            email, 
+            metadata: { 
+              first_name: firstName, 
+              last_name: lastName, 
+              phone: mobilePhone, 
+              country, 
+              source 
+            } 
+          }
+        ]);
+      } catch (dbError) {
+        console.warn("Database backup skipped or failed:", dbError);
+      }
+
+      setSuccess(true);
+      toast.success("Welcome to the movement!");
+      
+      // Reset fields
+      setFirstName("");
+      setLastName("");
+      setMobilePhone("");
       setEmail("");
-      setName("");
-    } catch (err) {
-      console.error(err);
-      toast.error("Something went wrong. Please try again.");
+      setCountry("ZA");
+      setPrivacyConsent(false);
+
+      setTimeout(() => {
+        close();
+      }, 2000);
+
+    } catch (error) {
+      console.error(error);
+      toast.error("Subscription failed. Please check your details and try again.");
     } finally {
       setSubmitting(false);
     }
@@ -95,113 +172,120 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
       {children}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 p-4 backdrop-blur-md"
-            onClick={close}
-          >
-            <motion.div
-              initial={{ y: 24, opacity: 0, scale: 0.97 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: 12, opacity: 0, scale: 0.98 }}
-              transition={{ type: "spring", damping: 26, stiffness: 240 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-orange-rich relative w-full max-w-md overflow-hidden rounded-2xl border border-white/15 p-7 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] md:p-9"
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative w-full max-w-md bg-zinc-950 text-white rounded-2xl border border-zinc-800 p-6 md:p-8 shadow-2xl overflow-y-auto max-h-[90vh]"
             >
-              <button
-                onClick={close}
-                aria-label="Close"
-                className="absolute right-3 top-3 z-10 rounded-full p-2 text-white/80 transition-colors hover:bg-white/15 hover:text-white"
+              <button 
+                onClick={close} 
+                className="absolute top-4 right-4 text-zinc-400 hover:text-white transition-colors"
               >
-                <X size={18} />
+                <X className="w-5 h-5" />
               </button>
 
-              <div className="relative">
-                {success ? (
-                  <div className="py-4 text-center text-white">
-                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm">
-                      <span className="font-display text-2xl">✓</span>
-                    </div>
-                    <h3 className="font-display text-3xl font-bold">You're in.</h3>
-                    <p className="mt-2 text-sm text-white/85">
-                      Welcome to the family. Watch your inbox.
-                    </p>
-                    <button
-                      onClick={close}
-                      className="mt-5 rounded-full bg-white px-6 py-2 text-xs font-bold uppercase tracking-widest text-foreground transition-transform hover:scale-[1.03]"
-                    >
-                      Close
-                    </button>
-                  </div>
-                ) : (
-                  <div className="text-white">
-                    <p className="text-[10px] uppercase tracking-[0.35em] text-white/75">Don't miss a beat</p>
-                    <h3 className="mt-2 font-display text-3xl font-bold leading-none md:text-4xl">
-                      Join the<br />movement.
-                    </h3>
-                    <p className="mt-3 text-sm text-white/85">
-                      Be first for lineup drops, ticket waves and exclusive content.
-                    </p>
-
-                    <form onSubmit={onSubmit} className="mt-5 space-y-2.5">
-                      <input
-                        type="text"
-                        placeholder="Your name (optional)"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        maxLength={100}
-                        className="w-full rounded-md border border-white/25 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-white/60 focus:border-white/70 focus:bg-white/15 focus:outline-none"
-                      />
-                      <input
-                        type="email"
-                        required
-                        placeholder="Email address"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        maxLength={255}
-                        className="w-full rounded-md border border-white/25 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-white/60 focus:border-white/70 focus:bg-white/15 focus:outline-none"
-                      />
-                      <label className="flex cursor-pointer items-start gap-2 text-[11px] leading-snug text-white/85">
-                        <input
-                          type="checkbox"
-                          checked={marketingConsent}
-                          onChange={(e) => setMarketingConsent(e.target.checked)}
-                          className="mt-0.5 accent-white"
-                        />
-                        <span>I agree to receive marketing emails. I can unsubscribe anytime.</span>
-                      </label>
-                      <label className="flex cursor-pointer items-start gap-2 text-[11px] leading-snug text-white/85">
-                        <input
-                          type="checkbox"
-                          required
-                          checked={privacyConsent}
-                          onChange={(e) => setPrivacyConsent(e.target.checked)}
-                          className="mt-0.5 accent-white"
-                        />
-                        <span>
-                          I accept the{" "}
-                          <a href="/privacy" target="_blank" rel="noreferrer" className="underline hover:text-white">
-                            Privacy Policy
-                          </a>{" "}
-                          (POPIA / GDPR).
-                        </span>
-                      </label>
-                      <button
-                        type="submit"
-                        disabled={submitting}
-                        className="mt-1 w-full rounded-full bg-white px-6 py-3 text-sm font-bold uppercase tracking-widest text-foreground transition-transform hover:scale-[1.02] disabled:opacity-60"
-                      >
-                        {submitting ? "Joining..." : "..."}
-                      </button>
-                    </form>
-                  </div>
-                )}
+              <div className="text-center mb-6">
+                <span className="text-xs uppercase tracking-widest text-amber-500 font-semibold">Don't Miss A Beat</span>
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-1 uppercase">Join the Movement</h2>
+                <p className="text-xs text-zinc-400 mt-2">
+                  Be first for lineup drops, ticket waves and exclusive content.
+                </p>
               </div>
+
+              {success ? (
+                <div className="text-center py-8 text-emerald-400 font-semibold">
+                  Successfully subscribed! Welcome aboard.
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-3">
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                      className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                      className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                    />
+                  </div>
+
+                  <input
+                    type="tel"
+                    placeholder="Mobile Phone Number"
+                    value={mobilePhone}
+                    onChange={(e) => setMobilePhone(e.target.value)}
+                    required
+                    className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                  />
+
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                  />
+
+                  <select
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                  >
+                    <option value="ZA">South Africa</option>
+                    <option value="US">United States</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="NG">Nigeria</option>
+                    <option value="KE">Kenya</option>
+                    <option value="AU">Australia</option>
+                  </select>
+
+                  <div className="space-y-2 pt-2 text-xs text-zinc-400">
+                    <label className="flex items-start gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={marketingConsent}
+                        onChange={(e) => setMarketingConsent(e.target.checked)}
+                        className="mt-0.5 rounded border-zinc-800 text-amber-500 focus:ring-amber-500"
+                      />
+                      <span>I agree to receive marketing emails. I can unsubscribe anytime.</span>
+                    </label>
+
+                    <label className="flex items-start gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={privacyConsent}
+                        onChange={(e) => setPrivacyConsent(e.target.checked)}
+                        required
+                        className="mt-0.5 rounded border-zinc-800 text-amber-500 focus:ring-amber-500"
+                      />
+                      <span>
+                        I accept the <a href="/privacy" className="underline hover:text-amber-500">Privacy Policy</a> (POPIA / GDPR).
+                      </span>
+                    </label>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full py-3 mt-2 bg-white text-black font-bold uppercase rounded-full hover:bg-amber-500 hover:text-white transition-all duration-300 disabled:opacity-50 text-sm"
+                  >
+                    {submitting ? "Joining..." : "Subscribe"}
+                  </button>
+                </form>
+              )}
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </SubscribeContext.Provider>
