@@ -132,6 +132,10 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
           {
             email,
             name: `${firstName} ${lastName}`.trim(),
+            first_name: firstName,
+            last_name: lastName,
+            phone: mobilePhone,
+            country,
             marketing_consent: marketingConsent,
             privacy_consent: privacyConsent,
             source,
