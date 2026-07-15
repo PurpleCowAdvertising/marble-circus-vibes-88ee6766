@@ -14,6 +14,7 @@ import {
   setDraftHidden,
   type AdminRow,
 } from "@/lib/visibility.functions";
+import { exportSubscribersCsv } from "@/lib/subscribers.functions";
 import { useInvalidatePublicVisibility } from "@/components/site/visibility";
 
 export const Route = createFileRoute("/admin")({
