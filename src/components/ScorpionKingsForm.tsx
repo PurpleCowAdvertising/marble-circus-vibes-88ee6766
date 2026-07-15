@@ -25,7 +25,6 @@ type ScorpionKingsFormProps = {
 };
 
 export function ScorpionKingsForm({
-  tableName = "contact_messages",
   title = "Send a message",
   description = "Drop your details below and we’ll be in touch.",
   successMessage = "Message sent. We’ll be in touch.",
