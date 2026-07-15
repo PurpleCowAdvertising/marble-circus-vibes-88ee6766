@@ -1,177 +1,169 @@
-import { useState } from "react";
-import { z } from "zod";
-import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import React, { useState } from "react";
 
-const schema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Enter a valid email").max(255),
-  subject: z.string().trim().max(150).optional().or(z.literal("")),
-  message: z.string().trim().min(1, "Message is required").max(2000),
-});
-
-type FormState = {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-};
-
-type ScorpionKingsFormProps = {
-  title?: string;
-  description?: string;
-  successMessage?: string;
-  errorMessage?: string;
-};
-
-export function ScorpionKingsForm({
-  title = "Send a message",
-  description = "Drop your details below and we’ll be in touch.",
-  successMessage = "Message sent. We’ll be in touch.",
-  errorMessage = "Could not send message. Please try again.",
-}: ScorpionKingsFormProps) {
-  const [form, setForm] = useState<FormState>({
-    name: "",
-    email: "",
-    subject: "",
+export const ScorpionKingsForm = () => {
+  const [formData, setFormData] = useState({
+    field_first_name: "",
+    field_last_name: "",
+    field_mobile_phone: "",
+    field_email_address: "",
+    field_country_region: "ZA", // Defaults to South Africa
+  });
+  const [status, setStatus] = useState<{ type: "success" | "error" | null; message: string }>({
+    type: null,
     message: "",
   });
+  const [loading, setLoading] = useState(false);
 
-  const [submitting, setSubmitting] = useState(false);
-  const [sent, setSent] = useState(false);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  const onChange =
-    (key: keyof FormState) =>
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setForm((current) => ({
-        ...current,
-        [key]: event.target.value,
-      }));
-    };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus({ type: null, message: "" });
 
-  const onSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+    // Format data as urlencoded (mimicking jQuery serialize)
+    const urlParams = new URLSearchParams();
+    urlParams.append("js_url", "https://subs.sonymusicfans.com/submit");
+    urlParams.append("ae_segment_id", "2815861");
+    urlParams.append("ae_brand_id", "4307835");
+    urlParams.append("form", "764269");
+    urlParams.append("field_first_name", formData.field_first_name);
+    urlParams.append("field_last_name", formData.field_last_name);
+    urlParams.append("field_mobile_phone", formData.field_mobile_phone);
+    urlParams.append("field_email_address", formData.field_email_address);
+    urlParams.append("field_country_region", formData.field_country_region);
+    urlParams.append("triggered_sends[]", "");
 
-    const parsed = schema.safeParse(form);
+    // List IDs from the original hidden form
+    const mailingLists = [
+      "a0S1p00000UGdJTEA1", // DJ Maphorisa
+      "a0S0800000W7JEvEAN", // Kabza De Small
+      "a0S0800000W81P9EAJ", // Dance
+      "a0S24000005SowPEAS", // Sony Music Africa
+      "a0S0800000VfjfuEAB", // Sony Music South Africa
+    ];
 
-    if (!parsed.success) {
-      toast.error(parsed.error.issues[0]?.message ?? "Please check the form.");
-      return;
-    }
-
-    setSubmitting(true);
+    mailingLists.forEach((id, index) => {
+      urlParams.append(`mailing-list-id[${index}]`, id);
+    });
 
     try {
-      const { error } = await supabase.from("contact_messages").insert({
-        name: parsed.data.name,
-        email: parsed.data.email,
-        subject: parsed.data.subject || null,
-        message: parsed.data.message,
+      const response = await fetch("https://subs.sonymusicfans.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: urlParams.toString(),
       });
 
-      if (error) throw error;
-
-      setSent(true);
-      setForm({ name: "", email: "", subject: "", message: "" });
-      toast.success(successMessage);
+      if (response.ok) {
+        setStatus({ type: "success", message: "Successfully subscribed!" });
+        setFormData({
+          field_first_name: "",
+          field_last_name: "",
+          field_mobile_phone: "",
+          field_email_address: "",
+          field_country_region: "ZA",
+        });
+      } else {
+        throw new Error("Network response was not ok.");
+      }
     } catch (error) {
-      console.error(error);
-      toast.error(errorMessage);
+      setStatus({ type: "error", message: "An error occurred. Please try again." });
     } finally {
-      setSubmitting(false);
+      setLoading(false);
     }
   };
 
   return (
-    <div className="rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-10">
-      {sent ? (
-        <div className="py-12 text-center">
-          <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gold text-black">
-            <span className="font-display text-3xl">✓</span>
-          </div>
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Join the Scorpion Kings Mailing List</h2>
 
-          <h3 className="font-display text-4xl font-bold text-white">{successMessage}</h3>
-
-          <button
-            type="button"
-            onClick={() => setSent(false)}
-            className="mt-7 rounded-full border border-white/20 px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:border-gold hover:text-gold"
-          >
-            Send another
-          </button>
+      {status.type && (
+        <div
+          className={`p-4 mb-4 rounded ${status.type === "success" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}
+        >
+          {status.message}
         </div>
-      ) : (
-        <form onSubmit={onSubmit} className="space-y-4">
-          <div className="space-y-1">
-            <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Get in touch</p>
-            <h3 className="font-display text-2xl font-bold text-white">{title}</h3>
-            <p className="text-sm text-white/65">{description}</p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className="mb-2 block text-xs uppercase tracking-widest text-white/50">Name *</label>
-              <input
-                required
-                value={form.name}
-                onChange={onChange("name")}
-                maxLength={100}
-                className="w-full rounded-xl border border-white/15 bg-black/40 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-gold"
-                placeholder="Your name"
-              />
-            </div>
-
-            <div>
-              <label className="mb-2 block text-xs uppercase tracking-widest text-white/50">Email *</label>
-              <input
-                required
-                type="email"
-                value={form.email}
-                onChange={onChange("email")}
-                maxLength={255}
-                className="w-full rounded-xl border border-white/15 bg-black/40 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-gold"
-                placeholder="your@email.com"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="mb-2 block text-xs uppercase tracking-widest text-white/50">Subject</label>
-            <input
-              value={form.subject}
-              onChange={onChange("subject")}
-              maxLength={150}
-              className="w-full rounded-xl border border-white/15 bg-black/40 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-gold"
-              placeholder="What is this about?"
-            />
-          </div>
-
-          <div>
-            <label className="mb-2 block text-xs uppercase tracking-widest text-white/50">Message *</label>
-            <textarea
-              required
-              value={form.message}
-              onChange={onChange("message")}
-              maxLength={2000}
-              rows={5}
-              className="w-full resize-none rounded-xl border border-white/15 bg-black/40 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-gold"
-              placeholder="Tell us more..."
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={submitting}
-            className="w-full rounded-full bg-gold px-6 py-4 text-sm font-bold uppercase tracking-widest text-black transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {submitting ? "Sending..." : "Send message"}
-          </button>
-
-          <p className="text-center text-[10px] uppercase tracking-[0.25em] text-white/40">
-            Your details are used only to respond to your enquiry.
-          </p>
-        </form>
       )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700">First Name</label>
+          <input
+            type="text"
+            name="field_first_name"
+            value={formData.field_first_name}
+            onChange={handleChange}
+            required
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Last Name</label>
+          <input
+            type="text"
+            name="field_last_name"
+            value={formData.field_last_name}
+            onChange={handleChange}
+            required
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Mobile Phone</label>
+          <input
+            type="tel"
+            name="field_mobile_phone"
+            value={formData.field_mobile_phone}
+            onChange={handleChange}
+            required
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Email Address</label>
+          <input
+            type="email"
+            name="field_email_address"
+            value={formData.field_email_address}
+            onChange={handleChange}
+            required
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Country</label>
+          <select
+            name="field_country_region"
+            value={formData.field_country_region}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border"
+          >
+            <option value="ZA">South Africa</option>
+            <option value="US">United States</option>
+            <option value="GB">United Kingdom</option>
+            {/* Add other country options as needed or use a package */}
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+        >
+          {loading ? "Submitting..." : "Submit"}
+        </button>
+      </form>
     </div>
   );
-}
+};
