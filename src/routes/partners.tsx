@@ -280,6 +280,13 @@ function PartnersPage() {
             >
               Get in touch <ArrowUpRight size={16} />
             </Link>
+
+            <p className="mt-4 text-sm text-white/70">
+              Sponsorship enquiries:{" "}
+              <a href="mailto:sponsorship@scorpionkings.live" className="text-gold hover:underline">
+                sponsorship@scorpionkings.live
+              </a>
+            </p>
           </FadeIn>
         </div>
       </Section></VisibilityGate>
