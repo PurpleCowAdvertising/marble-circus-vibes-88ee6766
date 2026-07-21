@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Crown, Mic2, ShieldCheck, Utensils } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
@@ -25,33 +24,41 @@ export const Route = createFileRoute("/experience")({
 
 const BOOK_URL = "https://www.sailhospitality.co.za/upcoming-events/scorpion-kings";
 
+const BEST = "Best suited to: groups, music fans, concertgoers, corporate entertainment, and occasional visitors";
+const BEST_RUGBY = "Best suited to: groups, football and rugby fans, concertgoers, and occasional visitors";
+const IDEAL = "Ideal for: personal entertainment, corporate gifting, and more.";
+
 const BLOCKS = [
   {
-    title: "Private Suites",
-    body: "Private suite hospitality with elevated stage views, premium food & beverage and dedicated service.",
-    price: "From TBC",
-    icon: Crown,
+    title: "Goldrush Dome – General Stands",
+    best: BEST,
+    ideal: IDEAL,
+    price: "From R7,239.25",
+    unit: "Per Person Including VAT",
     accent: "from-gold/30 via-gold/10 to-transparent",
   },
   {
-    title: "VIP Lounge",
-    body: "Access to the exclusive VIP lounge with hospitality, premium bar and elevated viewing decks.",
-    price: "From TBC",
-    icon: Mic2,
+    title: "Hall of Fame Lounge",
+    best: BEST_RUGBY,
+    ideal: IDEAL,
+    price: "From R8,044.25",
+    unit: "Per Person Including VAT",
     accent: "from-white/20 via-white/10 to-transparent",
   },
   {
-    title: "Hospitality Tables",
-    body: "Reserved hospitality tables with curated dining, bottle service and prime positioning.",
-    price: "From TBC",
-    icon: Utensils,
+    title: "Goldrush Dome – Stage Side Seating",
+    best: BEST,
+    ideal: IDEAL,
+    price: "From R7,814.25",
+    unit: "Per Person Including VAT",
     accent: "from-gold/30 via-gold/10 to-transparent",
   },
   {
-    title: "Bespoke Packages",
-    body: "Tailored hospitality experiences for groups and corporates. Fully customisable on request.",
-    price: "From TBC",
-    icon: ShieldCheck,
+    title: "SMSA Lounge",
+    best: BEST_RUGBY,
+    ideal: IDEAL,
+    price: "From R8,044.25",
+    unit: "Per Person Including VAT",
     accent: "from-white/20 via-white/10 to-transparent",
   },
 ] as const;
@@ -95,8 +102,6 @@ function HospitalityPage() {
         <VisibilityGate keyName="section:experience.blocks">
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             {BLOCKS.map((block, index) => {
-              const Icon = block.icon;
-
               return (
                 <FadeIn key={block.title} delay={index * 0.06}>
                   <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/30 bg-white/[0.08] p-5 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.18)] ring-1 ring-inset ring-white/10 backdrop-blur-xl backdrop-saturate-150 transition-transform duration-300 hover:-translate-y-1 md:p-7">
@@ -105,12 +110,10 @@ function HospitalityPage() {
                     >
                       <div className="absolute inset-0 bg-black/35" />
 
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <Icon
-                          size={56}
-                          className="text-white transition-transform duration-500 group-hover:scale-110"
-                          strokeWidth={1.25}
-                        />
+                      <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
+                        <p className="font-display text-lg font-bold uppercase tracking-widest text-white/90">
+                          {block.title}
+                        </p>
                       </div>
                     </div>
 
@@ -118,10 +121,15 @@ function HospitalityPage() {
                       {block.title}
                     </h2>
 
-                    <p className="mt-2 text-sm leading-relaxed text-white/70">{block.body}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-white/70">{block.best}</p>
 
-                    <div className="mt-5 flex items-center justify-between gap-4">
-                      <p className="font-display text-lg font-bold text-gold">{block.price}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-white/60">{block.ideal}</p>
+
+                    <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+                      <div>
+                        <p className="font-display text-lg font-bold text-gold">{block.price}</p>
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">{block.unit}</p>
+                      </div>
 
                       <a
                         href={BOOK_URL}
