@@ -148,6 +148,12 @@ function NewsPage() {
                   kim@iam4.co.za
                 </a>
               </p>
+
+              <p className="mt-3">
+                <a href="mailto:press@scorpionkings.live" className="text-gold hover:underline">
+                  press@scorpionkings.live
+                </a>
+              </p>
             </div>
           </FadeIn>
         </VisibilityGate>
