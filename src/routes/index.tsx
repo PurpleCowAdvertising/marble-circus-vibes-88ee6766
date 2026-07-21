@@ -641,7 +641,7 @@ function HomePage() {
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">Experience</p>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">Hospitality</p>
                 <h2 className="mt-2 font-display text-4xl font-bold text-white md:text-6xl">Inside the show.</h2>
               </div>
 
@@ -653,7 +653,7 @@ function HomePage() {
                 }}
                 className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/70"
               >
-                View experience
+                View hospitality
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
             </div>
