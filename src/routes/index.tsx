@@ -512,9 +512,9 @@ function HomePage() {
                 },
                 {
                   name: "experiences",
-                  price: "TBC",
-                  tag: "Hospitality + bottle service",
-                  status: "COMING SOON",
+                  price: "Select your Premium Hospitality Package",
+                  tag: "Hospitality",
+                  externalUrl: "https://www.sailhospitality.co.za/upcoming-events/scorpion-kings",
                 },
               ].map((tier, index) => {
                 const gold = index % 2 === 0;
