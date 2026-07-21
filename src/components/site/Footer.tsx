@@ -24,7 +24,7 @@ const LEGAL_LINKS = [
   { to: "/terms", label: "Terms of Use" },
 ] as const;
 
-import type { IconNode } from "lucide-react";
+
 
 const TIKTOK_ICON: IconNode = [
   [
