@@ -24,7 +24,9 @@ const LEGAL_LINKS = [
   { to: "/terms", label: "Terms of Use" },
 ] as const;
 
-const TIKTOK_ICON = [
+import type { IconNode } from "lucide-react";
+
+const TIKTOK_ICON: IconNode = [
   [
     "path",
     {
@@ -33,7 +35,7 @@ const TIKTOK_ICON = [
       stroke: "none",
     },
   ],
-] as const;
+];
 
 const SOCIAL_LINKS = [
   { href: "https://www.instagram.com/scorpionkingslive/?hl=en", label: "Instagram", icon: Instagram },
