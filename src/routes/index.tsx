@@ -512,9 +512,9 @@ function HomePage() {
                 },
                 {
                   name: "experiences",
-                  price: "TBC",
-                  tag: "Hospitality + bottle service",
-                  status: "COMING SOON",
+                  price: "Select your Premium Hospitality Package",
+                  tag: "Hospitality",
+                  externalUrl: "https://www.sailhospitality.co.za/upcoming-events/scorpion-kings",
                 },
               ].map((tier, index) => {
                 const gold = index % 2 === 0;
@@ -591,31 +591,40 @@ function HomePage() {
                         {tier.price}
                       </p>
 
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (tier.name === "experiences") return;
-                          setActiveTier({ ...tier, gold });
-                        }}
-                        disabled={tier.name === "experiences"}
-                        className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[12px] font-bold uppercase tracking-widest transition-all duration-500 ease-out md:text-[11px] ${
-                          tier.name === "experiences"
-                            ? "pointer-events-none cursor-not-allowed bg-white/20 text-white/60"
-                            : `group-hover:gap-3 group-hover:px-6 ${
-                                gold
-                                  ? "bg-gold text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
-                                  : "bg-white text-black shadow-[0_6px_18px_-8px_rgba(255,255,255,0.25)] hover:shadow-[0_14px_36px_-10px_rgba(255,255,255,0.4)]"
-                              }`
-                        }`}
-                      >
-                        <span>{tier.status || "Buy"}</span>
-                        {tier.name !== "experiences" && (
+                      {tier.externalUrl ? (
+                        <a
+                          href={tier.externalUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[12px] font-bold uppercase tracking-widest transition-all duration-500 ease-out md:text-[11px] group-hover:gap-3 group-hover:px-6 ${
+                            gold
+                              ? "bg-gold text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
+                              : "bg-white text-black shadow-[0_6px_18px_-8px_rgba(255,255,255,0.25)] hover:shadow-[0_14px_36px_-10px_rgba(255,255,255,0.4)]"
+                          }`}
+                        >
+                          <span>Buy Now</span>
                           <ArrowRight
                             size={14}
                             className="transition-transform duration-500 ease-out group-hover:translate-x-1"
                           />
-                        )}
-                      </button>
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setActiveTier({ ...tier, gold })}
+                          className={`mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full px-5 py-2.5 text-[12px] font-bold uppercase tracking-widest transition-all duration-500 ease-out md:text-[11px] group-hover:gap-3 group-hover:px-6 ${
+                            gold
+                              ? "bg-gold text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)]"
+                              : "bg-white text-black shadow-[0_6px_18px_-8px_rgba(255,255,255,0.25)] hover:shadow-[0_14px_36px_-10px_rgba(255,255,255,0.4)]"
+                          }`}
+                        >
+                          <span>{tier.status || "Buy"}</span>
+                          <ArrowRight
+                            size={14}
+                            className="transition-transform duration-500 ease-out group-hover:translate-x-1"
+                          />
+                        </button>
+                      )}
                     </div>
                   </motion.article>
                 );
