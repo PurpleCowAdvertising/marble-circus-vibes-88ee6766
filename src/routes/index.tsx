@@ -642,15 +642,13 @@ function HomePage() {
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">Hospitality</p>
-                <h2 className="mt-2 font-display text-4xl font-bold text-white md:text-6xl">Inside the show.</h2>
+                <h2 className="mt-2 font-display text-4xl font-bold text-white md:text-6xl">Packages</h2>
               </div>
 
               <a
-                href="#experience"
-                onClick={(event) => {
-                  event.preventDefault();
-                  scrollToSection("experience");
-                }}
+                href="https://www.sailhospitality.co.za/upcoming-events/scorpion-kings"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/70"
               >
                 View hospitality
@@ -698,20 +696,27 @@ function HomePage() {
                 }}
                 className="group overflow-hidden rounded-xl border border-white/15 bg-black/40 backdrop-blur-sm transition-transform hover:-translate-y-0.5"
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden">
-                  <img
-                    src={block.image}
-                    alt={block.alt}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                </div>
+                <a
+                  href="https://www.sailhospitality.co.za/upcoming-events/scorpion-kings"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <img
+                      src={block.image}
+                      alt={block.alt}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  </div>
 
-                <div className="p-4 md:p-5">
-                  <h3 className="font-display text-base font-bold text-white md:text-lg">{block.title}</h3>
-                  <p className="mt-1 text-xs text-white/75">{block.body}</p>
-                </div>
+                  <div className="p-4 md:p-5">
+                    <h3 className="font-display text-base font-bold text-white md:text-lg">{block.title}</h3>
+                    <p className="mt-1 text-xs text-white/75">{block.body}</p>
+                  </div>
+                </a>
               </motion.div>
             ))}
           </div>
