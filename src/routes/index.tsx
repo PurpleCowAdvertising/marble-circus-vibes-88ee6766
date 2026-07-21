@@ -320,7 +320,7 @@ function HomePage() {
                   }}
                   className="group inline-flex items-center gap-2 text-white hover:text-white/70"
                 >
-                  <span className="story-link">Explore the experience</span>
+                  <span className="story-link">Explore hospitality</span>
                   <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
               </div>
