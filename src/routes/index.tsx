@@ -662,28 +662,28 @@ function HomePage() {
           <div className="mt-8 grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
             {[
               {
-                title: "Main stage",
-                body: "Immersive event visuals, lights and the focus of the night.",
+                title: "Goldrush Dome – General Stands",
+                body: "From R7,239.25 per person incl. VAT. Groups, music fans and corporate entertainment.",
                 image: pastStadiumFire,
-                alt: "Main stage pyrotechnics at FNB Stadium",
+                alt: "Goldrush Dome general stands",
               },
               {
-                title: "VIP",
-                body: "Hospitality, elevated viewing and faster access.",
+                title: "Hall of Fame Lounge",
+                body: "From R8,044.25 per person incl. VAT. Ideal for personal entertainment and corporate gifting.",
                 image: pastStageWalk,
-                alt: "Artist walking the stage in a cream jacket",
+                alt: "Hall of Fame Lounge hospitality",
               },
               {
-                title: "Vendors + merch",
-                body: "Food, bars and limited event drops.",
+                title: "Goldrush Dome – Stage Side Seating",
+                body: "From R7,814.25 per person incl. VAT. Elevated stage-side viewing for groups.",
                 image: pastRedVocalist,
-                alt: "Performer in red on stage under stadium lights",
+                alt: "Goldrush Dome stage side seating",
               },
               {
-                title: "Site map + traffic",
-                body: "Parking, transport and access info before the show.",
+                title: "SMSA Lounge",
+                body: "From R8,044.25 per person incl. VAT. Premium lounge hospitality with curated dining.",
                 image: pastFanPhone,
-                alt: "Fan smiling in the FNB Stadium stands",
+                alt: "SMSA Lounge hospitality",
               },
             ].map((block, index) => (
               <motion.div
