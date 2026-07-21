@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, X, Youtube, Icon, type IconNode } from "lucide-react";
+import { createLucideIcon, Facebook, Instagram, X, Youtube } from "lucide-react";
 
 import { SITE_CREDIT } from "@/config/credits";
 import { useVisiblePageRoutes } from "./visibility";
@@ -24,25 +24,16 @@ const LEGAL_LINKS = [
   { to: "/terms", label: "Terms of Use" },
 ] as const;
 
-
-
-const TIKTOK_ICON: IconNode = [
-  [
-    "path",
-    {
-      d: "M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.62 2.52-4.91 1.45-1.38 3.42-2.13 5.38-2.14 1.06.01 2.11.18 3.11.51.03.05.06.09.06.15v3.98c-.46-.14-.93-.27-1.41-.37-1.05-.23-2.16-.19-3.13.22-1.03.43-1.89 1.21-2.39 2.22-.25.52-.39 1.09-.39 1.67.02 1.34.87 2.57 2.11 3.04.73.32 1.55.35 2.31.14.85-.24 1.58-.74 2.11-1.41.51-.66.79-1.45.85-2.26.02-2.06.01-4.13.01-6.19h3.15c-.04.66-.11 1.31-.24 1.95-.25 1.17-.74 2.28-1.44 3.24-.72.98-1.64 1.79-2.71 2.35-.93.48-1.96.77-3.01.85-.02.01-.04 0-.06 0z",
-      fill: "currentColor",
-      stroke: "none",
-    },
-  ],
-];
+const TikTokIcon = createLucideIcon("TikTok", [
+  ["path", { d: "M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.62 2.52-4.91 1.45-1.38 3.42-2.13 5.38-2.14 1.06.01 2.11.18 3.11.51.03.05.06.09.06.15v3.98c-.46-.14-.93-.27-1.41-.37-1.05-.23-2.16-.19-3.13.22-1.03.43-1.89 1.21-2.39 2.22-.25.52-.39 1.09-.39 1.67.02 1.34.87 2.57 2.11 3.04.73.32 1.55.35 2.31.14.85-.24 1.58-.74 2.11-1.41.51-.66.79-1.45.85-2.26.02-2.06.01-4.13.01-6.19h3.15c-.04.66-.11 1.31-.24 1.95-.25 1.17-.74 2.28-1.44 3.24-.72.98-1.64 1.79-2.71 2.35-.93.48-1.96.77-3.01.85-.02.01-.04 0-.06 0z", fill: "currentColor", stroke: "none" }],
+]);
 
 const SOCIAL_LINKS = [
   { href: "https://www.instagram.com/scorpionkingslive/?hl=en", label: "Instagram", icon: Instagram },
   { href: "https://www.facebook.com/share/1D9ccSVuU3/?mibextid=wwXIfr", label: "Facebook", icon: Facebook },
   { href: "https://www.youtube.com/channel/UCe0qO9T8tdTwKLR6rnPTRPQ", label: "YouTube", icon: Youtube },
   { href: "https://x.com/scorpionkingslv?s=21", label: "X", icon: X },
-  { href: "https://www.tiktok.com/@scorpionkingslive?_r=1&_t=ZS-97paQvcDRTt", label: "TikTok", icon: () => <Icon iconNode={TIKTOK_ICON} size={18} /> },
+  { href: "https://www.tiktok.com/@scorpionkingslive?_r=1&_t=ZS-97paQvcDRTt", label: "TikTok", icon: TikTokIcon },
 ] as const;
 
 export function Footer() {
@@ -115,13 +106,16 @@ export function Footer() {
                 const Icon = social.icon;
 
                 return (
-                  <span
+                  <a
                     key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="pointer-events-none text-black/60"
+                    className="text-black/60 transition-colors hover:text-black"
                   >
                     <Icon size={18} />
-                  </span>
+                  </a>
                 );
               })}
             </div>
