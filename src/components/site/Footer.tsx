@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, X, Youtube, Icon } from "lucide-react";
+import { Facebook, Instagram, X, Youtube, Icon, type IconNode } from "lucide-react";
 
 import { SITE_CREDIT } from "@/config/credits";
 import { useVisiblePageRoutes } from "./visibility";
