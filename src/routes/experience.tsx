@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Crown, Mic2, ShieldCheck, Utensils } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
