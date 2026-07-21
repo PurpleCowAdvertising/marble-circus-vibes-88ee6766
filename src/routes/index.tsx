@@ -642,15 +642,13 @@ function HomePage() {
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">Hospitality</p>
-                <h2 className="mt-2 font-display text-4xl font-bold text-white md:text-6xl">Inside the show.</h2>
+                <h2 className="mt-2 font-display text-4xl font-bold text-white md:text-6xl">Packages</h2>
               </div>
 
               <a
-                href="#experience"
-                onClick={(event) => {
-                  event.preventDefault();
-                  scrollToSection("experience");
-                }}
+                href="https://www.sailhospitality.co.za/upcoming-events/scorpion-kings"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white hover:text-white/70"
               >
                 View hospitality
