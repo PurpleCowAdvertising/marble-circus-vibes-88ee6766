@@ -20,7 +20,7 @@ export const VISIBILITY_REGISTRY: RegistryEntry[] = [
   { key: "page:news", kind: "page", label: "News", sortOrder: 40, route: "/news" },
   { key: "page:tickets", kind: "page", label: "Tickets", sortOrder: 50, route: "/tickets" },
   { key: "page:partners", kind: "page", label: "Partners", sortOrder: 60, route: "/partners" },
-  { key: "page:experience", kind: "page", label: "Experience", sortOrder: 70, route: "/experience" },
+  { key: "page:experience", kind: "page", label: "Hospitality", sortOrder: 70, route: "/experience" },
   { key: "page:merchandise", kind: "page", label: "Merchandise", sortOrder: 80, route: "/merchandise" },
   { key: "page:legacy", kind: "page", label: "Legacy / CSI", sortOrder: 90, route: "/legacy" },
   { key: "page:contact", kind: "page", label: "Contact", sortOrder: 100, route: "/contact" },
