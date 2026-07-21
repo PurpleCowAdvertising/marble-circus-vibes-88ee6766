@@ -24,33 +24,41 @@ export const Route = createFileRoute("/experience")({
 
 const BOOK_URL = "https://www.sailhospitality.co.za/upcoming-events/scorpion-kings";
 
+const BEST = "Best suited to: groups, music fans, concertgoers, corporate entertainment, and occasional visitors";
+const BEST_RUGBY = "Best suited to: groups, football and rugby fans, concertgoers, and occasional visitors";
+const IDEAL = "Ideal for: personal entertainment, corporate gifting, and more.";
+
 const BLOCKS = [
   {
-    title: "Private Suites",
-    body: "Private suite hospitality with elevated stage views, premium food & beverage and dedicated service.",
-    price: "From TBC",
-    icon: Crown,
+    title: "Goldrush Dome – General Stands",
+    best: BEST,
+    ideal: IDEAL,
+    price: "From R7,239.25",
+    unit: "Per Person Including VAT",
     accent: "from-gold/30 via-gold/10 to-transparent",
   },
   {
-    title: "VIP Lounge",
-    body: "Access to the exclusive VIP lounge with hospitality, premium bar and elevated viewing decks.",
-    price: "From TBC",
-    icon: Mic2,
+    title: "Hall of Fame Lounge",
+    best: BEST_RUGBY,
+    ideal: IDEAL,
+    price: "From R8,044.25",
+    unit: "Per Person Including VAT",
     accent: "from-white/20 via-white/10 to-transparent",
   },
   {
-    title: "Hospitality Tables",
-    body: "Reserved hospitality tables with curated dining, bottle service and prime positioning.",
-    price: "From TBC",
-    icon: Utensils,
+    title: "Goldrush Dome – Stage Side Seating",
+    best: BEST,
+    ideal: IDEAL,
+    price: "From R7,814.25",
+    unit: "Per Person Including VAT",
     accent: "from-gold/30 via-gold/10 to-transparent",
   },
   {
-    title: "Bespoke Packages",
-    body: "Tailored hospitality experiences for groups and corporates. Fully customisable on request.",
-    price: "From TBC",
-    icon: ShieldCheck,
+    title: "SMSA Lounge",
+    best: BEST_RUGBY,
+    ideal: IDEAL,
+    price: "From R8,044.25",
+    unit: "Per Person Including VAT",
     accent: "from-white/20 via-white/10 to-transparent",
   },
 ] as const;
