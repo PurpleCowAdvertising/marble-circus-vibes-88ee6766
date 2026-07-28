@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
 
 import { FadeIn, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
-import { ParkRideModal } from "@/components/site/ParkRideModal";
+import { ParkRideModal, PARK_RIDE_LOCATIONS, PARK_RIDE_URL } from "@/components/site/ParkRideModal";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 import majorLeague from "@/assets/artists/major-league.jpg";
