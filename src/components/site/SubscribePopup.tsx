@@ -55,28 +55,43 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem(SESSION_KEY, "true");
   }, []);
 
+  // Non-intrusive trigger: never on load or on scroll. The popup only appears
+  // after the visitor actively engages — i.e. clicks a button, link or card
+  // somewhere on the site (second interaction, so the first click never gets
+  // interrupted).
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const hasSeen = localStorage.getItem(SESSION_KEY);
-    if (hasSeen) return;
+    if (localStorage.getItem(SESSION_KEY)) return;
 
+    let interactions = 0;
     let triggered = false;
-    const onScroll = () => {
+
+    const onClick = (event: MouseEvent) => {
       if (triggered) return;
-      const scrollHeight = document.documentElement.scrollHeight;
-      const scrollPosition = window.scrollY + window.innerHeight;
-      if (scrollHeight > 0 && scrollPosition / scrollHeight >= 0.5) {
-        triggered = true;
-        open("auto");
-        window.removeEventListener("scroll", onScroll);
-      }
+      const target = event.target as HTMLElement | null;
+      if (!target) return;
+
+      // Ignore clicks inside the popup itself and on consent/cookie chrome.
+      if (target.closest("[data-subscribe-popup]")) return;
+
+      const interactive = target.closest(
+        'button, a, [role="button"], [role="tab"], input, select, label, article',
+      );
+      if (!interactive) return;
+
+      interactions += 1;
+      if (interactions < 2) return;
+
+      triggered = true;
+      document.removeEventListener("click", onClick, true);
+      // Let the click's own action (navigation, modal, scroll) settle first.
+      window.setTimeout(() => open("engaged"), 1200);
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    return () => window.removeEventListener("scroll", onScroll);
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
   }, [open]);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -186,7 +201,10 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
       {children}
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div
+            data-subscribe-popup
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          >
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -201,12 +219,20 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
               </button>
 
               <div className="text-center mb-6">
-                <span className="text-xs uppercase tracking-widest text-amber-500 font-semibold">Don't Miss A Beat</span>
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-1 uppercase">Join the Movement</h2>
+                <span className="text-xs uppercase tracking-widest text-amber-500 font-semibold">
+                  {source === "engaged" ? "Glad you're here" : "Don't Miss A Beat"}
+                </span>
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-1 uppercase">
+                  {source === "engaged" ? "Enjoying the ride?" : "Join the Movement"}
+                </h2>
                 <p className="text-xs text-zinc-400 mt-2">
-                  Be first for lineup drops, ticket waves and exclusive content.
+                  {source === "engaged"
+                    ? "Since you're exploring, join the mailing list for lineup drops, ticket waves and exclusive content — straight to your inbox."
+                    : "Be first for lineup drops, ticket waves and exclusive content."}
                 </p>
               </div>
+
+
 
               {success ? (
                 <div className="text-center py-8 text-emerald-400 font-semibold">
