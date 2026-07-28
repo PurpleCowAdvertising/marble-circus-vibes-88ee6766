@@ -64,7 +64,7 @@ export function ConsentBanner() {
           transition={{ type: "spring", damping: 22, stiffness: 200 }}
           role="dialog"
           aria-label="Privacy and cookie preferences"
-          className="fixed inset-x-0 bottom-0 z-[90] p-3 sm:p-5"
+          className="fixed inset-x-0 bottom-0 z-[90] hidden p-3 md:block sm:p-5"
         >
           <div className="mx-auto max-w-[1200px] overflow-hidden rounded-2xl border border-border bg-card/95 shadow-2xl backdrop-blur-xl">
             <div className="grid gap-5 p-5 md:grid-cols-[1fr_auto] md:items-center md:gap-8 md:p-6">
