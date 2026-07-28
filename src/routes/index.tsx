@@ -637,7 +637,7 @@ function HomePage() {
 
             <Reveal delay={400} className="transition-transform duration-500 ease-out hover:-translate-y-1.5">
 
-              <div className="group relative mt-6 block w-full overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-6 text-left backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8">
+              <div className="group relative mt-4 block w-full overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-5 text-left backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8">
 
                 <span
                   aria-hidden
@@ -652,21 +652,21 @@ function HomePage() {
                   className="pointer-events-none absolute inset-0 -translate-y-full bg-[radial-gradient(120%_60%_at_50%_0%,color-mix(in_oklab,var(--gold)_25%,transparent)_0%,transparent_70%)] opacity-0 transition-all duration-[900ms] ease-out group-hover:translate-y-0 group-hover:opacity-100"
                 />
 
-                <div className="relative z-[1] flex flex-col items-center gap-4 text-center md:hidden">
-                  <div className="flex flex-col items-center gap-3">
+                <div className="relative z-[1] flex flex-col items-center gap-2 text-center md:hidden">
+                  <div className="flex flex-col items-center gap-1">
                     <span className="inline-flex rounded-full border border-gold/50 bg-gold/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
                       Recommended
                     </span>
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold/80">
                       19 September 2026
                     </span>
-                    <h3 className="font-display text-3xl font-bold text-gold transition-transform duration-500 ease-out group-hover:translate-x-1">
+                    <h3 className="font-display text-2xl font-bold text-gold transition-transform duration-500 ease-out group-hover:translate-x-1">
                       Book Your Park + Ride
                     </h3>
                   </div>
 
-                  <p className="max-w-xl text-sm leading-relaxed text-white/80">
-                    Skip the stadium traffic. Park at a secure, designated location and take a return shuttle straight to FNB Stadium. The easiest way in — and out.
+                  <p className="max-w-md px-1 text-sm leading-snug text-white/80">
+                    Skip the stadium traffic. Park at a secure location and take a return shuttle straight to FNB Stadium.
                   </p>
 
                   <img
@@ -675,14 +675,14 @@ function HomePage() {
                     loading="lazy"
                     width={512}
                     height={512}
-                    className="pointer-events-none z-[1] w-44 shrink-0 object-contain opacity-95 drop-shadow-[0_16px_50px_color-mix(in_oklab,var(--gold)_35%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105"
+                    className="pointer-events-none z-[1] w-56 shrink-0 object-contain opacity-95 drop-shadow-[0_16px_50px_color-mix(in_oklab,var(--gold)_35%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105"
                   />
 
-                  <ul className="flex flex-wrap justify-center gap-2">
+                  <ul className="flex flex-wrap justify-center gap-1.5">
                     {["Avoid traffic", "Return shuttle", "Secure parking", "Eco-friendly"].map((benefit) => (
                       <li
                         key={benefit}
-                        className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/90"
+                        className="rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/90"
                       >
                         {benefit}
                       </li>

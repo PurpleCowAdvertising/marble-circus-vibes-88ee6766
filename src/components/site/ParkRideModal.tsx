@@ -54,7 +54,7 @@ export function ParkRideModal({ open, onClose }: Props) {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-5 sm:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -69,7 +69,7 @@ export function ParkRideModal({ open, onClose }: Props) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.97 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-[92%] max-w-sm overflow-y-auto rounded-2xl border border-gold/50 bg-black p-5 text-white shadow-2xl sm:w-full sm:max-w-lg sm:rounded-3xl sm:p-8 max-h-[calc(100dvh-9rem)] sm:max-h-[calc(100dvh-4rem)]"
+            className="relative w-[86%] max-w-sm overflow-y-auto rounded-2xl border border-gold/50 bg-black p-5 text-white shadow-2xl sm:w-full sm:max-w-lg sm:rounded-3xl sm:p-8 max-h-[calc(100dvh-10rem)] sm:max-h-[calc(100dvh-4rem)]"
           >
             <button
               type="button"
