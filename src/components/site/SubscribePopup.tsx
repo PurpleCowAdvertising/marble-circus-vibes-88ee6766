@@ -68,14 +68,14 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
       if (scrollHeight > 0 && scrollPosition / scrollHeight >= 0.5) {
         triggered = true;
         open("auto");
-        window.removeEventListener("scroll", onScroll, { passive: true });
+        window.removeEventListener("scroll", onScroll);
       }
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    return () => window.removeEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, [open]);
 
   const handleSubmit = async (e: React.FormEvent) => {
