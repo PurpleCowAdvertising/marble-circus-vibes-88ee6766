@@ -639,12 +639,12 @@ function HomePage() {
               transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6 }}
             >
-              <a
-                href="https://www.webtickets.co.za/v2/event.aspx?itemid=1594653275"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative mt-6 block overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-6 backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8"
+              <button
+                type="button"
+                onClick={() => setParkRideOpen(true)}
+                className="group relative mt-6 block w-full overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-6 text-left backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8"
               >
+
                 <span
                   aria-hidden
                   className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-gold/20 via-gold/[0.04] to-transparent"
