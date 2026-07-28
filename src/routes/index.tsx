@@ -631,8 +631,9 @@ function HomePage() {
                           />
                         </button>
                       )}
-                    </div>
-                  </motion.article>
+                    </Reveal>
+                  </Reveal>
+
                 );
               })}
             </div>
