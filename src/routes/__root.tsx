@@ -89,12 +89,15 @@ import { getPublicVisibility } from "@/lib/visibility.functions";
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
-  loader: ({ context }) =>
-    context.queryClient.ensureQueryData({
+  loader: async ({ context }) => {
+    const visibility = await context.queryClient.ensureQueryData({
       queryKey: ["public-visibility"],
       queryFn: () => getPublicVisibility(),
       staleTime: 60_000,
-    }),
+    });
+    return { visibility };
+  },
+
   head: () => ({
     meta: [
       { charSet: "utf-8" },

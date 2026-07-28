@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useLocation, useNavigate, useRouterState } from "@tanstack/react-router";
+import { useLoaderData, useLocation, useNavigate, useRouterState } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
 import { getPublicVisibility, type PublicVisibility } from "@/lib/visibility.functions";
@@ -7,7 +7,13 @@ import { PAGE_KEY_BY_ROUTE } from "@/lib/visibility-registry";
 
 // Public: what's hidden on live. Cached long, revalidated on window focus.
 export function usePublicVisibility() {
-  return useQuery<PublicVisibility>({
+  // Prefer the root loader's data so SSR and hydration render identical markup.
+  const rootData = useLoaderData({
+    from: "__root__",
+    select: (d) => (d as { visibility?: PublicVisibility }).visibility,
+  });
+
+  const query = useQuery<PublicVisibility>({
     queryKey: ["public-visibility"],
     queryFn: () => getPublicVisibility(),
     staleTime: 60_000,
@@ -15,8 +21,13 @@ export function usePublicVisibility() {
     // If the fn ever fails (e.g. cold cache during network hiccup), fail open:
     // treat everything as visible rather than blanking the site.
     placeholderData: { hiddenLive: [], version: 1 },
+    initialData: rootData,
   });
+
+  return rootData ? { data: rootData, isLoading: false } : query;
 }
+
+
 
 // Small hook: is this specific key hidden right now?
 export function useIsHidden(key: string): boolean {
