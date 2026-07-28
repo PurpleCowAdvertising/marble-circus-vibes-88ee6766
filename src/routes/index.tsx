@@ -12,7 +12,7 @@ import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { ParkRideModal } from "@/components/site/ParkRideModal";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-import majorLeague from "@/assets/artists/major-league.jpg";
+import majorLeague from "@/assets/artists/major-league.webp";
 import tyla from "@/assets/artists/tyla.webp";
 import blackCoffee from "@/assets/artists/black-coffee.webp";
 import nastyC from "@/assets/artists/nasty-c.webp";
@@ -36,16 +36,16 @@ const SCORPION_KINGS = [
   },
 ] as const;
 
-import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
-import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
-import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.png";
+import partnerLogoFull from "@/assets/partners/purple-cow-full.webp";
+import partnerLogoMark from "@/assets/partners/purple-cow-mark.webp";
+import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.webp";
 import parkRideShuttle from "@/assets/park-ride-shuttle.webp";
 
-import pastFanPhone from "@/assets/past-event/fan-phone.jpg";
-import pastDrummerFire from "@/assets/past-event/drummer-fire.jpg";
-import pastStageWalk from "@/assets/past-event/stage-walk.jpg";
-import pastRedVocalist from "@/assets/past-event/red-vocalist.jpg";
-import pastStadiumFire from "@/assets/past-event/stadium-fire.jpg";
+import pastFanPhone from "@/assets/past-event/fan-phone.webp";
+import pastDrummerFire from "@/assets/past-event/drummer-fire.webp";
+import pastStageWalk from "@/assets/past-event/stage-walk.webp";
+import pastRedVocalist from "@/assets/past-event/red-vocalist.webp";
+import pastStadiumFire from "@/assets/past-event/stadium-fire.webp";
 
 const PAST_EVENT_PHOTOS: { src: string; alt: string }[] = [
   {

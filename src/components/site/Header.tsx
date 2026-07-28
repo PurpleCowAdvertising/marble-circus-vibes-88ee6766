@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 
 import { useSubscribePopup } from "./SubscribePopup";
 import { useVisiblePageRoutes } from "./visibility";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
 
 type NavItem =
   | { kind: "route"; to: "/" | "/news" | "/merchandise" | "/contact"; label: string }
