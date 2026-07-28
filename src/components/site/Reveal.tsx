@@ -1,5 +1,6 @@
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useLayoutEffect,
@@ -11,16 +12,8 @@ import {
 } from "react";
 
 import { useRouterState } from "@tanstack/react-router";
-import grainTile from "@/assets/grain.png";
 
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
-
-/**
- * Pre-rasterised 64px noise tile. A raster tile is decoded once and reused by
- * every element; an inline SVG feTurbulence had to be re-rendered per layer,
- * which is what stuttered on iOS / low-end Android.
- */
-const GRAIN = `url(${grainTile})`;
 const DURATION = 600;
 
 /** matchMedia is evaluated once per page, not once per Reveal instance. */
@@ -133,6 +126,10 @@ export function RevealGroup({
 /**
  * Blur-to-focus + opacity reveal. Default state is fully visible, so content
  * renders normally without JS and never gates images or interaction.
+ *
+ * Mobile (lite / touch devices): continuous scroll-linked opacity fade.
+ * Elements fade in as they enter the viewport and fade out as they leave,
+ * with no blur, grain or heavy filters to keep scrolling smooth.
  */
 export function Reveal({
   children,
@@ -160,23 +157,24 @@ export function Reveal({
   // "idle" = untouched (visible, no JS enhancement yet)
   const [phase, setPhase] = useState<"idle" | "hidden" | "shown">("idle");
   const [animating, setAnimating] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const reduced = useRef(false);
-  // Blur filters are expensive to composite on phones — opacity only there.
-  const lite = useRef(false);
   const lowEnd = useRef(false);
+  const scrollRef = useScrollRatio<HTMLElement>(isMobile);
 
   useLayoutEffect(() => {
     reduced.current = prefersReducedMotion();
-    lite.current = isLiteDevice();
+    const mobile = isLiteDevice();
     lowEnd.current = isLowEndDevice();
-    if (reduced.current) return;
+    setIsMobile(mobile);
+    if (reduced.current || mobile) return;
     setPhase("hidden");
   }, []);
 
-  const effectiveDelay = lite.current ? Math.round(delay * 0.5) : delay;
+  const effectiveDelay = isMobile ? 0 : lowEnd.current ? 0 : Math.round(delay * 0.5);
 
   useEffect(() => {
-    if (phase !== "hidden" || !inView || reduced.current) return;
+    if (isMobile || phase !== "hidden" || !inView || reduced.current) return;
     setAnimating(true);
     const start = window.setTimeout(() => setPhase("shown"), effectiveDelay);
     const end = window.setTimeout(() => setAnimating(false), effectiveDelay + DURATION + 60);
@@ -184,29 +182,17 @@ export function Reveal({
       window.clearTimeout(start);
       window.clearTimeout(end);
     };
-  }, [phase, inView, effectiveDelay]);
+  }, [phase, inView, effectiveDelay, isMobile]);
 
   const hidden = phase === "hidden";
-  const particles = lite.current && isHome && !lowEnd.current;
+  const particles = false;
 
   const revealStyle: CSSProperties =
-    phase === "idle"
+    isMobile || reduced.current
       ? {}
-      : particles
-        ? {
-            position: "relative",
-            opacity: hidden ? 0 : 1,
-            // 3px keeps the soft focus-in but halves the blur radius the GPU
-            // has to sample on mobile.
-            filter: hidden ? "blur(3px)" : "blur(0px)",
-            transition: `opacity ${DURATION}ms ${EASE}, filter ${DURATION}ms ${EASE}`,
-            willChange: animating ? "opacity, filter" : undefined,
-            // Own compositing layer only while animating: avoids repaints of
-            // the surrounding section on every frame.
-            transform: animating ? "translateZ(0)" : undefined,
-            backfaceVisibility: animating ? "hidden" : undefined,
-          }
-        : lite.current
+      : phase === "idle"
+        ? {}
+        : lowEnd.current
           ? {
               opacity: hidden ? 0 : 1,
               transition: `opacity ${DURATION}ms ${EASE}`,
@@ -219,33 +205,55 @@ export function Reveal({
               willChange: animating ? "opacity, filter" : undefined,
             };
 
-  const grainStyle: CSSProperties = {
-    position: "absolute",
-    inset: 0,
-    pointerEvents: "none",
-    zIndex: 2,
-    backgroundImage: GRAIN,
-    backgroundSize: "64px 64px",
-    // No mix-blend-mode: blending forces iOS off the fast compositing path.
-    opacity: hidden ? 0.3 : 0,
-    transition: `opacity ${DURATION}ms ${EASE}`,
-    willChange: animating ? "opacity" : undefined,
-    transform: "translateZ(0)",
-    contain: "strict",
-  };
-
+  const setRef = useCallback(
+    (node: HTMLElement | null) => {
+      own.ref.current = node;
+      scrollRef.current = node;
+    },
+    [scrollRef],
+  );
 
   return (
     <Tag
-      ref={groupInView === null ? own.ref : undefined}
+      ref={setRef}
       className={className}
       style={{ ...revealStyle, ...style }}
       onTransitionEnd={() => setAnimating(false)}
       {...rest}
     >
       {children}
-      {particles && animating ? <span aria-hidden="true" style={grainStyle} /> : null}
     </Tag>
   );
+}
+
+function useScrollRatio<T extends HTMLElement>(enabled: boolean) {
+  const ref = useRef<T | null>(null);
+
+  useLayoutEffect(() => {
+    if (!enabled) return;
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+
+    const thresholds: number[] = [];
+    for (let i = 0; i <= 20; i++) thresholds.push(i * 0.05);
+
+    el.style.opacity = "0";
+    el.style.transition = "opacity 150ms ease-out";
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry) {
+          el.style.opacity = String(entry.intersectionRatio);
+        }
+      },
+      { threshold: thresholds },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [enabled]);
+
+  return ref;
 }
 
