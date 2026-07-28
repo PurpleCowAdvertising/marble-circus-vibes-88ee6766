@@ -148,6 +148,8 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
+  const [parkRideOpen, setParkRideOpen] = useState(false);
+
   const isMobile = useIsMobile();
 
   const heroRef = useRef<HTMLDivElement>(null);
