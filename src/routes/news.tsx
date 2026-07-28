@@ -153,7 +153,16 @@ function NewsPage() {
                       {post.tag}
                     </span>
 
-                    <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">{post.date}</p>
+                    {post.datePublished ? (
+                      <time
+                        dateTime={post.datePublished}
+                        className="text-[10px] uppercase tracking-[0.4em] text-white/50"
+                      >
+                        {post.date}
+                      </time>
+                    ) : (
+                      <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">{post.date}</p>
+                    )}
                   </div>
 
                   <h2 className="mt-5 font-display text-3xl font-bold leading-tight text-white md:text-5xl">
