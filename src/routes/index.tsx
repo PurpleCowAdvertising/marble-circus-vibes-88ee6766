@@ -754,7 +754,8 @@ function HomePage() {
               </div>
 
 
-            </motion.div>
+            </Reveal>
+
           </Section>
         </div>
       </div>
