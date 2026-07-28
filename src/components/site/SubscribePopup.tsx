@@ -201,7 +201,10 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
       {children}
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div
+            data-subscribe-popup
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          >
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -216,12 +219,20 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
               </button>
 
               <div className="text-center mb-6">
-                <span className="text-xs uppercase tracking-widest text-amber-500 font-semibold">Don't Miss A Beat</span>
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-1 uppercase">Join the Movement</h2>
+                <span className="text-xs uppercase tracking-widest text-amber-500 font-semibold">
+                  {source === "engaged" ? "Glad you're here" : "Don't Miss A Beat"}
+                </span>
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-1 uppercase">
+                  {source === "engaged" ? "Enjoying the ride?" : "Join the Movement"}
+                </h2>
                 <p className="text-xs text-zinc-400 mt-2">
-                  Be first for lineup drops, ticket waves and exclusive content.
+                  {source === "engaged"
+                    ? "Since you're exploring, join the mailing list for lineup drops, ticket waves and exclusive content — straight to your inbox."
+                    : "Be first for lineup drops, ticket waves and exclusive content."}
                 </p>
               </div>
+
+
 
               {success ? (
                 <div className="text-center py-8 text-emerald-400 font-semibold">
