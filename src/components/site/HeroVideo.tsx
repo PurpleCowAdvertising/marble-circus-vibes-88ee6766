@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-
+import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
+import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 /**
@@ -79,7 +80,7 @@ export function HeroVideo() {
             <motion.video
               ref={videoRef}
               key={isMobile ? "mobile" : "desktop"}
-              src={isMobile ? "/hero-video-mobile.mp4" : "/hero-video.mp4"}
+              src={isMobile ? heroVideoMobileAsset.url : heroVideoAsset.url}
               poster={isMobile ? "/hero-poster-mobile.jpg" : "/hero-poster.jpg"}
               autoPlay
               loop

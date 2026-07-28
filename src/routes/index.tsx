@@ -12,6 +12,9 @@ import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { ParkRideModal } from "@/components/site/ParkRideModal";
 import { useIsMobile } from "@/hooks/use-mobile";
 
+import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
+import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
+
 import majorLeague from "@/assets/artists/major-league.webp";
 import tyla from "@/assets/artists/tyla.webp";
 import blackCoffee from "@/assets/artists/black-coffee.webp";
@@ -219,7 +222,7 @@ function HomePage() {
                 <video
                   ref={videoRef}
                   key={isMobile ? "mobile" : "desktop"}
-                  src={isMobile ? "/hero-video-mobile.mp4" : "/hero-video.mp4"}
+                  src={isMobile ? heroVideoMobileAsset.url : heroVideoAsset.url}
                   autoPlay
                   loop
                   muted
