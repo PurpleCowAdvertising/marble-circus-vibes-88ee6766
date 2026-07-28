@@ -506,6 +506,7 @@ function HomePage() {
                   name: "Field - selling out!",
                   price: "From R 990.00",
                   tag: "Stage front to floor",
+                  externalUrl: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143",
                 },
                 {
                   name: "general seated",
