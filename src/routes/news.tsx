@@ -83,6 +83,7 @@ const POSTS: Post[] = [
   {
     tag: "Tickets out now",
     date: "05 May 2026 · 10h00",
+    datePublished: "2026-05-05T10:00:00+02:00",
     title: "Scorpion Kings Live at FNB Stadium tickets are now available.",
     excerpt:
       "The return of Scorpion Kings Live is gearing up to deliver a landmark Amapiano celebration, and tickets are officially live.",
