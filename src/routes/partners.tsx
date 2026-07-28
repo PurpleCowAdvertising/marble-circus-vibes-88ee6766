@@ -21,20 +21,31 @@ type PartnerPackage = {
 export const Route = createFileRoute("/partners")({
   head: () => ({
     meta: [
-      { title: "Partners | Scorpion Kings Live" },
+      { title: "Partners & Sponsorship | Scorpion Kings Live" },
       {
         name: "description",
-        content: "Partner with Scorpion Kings Live and connect with a culture-defining live music audience.",
+        content:
+          "Sponsorship and partnership opportunities for Scorpion Kings Live at FNB Stadium, 19 September 2026. Email sponsorship@scorpionkings.live to reach the team.",
       },
-      { property: "og:title", content: "Partners | Scorpion Kings Live" },
+      { property: "og:title", content: "Partners & Sponsorship | Scorpion Kings Live" },
       {
         property: "og:description",
-        content: "Powered by brands that move with the culture.",
+        content: "Powered by brands that move with the culture. Partnership packages available now.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/partners" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Partners & Sponsorship | Scorpion Kings Live" },
+      {
+        name: "twitter:description",
+        content: "Sponsorship packages for Scorpion Kings Live at FNB Stadium, 19 September 2026.",
       },
     ],
+    links: [{ rel: "canonical", href: "/partners" }],
   }),
   component: PartnersPage,
 });
+
 
 const PARTNER_PACKAGES: PartnerPackage[] = [
   {
