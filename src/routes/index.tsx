@@ -681,19 +681,19 @@ function HomePage() {
                     />
                   </div>
 
-                  <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                  <ul className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     {PARK_RIDE_LOCATIONS.map((location) => (
                       <li key={location}>
                         <a
                           href={PARK_RIDE_URL}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group/location flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-3 py-2.5 text-xs text-white/90 transition-all duration-300 hover:border-gold/60 hover:bg-gold/10 hover:text-white"
+                          className="group/location flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.06] px-2 py-1.5 text-[10px] leading-tight text-white/90 transition-all duration-300 hover:border-gold/60 hover:bg-gold/10 hover:text-white"
                         >
-                          <MapPin size={12} className="flex-none text-gold" />
+                          <MapPin size={10} className="flex-none text-gold" />
                           <span className="truncate">{location}</span>
                           <ArrowRight
-                            size={12}
+                            size={10}
                             className="ml-auto flex-none text-gold opacity-0 transition-all duration-300 group-hover/location:translate-x-1 group-hover/location:opacity-100"
                           />
                         </a>
