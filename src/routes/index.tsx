@@ -691,14 +691,15 @@ function HomePage() {
                   />
 
                   <span className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-gold px-6 py-3 text-xs font-bold uppercase tracking-widest text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] transition-all duration-500 ease-out group-hover:gap-3 group-hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)] md:self-center">
-                    <span>Book Park & Ride</span>
+                    <span>Choose Your Location</span>
                     <ArrowRight
                       size={14}
                       className="transition-transform duration-500 ease-out group-hover:translate-x-1"
                     />
                   </span>
                 </div>
-              </a>
+              </button>
+
             </motion.div>
           </Section>
         </div>
