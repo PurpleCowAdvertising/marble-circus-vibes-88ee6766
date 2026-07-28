@@ -7,7 +7,7 @@ import { useVisiblePageRoutes } from "./visibility";
 const TABS = [
   { kind: "route", to: "/", label: "Home", icon: Home, exact: true },
   { kind: "scroll", hash: "lineup", label: "Line-Up", icon: Music },
-  { kind: "external", href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", label: "Tickets", icon: Ticket },
+  { kind: "scroll", hash: "tickets", label: "Tickets", icon: Ticket },
   { kind: "scroll", hash: "experience", label: "Hospitality", icon: Map },
   { kind: "route", to: "/contact", label: "Contact", icon: Mail, exact: false },
 ] as const;
@@ -169,26 +169,8 @@ export function MobileTabBar() {
               );
             }
 
-            if (tab.kind === "external") {
-              return (
-                <a
-                  key={tab.href}
-                  href={tab.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={tab.label}
-                  onClick={() => {
-                    vibrate();
-                    setDrawKey((k) => k + 1);
-                  }}
-                  className={baseClassName}
-                >
-                  <span className={iconClassName} key={iconKey} style={iconStyle}>
-                    <Icon size={28} strokeWidth={1.25} absoluteStrokeWidth />
-                  </span>
-                </a>
-              );
-            }
+
+
 
             return (
               <Link
