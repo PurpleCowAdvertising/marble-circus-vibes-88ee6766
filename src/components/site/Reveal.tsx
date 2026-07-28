@@ -10,7 +10,13 @@ import {
   type ReactNode,
 } from "react";
 
+import { useRouterState } from "@tanstack/react-router";
+
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
+
+/** Fine-grain noise used for the mobile "particle dissolve" reveal. */
+const GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E\")";
 const DURATION = 600;
 
 function prefersReducedMotion() {
@@ -117,6 +123,7 @@ export function Reveal({
   const groupInView = useContext(RevealContext);
   const own = useInView<HTMLElement>(threshold, rootMargin);
   const inView = groupInView === null ? own.inView : groupInView;
+  const isHome = useRouterState({ select: (state) => state.location.pathname === "/" });
 
   // "idle" = untouched (visible, no JS enhancement yet)
   const [phase, setPhase] = useState<"idle" | "hidden" | "shown">("idle");
@@ -146,23 +153,44 @@ export function Reveal({
   }, [phase, inView, effectiveDelay]);
 
   const hidden = phase === "hidden";
+  const particles = lite.current && isHome;
 
   const revealStyle: CSSProperties =
     phase === "idle"
       ? {}
-      : lite.current
+      : particles
         ? {
+            position: "relative",
             opacity: hidden ? 0 : 1,
-            transition: `opacity ${DURATION}ms ${EASE}`,
-            willChange: animating ? "opacity" : undefined,
-          }
-        : {
-            opacity: hidden ? 0 : 1,
-            filter: hidden ? "blur(6px)" : "blur(0px)",
+            filter: hidden ? "blur(5px)" : "blur(0px)",
             transition: `opacity ${DURATION}ms ${EASE}, filter ${DURATION}ms ${EASE}`,
             willChange: animating ? "opacity, filter" : undefined,
-          };
+          }
+        : lite.current
+          ? {
+              opacity: hidden ? 0 : 1,
+              transition: `opacity ${DURATION}ms ${EASE}`,
+              willChange: animating ? "opacity" : undefined,
+            }
+          : {
+              opacity: hidden ? 0 : 1,
+              filter: hidden ? "blur(6px)" : "blur(0px)",
+              transition: `opacity ${DURATION}ms ${EASE}, filter ${DURATION}ms ${EASE}`,
+              willChange: animating ? "opacity, filter" : undefined,
+            };
 
+  const grainStyle: CSSProperties = {
+    position: "absolute",
+    inset: 0,
+    pointerEvents: "none",
+    zIndex: 2,
+    backgroundImage: GRAIN,
+    backgroundSize: "140px 140px",
+    mixBlendMode: "screen",
+    opacity: hidden ? 0.45 : 0,
+    transition: `opacity ${DURATION}ms ${EASE}`,
+    willChange: animating ? "opacity" : undefined,
+  };
 
   return (
     <Tag
@@ -173,6 +201,8 @@ export function Reveal({
       {...rest}
     >
       {children}
+      {particles && animating ? <span aria-hidden="true" style={grainStyle} /> : null}
     </Tag>
   );
 }
+
