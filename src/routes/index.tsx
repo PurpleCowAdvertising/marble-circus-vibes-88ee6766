@@ -570,7 +570,7 @@ function HomePage() {
                       </span>
                     )}
 
-                    <div className="relative z-[1] flex h-full flex-col">
+                    <Reveal delay={index * 100 + 300} className="relative z-[1] flex h-full flex-col">
                       <p
                         className={`text-[10px] uppercase tracking-[0.4em] text-white/70 transition-colors duration-500 group-hover:text-white ${
                           tier.highlight ? "md:pr-28" : ""
