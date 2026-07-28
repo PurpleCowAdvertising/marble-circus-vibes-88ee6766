@@ -658,7 +658,7 @@ function HomePage() {
                   className="pointer-events-none absolute inset-0 -translate-y-full bg-[radial-gradient(120%_60%_at_50%_0%,color-mix(in_oklab,var(--gold)_25%,transparent)_0%,transparent_70%)] opacity-0 transition-all duration-[900ms] ease-out group-hover:translate-y-0 group-hover:opacity-100"
                 />
 
-                <div className="relative z-[1] flex flex-col gap-5">
+                <div className="relative z-[1] flex flex-col gap-4">
                   <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
                     <div className="max-w-xl">
                       <span className="inline-flex rounded-full border border-gold/50 bg-gold/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
@@ -678,7 +678,7 @@ function HomePage() {
                       loading="lazy"
                       width={512}
                       height={512}
-                      className="pointer-events-none z-[1] w-44 max-w-[42%] shrink-0 self-start object-contain opacity-95 drop-shadow-[0_16px_50px_color-mix(in_oklab,var(--gold)_35%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105 md:w-56 lg:w-64"
+                      className="pointer-events-none z-[1] w-52 max-w-[46%] shrink-0 self-start object-contain opacity-95 drop-shadow-[0_16px_50px_color-mix(in_oklab,var(--gold)_35%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105 md:w-72 lg:w-80"
                     />
                   </div>
 
