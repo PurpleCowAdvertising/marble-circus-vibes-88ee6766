@@ -7,16 +7,60 @@ import { PageGate, VisibilityGate } from "@/components/site/visibility";
 export const Route = createFileRoute("/news")({
   head: () => ({
     meta: [
-      { title: "News | Scorpion Kings Live" },
+      { title: "News & Press Releases | Scorpion Kings Live" },
       {
         name: "description",
         content:
-          "Announcements, press releases and updates from Scorpion Kings Live at FNB Stadium, 19 September 2026.",
+          "Official Scorpion Kings Live news and press releases: ticket announcements, lineup updates and event information for FNB Stadium, 19 September 2026.",
       },
-      { property: "og:title", content: "News | Scorpion Kings Live" },
+      { property: "og:title", content: "News & Press Releases | Scorpion Kings Live" },
       {
         property: "og:description",
-        content: "Latest from the Kings, straight from the source.",
+        content:
+          "Official announcements, press releases and ticket updates from Scorpion Kings Live at FNB Stadium.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/news" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "News & Press Releases | Scorpion Kings Live" },
+      {
+        name: "twitter:description",
+        content: "Official announcements, press releases and ticket updates from Scorpion Kings Live.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "/news" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Scorpion Kings Live news and press releases",
+          itemListElement: POSTS.filter((p) => p.datePublished).map((post, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+              "@type": "NewsArticle",
+              headline: post.title,
+              description: post.excerpt,
+              datePublished: post.datePublished,
+              articleSection: post.tag,
+              inLanguage: "en-ZA",
+              author: { "@type": "Organization", name: "Scorpion Kings Live" },
+              publisher: { "@type": "Organization", name: "Scorpion Kings Live" },
+              about: {
+                "@type": "MusicEvent",
+                name: "Scorpion Kings Live",
+                startDate: "2026-09-19",
+                location: {
+                  "@type": "Place",
+                  name: "FNB Stadium",
+                  address: { "@type": "PostalAddress", addressLocality: "Johannesburg", addressCountry: "ZA" },
+                },
+              },
+            },
+          })),
+        }),
       },
     ],
   }),
@@ -26,12 +70,14 @@ export const Route = createFileRoute("/news")({
 type Post = {
   tag: string;
   date: string;
+  datePublished?: string;
   title: string;
   excerpt: string;
   body: string[];
   href?: string;
   hrefLabel?: string;
 };
+
 
 const POSTS: Post[] = [
   {
