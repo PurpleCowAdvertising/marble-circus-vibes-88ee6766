@@ -12,16 +12,8 @@ import {
 } from "react";
 
 import { useRouterState } from "@tanstack/react-router";
-import grainTile from "@/assets/grain.png";
 
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
-
-/**
- * Pre-rasterised 64px noise tile. A raster tile is decoded once and reused by
- * every element; an inline SVG feTurbulence had to be re-rendered per layer,
- * which is what stuttered on iOS / low-end Android.
- */
-const GRAIN = `url(${grainTile})`;
 const DURATION = 600;
 
 /** matchMedia is evaluated once per page, not once per Reveal instance. */
