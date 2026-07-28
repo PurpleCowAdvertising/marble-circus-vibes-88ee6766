@@ -5,8 +5,8 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import { useVisiblePageRoutes } from "./visibility";
 
 const TABS = [
-  { kind: "scroll", hash: "lineup", label: "Line-Up", icon: Music },
   { kind: "route", to: "/", label: "Home", icon: Home, exact: true },
+  { kind: "scroll", hash: "lineup", label: "Line-Up", icon: Music },
   { kind: "scroll", hash: "tickets", label: "Tickets", icon: Ticket },
   { kind: "scroll", hash: "experience", label: "Hospitality", icon: Map },
   { kind: "route", to: "/contact", label: "Contact", icon: Mail, exact: false },
