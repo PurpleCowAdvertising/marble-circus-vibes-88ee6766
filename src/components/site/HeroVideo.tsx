@@ -21,6 +21,9 @@ export function HeroVideo() {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 160]);
   const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+  // Softens the whole frame as it leaves, so the bottom edge melts instead of cutting
+  const videoBlur = useTransform(scrollYProgress, [0, 0.55], ["blur(0px)", "blur(14px)"]);
+  const seamOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.6]);
 
   useEffect(() => {
     const video = videoRef.current;
