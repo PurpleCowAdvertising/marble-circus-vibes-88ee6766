@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { FadeIn, Section } from "@/components/site/Section";
-import { SectionBlend } from "@/components/site/SectionBlend";
 import { Reveal, RevealGroup } from "@/components/site/Reveal";
 
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
@@ -307,7 +306,6 @@ function HomePage() {
 
       <VisibilityGate keyName="section:home.about-band">
       <div className="relative isolate z-20 bg-orange-rich">
-        <SectionBlend edge="top" color="#000000" />
         <Section className="fold-safe-above !pb-6 text-foreground sm:!pb-10 md:!pb-16">
           <RevealGroup className="grid gap-3 md:grid-cols-2 md:gap-20">
             <Reveal>
@@ -390,14 +388,11 @@ function HomePage() {
           </RevealGroup>
 
         </Section>
-        <SectionBlend edge="bottom" color="#ffffff" className="hidden md:block" />
       </div>
       </VisibilityGate>
 
       <VisibilityGate keyName="section:home.lineup-grid">
-      <div className="relative isolate hidden overflow-hidden bg-white text-black md:block">
-        <SectionBlend edge="top" color="oklch(0.11 0.012 60)" />
-        <SectionBlend edge="bottom" color="#000000" />
+      <div className="hidden bg-white text-black md:block">
 
         <Section className="!bg-white !pt-2 sm:!pt-3 md:!pt-6">
           <motion.div
@@ -481,8 +476,7 @@ function HomePage() {
       </VisibilityGate>
 
       <VisibilityGate keyName="section:home.tickets">
-      <div id="tickets" className="relative isolate scroll-mt-24 overflow-hidden bg-black text-white">
-        <SectionBlend edge="top" color="#ffffff" className="hidden md:block" />
+      <div id="tickets" className="scroll-mt-24 bg-black text-white">
         <div className="bg-black">
           <Section className="!bg-black !pb-4 !pt-8 sm:!pt-10 md:!pb-6 md:!pt-14">
             <FadeIn>
@@ -772,8 +766,6 @@ function HomePage() {
 
       <VisibilityGate keyName="section:home.experience">
       <div id="experience" className="relative isolate z-30 scroll-mt-24 bg-orange-rich">
-        <SectionBlend edge="top" color="#000000" />
-        <SectionBlend edge="bottom" color="#000000" />
         <Section className="!py-10 text-foreground md:!py-14">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -856,8 +848,7 @@ function HomePage() {
       </VisibilityGate>
 
       <VisibilityGate keyName="section:home.partners">
-      <div id="partners" className="relative isolate z-30 scroll-mt-24 overflow-hidden bg-black text-white">
-        <SectionBlend edge="top" color="oklch(0.11 0.012 60)" />
+      <div id="partners" className="relative isolate z-30 scroll-mt-24 bg-black text-white">
         <Section className="!py-10 md:!py-14">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
