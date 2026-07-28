@@ -78,8 +78,10 @@ export function MobileTabBar() {
       return;
     }
 
-    window.history.pushState(null, "", `/#${sectionHash}`);
-    window.setTimeout(() => scrollToHash(sectionHash), 50);
+    scrollToHash(sectionHash);
+    window.setTimeout(() => {
+      window.history.replaceState(null, "", `/#${sectionHash}`);
+    }, 600);
   };
 
   return (
