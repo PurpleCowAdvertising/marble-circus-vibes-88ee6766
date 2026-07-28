@@ -304,15 +304,15 @@ function HomePage() {
       <VisibilityGate keyName="section:home.about-band">
       <div className="relative isolate z-20 bg-orange-rich">
         <Section className="fold-safe-above !pb-6 text-foreground sm:!pb-10 md:!pb-16">
-          <div className="grid gap-3 md:grid-cols-2 md:gap-20">
-            <FadeIn>
+          <RevealGroup className="grid gap-3 md:grid-cols-2 md:gap-20">
+            <Reveal>
               <p className="text-xs uppercase tracking-[0.4em] text-white">About</p>
               <h2 className="mt-2 font-display text-5xl font-bold leading-tight text-gold md:text-7xl">
                 Built for the artists, powered by the fans.
               </h2>
-            </FadeIn>
+            </Reveal>
 
-            <FadeIn delay={0.15}>
+            <Reveal delay={150}>
               <div className="space-y-3 text-lg text-white md:pt-12">
                 <p>Scorpion Kings Live champions the bold, the brilliant and the boundary-breaking.</p>
                 <p>
@@ -331,8 +331,9 @@ function HomePage() {
                   <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
               </div>
-            </FadeIn>
-          </div>
+            </Reveal>
+          </RevealGroup>
+
         </Section>
       </div>
       </VisibilityGate>
