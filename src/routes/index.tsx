@@ -637,7 +637,7 @@ function HomePage() {
 
             <Reveal delay={400} className="transition-transform duration-500 ease-out hover:-translate-y-1.5">
 
-              <div className="group relative mt-4 block w-full overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-5 text-left backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8">
+              <div className="group relative mt-4 block w-full overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-4 text-left backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8">
 
                 <span
                   aria-hidden
