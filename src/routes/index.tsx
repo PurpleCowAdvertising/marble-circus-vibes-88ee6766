@@ -501,7 +501,7 @@ function HomePage() {
 
         <div className="bg-black">
           <Section className="!bg-black !pt-4 md:!pt-2">
-            <div className="grid gap-4 md:grid-cols-3">
+            <RevealGroup className="grid gap-4 md:grid-cols-3">
               {[
                 {
                   name: "Field - selling out!",
@@ -526,25 +526,19 @@ function HomePage() {
                 const gold = index % 2 === 0;
 
                 return (
-                  <motion.article
+                  <Reveal
+                    as="article"
                     key={tier.name}
-                    initial={{ opacity: 0, y: 80, filter: "blur(14px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{
-                      duration: 1.1,
-                      delay: index * 0.12,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    whileHover={{ y: -10 }}
+                    delay={index * 100}
                     style={{
                       boxShadow:
                         "inset 0 1px 0 0 rgba(255,255,255,0.18), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 24px 60px -20px rgba(0,0,0,0.55)",
                     }}
-                    className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/[0.06] p-6 backdrop-blur-xl backdrop-saturate-150 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out hover:bg-white/[0.09] md:p-7 ${
+                    className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/[0.06] p-6 backdrop-blur-xl backdrop-saturate-150 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out hover:-translate-y-2 hover:bg-white/[0.09] md:p-7 ${
                       gold ? "border-white/15 hover:border-gold/60" : "border-white/15 hover:border-white/35"
                     }`}
                   >
+
                     <span
                       aria-hidden
                       className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-white/15 via-white/[0.04] to-transparent"
