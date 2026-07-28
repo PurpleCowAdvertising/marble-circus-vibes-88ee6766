@@ -658,19 +658,19 @@ function HomePage() {
                   className="pointer-events-none absolute inset-0 -translate-y-full bg-[radial-gradient(120%_60%_at_50%_0%,color-mix(in_oklab,var(--gold)_25%,transparent)_0%,transparent_70%)] opacity-0 transition-all duration-[900ms] ease-out group-hover:translate-y-0 group-hover:opacity-100"
                 />
 
-                <div className="relative z-[1] grid grid-cols-1 items-start gap-5 md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-6">
-                  <div className="order-2 flex flex-col gap-3 md:order-1">
-                    <span className="inline-flex self-start rounded-full border border-gold/50 bg-gold/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
+                <div className="relative z-[1] flex flex-col items-center gap-5 md:flex-row md:items-center md:justify-between md:gap-6">
+                  <div className="order-2 flex flex-col items-center gap-3 text-center md:order-1 md:items-start md:text-left">
+                    <span className="inline-flex self-center rounded-full border border-gold/50 bg-gold/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-gold md:self-start">
                       Recommended
                     </span>
-                    <h3 className="font-display text-3xl font-bold text-gold transition-transform duration-500 ease-out group-hover:translate-x-1 md:text-4xl">
+                    <h3 className="text-center font-display text-3xl font-bold text-gold transition-transform duration-500 ease-out group-hover:translate-x-1 md:text-left md:text-4xl">
                       Book Your Park + Ride
                     </h3>
-                    <p className="max-w-xl text-sm leading-relaxed text-white/80">
+                    <p className="max-w-xl text-center text-sm leading-relaxed text-white/80 md:text-left">
                       Skip the stadium traffic. Park at a secure, designated location and take a return shuttle straight to FNB Stadium. The easiest way in — and out.
                     </p>
 
-                    <ul className="flex flex-wrap gap-2">
+                    <ul className="flex flex-wrap justify-center gap-2 md:justify-start">
                       {["Avoid traffic", "Return shuttle", "Secure parking", "Eco-friendly"].map((benefit) => (
                         <li
                           key={benefit}
@@ -693,7 +693,7 @@ function HomePage() {
                     />
                   </div>
 
-                  <div className="order-3 flex items-center justify-start md:order-3 md:justify-end">
+                  <div className="order-3 flex items-center justify-center md:order-3 md:justify-end">
                     <button
                       type="button"
                       onClick={() => setParkRideOpen(true)}
