@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { FadeIn, Section } from "@/components/site/Section";
+import { Reveal, RevealGroup } from "@/components/site/Reveal";
+
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
