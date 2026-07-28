@@ -642,11 +642,7 @@ function HomePage() {
               transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6 }}
             >
-              <button
-                type="button"
-                onClick={() => setParkRideOpen(true)}
-                className="group relative mt-6 block w-full overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-6 text-left backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8"
-              >
+              <div className="group relative mt-6 block w-full overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-6 text-left backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8">
 
                 <span
                   aria-hidden
@@ -661,18 +657,52 @@ function HomePage() {
                   className="pointer-events-none absolute inset-0 -translate-y-full bg-[radial-gradient(120%_60%_at_50%_0%,color-mix(in_oklab,var(--gold)_25%,transparent)_0%,transparent_70%)] opacity-0 transition-all duration-[900ms] ease-out group-hover:translate-y-0 group-hover:opacity-100"
                 />
 
-                <div className="relative z-[1] flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-                  <div className="max-w-2xl">
-                    <span className="inline-flex rounded-full border border-gold/50 bg-gold/15 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.2em] text-gold">
-                      Recommended
-                    </span>
-                    <h3 className="mt-3 font-display text-3xl font-bold text-gold transition-transform duration-500 ease-out group-hover:translate-x-1 md:text-4xl">
-                      Book Your Park & Ride
-                    </h3>
-                    <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/80">
-                      Skip the stadium traffic. Park at a secure, designated location and take a return shuttle straight to FNB Stadium. The easiest way in — and out.
-                    </p>
-                    <ul className="mt-4 flex flex-wrap gap-3">
+                <div className="relative z-[1] flex flex-col gap-6">
+                  <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+                    <div className="max-w-2xl">
+                      <span className="inline-flex rounded-full border border-gold/50 bg-gold/15 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.2em] text-gold">
+                        Recommended
+                      </span>
+                      <h3 className="mt-3 font-display text-3xl font-bold text-gold transition-transform duration-500 ease-out group-hover:translate-x-1 md:text-4xl">
+                        Book Your Park & Ride
+                      </h3>
+                      <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/80">
+                        Skip the stadium traffic. Park at a secure, designated location and take a return shuttle straight to FNB Stadium. The easiest way in — and out.
+                      </p>
+                    </div>
+
+                    <img
+                      src={parkRideShuttle}
+                      alt="Premium shuttle bus for Park & Ride"
+                      loading="lazy"
+                      width={512}
+                      height={512}
+                      className="pointer-events-none z-[1] mx-auto w-40 max-w-[40%] shrink-0 self-center object-contain opacity-90 drop-shadow-[0_12px_40px_color-mix(in_oklab,var(--gold)_30%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105 md:mx-0 md:w-44"
+                    />
+                  </div>
+
+                  <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                    {PARK_RIDE_LOCATIONS.map((location) => (
+                      <li key={location}>
+                        <a
+                          href={PARK_RIDE_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/location flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-3 py-2.5 text-xs text-white/90 transition-all duration-300 hover:border-gold/60 hover:bg-gold/10 hover:text-white"
+                        >
+                          <MapPin size={12} className="flex-none text-gold" />
+                          <span className="truncate">{location}</span>
+                          <ArrowRight
+                            size={12}
+                            className="ml-auto flex-none text-gold opacity-0 transition-all duration-300 group-hover/location:translate-x-1 group-hover/location:opacity-100"
+                          />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <ul className="flex flex-wrap gap-3">
                       {["Avoid traffic", "Return shuttle", "Secure parking", "Eco-friendly"].map((benefit) => (
                         <li
                           key={benefit}
@@ -682,26 +712,22 @@ function HomePage() {
                         </li>
                       ))}
                     </ul>
+
+                    <button
+                      type="button"
+                      onClick={() => setParkRideOpen(true)}
+                      className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-gold px-6 py-3 text-xs font-bold uppercase tracking-widest text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] transition-all duration-500 ease-out hover:gap-3 hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)] md:self-center"
+                    >
+                      <span>Choose Your Location</span>
+                      <ArrowRight
+                        size={14}
+                        className="transition-transform duration-500 ease-out group-hover:translate-x-1"
+                      />
+                    </button>
                   </div>
-
-                  <img
-                    src={parkRideShuttle}
-                    alt="Premium shuttle bus for Park & Ride"
-                    loading="lazy"
-                    width={512}
-                    height={512}
-                    className="pointer-events-none z-[1] mx-auto w-44 max-w-[40%] self-center object-contain opacity-90 drop-shadow-[0_12px_40px_color-mix(in_oklab,var(--gold)_30%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105 md:mx-0 md:w-52"
-                  />
-
-                  <span className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-gold px-6 py-3 text-xs font-bold uppercase tracking-widest text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] transition-all duration-500 ease-out group-hover:gap-3 group-hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)] md:self-center">
-                    <span>Choose Your Location</span>
-                    <ArrowRight
-                      size={14}
-                      className="transition-transform duration-500 ease-out group-hover:translate-x-1"
-                    />
-                  </span>
                 </div>
-              </button>
+              </div>
+
 
             </motion.div>
           </Section>
