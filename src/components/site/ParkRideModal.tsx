@@ -69,30 +69,30 @@ export function ParkRideModal({ open, onClose }: Props) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.97 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="relative max-h-[calc(100dvh-2rem)] w-full max-w-lg overflow-y-auto rounded-3xl border border-gold/50 bg-black p-6 text-white shadow-2xl sm:p-8"
+            className="relative w-[92%] max-w-sm overflow-y-auto rounded-2xl border border-gold/50 bg-black p-5 text-white shadow-2xl sm:w-full sm:max-w-lg sm:rounded-3xl sm:p-8 max-h-[calc(100dvh-9rem)] sm:max-h-[calc(100dvh-4rem)]"
           >
             <button
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20"
+              className="absolute right-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 sm:right-4 sm:top-4 sm:h-9 sm:w-9"
             >
               <X size={16} />
             </button>
 
-            <p className="pr-12 text-[10px] uppercase tracking-[0.4em] text-white/60">Park &amp; Ride</p>
-            <h3 className="mt-2 font-display text-3xl font-bold text-gold sm:text-4xl">Choose Your Location</h3>
+            <p className="pr-10 text-[10px] uppercase tracking-[0.4em] text-white/60 sm:pr-12">Park &amp; Ride</p>
+            <h3 className="mt-2 font-display text-2xl font-bold text-gold sm:text-3xl sm:font-bold">Choose Your Location</h3>
             <p className="mt-3 text-sm leading-relaxed text-white/75">
               Select your preferred pick-up point to continue to secure checkout.
             </p>
 
-            <ul className="mt-6 space-y-2">
+            <ul className="mt-5 space-y-2 sm:mt-6">
               {PARK_RIDE_LOCATIONS.map((location) => (
                 <li key={location}>
                   <button
                     type="button"
                     onClick={handleSelect}
-                    className="group flex w-full items-center justify-between gap-3 rounded-2xl border border-white/15 bg-white/[0.06] px-4 py-3 text-left text-sm text-white/90 transition-all duration-300 hover:border-gold/60 hover:bg-gold/10 hover:text-white"
+                    className="group flex w-full items-center justify-between gap-3 rounded-2xl border border-white/15 bg-white/[0.06] px-3 py-2.5 text-left text-sm text-white/90 transition-all duration-300 hover:border-gold/60 hover:bg-gold/10 hover:text-white sm:px-4 sm:py-3"
                   >
                     <span className="flex items-center gap-3">
                       <MapPin size={14} className="flex-none text-gold" />
@@ -107,7 +107,7 @@ export function ParkRideModal({ open, onClose }: Props) {
               ))}
             </ul>
 
-            <p className="mt-5 text-center text-[10px] uppercase tracking-[0.3em] text-white/50">
+            <p className="mt-4 text-center text-[10px] uppercase tracking-[0.3em] text-white/50 sm:mt-5">
               Secure checkout · Webtickets
             </p>
           </motion.div>
