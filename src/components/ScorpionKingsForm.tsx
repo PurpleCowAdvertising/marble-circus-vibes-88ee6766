@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 export const ScorpionKingsForm = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ export const ScorpionKingsForm = () => {
     field_email_address: "",
     field_country_region: "ZA", // Defaults to South Africa
   });
+  const [privacyConsent, setPrivacyConsent] = useState(false);
   const [status, setStatus] = useState<{ type: "success" | "error" | null; message: string }>({
     type: null,
     message: "",
@@ -23,6 +25,11 @@ export const ScorpionKingsForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!privacyConsent) {
+      toast.error("You must accept the Privacy Policy to subscribe.");
+      setStatus({ type: "error", message: "You must accept the Privacy Policy to subscribe." });
+      return;
+    }
     setLoading(true);
     setStatus({ type: null, message: "" });
 
@@ -155,6 +162,20 @@ export const ScorpionKingsForm = () => {
             {/* Add other country options as needed or use a package */}
           </select>
         </div>
+
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={privacyConsent}
+            onChange={(e) => setPrivacyConsent(e.target.checked)}
+            required
+            className="mt-1 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+          />
+          <span className="text-sm text-gray-700">
+            By checking this box, I agree to receive news from DJ Maphorisa, Kabza De Small, and Sony Music Entertainment. For more information on how we use your data, please visit{" "}
+            <a href="https://www.sonymusic.com/privacy-policy/" target="_blank" rel="noopener noreferrer" className="underline hover:text-indigo-600">this link</a>.
+          </span>
+        </label>
 
         <button
           type="submit"

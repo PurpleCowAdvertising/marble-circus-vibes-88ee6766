@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TicketsRouteImport } from './routes/tickets'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SubscribeRouteImport } from './routes/subscribe'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -36,6 +37,11 @@ const TicketsRoute = TicketsRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SubscribeRoute = SubscribeRouteImport.update({
+  id: '/subscribe',
+  path: '/subscribe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SponsorsRoute = SponsorsRouteImport.update({
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsors': typeof SponsorsRoute
+  '/subscribe': typeof SubscribeRoute
   '/terms': typeof TermsRoute
   '/tickets': typeof TicketsRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsors': typeof SponsorsRoute
+  '/subscribe': typeof SubscribeRoute
   '/terms': typeof TermsRoute
   '/tickets': typeof TicketsRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -177,6 +185,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sponsors': typeof SponsorsRoute
+  '/subscribe': typeof SubscribeRoute
   '/terms': typeof TermsRoute
   '/tickets': typeof TicketsRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -199,6 +208,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/sponsors'
+    | '/subscribe'
     | '/terms'
     | '/tickets'
     | '/lovable/email/queue/process'
@@ -219,6 +229,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/sponsors'
+    | '/subscribe'
     | '/terms'
     | '/tickets'
     | '/lovable/email/queue/process'
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/sponsors'
+    | '/subscribe'
     | '/terms'
     | '/tickets'
     | '/lovable/email/queue/process'
@@ -260,6 +272,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SponsorsRoute: typeof SponsorsRoute
+  SubscribeRoute: typeof SubscribeRoute
   TermsRoute: typeof TermsRoute
   TicketsRoute: typeof TicketsRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
@@ -279,6 +292,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/subscribe': {
+      id: '/subscribe'
+      path: '/subscribe'
+      fullPath: '/subscribe'
+      preLoaderRoute: typeof SubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sponsors': {
@@ -412,6 +432,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SponsorsRoute: SponsorsRoute,
+  SubscribeRoute: SubscribeRoute,
   TermsRoute: TermsRoute,
   TicketsRoute: TicketsRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,

@@ -271,7 +271,8 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
                         className="mt-0.5 rounded border-zinc-800 text-amber-500 focus:ring-amber-500"
                       />
                       <span>
-                        I accept the <a href="/privacy" className="underline hover:text-amber-500">Privacy Policy</a> (POPIA / GDPR).
+                        By checking this box, I agree to receive news from DJ Maphorisa, Kabza De Small, and Sony Music Entertainment. For more information on how we use your data, please visit{" "}
+                        <a href="https://www.sonymusic.com/privacy-policy/" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-500">this link</a>.
                       </span>
                     </label>
                   </div>
