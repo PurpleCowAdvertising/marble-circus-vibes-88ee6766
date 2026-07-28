@@ -77,14 +77,16 @@ export function HeroVideo() {
               ref={videoRef}
               key={isMobile ? "mobile" : "desktop"}
               src={isMobile ? "/hero-video-mobile.mp4" : "/hero-video.mp4"}
+              poster={isMobile ? "/hero-poster-mobile.jpg" : "/hero-poster.jpg"}
               autoPlay
               loop
               muted
               playsInline
-              preload="metadata"
+              preload="auto"
               aria-label="Scorpion Kings Live logo reveal"
               className="relative h-full w-full object-cover"
             />
+
 
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/20" />
 
