@@ -22,23 +22,21 @@ export type AdminRow = {
 };
 
 // ---- Public: what is currently HIDDEN on the live site. Called by every visitor.
+// Reads happen server-side with the privileged client; the underlying tables are
+// not readable by anon/authenticated at all, so no internal metadata is exposed.
 export const getPublicVisibility = createServerFn({ method: "GET" }).handler(async () => {
-  const { createClient } = await import("@supabase/supabase-js");
-  const supa = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, {
-    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
-  });
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
   const [rowsRes, metaRes] = await Promise.all([
-    // Narrow read via a restricted view — only exposes `key` of rows
-    // currently hidden on live. Draft state is never exposed to the public.
-    supa.from("content_visibility_live_hidden").select("key"),
-    supa.from("content_visibility_meta").select("version").eq("id", 1).single(),
+    supabaseAdmin.from("content_visibility").select("key").eq("live_hidden", true),
+    supabaseAdmin.from("content_visibility_meta").select("version").eq("id", 1).single(),
   ]);
 
   const hiddenLive = ((rowsRes.data ?? []) as { key: string }[]).map((r) => r.key);
   const version = metaRes.data?.version ?? 1;
   return { hiddenLive, version } satisfies PublicVisibility;
 });
+
 
 // ---- Admin auth check (used by /admin route to gate access).
 export const getAdminSession = createServerFn({ method: "GET" })
