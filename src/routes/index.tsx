@@ -664,7 +664,7 @@ function HomePage() {
                       Recommended
                     </span>
                     <h3 className="mt-3 font-display text-3xl font-bold text-gold transition-transform duration-500 ease-out group-hover:translate-x-1 md:text-4xl">
-                      Park & Ride
+                      Book Your Park & Ride
                     </h3>
                     <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/80">
                       Skip the stadium traffic. Park at a secure, designated location and take a return shuttle straight to FNB Stadium. The easiest way in — and out.
