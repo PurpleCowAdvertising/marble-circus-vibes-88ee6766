@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, Music, Ticket, Map, Mail } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
 import { useVisiblePageRoutes } from "./visibility";
 
@@ -90,16 +90,20 @@ export function MobileTabBar() {
           100% { stroke-dasharray: 80; stroke-dashoffset: 0; opacity: 1; }
         }
         .tabbar-icon svg * {
-          animation: tabbar-draw 0.7s ease-out both;
+          animation: tabbar-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+          animation-delay: var(--tabbar-delay, 0ms);
           stroke-linecap: round;
           stroke-linejoin: round;
         }
         .tabbar-icon.is-active svg * {
-          animation-duration: 0.9s;
+          animation-duration: 1.9s;
         }
         .tabbar-icon:hover svg *,
         .tabbar-icon:active svg * {
-          animation: tabbar-draw 0.6s ease-out both;
+          animation: tabbar-draw 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .tabbar-icon svg * { animation: none !important; }
         }
       `}</style>
       <nav
@@ -125,8 +129,9 @@ export function MobileTabBar() {
           <div className="pointer-events-none absolute inset-x-3 top-0.5 h-1/2 rounded-full bg-gradient-to-b from-white/90 via-white/40 to-transparent" />
           <div className="pointer-events-none absolute inset-x-6 bottom-0.5 h-1/3 rounded-full bg-gradient-to-t from-black/15 to-transparent blur-[2px]" />
 
-          {TABS.map((tab) => {
+          {TABS.map((tab, tabIndex) => {
             const Icon = tab.icon;
+            const iconStyle = { "--tabbar-delay": `${tabIndex * 180}ms` } as CSSProperties;
 
             const isActive =
               tab.kind === "route"
@@ -157,7 +162,7 @@ export function MobileTabBar() {
                   onClick={() => handleScrollTab(tab.hash)}
                   className={baseClassName}
                 >
-                  <span className={iconClassName} key={iconKey}>
+                  <span className={iconClassName} key={iconKey} style={iconStyle}>
                     <Icon size={28} strokeWidth={1.25} absoluteStrokeWidth />
                   </span>
                 </button>
@@ -178,7 +183,7 @@ export function MobileTabBar() {
                   }}
                   className={baseClassName}
                 >
-                  <span className={iconClassName} key={iconKey}>
+                  <span className={iconClassName} key={iconKey} style={iconStyle}>
                     <Icon size={28} strokeWidth={1.25} absoluteStrokeWidth />
                   </span>
                 </a>
@@ -196,7 +201,7 @@ export function MobileTabBar() {
                 aria-label={tab.label}
                 className={baseClassName}
               >
-                <span className={iconClassName} key={iconKey}>
+                <span className={iconClassName} key={iconKey} style={iconStyle}>
                   <Icon size={28} strokeWidth={1.25} absoluteStrokeWidth />
                 </span>
               </Link>
