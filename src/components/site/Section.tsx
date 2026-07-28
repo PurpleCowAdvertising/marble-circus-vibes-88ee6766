@@ -51,10 +51,15 @@ export function FadeIn({
   const ref = useRef<HTMLDivElement>(null);
   const [autoBubble, setAutoBubble] = useState(false);
   const [lite, setLite] = useState(true);
+  // Safety net: if the scroll-linked progress never updates (stale measurement
+  // after late layout shifts), the element would stay at opacity 0 forever.
+  // An IntersectionObserver detects that case and falls back to plain render.
+  const [stuck, setStuck] = useState(false);
 
   useEffect(() => {
     setLite(isLiteDevice());
   }, []);
+
 
   // Auto-detect card-like content: rounded surfaces, image tiles, or grid layouts.
   useEffect(() => {
