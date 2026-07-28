@@ -106,6 +106,14 @@ export function FadeIn({
   });
 
 
+  if (lite) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       ref={ref}
@@ -123,6 +131,7 @@ export function FadeIn({
       {children}
     </motion.div>
   );
+
 }
 
 
