@@ -18,8 +18,8 @@ import blackCoffee from "@/assets/artists/black-coffee.webp";
 import nastyC from "@/assets/artists/nasty-c.webp";
 import musaKeys from "@/assets/artists/musa-keys.webp";
 import uncleWaffles from "@/assets/artists/uncle-waffles.webp";
-import maphorisa from "@/assets/artists/dj-maphorisa.png";
-import kabza from "@/assets/artists/kabza.png";
+import maphorisa from "@/assets/artists/dj-maphorisa.webp";
+import kabza from "@/assets/artists/kabza.webp";
 
 const SCORPION_KINGS = [
   {
@@ -272,9 +272,12 @@ function HomePage() {
                     <img
                       src={king.image}
                       alt={king.name}
-                      loading="lazy"
+                      loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
                     />
+
                   </Reveal>
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                   <Reveal delay={index * 100 + 300} className="absolute inset-x-0 bottom-0 p-6 md:p-8">
