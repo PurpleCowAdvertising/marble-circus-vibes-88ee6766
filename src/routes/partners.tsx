@@ -285,12 +285,21 @@ function PartnersPage() {
               Reach a passionate, culture-defining audience across live, digital, content and on-site experiences.
             </p>
 
-            <Link
-              to="/contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
-            >
-              Get in touch <ArrowUpRight size={16} />
-            </Link>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href="mailto:sponsorship@scorpionkings.live?subject=Scorpion%20Kings%20Live%20partnership%20enquiry"
+                className="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
+              >
+                Email the sponsorship team <ArrowUpRight size={16} />
+              </a>
+
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/[0.06] px-7 py-4 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-xl transition-colors hover:border-white/50"
+              >
+                Use the contact form
+              </Link>
+            </div>
 
             <p className="mt-4 text-sm text-white/70">
               Sponsorship enquiries:{" "}
@@ -298,6 +307,7 @@ function PartnersPage() {
                 sponsorship@scorpionkings.live
               </a>
             </p>
+
           </FadeIn>
         </div>
       </Section></VisibilityGate>
