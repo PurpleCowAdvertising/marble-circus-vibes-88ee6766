@@ -665,7 +665,7 @@ function HomePage() {
                     </h3>
                   </div>
 
-                  <p className="max-w-md px-1 text-sm leading-snug text-white/80">
+                  <p className="max-w-xs text-sm leading-snug text-white/80">
                     Skip the stadium traffic. Park at a secure location and take a return shuttle straight to FNB Stadium.
                   </p>
 
@@ -675,14 +675,14 @@ function HomePage() {
                     loading="lazy"
                     width={512}
                     height={512}
-                    className="pointer-events-none z-[1] w-56 shrink-0 object-contain opacity-95 drop-shadow-[0_16px_50px_color-mix(in_oklab,var(--gold)_35%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105"
+                    className="pointer-events-none z-[1] -my-2 w-60 shrink-0 object-contain opacity-95 drop-shadow-[0_16px_50px_color-mix(in_oklab,var(--gold)_35%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105"
                   />
 
-                  <ul className="flex flex-wrap justify-center gap-1.5">
+                  <ul className="flex flex-wrap justify-center gap-1">
                     {["Avoid traffic", "Return shuttle", "Secure parking", "Eco-friendly"].map((benefit) => (
                       <li
                         key={benefit}
-                        className="rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/90"
+                        className="rounded-full border border-white/15 bg-white/[0.06] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/90"
                       >
                         {benefit}
                       </li>
