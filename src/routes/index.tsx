@@ -790,25 +790,25 @@ function HomePage() {
             {[
               {
                 title: "Goldrush Dome – General Stands",
-                body: "From R7,239.25 per person incl. VAT. Groups, music fans and corporate entertainment.",
+                body: "From R7,239.25 per person. Groups, music fans and corporate entertainment.",
                 image: pastStadiumFire,
                 alt: "Goldrush Dome general stands",
               },
               {
                 title: "Hall of Fame Lounge",
-                body: "From R8,044.25 per person incl. VAT. Ideal for personal entertainment and corporate gifting.",
+                body: "From R8,044.25 per person. Ideal for personal entertainment and corporate gifting.",
                 image: pastStageWalk,
                 alt: "Hall of Fame Lounge hospitality",
               },
               {
                 title: "Goldrush Dome – Stage Side Seating",
-                body: "From R7,814.25 per person incl. VAT. Elevated stage-side viewing for groups.",
+                body: "From R7,814.25 per person. Elevated stage-side viewing for groups.",
                 image: pastRedVocalist,
                 alt: "Goldrush Dome stage side seating",
               },
               {
                 title: "SMSA Lounge",
-                body: "From R8,044.25 per person incl. VAT. Premium lounge hospitality with curated dining.",
+                body: "From R8,044.25 per person. Premium lounge hospitality with curated dining.",
                 image: pastFanPhone,
                 alt: "SMSA Lounge hospitality",
               },
