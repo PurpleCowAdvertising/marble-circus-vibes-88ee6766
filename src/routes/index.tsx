@@ -658,8 +658,8 @@ function HomePage() {
                   className="pointer-events-none absolute inset-0 -translate-y-full bg-[radial-gradient(120%_60%_at_50%_0%,color-mix(in_oklab,var(--gold)_25%,transparent)_0%,transparent_70%)] opacity-0 transition-all duration-[900ms] ease-out group-hover:translate-y-0 group-hover:opacity-100"
                 />
 
-                <div className="relative z-[1] grid grid-cols-1 items-center gap-5 md:grid-cols-[1fr_auto] md:gap-8">
-                  <div className="flex flex-col gap-3">
+                <div className="relative z-[1] grid grid-cols-1 items-start gap-5 md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-6">
+                  <div className="order-2 flex flex-col gap-3 md:order-1">
                     <span className="inline-flex self-start rounded-full border border-gold/50 bg-gold/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
                       Recommended
                     </span>
@@ -682,7 +682,7 @@ function HomePage() {
                     </ul>
                   </div>
 
-                  <div className="flex items-center gap-2 md:gap-3">
+                  <div className="order-1 flex justify-center md:order-2">
                     <img
                       src={parkRideShuttle}
                       alt="Premium shuttle bus for Park & Ride"
@@ -691,7 +691,9 @@ function HomePage() {
                       height={512}
                       className="pointer-events-none z-[1] w-44 shrink-0 object-contain opacity-95 drop-shadow-[0_16px_50px_color-mix(in_oklab,var(--gold)_35%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105 md:w-56 lg:w-64"
                     />
+                  </div>
 
+                  <div className="order-3 flex items-center justify-start md:order-3 md:justify-end">
                     <button
                       type="button"
                       onClick={() => setParkRideOpen(true)}
