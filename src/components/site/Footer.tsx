@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { createLucideIcon, Facebook, Instagram, X, Youtube } from "lucide-react";
 
 import { SITE_CREDIT } from "@/config/credits";
+import { Reveal, RevealGroup } from "@/components/site/Reveal";
 import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.png";
 import ticketsAvailable from "@/assets/tickets-available.png";
@@ -50,8 +51,8 @@ export function Footer() {
   return (
     <footer id="site-footer" className="relative z-10 border-t border-black/10 bg-white pb-[env(safe-area-inset-bottom)] text-black md:pb-0">
       <div className="mx-auto max-w-[1400px] px-6 py-8 md:px-10 md:py-10">
-        <div className="grid gap-8 md:grid-cols-5 md:gap-12">
-          <div className="md:col-span-2">
+        <RevealGroup className="grid gap-8 md:grid-cols-5 md:gap-12">
+          <Reveal className="md:col-span-2">
             <Link to="/" aria-label="Scorpion Kings Live home" className="inline-block">
               <img src={logo} alt="Scorpion Kings Live" className="h-12 w-auto md:h-28" />
             </Link>
@@ -67,9 +68,9 @@ export function Footer() {
               Drops, lineup reveals, ticket waves and exclusive behind-the-scenes updates.
             </p>
 
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={100}>
             <h4 className="mb-3 text-[10px] uppercase tracking-widest text-black/60 md:mb-4 md:text-xs">Explore</h4>
 
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm md:block md:space-y-2">
@@ -92,9 +93,9 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={200}>
             <h4 className="mb-3 text-[10px] uppercase tracking-widest text-black/60 md:mb-4 md:text-xs">Legal</h4>
 
             <ul className="space-y-2 text-sm">
@@ -125,9 +126,9 @@ export function Footer() {
                 );
               })}
             </div>
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={300}>
             <h4 className="mb-3 text-[10px] uppercase tracking-widest text-black/60 md:mb-4 md:text-xs">Contact</h4>
 
             <ul className="space-y-2 text-sm">
@@ -142,8 +143,8 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
+          </Reveal>
+        </RevealGroup>
       </div>
 
       <div className="border-t border-black/10 bg-white text-black md:border-0 md:bg-black md:text-white">
