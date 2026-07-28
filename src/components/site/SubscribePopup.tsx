@@ -56,13 +56,26 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const hasSeen = localStorage.getItem(SESSION_KEY);
-      if (!hasSeen) {
+    if (typeof window === "undefined") return;
+    const hasSeen = localStorage.getItem(SESSION_KEY);
+    if (hasSeen) return;
+
+    let triggered = false;
+    const onScroll = () => {
+      if (triggered) return;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollPosition = window.scrollY + window.innerHeight;
+      if (scrollHeight > 0 && scrollPosition / scrollHeight >= 0.5) {
+        triggered = true;
         open("auto");
+        window.removeEventListener("scroll", onScroll, { passive: true });
       }
-    }, 5000);
-    return () => clearTimeout(timer);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => window.removeEventListener("scroll", onScroll, { passive: true });
   }, [open]);
 
   const handleSubmit = async (e: React.FormEvent) => {
