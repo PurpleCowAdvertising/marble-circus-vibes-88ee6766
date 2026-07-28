@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useLocation, useNavigate, useRouteContext, useRouterState } from "@tanstack/react-router";
+import { useLoaderData, useLocation, useNavigate, useRouterState } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
 import { getPublicVisibility, type PublicVisibility } from "@/lib/visibility.functions";
@@ -8,8 +8,10 @@ import { PAGE_KEY_BY_ROUTE } from "@/lib/visibility-registry";
 // Public: what's hidden on live. Cached long, revalidated on window focus.
 export function usePublicVisibility() {
   // Prefer the root loader's data so SSR and hydration render identical markup.
-  const rootContext = useRouteContext({ from: "__root__", strict: false });
-  const rootData = rootContext?.visibility as PublicVisibility | undefined;
+  const rootData = useLoaderData({
+    from: "__root__",
+    select: (d) => (d as { visibility?: PublicVisibility }).visibility,
+  });
 
   const query = useQuery<PublicVisibility>({
     queryKey: ["public-visibility"],
@@ -24,6 +26,7 @@ export function usePublicVisibility() {
 
   return rootData ? { data: rootData, isLoading: false } : query;
 }
+
 
 
 // Small hook: is this specific key hidden right now?
