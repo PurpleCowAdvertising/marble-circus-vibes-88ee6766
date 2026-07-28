@@ -71,7 +71,7 @@ export function HeroVideo() {
       className="relative isolate z-0 bg-black"
     >
       <div className="w-full">
-        <motion.div style={{ y, opacity }} className="relative">
+        <motion.div style={isMobile ? undefined : { y, opacity }} className="relative">
           <figure className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-black md:h-screen">
             <video
               ref={videoRef}
