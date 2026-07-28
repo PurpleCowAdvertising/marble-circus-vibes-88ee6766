@@ -783,7 +783,7 @@ function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
+          <RevealGroup className="mt-8 grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
             {[
               {
                 title: "Goldrush Dome – General Stands",
@@ -810,16 +810,9 @@ function HomePage() {
                 alt: "SMSA Lounge hospitality",
               },
             ].map((block, index) => (
-              <motion.div
+              <Reveal
                 key={block.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.7,
-                  delay: index * 0.06,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
+                delay={index * 100}
                 className="group overflow-hidden rounded-xl border border-white/15 bg-black/40 backdrop-blur-sm transition-transform hover:-translate-y-0.5"
               >
                 <a
@@ -828,7 +821,7 @@ function HomePage() {
                   rel="noopener noreferrer"
                   className="block"
                 >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <Reveal delay={index * 100 + 150} className="relative aspect-[16/10] w-full overflow-hidden">
                     <img
                       src={block.image}
                       alt={block.alt}
@@ -836,16 +829,17 @@ function HomePage() {
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  </div>
+                  </Reveal>
 
-                  <div className="p-4 md:p-5">
+                  <Reveal delay={index * 100 + 300} className="p-4 md:p-5">
                     <h3 className="font-display text-base font-bold text-white md:text-lg">{block.title}</h3>
                     <p className="mt-1 text-xs text-white/75">{block.body}</p>
-                  </div>
+                  </Reveal>
                 </a>
-              </motion.div>
+              </Reveal>
             ))}
-          </div>
+          </RevealGroup>
+
         </Section>
       </div>
       </VisibilityGate>
