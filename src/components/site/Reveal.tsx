@@ -163,10 +163,12 @@ export function Reveal({
   const reduced = useRef(false);
   // Blur filters are expensive to composite on phones — opacity only there.
   const lite = useRef(false);
+  const lowEnd = useRef(false);
 
   useLayoutEffect(() => {
     reduced.current = prefersReducedMotion();
     lite.current = isLiteDevice();
+    lowEnd.current = isLowEndDevice();
     if (reduced.current) return;
     setPhase("hidden");
   }, []);
@@ -185,7 +187,7 @@ export function Reveal({
   }, [phase, inView, effectiveDelay]);
 
   const hidden = phase === "hidden";
-  const particles = lite.current && isHome;
+  const particles = lite.current && isHome && !lowEnd.current;
 
   const revealStyle: CSSProperties =
     phase === "idle"
@@ -194,9 +196,15 @@ export function Reveal({
         ? {
             position: "relative",
             opacity: hidden ? 0 : 1,
-            filter: hidden ? "blur(5px)" : "blur(0px)",
+            // 3px keeps the soft focus-in but halves the blur radius the GPU
+            // has to sample on mobile.
+            filter: hidden ? "blur(3px)" : "blur(0px)",
             transition: `opacity ${DURATION}ms ${EASE}, filter ${DURATION}ms ${EASE}`,
             willChange: animating ? "opacity, filter" : undefined,
+            // Own compositing layer only while animating: avoids repaints of
+            // the surrounding section on every frame.
+            transform: animating ? "translateZ(0)" : undefined,
+            backfaceVisibility: animating ? "hidden" : undefined,
           }
         : lite.current
           ? {
@@ -217,12 +225,15 @@ export function Reveal({
     pointerEvents: "none",
     zIndex: 2,
     backgroundImage: GRAIN,
-    backgroundSize: "140px 140px",
-    mixBlendMode: "screen",
-    opacity: hidden ? 0.45 : 0,
+    backgroundSize: "64px 64px",
+    // No mix-blend-mode: blending forces iOS off the fast compositing path.
+    opacity: hidden ? 0.3 : 0,
     transition: `opacity ${DURATION}ms ${EASE}`,
     willChange: animating ? "opacity" : undefined,
+    transform: "translateZ(0)",
+    contain: "strict",
   };
+
 
   return (
     <Tag
