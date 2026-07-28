@@ -146,23 +146,44 @@ export function Reveal({
   }, [phase, inView, effectiveDelay]);
 
   const hidden = phase === "hidden";
+  const particles = lite.current && isHome;
 
   const revealStyle: CSSProperties =
     phase === "idle"
       ? {}
-      : lite.current
+      : particles
         ? {
+            position: "relative",
             opacity: hidden ? 0 : 1,
-            transition: `opacity ${DURATION}ms ${EASE}`,
-            willChange: animating ? "opacity" : undefined,
-          }
-        : {
-            opacity: hidden ? 0 : 1,
-            filter: hidden ? "blur(6px)" : "blur(0px)",
+            filter: hidden ? "blur(5px)" : "blur(0px)",
             transition: `opacity ${DURATION}ms ${EASE}, filter ${DURATION}ms ${EASE}`,
             willChange: animating ? "opacity, filter" : undefined,
-          };
+          }
+        : lite.current
+          ? {
+              opacity: hidden ? 0 : 1,
+              transition: `opacity ${DURATION}ms ${EASE}`,
+              willChange: animating ? "opacity" : undefined,
+            }
+          : {
+              opacity: hidden ? 0 : 1,
+              filter: hidden ? "blur(6px)" : "blur(0px)",
+              transition: `opacity ${DURATION}ms ${EASE}, filter ${DURATION}ms ${EASE}`,
+              willChange: animating ? "opacity, filter" : undefined,
+            };
 
+  const grainStyle: CSSProperties = {
+    position: "absolute",
+    inset: 0,
+    pointerEvents: "none",
+    zIndex: 2,
+    backgroundImage: GRAIN,
+    backgroundSize: "140px 140px",
+    mixBlendMode: "screen",
+    opacity: hidden ? 0.45 : 0,
+    transition: `opacity ${DURATION}ms ${EASE}`,
+    willChange: animating ? "opacity" : undefined,
+  };
 
   return (
     <Tag
@@ -173,6 +194,8 @@ export function Reveal({
       {...rest}
     >
       {children}
+      {particles && animating ? <span aria-hidden="true" style={grainStyle} /> : null}
     </Tag>
   );
 }
+
