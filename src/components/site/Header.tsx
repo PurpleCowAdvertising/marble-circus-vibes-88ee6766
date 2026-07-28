@@ -91,11 +91,11 @@ export function Header() {
       return;
     }
 
-    window.history.pushState(null, "", `/#${hash}`);
+    scrollToHash(hash);
 
     window.setTimeout(() => {
-      scrollToHash(hash);
-    }, 50);
+      window.history.replaceState(null, "", `/#${hash}`);
+    }, 600);
   };
 
   return (
