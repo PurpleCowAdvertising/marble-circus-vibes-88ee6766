@@ -110,14 +110,33 @@ export function FadeIn({
     return `blur(${b.toFixed(2)}px)`;
   });
 
+  // Detect a stale scroll measurement: element visibly in the viewport while
+  // the scroll progress is still pinned at 0 (would render fully transparent).
+  useEffect(() => {
+    if (lite || stuck || !ref.current) return;
+    const el = ref.current;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const p = scrollYProgress.get();
+          if (p <= 0.001 || p >= 0.999) setStuck(true);
+        }
+      },
+      { threshold: 0.15 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [lite, stuck, scrollYProgress]);
 
-  if (lite) {
+  if (lite || stuck) {
     return (
       <div ref={ref} className={className}>
         {children}
       </div>
     );
   }
+
 
   return (
     <motion.div
