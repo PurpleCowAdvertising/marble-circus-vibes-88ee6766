@@ -16,7 +16,7 @@ export const PARK_RIDE_LOCATIONS = [
   "Gold Reef City Casino",
 ];
 
-const PARK_RIDE_URL = "https://www.webtickets.co.za/v2/event.aspx?itemid=1594653275";
+export const PARK_RIDE_URL = "https://www.webtickets.co.za/v2/event.aspx?itemid=1594653275";
 
 type Props = {
   open: boolean;
