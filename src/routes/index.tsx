@@ -7,6 +7,7 @@ import { FadeIn, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
+import { ParkRideModal } from "@/components/site/ParkRideModal";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 import majorLeague from "@/assets/artists/major-league.jpg";
@@ -853,6 +854,7 @@ function HomePage() {
       </VisibilityGate>
 
       <TicketModal tier={activeTier} onClose={() => setActiveTier(null)} />
+      <ParkRideModal open={parkRideOpen} onClose={() => setParkRideOpen(false)} />
     </PageGate>
   );
 }
