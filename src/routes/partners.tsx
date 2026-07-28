@@ -4,8 +4,8 @@ import { ArrowUpRight } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
-import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
-import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
+import partnerLogoFull from "@/assets/partners/purple-cow-full.webp";
+import partnerLogoMark from "@/assets/partners/purple-cow-mark.webp";
 
 const CATEGORIES = ["all", "platinum", "gold", "silver", "bronze"] as const;
 

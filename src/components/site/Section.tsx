@@ -15,6 +15,25 @@ export function Section({ children, className = "", id }: { children: ReactNode;
   );
 }
 
+/**
+ * Phones and reduced-motion users skip the scroll-linked 3D/blur pipeline
+ * entirely — a spring + per-frame blur on every section is the main cause of
+ * janky, fragmented scrolling on mobile.
+ */
+let cachedLite: boolean | null = null;
+function isLiteDevice() {
+  if (typeof window === "undefined" || !window.matchMedia) return false;
+  if (cachedLite === null) {
+    const nav = navigator as Navigator & { deviceMemory?: number };
+    cachedLite =
+      window.matchMedia("(max-width: 1023px), (pointer: coarse)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      (nav.hardwareConcurrency ?? 8) <= 4 ||
+      (nav.deviceMemory ?? 8) <= 4;
+  }
+  return cachedLite;
+}
+
 export function FadeIn({
   children,
   delay: _delay = 0,
@@ -31,19 +50,25 @@ export function FadeIn({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [autoBubble, setAutoBubble] = useState(false);
+  const [lite, setLite] = useState(true);
+
+  useEffect(() => {
+    setLite(isLiteDevice());
+  }, []);
 
   // Auto-detect card-like content: rounded surfaces, image tiles, or grid layouts.
   useEffect(() => {
-    if (bubble !== undefined || !ref.current) return;
+    if (bubble !== undefined || !ref.current || lite) return;
     const el = ref.current;
     const looksLikeCard =
       el.querySelector(
         '[class*="rounded-3xl"],[class*="rounded-2xl"],[class*="backdrop-blur"],img,video',
       ) !== null;
     if (looksLikeCard) setAutoBubble(true);
-  }, [bubble]);
+  }, [bubble, lite]);
 
   const isBubble = bubble ?? autoBubble;
+
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -81,6 +106,14 @@ export function FadeIn({
   });
 
 
+  if (lite) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       ref={ref}
@@ -98,6 +131,7 @@ export function FadeIn({
       {children}
     </motion.div>
   );
+
 }
 
 

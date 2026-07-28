@@ -5,19 +5,19 @@ import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
-import majorLeague from "@/assets/artists/major-league.jpg";
+import majorLeague from "@/assets/artists/major-league.webp";
 import tyla from "@/assets/artists/tyla.webp";
 import blackCoffee from "@/assets/artists/black-coffee.webp";
 import nastyC from "@/assets/artists/nasty-c.webp";
 import musaKeys from "@/assets/artists/musa-keys.webp";
 import uncleWaffles from "@/assets/artists/uncle-waffles.webp";
-import focalistic from "@/assets/artists/focalistic.jpg";
+import focalistic from "@/assets/artists/focalistic.webp";
 import kabza from "@/assets/artists/kabza.webp";
 import maphorisa from "@/assets/artists/dj-maphorisa.webp";
-import shoMadjozi from "@/assets/artists/sho-madjozi.jpg";
-import aka from "@/assets/artists/aka.jpg";
-import dbnGogo from "@/assets/artists/dbn-gogo.jpg";
-import cassper from "@/assets/artists/cassper.jpg";
+import shoMadjozi from "@/assets/artists/sho-madjozi.webp";
+import aka from "@/assets/artists/aka.webp";
+import dbnGogo from "@/assets/artists/dbn-gogo.webp";
+import cassper from "@/assets/artists/cassper.webp";
 
 export const Route = createFileRoute("/music")({
   head: () => ({

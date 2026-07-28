@@ -4,10 +4,10 @@ import { ArrowUpRight } from "lucide-react";
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
-import tourTee from "@/assets/merch/tour-tee.jpg";
-import tourHoodie from "@/assets/merch/tour-hoodie.jpg";
-import snapbackCap from "@/assets/merch/snapback-cap.jpg";
-import eventPoster from "@/assets/merch/event-poster.jpg";
+import tourTee from "@/assets/merch/tour-tee.webp";
+import tourHoodie from "@/assets/merch/tour-hoodie.webp";
+import snapbackCap from "@/assets/merch/snapback-cap.webp";
+import eventPoster from "@/assets/merch/event-poster.webp";
 
 export const Route = createFileRoute("/merchandise")({
   head: () => ({

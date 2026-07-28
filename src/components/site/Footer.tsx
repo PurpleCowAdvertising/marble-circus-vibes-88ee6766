@@ -4,8 +4,8 @@ import { createLucideIcon, Facebook, Instagram, X, Youtube } from "lucide-react"
 import { SITE_CREDIT } from "@/config/credits";
 import { Reveal, RevealGroup } from "@/components/site/Reveal";
 import { useVisiblePageRoutes } from "./visibility";
-import logo from "@/assets/logo.png";
-import ticketsAvailable from "@/assets/tickets-available.png";
+import logo from "@/assets/logo.webp";
+import ticketsAvailable from "@/assets/tickets-available.webp";
 
 const EXPLORE_LINKS = [
   { to: "/music", label: "Line-Up" },
