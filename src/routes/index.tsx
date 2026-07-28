@@ -681,6 +681,15 @@ function HomePage() {
                     </ul>
                   </div>
 
+                  <img
+                    src={parkRideShuttle}
+                    alt="Premium shuttle bus for Park & Ride"
+                    loading="lazy"
+                    width={512}
+                    height={512}
+                    className="pointer-events-none z-[1] mx-auto w-44 max-w-[40%] self-center object-contain opacity-90 drop-shadow-[0_12px_40px_color-mix(in_oklab,var(--gold)_30%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105 md:mx-0 md:w-52"
+                  />
+
                   <span className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-gold px-6 py-3 text-xs font-bold uppercase tracking-widest text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] transition-all duration-500 ease-out group-hover:gap-3 group-hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)] md:self-center">
                     <span>Book Park & Ride</span>
                     <ArrowRight
