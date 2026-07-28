@@ -11,24 +11,56 @@ import {
 } from "react";
 
 import { useRouterState } from "@tanstack/react-router";
+import grainTile from "@/assets/grain.png";
 
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 
-/** Fine-grain noise used for the mobile "particle dissolve" reveal. */
-const GRAIN =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E\")";
+/**
+ * Pre-rasterised 64px noise tile. A raster tile is decoded once and reused by
+ * every element; an inline SVG feTurbulence had to be re-rendered per layer,
+ * which is what stuttered on iOS / low-end Android.
+ */
+const GRAIN = `url(${grainTile})`;
 const DURATION = 600;
+
+/** matchMedia is evaluated once per page, not once per Reveal instance. */
+let cachedReduced: boolean | null = null;
+let cachedLite: boolean | null = null;
+let cachedLowEnd: boolean | null = null;
 
 function prefersReducedMotion() {
   if (typeof window === "undefined" || !window.matchMedia) return false;
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (cachedReduced === null) {
+    cachedReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+  return cachedReduced;
 }
 
 /** Small / touch screens: skip blur filters, they are costly to composite. */
 function isLiteDevice() {
   if (typeof window === "undefined" || !window.matchMedia) return false;
-  return window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
+  if (cachedLite === null) {
+    cachedLite = window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
+  }
+  return cachedLite;
 }
+
+/**
+ * Weak hardware: few cores or little RAM. These devices drop frames on any
+ * filter animation, so they get a plain opacity fade and no grain at all.
+ */
+function isLowEndDevice() {
+  if (typeof navigator === "undefined") return false;
+  if (cachedLowEnd === null) {
+    const nav = navigator as Navigator & { deviceMemory?: number };
+    const cores = nav.hardwareConcurrency ?? 8;
+    const memory = nav.deviceMemory ?? 8;
+    cachedLowEnd = cores <= 4 || memory <= 4;
+  }
+  return cachedLowEnd;
+}
+
+
 
 
 /**
@@ -131,10 +163,12 @@ export function Reveal({
   const reduced = useRef(false);
   // Blur filters are expensive to composite on phones — opacity only there.
   const lite = useRef(false);
+  const lowEnd = useRef(false);
 
   useLayoutEffect(() => {
     reduced.current = prefersReducedMotion();
     lite.current = isLiteDevice();
+    lowEnd.current = isLowEndDevice();
     if (reduced.current) return;
     setPhase("hidden");
   }, []);
@@ -153,7 +187,7 @@ export function Reveal({
   }, [phase, inView, effectiveDelay]);
 
   const hidden = phase === "hidden";
-  const particles = lite.current && isHome;
+  const particles = lite.current && isHome && !lowEnd.current;
 
   const revealStyle: CSSProperties =
     phase === "idle"
@@ -162,9 +196,15 @@ export function Reveal({
         ? {
             position: "relative",
             opacity: hidden ? 0 : 1,
-            filter: hidden ? "blur(5px)" : "blur(0px)",
+            // 3px keeps the soft focus-in but halves the blur radius the GPU
+            // has to sample on mobile.
+            filter: hidden ? "blur(3px)" : "blur(0px)",
             transition: `opacity ${DURATION}ms ${EASE}, filter ${DURATION}ms ${EASE}`,
             willChange: animating ? "opacity, filter" : undefined,
+            // Own compositing layer only while animating: avoids repaints of
+            // the surrounding section on every frame.
+            transform: animating ? "translateZ(0)" : undefined,
+            backfaceVisibility: animating ? "hidden" : undefined,
           }
         : lite.current
           ? {
@@ -185,12 +225,15 @@ export function Reveal({
     pointerEvents: "none",
     zIndex: 2,
     backgroundImage: GRAIN,
-    backgroundSize: "140px 140px",
-    mixBlendMode: "screen",
-    opacity: hidden ? 0.45 : 0,
+    backgroundSize: "64px 64px",
+    // No mix-blend-mode: blending forces iOS off the fast compositing path.
+    opacity: hidden ? 0.3 : 0,
     transition: `opacity ${DURATION}ms ${EASE}`,
     willChange: animating ? "opacity" : undefined,
+    transform: "translateZ(0)",
+    contain: "strict",
   };
+
 
   return (
     <Tag
