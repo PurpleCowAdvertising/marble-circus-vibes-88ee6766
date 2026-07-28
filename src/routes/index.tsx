@@ -257,25 +257,25 @@ function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="mt-10 grid gap-6 md:mt-14 md:grid-cols-2 md:gap-8">
+          <RevealGroup className="mt-10 grid gap-6 md:mt-14 md:grid-cols-2 md:gap-8">
             {SCORPION_KINGS.map((king, index) => (
-              <motion.article
+              <Reveal
+                as="article"
                 key={king.name}
-                initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.2, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                delay={index * 100}
                 className="group relative overflow-hidden rounded-3xl border border-white/30 bg-white/[0.08] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.75),inset_0_1px_0_0_rgba(255,255,255,0.2)] ring-1 ring-inset ring-white/10 backdrop-blur-xl backdrop-saturate-150"
               >
                 <div className="relative aspect-[4/5] w-full overflow-hidden md:aspect-[5/6]">
-                  <img
-                    src={king.image}
-                    alt={king.name}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
-                  />
+                  <Reveal delay={index * 100 + 150} className="absolute inset-0">
+                    <img
+                      src={king.image}
+                      alt={king.name}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                    />
+                  </Reveal>
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                  <Reveal delay={index * 100 + 300} className="absolute inset-x-0 bottom-0 p-6 md:p-8">
                     <p className="text-[10px] uppercase tracking-[0.32em] text-gold">{king.role}</p>
                     <h3 className="mt-2 font-display text-4xl font-bold leading-none text-white md:text-5xl">
                       {king.name}
@@ -283,11 +283,12 @@ function HomePage() {
                     <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">
                       {king.bio}
                     </p>
-                  </div>
+                  </Reveal>
                 </div>
-              </motion.article>
+              </Reveal>
             ))}
-          </div>
+          </RevealGroup>
+
         </Section>
       </div>
       </VisibilityGate>
