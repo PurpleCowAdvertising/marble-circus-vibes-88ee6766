@@ -169,26 +169,8 @@ export function MobileTabBar() {
               );
             }
 
-            if (tab.kind === "external") {
-              return (
-                <a
-                  key={tab.href}
-                  href={tab.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={tab.label}
-                  onClick={() => {
-                    vibrate();
-                    setDrawKey((k) => k + 1);
-                  }}
-                  className={baseClassName}
-                >
-                  <span className={iconClassName} key={iconKey} style={iconStyle}>
-                    <Icon size={28} strokeWidth={1.25} absoluteStrokeWidth />
-                  </span>
-                </a>
-              );
-            }
+
+
 
             return (
               <Link
