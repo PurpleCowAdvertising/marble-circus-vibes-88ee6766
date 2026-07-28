@@ -1,0 +1,1 @@
+update public.content_visibility set draft_hidden = false, live_hidden = false where key in ('page:partners','section:partners.packages','section:partners.cta','section:news.press');

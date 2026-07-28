@@ -51,10 +51,15 @@ export function FadeIn({
   const ref = useRef<HTMLDivElement>(null);
   const [autoBubble, setAutoBubble] = useState(false);
   const [lite, setLite] = useState(true);
+  // Safety net: if the scroll-linked progress never updates (stale measurement
+  // after late layout shifts), the element would stay at opacity 0 forever.
+  // An IntersectionObserver detects that case and falls back to plain render.
+  const [stuck, setStuck] = useState(false);
 
   useEffect(() => {
     setLite(isLiteDevice());
   }, []);
+
 
   // Auto-detect card-like content: rounded surfaces, image tiles, or grid layouts.
   useEffect(() => {
@@ -105,14 +110,33 @@ export function FadeIn({
     return `blur(${b.toFixed(2)}px)`;
   });
 
+  // Detect a stale scroll measurement: element visibly in the viewport while
+  // the scroll progress is still pinned at 0 (would render fully transparent).
+  useEffect(() => {
+    if (lite || stuck || !ref.current) return;
+    const el = ref.current;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const p = scrollYProgress.get();
+          if (p <= 0.001 || p >= 0.999) setStuck(true);
+        }
+      },
+      { threshold: 0.15 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [lite, stuck, scrollYProgress]);
 
-  if (lite) {
+  if (lite || stuck) {
     return (
       <div ref={ref} className={className}>
         {children}
       </div>
     );
   }
+
 
   return (
     <motion.div
