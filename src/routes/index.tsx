@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { FadeIn, Section } from "@/components/site/Section";
+import { Reveal, RevealGroup } from "@/components/site/Reveal";
+
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
@@ -257,25 +259,25 @@ function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="mt-10 grid gap-6 md:mt-14 md:grid-cols-2 md:gap-8">
+          <RevealGroup className="mt-10 grid gap-6 md:mt-14 md:grid-cols-2 md:gap-8">
             {SCORPION_KINGS.map((king, index) => (
-              <motion.article
+              <Reveal
+                as="article"
                 key={king.name}
-                initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.2, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                delay={index * 100}
                 className="group relative overflow-hidden rounded-3xl border border-white/30 bg-white/[0.08] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.75),inset_0_1px_0_0_rgba(255,255,255,0.2)] ring-1 ring-inset ring-white/10 backdrop-blur-xl backdrop-saturate-150"
               >
                 <div className="relative aspect-[4/5] w-full overflow-hidden md:aspect-[5/6]">
-                  <img
-                    src={king.image}
-                    alt={king.name}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
-                  />
+                  <Reveal delay={index * 100 + 150} className="absolute inset-0">
+                    <img
+                      src={king.image}
+                      alt={king.name}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                    />
+                  </Reveal>
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                  <Reveal delay={index * 100 + 300} className="absolute inset-x-0 bottom-0 p-6 md:p-8">
                     <p className="text-[10px] uppercase tracking-[0.32em] text-gold">{king.role}</p>
                     <h3 className="mt-2 font-display text-4xl font-bold leading-none text-white md:text-5xl">
                       {king.name}
@@ -283,11 +285,12 @@ function HomePage() {
                     <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 md:text-base">
                       {king.bio}
                     </p>
-                  </div>
+                  </Reveal>
                 </div>
-              </motion.article>
+              </Reveal>
             ))}
-          </div>
+          </RevealGroup>
+
         </Section>
       </div>
       </VisibilityGate>
@@ -301,15 +304,15 @@ function HomePage() {
       <VisibilityGate keyName="section:home.about-band">
       <div className="relative isolate z-20 bg-orange-rich">
         <Section className="fold-safe-above !pb-6 text-foreground sm:!pb-10 md:!pb-16">
-          <div className="grid gap-3 md:grid-cols-2 md:gap-20">
-            <FadeIn>
+          <RevealGroup className="grid gap-3 md:grid-cols-2 md:gap-20">
+            <Reveal>
               <p className="text-xs uppercase tracking-[0.4em] text-white">About</p>
               <h2 className="mt-2 font-display text-5xl font-bold leading-tight text-gold md:text-7xl">
                 Built for the artists, powered by the fans.
               </h2>
-            </FadeIn>
+            </Reveal>
 
-            <FadeIn delay={0.15}>
+            <Reveal delay={150}>
               <div className="space-y-3 text-lg text-white md:pt-12">
                 <p>Scorpion Kings Live champions the bold, the brilliant and the boundary-breaking.</p>
                 <p>
@@ -328,8 +331,9 @@ function HomePage() {
                   <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
               </div>
-            </FadeIn>
-          </div>
+            </Reveal>
+          </RevealGroup>
+
         </Section>
       </div>
       </VisibilityGate>
@@ -337,7 +341,8 @@ function HomePage() {
       <VisibilityGate keyName="section:home.past-photos">
       <div className="relative isolate z-20 bg-orange-rich">
         <Section className="!pb-10 !pt-4 text-foreground md:!pb-14 md:!pt-8">
-          <FadeIn>
+          <RevealGroup>
+          <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">From the last show</p>
@@ -350,39 +355,35 @@ function HomePage() {
                 Moments from the previous Scorpion Kings Live at FNB Stadium.
               </p>
             </div>
-          </FadeIn>
+          </Reveal>
 
-          <FadeIn delay={0.1}>
-            <div className="-mx-4 mt-6 overflow-x-auto md:-mx-8">
+          <div className="-mx-4 mt-6 overflow-x-auto md:-mx-8">
               <ul className="flex gap-3 px-4 md:gap-4 md:px-8">
                 {PAST_EVENT_PHOTOS.map((photo, index) => (
-                  <motion.li
+                  <Reveal
+                    as="li"
                     key={photo.src}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{
-                      duration: 0.9,
-                      delay: index * 0.08,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
+                    delay={index * 100}
                     className="group relative shrink-0 overflow-hidden rounded-lg bg-black/40"
                     style={{
                       width: index === 0 ? "clamp(220px, 36vw, 360px)" : "clamp(160px, 24vw, 260px)",
                       aspectRatio: "3 / 4",
                     }}
                   >
-                    <img
-                      src={photo.src}
-                      alt={photo.alt}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-                    />
-                  </motion.li>
+                    <Reveal delay={index * 100 + 150} className="h-full w-full">
+                      <img
+                        src={photo.src}
+                        alt={photo.alt}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                      />
+                    </Reveal>
+                  </Reveal>
                 ))}
               </ul>
             </div>
-          </FadeIn>
+          </RevealGroup>
+
         </Section>
       </div>
       </VisibilityGate>
@@ -500,7 +501,7 @@ function HomePage() {
 
         <div className="bg-black">
           <Section className="!bg-black !pt-4 md:!pt-2">
-            <div className="grid gap-4 md:grid-cols-3">
+            <RevealGroup className="grid gap-4 md:grid-cols-3">
               {[
                 {
                   name: "Field - selling out!",
@@ -525,25 +526,19 @@ function HomePage() {
                 const gold = index % 2 === 0;
 
                 return (
-                  <motion.article
+                  <Reveal
+                    as="article"
                     key={tier.name}
-                    initial={{ opacity: 0, y: 80, filter: "blur(14px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{
-                      duration: 1.1,
-                      delay: index * 0.12,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    whileHover={{ y: -10 }}
+                    delay={index * 100}
                     style={{
                       boxShadow:
                         "inset 0 1px 0 0 rgba(255,255,255,0.18), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 24px 60px -20px rgba(0,0,0,0.55)",
                     }}
-                    className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/[0.06] p-6 backdrop-blur-xl backdrop-saturate-150 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out hover:bg-white/[0.09] md:p-7 ${
+                    className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/[0.06] p-6 backdrop-blur-xl backdrop-saturate-150 transition-[border-color,box-shadow,background-color,transform] duration-500 ease-out hover:-translate-y-2 hover:bg-white/[0.09] md:p-7 ${
                       gold ? "border-white/15 hover:border-gold/60" : "border-white/15 hover:border-white/35"
                     }`}
                   >
+
                     <span
                       aria-hidden
                       className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-white/15 via-white/[0.04] to-transparent"
@@ -569,7 +564,7 @@ function HomePage() {
                       </span>
                     )}
 
-                    <div className="relative z-[1] flex h-full flex-col">
+                    <Reveal delay={index * 100 + 300} className="relative z-[1] flex h-full flex-col">
                       <p
                         className={`text-[10px] uppercase tracking-[0.4em] text-white/70 transition-colors duration-500 group-hover:text-white ${
                           tier.highlight ? "md:pr-28" : ""
@@ -630,19 +625,15 @@ function HomePage() {
                           />
                         </button>
                       )}
-                    </div>
-                  </motion.article>
+                    </Reveal>
+                  </Reveal>
+
                 );
               })}
-            </div>
+            </RevealGroup>
 
-            <motion.div
-              initial={{ opacity: 0, y: 60, filter: "blur(14px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6 }}
-            >
+            <Reveal delay={400} className="transition-transform duration-500 ease-out hover:-translate-y-1.5">
+
               <div className="group relative mt-6 block w-full overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-6 text-left backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8">
 
                 <span
@@ -763,7 +754,8 @@ function HomePage() {
               </div>
 
 
-            </motion.div>
+            </Reveal>
+
           </Section>
         </div>
       </div>
@@ -791,7 +783,7 @@ function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
+          <RevealGroup className="mt-8 grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
             {[
               {
                 title: "Goldrush Dome – General Stands",
@@ -818,16 +810,9 @@ function HomePage() {
                 alt: "SMSA Lounge hospitality",
               },
             ].map((block, index) => (
-              <motion.div
+              <Reveal
                 key={block.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.7,
-                  delay: index * 0.06,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
+                delay={index * 100}
                 className="group overflow-hidden rounded-xl border border-white/15 bg-black/40 backdrop-blur-sm transition-transform hover:-translate-y-0.5"
               >
                 <a
@@ -836,7 +821,7 @@ function HomePage() {
                   rel="noopener noreferrer"
                   className="block"
                 >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <Reveal delay={index * 100 + 150} className="relative aspect-[16/10] w-full overflow-hidden">
                     <img
                       src={block.image}
                       alt={block.alt}
@@ -844,16 +829,17 @@ function HomePage() {
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  </div>
+                  </Reveal>
 
-                  <div className="p-4 md:p-5">
+                  <Reveal delay={index * 100 + 300} className="p-4 md:p-5">
                     <h3 className="font-display text-base font-bold text-white md:text-lg">{block.title}</h3>
                     <p className="mt-1 text-xs text-white/75">{block.body}</p>
-                  </div>
+                  </Reveal>
                 </a>
-              </motion.div>
+              </Reveal>
             ))}
-          </div>
+          </RevealGroup>
+
         </Section>
       </div>
       </VisibilityGate>
