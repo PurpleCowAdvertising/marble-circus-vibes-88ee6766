@@ -341,7 +341,8 @@ function HomePage() {
       <VisibilityGate keyName="section:home.past-photos">
       <div className="relative isolate z-20 bg-orange-rich">
         <Section className="!pb-10 !pt-4 text-foreground md:!pb-14 md:!pt-8">
-          <FadeIn>
+          <RevealGroup>
+          <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">From the last show</p>
@@ -354,39 +355,35 @@ function HomePage() {
                 Moments from the previous Scorpion Kings Live at FNB Stadium.
               </p>
             </div>
-          </FadeIn>
+          </Reveal>
 
-          <FadeIn delay={0.1}>
-            <div className="-mx-4 mt-6 overflow-x-auto md:-mx-8">
+          <div className="-mx-4 mt-6 overflow-x-auto md:-mx-8">
               <ul className="flex gap-3 px-4 md:gap-4 md:px-8">
                 {PAST_EVENT_PHOTOS.map((photo, index) => (
-                  <motion.li
+                  <Reveal
+                    as="li"
                     key={photo.src}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{
-                      duration: 0.9,
-                      delay: index * 0.08,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
+                    delay={index * 100}
                     className="group relative shrink-0 overflow-hidden rounded-lg bg-black/40"
                     style={{
                       width: index === 0 ? "clamp(220px, 36vw, 360px)" : "clamp(160px, 24vw, 260px)",
                       aspectRatio: "3 / 4",
                     }}
                   >
-                    <img
-                      src={photo.src}
-                      alt={photo.alt}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-                    />
-                  </motion.li>
+                    <Reveal delay={index * 100 + 150} className="h-full w-full">
+                      <img
+                        src={photo.src}
+                        alt={photo.alt}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                      />
+                    </Reveal>
+                  </Reveal>
                 ))}
               </ul>
             </div>
-          </FadeIn>
+          </RevealGroup>
+
         </Section>
       </div>
       </VisibilityGate>
