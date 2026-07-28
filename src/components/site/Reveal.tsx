@@ -18,6 +18,13 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+/** Small / touch screens: skip blur filters, they are costly to composite. */
+function isLiteDevice() {
+  if (typeof window === "undefined" || !window.matchMedia) return false;
+  return window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
+}
+
+
 /**
  * Observes an element once. Disconnects immediately on first intersection.
  * Never runs when the user prefers reduced motion.
