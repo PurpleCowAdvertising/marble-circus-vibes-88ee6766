@@ -668,7 +668,7 @@ function HomePage() {
                         Book Your Park & Ride
                       </h3>
                       <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/80">
-                        Skip the stadium traffic. Park at a secure, designated location and take a return shuttle straight to FNB Stadium. The easiest way in — and out.
+                        Park at a secure location, take a return shuttle to FNB Stadium and skip the traffic. The fastest way in — and out.
                       </p>
                     </div>
 
@@ -678,17 +678,17 @@ function HomePage() {
                       loading="lazy"
                       width={512}
                       height={512}
-                      className="pointer-events-none z-[1] mx-auto w-40 max-w-[40%] shrink-0 self-center object-contain opacity-90 drop-shadow-[0_12px_40px_color-mix(in_oklab,var(--gold)_30%,transparent)] transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:scale-105 md:mx-0 md:w-44"
+                      className="pointer-events-none z-[1] mx-auto w-36 max-w-[38%] shrink-0 self-center object-contain opacity-95 drop-shadow-[0_12px_40px_color-mix(in_oklab,var(--gold)_30%,transparent)] transition-transform duration-500 ease-out -rotate-6 group-hover:translate-x-1 group-hover:scale-105 md:mx-0 md:w-44"
                     />
                   </div>
 
 
                   <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                    <ul className="flex flex-wrap gap-3">
-                      {["Avoid traffic", "Return shuttle", "Secure parking", "Eco-friendly"].map((benefit) => (
+                    <ul className="flex flex-wrap gap-2">
+                      {["Skip traffic", "Return shuttle", "Secure parking", "Eco-friendly"].map((benefit) => (
                         <li
                           key={benefit}
-                          className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-[10px] uppercase tracking-wider text-white/90"
+                          className="rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-white/90"
                         >
                           {benefit}
                         </li>
