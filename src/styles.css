@@ -502,13 +502,20 @@
     animation: ken-burns 18s ease-in-out infinite;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .bg-orange-rich::before,
-    .bg-orange-rich::after,
+  /* Continuously animating images are a battery/jank tax on phones. */
+  @media (max-width: 1023px), (pointer: coarse), (prefers-reduced-motion: reduce) {
     .animate-ken-burns {
       animation: none;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bg-orange-rich::before,
+    .bg-orange-rich::after {
+      animation: none;
+    }
+  }
+
 
   .surface-light {
     position: relative;
