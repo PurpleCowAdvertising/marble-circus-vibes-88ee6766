@@ -36,6 +36,7 @@ const SCORPION_KINGS = [
 import partnerLogoFull from "@/assets/partners/purple-cow-full.png";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.png";
 import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.png";
+import parkRideShuttle from "@/assets/park-ride-shuttle.png";
 
 import pastFanPhone from "@/assets/past-event/fan-phone.jpg";
 import pastDrummerFire from "@/assets/past-event/drummer-fire.jpg";
