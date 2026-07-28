@@ -115,35 +115,47 @@ export function Reveal({
   const [phase, setPhase] = useState<"idle" | "hidden" | "shown">("idle");
   const [animating, setAnimating] = useState(false);
   const reduced = useRef(false);
+  // Blur filters are expensive to composite on phones — opacity only there.
+  const lite = useRef(false);
 
   useLayoutEffect(() => {
     reduced.current = prefersReducedMotion();
+    lite.current = isLiteDevice();
     if (reduced.current) return;
     setPhase("hidden");
   }, []);
 
+  const effectiveDelay = lite.current ? Math.round(delay * 0.5) : delay;
+
   useEffect(() => {
     if (phase !== "hidden" || !inView || reduced.current) return;
     setAnimating(true);
-    const start = window.setTimeout(() => setPhase("shown"), delay);
-    const end = window.setTimeout(() => setAnimating(false), delay + DURATION + 60);
+    const start = window.setTimeout(() => setPhase("shown"), effectiveDelay);
+    const end = window.setTimeout(() => setAnimating(false), effectiveDelay + DURATION + 60);
     return () => {
       window.clearTimeout(start);
       window.clearTimeout(end);
     };
-  }, [phase, inView, delay]);
+  }, [phase, inView, effectiveDelay]);
 
   const hidden = phase === "hidden";
 
   const revealStyle: CSSProperties =
     phase === "idle"
       ? {}
-      : {
-          opacity: hidden ? 0 : 1,
-          filter: hidden ? "blur(6px)" : "blur(0px)",
-          transition: `opacity ${DURATION}ms ${EASE}, filter ${DURATION}ms ${EASE}`,
-          willChange: animating ? "opacity, filter" : undefined,
-        };
+      : lite.current
+        ? {
+            opacity: hidden ? 0 : 1,
+            transition: `opacity ${DURATION}ms ${EASE}`,
+            willChange: animating ? "opacity" : undefined,
+          }
+        : {
+            opacity: hidden ? 0 : 1,
+            filter: hidden ? "blur(6px)" : "blur(0px)",
+            transition: `opacity ${DURATION}ms ${EASE}, filter ${DURATION}ms ${EASE}`,
+            willChange: animating ? "opacity, filter" : undefined,
+          };
+
 
   return (
     <Tag
