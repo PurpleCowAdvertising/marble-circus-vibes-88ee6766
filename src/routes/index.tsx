@@ -7,6 +7,7 @@ import { FadeIn, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
+import { ParkRideModal } from "@/components/site/ParkRideModal";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 import majorLeague from "@/assets/artists/major-league.jpg";
@@ -148,6 +149,8 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
+  const [parkRideOpen, setParkRideOpen] = useState(false);
+
   const isMobile = useIsMobile();
 
   const heroRef = useRef<HTMLDivElement>(null);
@@ -639,12 +642,12 @@ function HomePage() {
               transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6 }}
             >
-              <a
-                href="https://www.webtickets.co.za/v2/event.aspx?itemid=1594653275"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative mt-6 block overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-6 backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8"
+              <button
+                type="button"
+                onClick={() => setParkRideOpen(true)}
+                className="group relative mt-6 block w-full overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white/[0.1] to-white/[0.04] p-6 text-left backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-out hover:border-gold/70 hover:bg-gradient-to-br hover:from-white/[0.14] hover:to-white/[0.06] md:mt-8 md:p-8"
               >
+
                 <span
                   aria-hidden
                   className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-3xl bg-gradient-to-b from-gold/20 via-gold/[0.04] to-transparent"
@@ -691,14 +694,15 @@ function HomePage() {
                   />
 
                   <span className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-gold px-6 py-3 text-xs font-bold uppercase tracking-widest text-gold-foreground shadow-[0_6px_18px_-8px_color-mix(in_oklab,var(--gold)_70%,transparent)] transition-all duration-500 ease-out group-hover:gap-3 group-hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--gold)_85%,transparent)] md:self-center">
-                    <span>Book Park & Ride</span>
+                    <span>Choose Your Location</span>
                     <ArrowRight
                       size={14}
                       className="transition-transform duration-500 ease-out group-hover:translate-x-1"
                     />
                   </span>
                 </div>
-              </a>
+              </button>
+
             </motion.div>
           </Section>
         </div>
@@ -850,6 +854,7 @@ function HomePage() {
       </VisibilityGate>
 
       <TicketModal tier={activeTier} onClose={() => setActiveTier(null)} />
+      <ParkRideModal open={parkRideOpen} onClose={() => setParkRideOpen(false)} />
     </PageGate>
   );
 }
