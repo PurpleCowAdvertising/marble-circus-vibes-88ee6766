@@ -21,6 +21,9 @@ export function HeroVideo() {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 160]);
   const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+  // Softens the whole frame as it leaves, so the bottom edge melts instead of cutting
+  const videoBlur = useTransform(scrollYProgress, [0, 0.55], ["blur(0px)", "blur(14px)"]);
+  const seamOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.6]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -73,7 +76,7 @@ export function HeroVideo() {
       <div className="w-full">
         <motion.div style={isMobile ? undefined : { y, opacity }} className="relative">
           <figure className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-black md:h-screen">
-            <video
+            <motion.video
               ref={videoRef}
               key={isMobile ? "mobile" : "desktop"}
               src={isMobile ? "/hero-video-mobile.mp4" : "/hero-video.mp4"}
@@ -84,6 +87,13 @@ export function HeroVideo() {
               playsInline
               preload="auto"
               aria-label="Scorpion Kings Live logo reveal"
+              style={{
+                filter: isMobile ? undefined : videoBlur,
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, #000 0%, #000 62%, rgba(0,0,0,0.75) 82%, rgba(0,0,0,0) 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, #000 0%, #000 62%, rgba(0,0,0,0.75) 82%, rgba(0,0,0,0) 100%)",
+              }}
               className="relative h-full w-full object-cover"
             />
 
@@ -93,9 +103,11 @@ export function HeroVideo() {
             {/* Soft blend into the next section — dissolves the hard bottom edge on scroll */}
             <motion.div
               aria-hidden
-              style={{ opacity: useTransform(scrollYProgress, [0, 0.6], [1, 0.85]) }}
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-black/70 to-black md:h-56"
+              style={{ opacity: seamOpacity }}
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-black/60 to-black md:h-80"
             />
+
+
 
 
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-end gap-3 p-6 pb-[calc(7svh+4.5rem)] md:gap-5 md:pb-[calc(8vh+3rem)]">
