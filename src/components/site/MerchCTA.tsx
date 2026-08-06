@@ -21,8 +21,13 @@ export function MerchCTA() {
   const [expanded, setExpanded] = useState(false);
   const [firstReveal, setFirstReveal] = useState(false);
   const [count, setCount] = useState(0);
+  const [featured, setFeatured] = useState<{
+    title: string;
+    image: string;
+  } | null>(null);
   const reachedMerch = useRef(false);
   const autoTimer = useRef<number | null>(null);
+
 
   const collapse = useCallback(() => {
     if (autoTimer.current) window.clearTimeout(autoTimer.current);
