@@ -23,6 +23,20 @@ const GOLD = 'oklch(0.83 0.16 80)';
 const GOLD_HOVER = 'oklch(0.88 0.16 80)';
 const GOLD_FOREGROUND = 'oklch(0.14 0.012 60)';
 
+const ORANGE_500 = 'rgba(249, 115, 22, 1)';
+const ORANGE_500_20 = 'rgba(249, 115, 22, 0.2)';
+const ORANGE_500_30 = 'rgba(249, 115, 22, 0.3)';
+const ORANGE_500_40 = 'rgba(249, 115, 22, 0.4)';
+const ORANGE_500_12 = 'rgba(249, 115, 22, 0.12)';
+const ORANGE_500_25 = 'rgba(249, 115, 22, 0.25)';
+const SLATE_950_82 = 'rgba(2, 6, 23, 0.82)';
+const SLATE_900_50 = 'rgba(2, 6, 23, 0.5)';
+const WHITE_08 = 'rgba(255, 255, 255, 0.08)';
+const WHITE_10 = 'rgba(255, 255, 255, 0.1)';
+const WHITE_15 = 'rgba(255, 255, 255, 0.15)';
+const WHITE_05 = 'rgba(255, 255, 255, 0.05)';
+const WHITE_55 = 'rgba(255, 255, 255, 0.55)';
+
 const goldButtonStyles = {
   'background-color': GOLD,
   color: GOLD_FOREGROUND,
@@ -31,16 +45,136 @@ const goldButtonStyles = {
   'letter-spacing': '0.08em',
   'font-size': '12px',
   'border-radius': '9999px',
+  'border-width': '0',
   'padding-top': '12px',
   'padding-bottom': '12px',
+  'margin-top': '16px',
+  position: 'relative',
+  overflow: 'hidden',
   transition: 'background-color 0.2s ease, transform 0.2s ease',
+  ':before': {
+    content: '""',
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    right: '0',
+    bottom: '0',
+    background:
+      'linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)',
+    transform: 'translateX(-100%)',
+    transition: 'transform 0.6s ease',
+  },
   ':hover': {
     'background-color': GOLD_HOVER,
+    transform: 'translateY(-1px)',
+    ':before': {
+      transform: 'translateX(100%)',
+    },
   },
   ':focus': {
     'background-color': GOLD_HOVER,
   },
 };
+
+const optionWrapperStyles = {
+  'background-color': 'rgba(255,255,255,0.06)',
+  border: '1px solid rgba(255,255,255,0.15)',
+  'border-radius': '0.75rem',
+  padding: '0',
+  'z-index': '2',
+  position: 'relative',
+};
+
+const optionSelectStyles = {
+  color: '#ffffff',
+  'background-color': 'transparent',
+  border: '0',
+  'border-radius': '0.75rem',
+  padding: '10px 12px',
+  'font-family': 'Candara, sans-serif',
+  'font-size': '13px',
+  width: '100%',
+  ':focus': {
+    outline: 'none',
+    'box-shadow': `inset 0 0 0 2px ${ORANGE_500_20}`,
+  },
+};
+
+function injectIframeCss(node: HTMLElement) {
+  // The Shopify Buy Button renders inside a same-origin iframe that the SDK
+  // creates without a src attribute. We can inject an extra stylesheet to style
+  // elements that the SDK's `styles` object does not expose (disabled button
+  // state, dropdown chevron, etc.) and to strengthen the glass-card effect.
+  const tryInject = () => {
+    const iframe = node.querySelector('iframe') as HTMLIFrameElement | null;
+    if (!iframe) return false;
+    const doc = iframe.contentDocument;
+    if (!doc) return false;
+
+    const id = 'shopify-glass-override';
+    if (doc.getElementById(id)) return true;
+
+    const style = doc.createElement('style');
+    style.id = id;
+    style.textContent = `
+      .shopify-buy__option-select-wrapper {
+        background: rgba(255,255,255,0.06) !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 0.75rem !important;
+      }
+      .shopify-buy__option-select__select {
+        color: #ffffff !important;
+        background: transparent !important;
+        border: 0 !important;
+        border-radius: 0.75rem !important;
+        padding: 10px 12px !important;
+      }
+      .shopify-buy__option-select__select:focus {
+        outline: none !important;
+        box-shadow: inset 0 0 0 2px ${ORANGE_500_20} !important;
+      }
+      .shopify-buy__select-icon {
+        fill: rgba(255,255,255,0.7) !important;
+      }
+      .shopify-buy__btn[disabled],
+      .shopify-buy__btn:disabled {
+        background: #ffffff !important;
+        color: ${GOLD_FOREGROUND} !important;
+        border-radius: 9999px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.08em !important;
+        font-size: 12px !important;
+      }
+      .shopify-buy__product__variant-img {
+        background: ${SLATE_900_50} !important;
+      }
+      .shopify-buy__product__compare-price {
+        color: ${WHITE_55} !important;
+      }
+      .shopify-buy__product__unit-price {
+        color: ${WHITE_55} !important;
+      }
+      @keyframes glassShimmer {
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
+      }
+      .shopify-buy__product::after {
+        animation: glassShimmer 4s ease-in-out infinite !important;
+      }
+    `;
+    doc.head.appendChild(style);
+    return true;
+  };
+
+  // Try immediately and then poll a few times as the SDK builds the iframe.
+  if (tryInject()) return;
+  let attempts = 0;
+  const timer = setInterval(() => {
+    if (tryInject() || attempts++ > 40) clearInterval(timer);
+  }, 100);
+}
 
 export function ShopifyCollection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -68,16 +202,51 @@ export function ShopifyCollection() {
             product: {
               styles: {
                 product: {
-                  // Glass card wrapper, matching merchandise.tsx product cards
-                  'background-color': 'rgba(255,255,255,0.06)',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                  'border-radius': '1.5rem',
-                  padding: '1rem',
+                  // Gilded glass card outer wrapper
+                  position: 'relative',
+                  background: `linear-gradient(180deg, ${WHITE_10} 0%, transparent 60%)`,
+                  border: `1px solid ${ORANGE_500_20}`,
+                  'border-radius': '2.5rem',
+                  padding: '1.5rem',
                   'backdrop-filter': 'blur(24px)',
                   '-webkit-backdrop-filter': 'blur(24px)',
-                  transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)',
+                  overflow: 'hidden',
+                  transition:
+                    'border-color 0.5s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease',
+                  // Inner dark card fill
+                  ':before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: '1px',
+                    left: '1px',
+                    right: '1px',
+                    bottom: '1px',
+                    'border-radius': '2.35rem',
+                    'background-color': SLATE_950_82,
+                    'z-index': '0',
+                    'pointer-events': 'none',
+                  },
+                  // Amber top glow
+                  ':after': {
+                    content: '""',
+                    position: 'absolute',
+                    top: '0',
+                    left: '0',
+                    right: '0',
+                    bottom: '0',
+                    'border-radius': '2.5rem',
+                    background: `radial-gradient(circle at 50% 0%, ${ORANGE_500_25}, transparent 55%)`,
+                    'z-index': '1',
+                    'pointer-events': 'none',
+                    opacity: '0.75',
+                  },
                   ':hover': {
+                    'border-color': ORANGE_500_40,
                     transform: 'translateY(-4px)',
+                    'box-shadow': `0 20px 40px -20px ${ORANGE_500_25}`,
+                    ':after': {
+                      opacity: '1',
+                    },
                   },
                   // Mobile: horizontal scroll carousel cards
                   '@media (max-width: 639px)': {
@@ -112,10 +281,12 @@ export function ShopifyCollection() {
                     'padding-top': '100%',
                     position: 'relative',
                     height: '0',
-                    'border-radius': '1rem',
+                    'border-radius': '1.5rem',
                     overflow: 'hidden',
-                    'background-color': '#000000',
+                    'background-color': SLATE_900_50,
+                    border: `1px solid ${WHITE_05}`,
                     'margin-bottom': '1rem',
+                    'z-index': '2',
                   },
                 },
                 title: {
@@ -124,24 +295,31 @@ export function ShopifyCollection() {
                     '"Chinese Rocks", "Syne", "Bebas Neue", system-ui, sans-serif',
                   'font-weight': '700',
                   'letter-spacing': '-0.02em',
-                  'font-size': '18px',
+                  'font-size': '20px',
+                  'text-transform': 'uppercase',
                   'margin-top': '0.75rem',
+                  'z-index': '2',
+                  position: 'relative',
                   '@media (min-width: 1024px)': {
-                    'font-size': '22px',
+                    'font-size': '24px',
                   },
                 },
                 price: {
-                  color: '#ffffff',
-                  'font-size': '14px',
-                  'font-weight': '500',
+                  color: ORANGE_500,
+                  'font-size': '16px',
+                  'font-weight': '600',
                   'margin-top': '0.25rem',
+                  'margin-bottom': '0.75rem',
+                  'z-index': '2',
+                  position: 'relative',
                 },
                 compareAt: {
-                  color: 'rgba(255,255,255,0.55)',
+                  color: WHITE_55,
                   'text-decoration': 'line-through',
+                  'margin-left': '0.5rem',
                 },
                 unitPrice: {
-                  color: 'rgba(255,255,255,0.55)',
+                  color: WHITE_55,
                 },
                 button: goldButtonStyles,
               },
@@ -182,7 +360,7 @@ export function ShopifyCollection() {
                     '"Chinese Rocks", "Syne", "Bebas Neue", system-ui, sans-serif',
                 },
                 price: {
-                  color: '#ffffff',
+                  color: ORANGE_500,
                 },
                 button: goldButtonStyles,
               },
@@ -193,20 +371,16 @@ export function ShopifyCollection() {
                 label: {
                   color: '#ffffff',
                   'font-family': 'Candara, sans-serif',
-                  'font-size': '13px',
+                  'font-size': '11px',
                   'font-weight': '600',
                   'text-transform': 'uppercase',
-                  'letter-spacing': '0.05em',
+                  'letter-spacing': '0.08em',
                   'margin-bottom': '4px',
+                  'z-index': '2',
+                  position: 'relative',
                 },
-                select: {
-                  color: '#ffffff',
-                  'background-color': 'rgba(255,255,255,0.08)',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  'border-radius': '0.5rem',
-                  padding: '8px 12px',
-                  'font-family': 'Candara, sans-serif',
-                },
+                select: optionSelectStyles,
+                wrapper: optionWrapperStyles,
               },
             },
             cart: {
@@ -227,6 +401,9 @@ export function ShopifyCollection() {
             },
           },
         });
+
+        // Inject extra overrides for SDK elements that don't expose style keys.
+        if (containerRef.current) injectIframeCss(containerRef.current);
       });
     }
 
@@ -260,29 +437,5 @@ export function ShopifyCollection() {
     document.head.appendChild(script);
   }, []);
 
-  return (
-    <>
-      <style>{`
-        .shopify-collection-wrapper .shopify-buy__collection-products {
-          display: flex;
-          flex-wrap: nowrap;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
-          padding-bottom: 0.5rem;
-        }
-        .shopify-collection-wrapper .shopify-buy__collection-products::-webkit-scrollbar {
-          display: none;
-        }
-        @media (min-width: 640px) {
-          .shopify-collection-wrapper .shopify-buy__collection-products {
-            display: block;
-            flex-wrap: wrap;
-            overflow-x: visible;
-          }
-        }
-      `}</style>
-      <div ref={containerRef} className="shopify-collection-wrapper" />
-    </>
-  );
+  return <div ref={containerRef} className="shopify-collection-wrapper" />;
 }
