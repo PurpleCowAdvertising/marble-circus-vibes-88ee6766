@@ -25,14 +25,17 @@ const GOLD_FOREGROUND = 'oklch(0.14 0.012 60)';
 
 const ORANGE_500 = 'rgba(249, 115, 22, 1)';
 const ORANGE_500_20 = 'rgba(249, 115, 22, 0.2)';
+const ORANGE_500_30 = 'rgba(249, 115, 22, 0.3)';
 const ORANGE_500_40 = 'rgba(249, 115, 22, 0.4)';
 const ORANGE_500_12 = 'rgba(249, 115, 22, 0.12)';
+const ORANGE_500_25 = 'rgba(249, 115, 22, 0.25)';
 const SLATE_950_82 = 'rgba(2, 6, 23, 0.82)';
 const SLATE_900_50 = 'rgba(2, 6, 23, 0.5)';
 const WHITE_08 = 'rgba(255, 255, 255, 0.08)';
 const WHITE_10 = 'rgba(255, 255, 255, 0.1)';
 const WHITE_15 = 'rgba(255, 255, 255, 0.15)';
 const WHITE_05 = 'rgba(255, 255, 255, 0.05)';
+const WHITE_55 = 'rgba(255, 255, 255, 0.55)';
 
 const goldButtonStyles = {
   'background-color': GOLD,
@@ -73,20 +76,93 @@ const goldButtonStyles = {
   },
 };
 
-const optionSelectStyles = {
-  color: '#ffffff',
+const optionWrapperStyles = {
   'background-color': 'rgba(255,255,255,0.06)',
   border: '1px solid rgba(255,255,255,0.15)',
+  'border-radius': '0.75rem',
+  padding: '0',
+  'z-index': '2',
+  position: 'relative',
+};
+
+const optionSelectStyles = {
+  color: '#ffffff',
+  'background-color': 'transparent',
+  border: '0',
   'border-radius': '0.75rem',
   padding: '10px 12px',
   'font-family': 'Candara, sans-serif',
   'font-size': '13px',
+  width: '100%',
   ':focus': {
-    'border-color': ORANGE_500_40,
     outline: 'none',
-    'box-shadow': `0 0 0 2px ${ORANGE_500_20}`,
+    'box-shadow': `inset 0 0 0 2px ${ORANGE_500_20}`,
   },
 };
+
+function injectIframeCss(node: HTMLElement) {
+  // The Shopify Buy Button renders inside a same-origin iframe that the SDK
+  // creates without a src attribute. We can inject an extra stylesheet to style
+  // elements that the SDK's `styles` object does not expose (disabled button
+  // state, dropdown chevron, etc.) and to strengthen the glass-card effect.
+  const tryInject = () => {
+    const iframe = node.querySelector('iframe') as HTMLIFrameElement | null;
+    if (!iframe) return false;
+    const doc = iframe.contentDocument;
+    if (!doc) return false;
+
+    const id = 'shopify-glass-override';
+    if (doc.getElementById(id)) return true;
+
+    const style = doc.createElement('style');
+    style.id = id;
+    style.textContent = `
+      .shopify-buy__option-select-wrapper {
+        background: rgba(255,255,255,0.06) !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 0.75rem !important;
+      }
+      .shopify-buy__option-select__select {
+        color: #ffffff !important;
+        background: transparent !important;
+        border: 0 !important;
+        border-radius: 0.75rem !important;
+        padding: 10px 12px !important;
+      }
+      .shopify-buy__option-select__select:focus {
+        outline: none !important;
+        box-shadow: inset 0 0 0 2px ${ORANGE_500_20} !important;
+      }
+      .shopify-buy__select-icon {
+        fill: rgba(255,255,255,0.7) !important;
+      }
+      .shopify-buy__btn[disabled],
+      .shopify-buy__btn:disabled {
+        background: rgba(255,255,255,0.15) !important;
+        color: rgba(255,255,255,0.6) !important;
+        border-radius: 9999px !important;
+      }
+      .shopify-buy__product__variant-img {
+        background: ${SLATE_900_50} !important;
+      }
+      .shopify-buy__product__compare-price {
+        color: ${WHITE_55} !important;
+      }
+      .shopify-buy__product__unit-price {
+        color: ${WHITE_55} !important;
+      }
+    `;
+    doc.head.appendChild(style);
+    return true;
+  };
+
+  // Try immediately and then poll a few times as the SDK builds the iframe.
+  if (tryInject()) return;
+  let attempts = 0;
+  const timer = setInterval(() => {
+    if (tryInject() || attempts++ > 40) clearInterval(timer);
+  }, 100);
+}
 
 export function ShopifyCollection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -124,7 +200,7 @@ export function ShopifyCollection() {
                   '-webkit-backdrop-filter': 'blur(24px)',
                   overflow: 'hidden',
                   transition:
-                    'border-color 0.5s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1)',
+                    'border-color 0.5s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease',
                   // Inner dark card fill
                   ':before': {
                     content: '""',
@@ -147,14 +223,15 @@ export function ShopifyCollection() {
                     right: '0',
                     bottom: '0',
                     'border-radius': '2.5rem',
-                    background: `radial-gradient(circle at 50% 0%, ${ORANGE_500_12}, transparent 60%)`,
+                    background: `radial-gradient(circle at 50% 0%, ${ORANGE_500_25}, transparent 55%)`,
                     'z-index': '1',
                     'pointer-events': 'none',
-                    opacity: '0.8',
+                    opacity: '0.75',
                   },
                   ':hover': {
                     'border-color': ORANGE_500_40,
                     transform: 'translateY(-4px)',
+                    'box-shadow': `0 20px 40px -20px ${ORANGE_500_25}`,
                     ':after': {
                       opacity: '1',
                     },
@@ -225,12 +302,12 @@ export function ShopifyCollection() {
                   position: 'relative',
                 },
                 compareAt: {
-                  color: 'rgba(255,255,255,0.55)',
+                  color: WHITE_55,
                   'text-decoration': 'line-through',
                   'margin-left': '0.5rem',
                 },
                 unitPrice: {
-                  color: 'rgba(255,255,255,0.55)',
+                  color: WHITE_55,
                 },
                 button: goldButtonStyles,
               },
@@ -291,10 +368,7 @@ export function ShopifyCollection() {
                   position: 'relative',
                 },
                 select: optionSelectStyles,
-                wrapper: {
-                  'z-index': '2',
-                  position: 'relative',
-                },
+                wrapper: optionWrapperStyles,
               },
             },
             cart: {
@@ -315,6 +389,9 @@ export function ShopifyCollection() {
             },
           },
         });
+
+        // Inject extra overrides for SDK elements that don't expose style keys.
+        if (containerRef.current) injectIframeCss(containerRef.current);
       });
     }
 
