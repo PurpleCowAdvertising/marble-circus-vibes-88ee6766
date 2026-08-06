@@ -304,6 +304,66 @@ function injectIframeCss(node: HTMLElement) {
       .shopify-buy__product-description * {
         color: rgba(255,255,255,0.75) !important;
       }
+      /* Mobile product/preview modal: keep it a contained card, not full-bleed */
+      @media (max-width: 639px) {
+        body.is-active {
+          background: rgba(2, 6, 23, 0.72) !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          padding: 16px !important;
+          height: 100vh !important;
+          overflow: hidden !important;
+        }
+        body.is-active .shopify-buy__modal,
+        .shopify-buy__modal,
+        .shopify-buy-modal {
+          width: 100% !important;
+          max-width: calc(100% - 32px) !important;
+          min-height: auto !important;
+          max-height: calc(100vh - 32px) !important;
+          margin: auto !important;
+          position: relative !important;
+          top: auto !important;
+          left: auto !important;
+          right: auto !important;
+          bottom: auto !important;
+          border-radius: 20px !important;
+          overflow-y: auto !important;
+          background: rgba(2, 6, 23, 0.96) !important;
+          border: 1px solid rgba(249, 115, 22, 0.2) !important;
+        }
+        .shopify-buy__modal .shopify-buy__product,
+        .shopify-buy-modal .shopify-buy__product,
+        .shopify-buy__modal-product-wrapper .shopify-buy__product,
+        .shopify-buy__product {
+          position: relative !important;
+          top: auto !important;
+          left: auto !important;
+          padding: 20px !important;
+          width: 100% !important;
+        }
+        .shopify-buy__modal .shopify-buy__product__variant-img,
+        .shopify-buy__modal .main-image-wrapper img,
+        .shopify-buy__modal .shopify-buy__product-img-wrapper img,
+        .shopify-buy-modal .shopify-buy__product__variant-img {
+          max-height: 42vh !important;
+          margin: 0 auto !important;
+        }
+        .shopify-buy__modal .shopify-buy__carousel,
+        .shopify-buy-modal .shopify-buy__carousel {
+          margin-left: 0 !important;
+        }
+        .shopify-buy__btn--close {
+          position: absolute !important;
+          top: 8px !important;
+          right: 8px !important;
+          color: rgba(255, 255, 255, 0.8) !important;
+          font-size: 32px !important;
+          line-height: 1 !important;
+          z-index: 10 !important;
+        }
+      }
     `;
 
       doc.head.appendChild(style);
