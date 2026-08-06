@@ -364,6 +364,116 @@ function injectIframeCss(node: HTMLElement) {
           z-index: 10 !important;
         }
       }
+
+      /* ---------- Cart drawer: dark glass to match the site ---------- */
+      .shopify-buy__cart-wrapper,
+      .shopify-buy__cart,
+      .shopify-buy__cart-scroll {
+        background: rgba(2, 6, 23, 0.97) !important;
+        color: #ffffff !important;
+      }
+      .shopify-buy__cart {
+        border-left: 1px solid ${ORANGE_500_20} !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+      }
+      .shopify-buy__cart-title {
+        font-family: ${FONT_DISPLAY} !important;
+        color: #ffffff !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.06em !important;
+        font-size: 20px !important;
+      }
+      .shopify-buy__cart *,
+      .shopify-buy__cart-item * {
+        font-family: ${FONT_SANS};
+      }
+      .shopify-buy__cart-item,
+      .shopify-buy__cart-item__title,
+      .shopify-buy__cart-item__variant-title,
+      .shopify-buy__cart-item__quantity,
+      .shopify-buy__cart-empty-text,
+      .shopify-buy__cart__subtotal__text,
+      .shopify-buy__cart__notice {
+        color: #ffffff !important;
+      }
+      .shopify-buy__cart-item {
+        border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+        padding-bottom: 16px !important;
+      }
+      .shopify-buy__cart-item__variant-title,
+      .shopify-buy__cart-empty-text,
+      .shopify-buy__cart__notice {
+        color: rgba(255,255,255,0.65) !important;
+      }
+      .shopify-buy__cart-item__price,
+      .shopify-buy__cart__subtotal__price {
+        color: ${GOLD} !important;
+        font-weight: 700 !important;
+      }
+      .shopify-buy__cart-item__image {
+        border-radius: 12px !important;
+        background-color: ${SLATE_900_50} !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+      .shopify-buy__quantity-container,
+      .shopify-buy__cart-item__quantity-container {
+        border: 1px solid rgba(255,255,255,0.18) !important;
+        border-radius: 9999px !important;
+        overflow: hidden !important;
+        background: rgba(255,255,255,0.05) !important;
+      }
+      .shopify-buy__quantity-increment,
+      .shopify-buy__quantity-decrement {
+        background: transparent !important;
+        color: #ffffff !important;
+        fill: #ffffff !important;
+        border: 0 !important;
+      }
+      .shopify-buy__quantity-increment svg,
+      .shopify-buy__quantity-decrement svg {
+        fill: #ffffff !important;
+      }
+      .shopify-buy__quantity {
+        background: transparent !important;
+        border: 0 !important;
+        color: #ffffff !important;
+      }
+      .shopify-buy__cart-bottom {
+        background: rgba(2, 6, 23, 0.98) !important;
+        border-top: 1px solid rgba(255,255,255,0.1) !important;
+        box-shadow: 0 -12px 30px rgba(0,0,0,0.5) !important;
+      }
+      .shopify-buy__btn--cart-checkout,
+      .shopify-buy__cart .shopify-buy__btn {
+        background: ${GOLD} !important;
+        color: ${GOLD_FOREGROUND} !important;
+        border-radius: 9999px !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.1em !important;
+        width: 100% !important;
+      }
+      .shopify-buy__btn--cart-checkout:hover,
+      .shopify-buy__cart .shopify-buy__btn:hover {
+        background: ${GOLD_HOVER} !important;
+      }
+      /* Close (×) control */
+      .shopify-buy__cart .shopify-buy__btn--close,
+      .shopify-buy__btn--close {
+        color: rgba(255,255,255,0.85) !important;
+        font-size: 30px !important;
+        line-height: 1 !important;
+        background: transparent !important;
+        border: 0 !important;
+        opacity: 1 !important;
+      }
+      .shopify-buy__cart-item__quantity-increment,
+      .shopify-buy__cart-item__quantity-decrement {
+        color: #ffffff !important;
+        fill: #ffffff !important;
+      }
     `;
 
       doc.head.appendChild(style);
@@ -760,12 +870,59 @@ export function ShopifyCollection() {
               },
             },
             cart: {
-
               styles: {
+                cart: {
+                  'background-color': 'rgba(2, 6, 23, 0.97)',
+                  'border-left': `1px solid ${ORANGE_500_20}`,
+                },
+                header: { 'background-color': 'transparent' },
+                title: {
+                  color: '#ffffff',
+                  'font-family': FONT_DISPLAY,
+                  'text-transform': 'uppercase',
+                  'letter-spacing': '0.06em',
+                },
+                lineItems: { 'background-color': 'transparent' },
+                subtotalText: { color: '#ffffff', 'font-family': FONT_SANS },
+                subtotal: { color: GOLD, 'font-family': FONT_SANS },
+                notice: { color: 'rgba(255,255,255,0.6)' },
+                currency: { color: GOLD },
+                close: { color: '#ffffff', ':hover': { color: GOLD } },
+                empty: { color: 'rgba(255,255,255,0.7)' },
+                footer: { 'background-color': 'rgba(2, 6, 23, 0.98)' },
                 button: goldButtonStyles,
               },
-              text: { total: 'Subtotal', button: 'Checkout' },
+              text: {
+                title: 'Your Cart',
+                empty: 'Your cart is empty.',
+                total: 'Subtotal',
+                button: 'Checkout',
+                notice: 'Shipping and discounts calculated at checkout.',
+              },
               popup: false,
+            },
+            lineItem: {
+              styles: {
+                title: { color: '#ffffff', 'font-family': FONT_SANS },
+                variantTitle: { color: 'rgba(255,255,255,0.6)' },
+                price: { color: GOLD, 'font-weight': '700' },
+                fullPrice: { color: 'rgba(255,255,255,0.5)' },
+                discount: { color: GOLD },
+                discountIcon: { fill: GOLD },
+                quantity: { color: '#ffffff' },
+                quantityIncrement: {
+                  color: '#ffffff',
+                  'border-color': 'rgba(255,255,255,0.25)',
+                },
+                quantityDecrement: {
+                  color: '#ffffff',
+                  'border-color': 'rgba(255,255,255,0.25)',
+                },
+                quantityInput: {
+                  color: '#ffffff',
+                  'border-color': 'rgba(255,255,255,0.25)',
+                },
+              },
             },
             toggle: {
               styles: {
