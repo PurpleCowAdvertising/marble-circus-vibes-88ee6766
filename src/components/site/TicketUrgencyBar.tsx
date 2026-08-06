@@ -6,7 +6,7 @@ import { TICKETS_URL } from "./FieldTicketsPopup";
 
 const SESSION_KEY = "sk_ticket_bar_dismissed";
 export const TICKET_BAR_EVENT = "sk-ticket-bar";
-const BAR_OFFSET = 64;
+const BAR_OFFSET = 120;
 
 export function TicketUrgencyBar() {
   const [dismissed, setDismissed] = useState(true);

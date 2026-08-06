@@ -27,10 +27,10 @@ export function LaunchCountdown() {
   const [isMobile, setIsMobile] = useState(false);
   const [vh, setVh] = useState(0);
   const [footerVisible, setFooterVisible] = useState(false);
-  const [barActive, setBarActive] = useState(false);
+  const [barOffset, setBarOffset] = useState(0);
 
   useEffect(() => {
-    const onBar = (event: Event) => setBarActive(Boolean((event as CustomEvent).detail));
+    const onBar = (event: Event) => setBarOffset(Number((event as CustomEvent).detail) || 0);
     window.addEventListener("sk-ticket-bar", onBar as EventListener);
     return () => window.removeEventListener("sk-ticket-bar", onBar as EventListener);
   }, []);
@@ -99,10 +99,11 @@ export function LaunchCountdown() {
   const restBottom = isMobile
     ? Math.max(24, vh * 0.3 - 208)
     : Math.max(24, vh * 0.3 - 26 - 52);
-  const bottom = restBottom + (24 - restBottom) * ease;
+  const bottom = restBottom + (24 - restBottom) * ease + barOffset;
 
-  // Never fully disappears — fades to ~55% on scroll.
+  // Never fully disappears — fades to ~55% on scroll; ghosted to ~35% when ticket bar is active.
   const opacity = 1 - 0.45 * ease;
+  const activeOpacity = 0.35;
 
   return (
     <AnimatePresence>
@@ -111,17 +112,17 @@ export function LaunchCountdown() {
           key="sk-countdown"
           initial={false}
           animate={{
-            opacity: footerVisible || barActive ? 0 : opacity,
+            opacity: footerVisible ? 0 : barOffset > 0 ? activeOpacity : opacity,
             bottom,
-            scale: barActive ? 0.9 : 1,
-            filter: barActive ? "blur(6px)" : "blur(0px)",
+            scale: barOffset > 0 ? 0.9 : 1,
+            filter: barOffset > 0 ? "blur(6px)" : "blur(0px)",
           }}
           exit={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="pointer-events-none fixed inset-x-0 z-[80] flex flex-col items-center px-4"
           style={{
             visibility: footerVisible ? "hidden" : "visible",
-            pointerEvents: barActive ? "none" : undefined,
+            pointerEvents: barOffset > 0 ? "none" : undefined,
           }}
           aria-live="polite"
         >
