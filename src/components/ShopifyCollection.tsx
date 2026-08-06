@@ -313,9 +313,148 @@ function injectIframeCss(node: HTMLElement) {
 }
 
 
+// Start downloading the Buy Button SDK as soon as this module is imported so
+// the widget can paint almost immediately once the section mounts.
+let sdkPromise: Promise<void> | null = null;
+function loadSdk(): Promise<void> {
+  if (typeof window === 'undefined') return new Promise(() => {});
+  if (sdkPromise) return sdkPromise;
+  sdkPromise = new Promise<void>((resolve) => {
+    const waitForUi = () => {
+      if (window.ShopifyBuy?.UI) return resolve();
+      const t = setInterval(() => {
+        if (window.ShopifyBuy?.UI) {
+          clearInterval(t);
+          resolve();
+        }
+      }, 30);
+    };
+    if (window.ShopifyBuy) return waitForUi();
+    const existing = document.querySelector(
+      `script[src="${SHOPIFY_SCRIPT_URL}"]`
+    ) as HTMLScriptElement | null;
+    if (existing) {
+      existing.addEventListener('load', waitForUi);
+      return;
+    }
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = SHOPIFY_SCRIPT_URL;
+    script.onload = waitForUi;
+    document.head.appendChild(script);
+  });
+  return sdkPromise;
+}
+if (typeof window !== 'undefined') {
+  // Kick off the download immediately (non-blocking).
+  loadSdk();
+}
+
+type StockMap = Record<string, boolean>;
+
+// Fetch live availability straight from the Storefront API so we can mark
+// sold-out products and push them to the end of the mobile carousel.
+async function fetchAvailability(): Promise<StockMap> {
+  const query = `{
+    collection(id: "gid://shopify/Collection/${COLLECTION_ID}") {
+      products(first: 60) { nodes { title availableForSale } }
+    }
+  }`;
+  try {
+    const res = await fetch(
+      `https://${SHOPIFY_DOMAIN}/api/2024-07/graphql.json`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN,
+        },
+        body: JSON.stringify({ query }),
+      }
+    );
+    const json = await res.json();
+    const nodes = json?.data?.collection?.products?.nodes ?? [];
+    const map: StockMap = {};
+    for (const n of nodes) {
+      map[String(n.title).trim().toLowerCase()] = !!n.availableForSale;
+    }
+    return map;
+  } catch {
+    return {};
+  }
+}
+
+function applyStockState(node: HTMLElement, onReady: () => void) {
+  let stock: StockMap | null = null;
+  let notified = false;
+  fetchAvailability().then((m) => {
+    stock = m;
+  });
+
+  const isMobile = () =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 639px)').matches;
+
+  const apply = () => {
+    const iframe = node.querySelector('iframe') as HTMLIFrameElement | null;
+    const doc = iframe?.contentDocument;
+    if (!doc) return false;
+    const products = Array.from(
+      doc.querySelectorAll('.shopify-buy__product')
+    ) as HTMLElement[];
+    if (!products.length) return false;
+
+    if (!notified) {
+      notified = true;
+      onReady();
+    }
+    if (!stock) return false;
+
+    const soldOut: HTMLElement[] = [];
+    for (const el of products) {
+      const title = (
+        el.querySelector('.shopify-buy__product__title')?.textContent ?? ''
+      )
+        .trim()
+        .toLowerCase();
+      const available = stock[title];
+      if (available === false) {
+        soldOut.push(el);
+        el.setAttribute('data-sold-out', 'true');
+        const btn = el.querySelector(
+          '.shopify-buy__btn'
+        ) as HTMLButtonElement | null;
+        if (btn && btn.textContent?.trim() !== 'Out of stock') {
+          btn.textContent = 'Out of stock';
+          btn.setAttribute('disabled', 'disabled');
+        }
+      } else if (available === true) {
+        el.removeAttribute('data-sold-out');
+      }
+    }
+
+    // On mobile, in-stock items lead the carousel; sold-out ones go last.
+    if (isMobile() && soldOut.length) {
+      for (const el of soldOut) {
+        const parent = el.parentElement;
+        if (parent && parent.lastElementChild !== el) parent.appendChild(el);
+      }
+    }
+    return true;
+  };
+
+  apply();
+  let attempts = 0;
+  const timer = setInterval(() => {
+    apply();
+    if (attempts++ > 120) clearInterval(timer);
+  }, 250);
+}
+
 export function ShopifyCollection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const hasInitialized = useRef(false);
+  const [ready, setReady] = useState(false);
+
 
   useEffect(() => {
     // Guard against React StrictMode double-invoking effects in dev,
