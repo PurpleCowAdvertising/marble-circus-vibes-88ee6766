@@ -175,10 +175,14 @@ export function MerchCTA() {
   }, [smoothScrollTo]);
 
   const handleClick = useCallback(() => {
+    const countNow = getCartCount();
+    console.log('MerchCTA click', { countNow, expanded, reached: reachedMerch.current });
     // If the cart already has items, the CTA becomes the cart opener.
-    if (getCartCount() > 0) {
+    if (countNow > 0) {
       expandTemporarily(1400);
-      if (openCart()) return;
+      const opened = openCart();
+      console.log('MerchCTA openCart', opened);
+      if (opened) return;
     }
 
     // Touch devices have no hover: the first tap reveals the preview,
