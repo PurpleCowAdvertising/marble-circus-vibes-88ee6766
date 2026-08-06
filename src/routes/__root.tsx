@@ -180,6 +180,18 @@ function ScrollToTop() {
     select: (state) => state.location.hash,
   });
 
+  // Disable browser scroll restoration and force the top of the page on every
+  // fresh load/reload so visitors always land on the hero, never mid-page.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
+
   useEffect(() => {
     if (hash) {
       const id = hash.replace(/^#/, "");
