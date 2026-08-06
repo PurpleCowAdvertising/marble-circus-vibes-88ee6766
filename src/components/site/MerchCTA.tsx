@@ -76,8 +76,9 @@ export function MerchCTA() {
         autoTimer.current = window.setTimeout(() => {
           setExpanded(false);
           setFirstReveal(false);
-        }, 2800);
-      }, 900);
+        }, 4200);
+      }, 1300);
+
     }
 
     const onScroll = () => {
