@@ -119,8 +119,10 @@ export function LaunchCountdown() {
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="pointer-events-none fixed inset-x-0 z-[80] flex flex-col items-center px-4"
-          style={{ visibility: footerVisible || barActive ? "hidden" : "visible" }}
-          aria-live="polite"
+          style={{
+            visibility: footerVisible ? "hidden" : "visible",
+            pointerEvents: barActive ? "none" : undefined,
+          }}
         >
 
           <span className="mb-2 rounded-full bg-black/55 px-3 py-1 font-display text-[10px] font-bold uppercase tracking-[0.28em] text-gold shadow-[0_8px_20px_-8px_rgba(0,0,0,0.55)] backdrop-blur-md sm:hidden">
