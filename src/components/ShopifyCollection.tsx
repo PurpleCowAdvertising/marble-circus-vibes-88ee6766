@@ -276,7 +276,14 @@ export function ShopifyCollection() {
           moneyFormat: 'R%20%7B%7Bamount%7D%7D',
           options: {
             product: {
+              // Colour / size are chosen in the product detail view instead of
+              // on the card, keeping the grid cards compact.
+              buttonDestination: 'modal',
+              contents: {
+                options: false,
+              },
               styles: {
+
                 product: {
                   // Gilded glass card outer wrapper
                   position: 'relative',
