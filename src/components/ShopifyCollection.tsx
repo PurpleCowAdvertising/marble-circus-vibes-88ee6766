@@ -498,6 +498,13 @@ function applyStockState(node: HTMLElement, onReady: () => void) {
         }
       } else if (available === true) {
         el.removeAttribute('data-sold-out');
+        const btn = el.querySelector(
+          '.shopify-buy__btn'
+        ) as HTMLButtonElement | null;
+        if (btn && btn.textContent?.trim() !== 'Cart') {
+          btn.textContent = 'Cart';
+          btn.removeAttribute('disabled');
+        }
       }
     }
 
@@ -681,7 +688,7 @@ export function ShopifyCollection() {
                 },
                 button: goldButtonStyles,
               },
-              text: { button: 'Select options' },
+              text: { button: 'Cart' },
 
             },
             productSet: {
@@ -724,7 +731,7 @@ export function ShopifyCollection() {
                 },
                 button: goldButtonStyles,
               },
-              text: { button: 'Add to cart' },
+              text: { button: 'Cart' },
             },
             option: {
               styles: {
