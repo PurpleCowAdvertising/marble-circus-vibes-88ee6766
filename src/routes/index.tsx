@@ -218,6 +218,9 @@ function HomePage() {
 
   return (
     <PageGate keyName="page:home">
+      <FieldTicketsPopup />
+
+
 
       <VisibilityGate keyName="section:home.hero">
       <section ref={heroRef} aria-labelledby="hero-heading" className="relative isolate z-0 overflow-hidden bg-black">
