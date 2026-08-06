@@ -79,6 +79,15 @@ export function ShopifyCollection() {
                   ':hover': {
                     transform: 'translateY(-4px)',
                   },
+                  // Mobile: horizontal scroll carousel cards
+                  '@media (max-width: 639px)': {
+                    'max-width': '280px',
+                    'min-width': '280px',
+                    width: '280px',
+                    'margin-bottom': '0',
+                    'margin-right': '16px',
+                    flex: '0 0 280px',
+                  },
                   '@media (min-width: 640px)': {
                     'max-width': 'calc(50% - 24px)',
                     'margin-left': '24px',
@@ -141,6 +150,13 @@ export function ShopifyCollection() {
             productSet: {
               styles: {
                 products: {
+                  '@media (max-width: 639px)': {
+                    display: 'flex',
+                    'flex-wrap': 'nowrap',
+                    'overflow-x': 'auto',
+                    '-webkit-overflow-scrolling': 'touch',
+                    'scrollbar-width': 'none',
+                  },
                   '@media (min-width: 640px)': { 'margin-left': '-24px' },
                 },
               },
@@ -244,5 +260,29 @@ export function ShopifyCollection() {
     document.head.appendChild(script);
   }, []);
 
-  return <div ref={containerRef} />;
+  return (
+    <>
+      <style>{`
+        .shopify-collection-wrapper .shopify-buy__collection-products {
+          display: flex;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          padding-bottom: 0.5rem;
+        }
+        .shopify-collection-wrapper .shopify-buy__collection-products::-webkit-scrollbar {
+          display: none;
+        }
+        @media (min-width: 640px) {
+          .shopify-collection-wrapper .shopify-buy__collection-products {
+            display: block;
+            flex-wrap: wrap;
+            overflow-x: visible;
+          }
+        }
+      `}</style>
+      <div ref={containerRef} className="shopify-collection-wrapper" />
+    </>
+  );
 }
