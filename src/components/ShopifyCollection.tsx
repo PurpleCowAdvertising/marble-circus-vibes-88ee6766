@@ -468,7 +468,19 @@ function injectIframeCss(node: HTMLElement) {
         line-height: 1 !important;
         background: transparent !important;
         border: 0 !important;
+        box-shadow: none !important;
+        outline: none !important;
         opacity: 1 !important;
+        transition: color 0.2s ease !important;
+      }
+      .shopify-buy__cart .shopify-buy__btn--close:hover,
+      .shopify-buy__btn--close:hover {
+        color: ${GOLD} !important;
+      }
+      .shopify-buy__btn--close svg,
+      .shopify-buy__btn--close path {
+        fill: currentColor !important;
+        stroke: none !important;
       }
       .shopify-buy__cart-item__quantity-increment,
       .shopify-buy__cart-item__quantity-decrement {
