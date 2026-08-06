@@ -23,7 +23,6 @@ const GOLD = 'oklch(0.83 0.16 80)';
 const GOLD_HOVER = 'oklch(0.88 0.16 80)';
 const GOLD_FOREGROUND = 'oklch(0.14 0.012 60)';
 
-const ORANGE_500 = 'rgba(249, 115, 22, 1)';
 const ORANGE_500_20 = 'rgba(249, 115, 22, 0.2)';
 const ORANGE_500_30 = 'rgba(249, 115, 22, 0.3)';
 const ORANGE_500_40 = 'rgba(249, 115, 22, 0.4)';
