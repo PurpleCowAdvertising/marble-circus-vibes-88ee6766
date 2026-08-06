@@ -150,6 +150,13 @@ export function ShopifyCollection() {
             productSet: {
               styles: {
                 products: {
+                  '@media (max-width: 639px)': {
+                    display: 'flex',
+                    'flex-wrap': 'nowrap',
+                    'overflow-x': 'auto',
+                    '-webkit-overflow-scrolling': 'touch',
+                    'scrollbar-width': 'none',
+                  },
                   '@media (min-width: 640px)': { 'margin-left': '-24px' },
                 },
               },
