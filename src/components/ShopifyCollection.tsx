@@ -307,7 +307,7 @@ function injectIframeCss(node: HTMLElement) {
       /* Mobile product/preview modal: keep it a contained card, not full-bleed */
       @media (max-width: 639px) {
         body.is-active {
-          background: rgba(2, 6, 23, 0.72) !important;
+          background: rgba(2, 6, 23, 0.94) !important;
           display: flex !important;
           align-items: center !important;
           justify-content: center !important;
