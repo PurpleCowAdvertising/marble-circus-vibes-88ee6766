@@ -560,39 +560,49 @@ export function ShopifyCollection() {
         });
 
         // Inject extra overrides for SDK elements that don't expose style keys.
-        if (containerRef.current) injectIframeCss(containerRef.current);
+        if (containerRef.current) {
+          injectIframeCss(containerRef.current);
+          applyStockState(containerRef.current, () => setReady(true));
+        }
       });
     }
 
-    if (window.ShopifyBuy?.UI) {
-      renderCollection();
-      return;
-    }
-
-    if (window.ShopifyBuy) {
-      const interval = setInterval(() => {
-        if (window.ShopifyBuy.UI) {
-          clearInterval(interval);
-          renderCollection();
-        }
-      }, 50);
-      return () => clearInterval(interval);
-    }
-
-    const existing = document.querySelector(
-      `script[src="${SHOPIFY_SCRIPT_URL}"]`
-    );
-    if (existing) {
-      existing.addEventListener('load', renderCollection);
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = SHOPIFY_SCRIPT_URL;
-    script.onload = renderCollection;
-    document.head.appendChild(script);
+    loadSdk().then(renderCollection);
   }, []);
 
-  return <div ref={containerRef} className="shopify-collection-wrapper" />;
+  return (
+    <div className="relative">
+      {!ready && <CollectionSkeleton />}
+      <div
+        ref={containerRef}
+        className="shopify-collection-wrapper"
+        style={{
+          opacity: ready ? 1 : 0,
+          transition: 'opacity 300ms ease',
+        }}
+      />
+    </div>
+  );
 }
+
+function CollectionSkeleton() {
+  return (
+    <div
+      aria-hidden
+      className="flex gap-4 overflow-hidden sm:grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
+    >
+      {Array.from({ length: 4 }).map((_, i) => (
+        <div
+          key={i}
+          className="w-[280px] shrink-0 rounded-[2.5rem] border border-orange-500/20 bg-slate-950/80 p-6 sm:w-auto"
+        >
+          <div className="aspect-square w-full animate-pulse rounded-3xl bg-white/[0.06]" />
+          <div className="mt-4 h-5 w-3/4 animate-pulse rounded bg-white/[0.08]" />
+          <div className="mt-2 h-4 w-1/3 animate-pulse rounded bg-white/[0.06]" />
+          <div className="mt-4 h-10 w-full animate-pulse rounded-full bg-white/[0.06]" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
