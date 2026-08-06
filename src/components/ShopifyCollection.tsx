@@ -76,29 +76,40 @@ const goldButtonStyles = {
   },
 };
 
+const FONT_SANS =
+  '"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+const FONT_DISPLAY =
+  '"Chinese Rocks", "Syne", "Bebas Neue", system-ui, sans-serif';
+
 const optionWrapperStyles = {
-  'background-color': 'rgba(255,255,255,0.06)',
-  border: '1px solid rgba(255,255,255,0.15)',
-  'border-radius': '0.75rem',
+  'background-color': 'rgba(255,255,255,0.05)',
+  border: '1px solid rgba(255,255,255,0.12)',
+  'border-radius': '9999px',
   padding: '0',
+  margin: '0',
   'z-index': '2',
   position: 'relative',
+  display: 'inline-block',
+  width: '48%',
+  'vertical-align': 'top',
 };
 
 const optionSelectStyles = {
   color: '#ffffff',
   'background-color': 'transparent',
   border: '0',
-  'border-radius': '0.75rem',
-  padding: '10px 12px',
-  'font-family': 'Candara, sans-serif',
-  'font-size': '13px',
+  'border-radius': '9999px',
+  padding: '6px 26px 6px 12px',
+  'font-family': FONT_SANS,
+  'font-size': '12px',
+  height: '32px',
   width: '100%',
   ':focus': {
     outline: 'none',
     'box-shadow': `inset 0 0 0 2px ${ORANGE_500_20}`,
   },
 };
+
 
 function injectIframeCss(node: HTMLElement) {
   // The Shopify Buy Button renders inside a same-origin iframe that the SDK
