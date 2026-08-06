@@ -19,8 +19,8 @@ export function FieldTicketsPopup() {
     if (sessionStorage.getItem(SESSION_KEY)) return;
 
     const id = window.setTimeout(() => {
-      // Don't interrupt an already-open overlay (cart drawer, other modal).
-      if (document.querySelector('[role="dialog"], .shopify-buy-modal, .shopify-buy__cart--visible')) return;
+      // Don't interrupt an open Shopify overlay (cart drawer / product modal).
+      if (document.querySelector(".shopify-buy-modal, .shopify-buy__cart--visible")) return;
       setOpen(true);
     }, 4000);
 
