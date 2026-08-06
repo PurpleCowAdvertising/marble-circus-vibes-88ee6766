@@ -153,6 +153,7 @@ export function Reveal({
   rootMargin?: string;
 } & Record<string, unknown>) {
   const groupInView = useContext(RevealContext);
+  const nested = useContext(NestedRevealContext);
   const own = useInView<HTMLElement>(threshold, rootMargin);
   const inView = groupInView === null ? own.inView : groupInView;
   const isHome = useRouterState({ select: (state) => state.location.pathname === "/" });
@@ -161,18 +162,22 @@ export function Reveal({
   const [phase, setPhase] = useState<"idle" | "hidden" | "shown">("idle");
   const [animating, setAnimating] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  // Scroll-linked opacity only on the outermost Reveal, and never for
+  // reduced-motion users (nested opacity multiplies and dims content).
+  const [scrollLinked, setScrollLinked] = useState(false);
   const reduced = useRef(false);
   const lowEnd = useRef(false);
-  const scrollRef = useScrollRatio<HTMLElement>(isMobile);
+  const scrollRef = useScrollRatio<HTMLElement>(scrollLinked);
 
   useLayoutEffect(() => {
     reduced.current = prefersReducedMotion();
     const mobile = isLiteDevice();
     lowEnd.current = isLowEndDevice();
     setIsMobile(mobile);
+    setScrollLinked(mobile && !reduced.current && !nested);
     if (reduced.current || mobile) return;
     setPhase("hidden");
-  }, []);
+  }, [nested]);
 
   const effectiveDelay = isMobile ? 0 : lowEnd.current ? 0 : Math.round(delay * 0.5);
 
