@@ -44,6 +44,15 @@ export function MerchCTA() {
   // Cart count
   useEffect(() => subscribeCartCount(setCount), []);
 
+  // Merch preview thumbnail (loaded lazily, after first paint).
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      fetchFeaturedMerch().then((f) => f && setFeatured(f));
+    }, 1200);
+    return () => window.clearTimeout(id);
+  }, []);
+
+
   // Mount-in slide, then the one-time auto-expand.
   useEffect(() => {
     const seen =
