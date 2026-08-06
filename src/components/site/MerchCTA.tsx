@@ -187,7 +187,7 @@ export function MerchCTA() {
           className={[
             'pointer-events-none absolute bottom-full right-2 mb-3',
             'w-28 overflow-hidden rounded-2xl border border-white/15',
-            'bg-background/70 p-2 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.85)] backdrop-blur-xl',
+            'bg-neutral-950/85 p-2 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.85)] backdrop-blur-xl',
             'transition-[opacity,transform] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
             expanded && featured
               ? 'translate-y-0 scale-100 opacity-100'
@@ -202,7 +202,7 @@ export function MerchCTA() {
                 loading="lazy"
                 className="aspect-square w-full rounded-xl object-cover"
               />
-              <p className="mt-1.5 truncate text-center text-[9px] font-semibold uppercase tracking-[0.12em] text-foreground/80">
+              <p className="mt-1.5 truncate text-center text-[9px] font-semibold uppercase tracking-[0.12em] text-white/85">
                 {featured.title}
               </p>
             </>
