@@ -27,10 +27,10 @@ export function LaunchCountdown() {
   const [isMobile, setIsMobile] = useState(false);
   const [vh, setVh] = useState(0);
   const [footerVisible, setFooterVisible] = useState(false);
-  const [barOffset, setBarOffset] = useState(0);
+  const [barActive, setBarActive] = useState(false);
 
   useEffect(() => {
-    const onBar = (event: Event) => setBarOffset(Number((event as CustomEvent).detail) || 0);
+    const onBar = (event: Event) => setBarActive(Boolean((event as CustomEvent).detail));
     window.addEventListener("sk-ticket-bar", onBar as EventListener);
     return () => window.removeEventListener("sk-ticket-bar", onBar as EventListener);
   }, []);
