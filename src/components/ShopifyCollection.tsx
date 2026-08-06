@@ -407,7 +407,8 @@ export function ShopifyCollection() {
                 },
                 button: goldButtonStyles,
               },
-              text: { button: 'Add to cart' },
+              text: { button: 'Select options' },
+
             },
             productSet: {
               styles: {
