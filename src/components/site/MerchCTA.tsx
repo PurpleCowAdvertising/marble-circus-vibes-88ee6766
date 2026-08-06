@@ -27,6 +27,7 @@ export function MerchCTA() {
   const [expanded, setExpanded] = useState(false);
   const [firstReveal, setFirstReveal] = useState(false);
   const [count, setCount] = useState(0);
+  const [scrolling, setScrolling] = useState(false);
   const [featured, setFeatured] = useState<{
     title: string;
     image: string;
