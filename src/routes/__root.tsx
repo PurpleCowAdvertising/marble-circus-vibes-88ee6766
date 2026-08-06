@@ -18,6 +18,8 @@ import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { MobileTabBar } from "@/components/site/MobileTabBar";
 import { LaunchCountdown } from "@/components/site/LaunchCountdown";
+import { MerchCTA } from "@/components/site/MerchCTA";
+
 import { SubscribeProvider } from "@/components/site/SubscribePopup";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -252,6 +254,8 @@ function RootComponent() {
 
         {!isBareRoute && <ConsentBanner />}
         {!isBareRoute && <LaunchCountdown />}
+        {!isBareRoute && <MerchCTA />}
+
         <Toaster />
       </SubscribeProvider>
     </QueryClientProvider>
