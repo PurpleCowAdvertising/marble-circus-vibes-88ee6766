@@ -58,16 +58,57 @@ function useScrollDim() {
   return dim;
 }
 
+const BUY_ACTIONS = [
+  { label: "Buy Tickets", hash: "tickets" },
+  { label: "Buy Merch", hash: "merchandise" },
+] as const;
+
+function useCollapsed() {
+  const [collapsed, setCollapsed] = useState(false);
+
+  useEffect(() => {
+    let ticking = false;
+    let lastY = window.scrollY;
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y < 140) setCollapsed(false);
+        else if (y > lastY + 4) setCollapsed(true);
+        else if (y < lastY - 6) setCollapsed(false);
+        lastY = y;
+        ticking = false;
+      });
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return collapsed;
+}
+
 export function MobileTabBar() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const hash = useRouterState({ select: (state) => state.location.hash });
   const dim = useScrollDim();
+  const collapsed = useCollapsed();
+  const [buyIndex, setBuyIndex] = useState(0);
   const [drawKey, setDrawKey] = useState(0);
   const visibleRoutes = useVisiblePageRoutes();
   const tabs = useMemo(
     () => TABS.filter((t) => (t.kind === "route" ? visibleRoutes.has(t.to) : true)),
     [visibleRoutes],
   );
+
+  useEffect(() => {
+    if (!collapsed) return;
+    const id = window.setInterval(() => setBuyIndex((i) => (i + 1) % BUY_ACTIONS.length), 5200);
+    return () => window.clearInterval(id);
+  }, [collapsed]);
 
   const handleScrollTab = (sectionHash: string) => {
     vibrate();
@@ -83,6 +124,7 @@ export function MobileTabBar() {
       window.history.replaceState(null, "", `/#${sectionHash}`);
     }, 600);
   };
+
 
   return (
     <>
