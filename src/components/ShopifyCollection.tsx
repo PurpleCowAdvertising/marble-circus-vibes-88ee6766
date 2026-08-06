@@ -23,7 +23,6 @@ const GOLD = 'oklch(0.83 0.16 80)';
 const GOLD_HOVER = 'oklch(0.88 0.16 80)';
 const GOLD_FOREGROUND = 'oklch(0.14 0.012 60)';
 
-const ORANGE_500 = 'rgba(249, 115, 22, 1)';
 const ORANGE_500_20 = 'rgba(249, 115, 22, 0.2)';
 const ORANGE_500_30 = 'rgba(249, 115, 22, 0.3)';
 const ORANGE_500_40 = 'rgba(249, 115, 22, 0.4)';
@@ -76,29 +75,40 @@ const goldButtonStyles = {
   },
 };
 
+const FONT_SANS =
+  '"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+const FONT_DISPLAY =
+  '"Chinese Rocks", "Syne", "Bebas Neue", system-ui, sans-serif';
+
 const optionWrapperStyles = {
-  'background-color': 'rgba(255,255,255,0.06)',
-  border: '1px solid rgba(255,255,255,0.15)',
-  'border-radius': '0.75rem',
+  'background-color': 'rgba(255,255,255,0.05)',
+  border: '1px solid rgba(255,255,255,0.12)',
+  'border-radius': '9999px',
   padding: '0',
+  margin: '0',
   'z-index': '2',
   position: 'relative',
+  display: 'inline-block',
+  width: '48%',
+  'vertical-align': 'top',
 };
 
 const optionSelectStyles = {
   color: '#ffffff',
   'background-color': 'transparent',
   border: '0',
-  'border-radius': '0.75rem',
-  padding: '10px 12px',
-  'font-family': 'Candara, sans-serif',
-  'font-size': '13px',
+  'border-radius': '9999px',
+  padding: '6px 26px 6px 12px',
+  'font-family': FONT_SANS,
+  'font-size': '12px',
+  height: '32px',
   width: '100%',
   ':focus': {
     outline: 'none',
     'box-shadow': `inset 0 0 0 2px ${ORANGE_500_20}`,
   },
 };
+
 
 function injectIframeCss(node: HTMLElement) {
   // The Shopify Buy Button renders inside a same-origin iframe that the SDK
@@ -117,17 +127,81 @@ function injectIframeCss(node: HTMLElement) {
     const style = doc.createElement('style');
     style.id = id;
     style.textContent = `
+      @font-face {
+        font-family: "Chinese Rocks";
+        font-style: normal;
+        font-weight: 400 900;
+        font-display: swap;
+        src: url("/fonts/chinese-rocks.otf") format("opentype");
+      }
+      @font-face {
+        font-family: "Syne";
+        font-style: normal;
+        font-weight: 400 800;
+        font-display: swap;
+        src: url("https://fonts.gstatic.com/s/syne/v22/8vIS7w4qzmVxsWxjBZRjr0FKM_04uT6k.woff2") format("woff2");
+      }
+      .shopify-buy-frame, .shopify-buy__product, .shopify-buy__product * {
+        font-family: ${FONT_SANS} !important;
+      }
+      .shopify-buy__product__title {
+        font-family: ${FONT_DISPLAY} !important;
+        letter-spacing: -0.01em !important;
+      }
+      .shopify-buy__product__price,
+      .shopify-buy__product__actual-price {
+        color: ${GOLD} !important;
+        font-weight: 700 !important;
+      }
+      /* Compact, pill-shaped variant selectors, side by side */
+      .shopify-buy__product__variant-selectors {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        margin: 8px 0 0 !important;
+        position: relative;
+        z-index: 2;
+      }
+      .shopify-buy__option-select {
+        flex: 1 1 calc(50% - 8px) !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+      }
+      .shopify-buy__option-select__label {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        overflow: hidden !important;
+        clip: rect(0 0 0 0) !important;
+        white-space: nowrap !important;
+      }
       .shopify-buy__option-select-wrapper {
-        background: rgba(255,255,255,0.06) !important;
-        border: 1px solid rgba(255,255,255,0.15) !important;
-        border-radius: 0.75rem !important;
+        background: rgba(255,255,255,0.05) !important;
+        border: 1px solid rgba(255,255,255,0.12) !important;
+        border-radius: 9999px !important;
+        width: 100% !important;
+        margin: 0 !important;
+        transition: border-color 0.2s ease, background-color 0.2s ease !important;
+      }
+      .shopify-buy__option-select-wrapper:hover {
+        border-color: ${ORANGE_500_40} !important;
+        background: rgba(255,255,255,0.09) !important;
       }
       .shopify-buy__option-select__select {
         color: #ffffff !important;
         background: transparent !important;
         border: 0 !important;
-        border-radius: 0.75rem !important;
-        padding: 10px 12px !important;
+        border-radius: 9999px !important;
+        padding: 6px 24px 6px 12px !important;
+        height: 32px !important;
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+        letter-spacing: 0.02em !important;
+        text-transform: none !important;
+      }
+      .shopify-buy__option-select__select option {
+        color: #ffffff !important;
+        background: #0b1020 !important;
       }
       .shopify-buy__option-select__select:focus {
         outline: none !important;
@@ -135,6 +209,7 @@ function injectIframeCss(node: HTMLElement) {
       }
       .shopify-buy__select-icon {
         fill: rgba(255,255,255,0.7) !important;
+        right: 8px !important;
       }
       .shopify-buy__btn[disabled],
       .shopify-buy__btn:disabled {
@@ -164,6 +239,7 @@ function injectIframeCss(node: HTMLElement) {
         animation: glassShimmer 4s ease-in-out infinite !important;
       }
     `;
+
     doc.head.appendChild(style);
     return true;
   };
@@ -292,7 +368,7 @@ export function ShopifyCollection() {
                 title: {
                   color: '#ffffff',
                   'font-family':
-                    '"Chinese Rocks", "Syne", "Bebas Neue", system-ui, sans-serif',
+                    FONT_DISPLAY,
                   'font-weight': '700',
                   'letter-spacing': '-0.02em',
                   'font-size': '20px',
@@ -305,9 +381,10 @@ export function ShopifyCollection() {
                   },
                 },
                 price: {
-                  color: ORANGE_500,
+                  color: GOLD,
+                  'font-family': FONT_SANS,
                   'font-size': '16px',
-                  'font-weight': '600',
+                  'font-weight': '700',
                   'margin-top': '0.25rem',
                   'margin-bottom': '0.75rem',
                   'z-index': '2',
@@ -357,10 +434,11 @@ export function ShopifyCollection() {
                 title: {
                   color: '#ffffff',
                   'font-family':
-                    '"Chinese Rocks", "Syne", "Bebas Neue", system-ui, sans-serif',
+                    FONT_DISPLAY,
                 },
                 price: {
-                  color: ORANGE_500,
+                  color: GOLD,
+                  'font-family': FONT_SANS,
                 },
                 button: goldButtonStyles,
               },
@@ -370,7 +448,7 @@ export function ShopifyCollection() {
               styles: {
                 label: {
                   color: '#ffffff',
-                  'font-family': 'Candara, sans-serif',
+                  'font-family': FONT_SANS,
                   'font-size': '11px',
                   'font-weight': '600',
                   'text-transform': 'uppercase',
