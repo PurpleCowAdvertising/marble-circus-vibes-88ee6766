@@ -27,6 +27,13 @@ export function LaunchCountdown() {
   const [isMobile, setIsMobile] = useState(false);
   const [vh, setVh] = useState(0);
   const [footerVisible, setFooterVisible] = useState(false);
+  const [barOffset, setBarOffset] = useState(0);
+
+  useEffect(() => {
+    const onBar = (event: Event) => setBarOffset(Number((event as CustomEvent).detail) || 0);
+    window.addEventListener("sk-ticket-bar", onBar as EventListener);
+    return () => window.removeEventListener("sk-ticket-bar", onBar as EventListener);
+  }, []);
 
   const [localLabel, setLocalLabel] = useState<string>("");
   const [localTz, setLocalTz] = useState<string>("local");
