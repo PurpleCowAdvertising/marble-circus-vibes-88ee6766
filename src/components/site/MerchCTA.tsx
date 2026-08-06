@@ -27,6 +27,7 @@ export function MerchCTA() {
   const [expanded, setExpanded] = useState(false);
   const [firstReveal, setFirstReveal] = useState(false);
   const [count, setCount] = useState(0);
+  const [scrolling, setScrolling] = useState(false);
   const [featured, setFeatured] = useState<{
     title: string;
     image: string;
@@ -49,6 +50,22 @@ export function MerchCTA() {
 
   // Cart count
   useEffect(() => subscribeCartCount(setCount), []);
+
+  // Soft fade while the page is scrolling (never fully hides).
+  useEffect(() => {
+    let idle: number | null = null;
+    const onScroll = () => {
+      setScrolling(true);
+      if (idle) window.clearTimeout(idle);
+      idle = window.setTimeout(() => setScrolling(false), 420);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      if (idle) window.clearTimeout(idle);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
 
   // Merch preview thumbnail (loaded lazily, after first paint).
   useEffect(() => {
@@ -172,10 +189,12 @@ export function MerchCTA() {
 
       <div
         className={[
-          'fixed right-0 top-1/2 z-[60] -translate-y-1/2',
+          'fixed right-0 z-[60]',
+          'bottom-32 sm:bottom-36',
           'transition-[transform,opacity] duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
-          mounted ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0',
+          mounted ? 'translate-x-0' : 'translate-x-6 opacity-0',
         ].join(' ')}
+        style={mounted ? { opacity: scrolling ? 0.55 : 1 } : undefined}
         onMouseEnter={() => setExpanded(true)}
         onMouseLeave={() => {
           if (!firstReveal) collapse();
@@ -218,12 +237,12 @@ export function MerchCTA() {
           className={[
             'group relative flex items-center overflow-hidden',
             'rounded-l-2xl border border-r-0 border-white/20',
-            'bg-gradient-to-l from-gold to-gold/85 text-gold-foreground',
-            'shadow-[0_16px_44px_-18px_rgba(0,0,0,0.85)] backdrop-blur-xl',
+            'bg-black/45 text-gold backdrop-blur-xl backdrop-saturate-150',
+            'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_18px_40px_-14px_rgba(0,0,0,0.7)]',
             'h-12 pl-2.5 pr-3',
-            'transition-[box-shadow,filter] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
-            'hover:shadow-[0_20px_50px_-16px_rgba(0,0,0,0.9)] hover:brightness-105',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60',
+            'transition-[box-shadow,background-color] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
+            'hover:bg-black/60 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.24),0_22px_50px_-16px_rgba(0,0,0,0.85)]',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60',
           ].join(' ')}
         >
           <ChevronLeft
