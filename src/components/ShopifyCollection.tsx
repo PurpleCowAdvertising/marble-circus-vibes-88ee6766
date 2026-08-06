@@ -414,7 +414,8 @@ function injectIframeCss(node: HTMLElement) {
       .shopify-buy__cart-item__image {
         border-radius: 12px !important;
         background-color: ${SLATE_900_50} !important;
-        background-size: cover !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
         background-position: center !important;
       }
       .shopify-buy__quantity-container,
