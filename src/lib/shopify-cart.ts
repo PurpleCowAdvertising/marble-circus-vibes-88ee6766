@@ -54,3 +54,50 @@ export function subscribeCartCount(cb: (count: number) => void): () => void {
     window.removeEventListener('sk-shopify-ready', tick);
   };
 }
+
+const SHOPIFY_DOMAIN = 'galxboy-sa.myshopify.com';
+const STOREFRONT_TOKEN = '3b7f71847b99743ed81f6d61ea90dfc1';
+const COLLECTION_GID = 'gid://shopify/Collection/496493461795';
+
+let featuredPromise: Promise<{ title: string; image: string } | null> | null =
+  null;
+
+/** First in-stock product of the merch collection, for the CTA preview. */
+export function fetchFeaturedMerch() {
+  if (featuredPromise) return featuredPromise;
+  featuredPromise = fetch(
+    `https://${SHOPIFY_DOMAIN}/api/2024-07/graphql.json`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN,
+      },
+      body: JSON.stringify({
+        query: `query($id: ID!) {
+          collection(id: $id) {
+            products(first: 6) {
+              nodes {
+                title
+                availableForSale
+                featuredImage { url(transform: { maxWidth: 320, maxHeight: 320 }) }
+              }
+            }
+          }
+        }`,
+        variables: { id: COLLECTION_GID },
+      }),
+    }
+  )
+    .then((r) => r.json())
+    .then((json) => {
+      const nodes = json?.data?.collection?.products?.nodes ?? [];
+      const pick =
+        nodes.find((n: any) => n.availableForSale && n.featuredImage?.url) ??
+        nodes.find((n: any) => n.featuredImage?.url);
+      if (!pick) return null;
+      return { title: pick.title as string, image: pick.featuredImage.url as string };
+    })
+    .catch(() => null);
+  return featuredPromise;
+}
