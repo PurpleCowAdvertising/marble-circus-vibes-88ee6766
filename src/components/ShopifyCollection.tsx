@@ -111,18 +111,31 @@ const optionSelectStyles = {
 
 
 function injectIframeCss(node: HTMLElement) {
-  // The Shopify Buy Button renders inside a same-origin iframe that the SDK
-  // creates without a src attribute. We can inject an extra stylesheet to style
-  // elements that the SDK's `styles` object does not expose (disabled button
-  // state, dropdown chevron, etc.) and to strengthen the glass-card effect.
+  // The Shopify Buy Button renders inside same-origin iframes that the SDK
+  // creates without a src attribute (product grid, cart, and the product
+  // detail modal). We inject an extra stylesheet to style elements that the
+  // SDK's `styles` object does not expose (disabled button state, dropdown
+  // chevron, modal chrome, etc.).
   const tryInject = () => {
-    const iframe = node.querySelector('iframe') as HTMLIFrameElement | null;
-    if (!iframe) return false;
-    const doc = iframe.contentDocument;
-    if (!doc) return false;
+    const frames = Array.from(
+      new Set([
+        ...Array.from(node.querySelectorAll('iframe')),
+        ...Array.from(document.querySelectorAll('iframe.shopify-buy-frame')),
+      ])
+    ) as HTMLIFrameElement[];
+    if (!frames.length) return false;
+    let injected = false;
+    for (const iframe of frames) {
+      const doc = iframe.contentDocument;
+      if (!doc || !doc.head) continue;
 
-    const id = 'shopify-glass-override';
-    if (doc.getElementById(id)) return true;
+      const id = 'shopify-glass-override';
+      if (doc.getElementById(id)) {
+        injected = true;
+        continue;
+      }
+      injected = true;
+
 
     const style = doc.createElement('style');
     style.id = id;
