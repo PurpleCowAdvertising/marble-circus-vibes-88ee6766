@@ -120,7 +120,12 @@ function injectIframeCss(node: HTMLElement) {
     const frames = Array.from(
       new Set([
         ...Array.from(node.querySelectorAll('iframe')),
-        ...Array.from(document.querySelectorAll('iframe.shopify-buy-frame')),
+        ...Array.from(
+          document.querySelectorAll(
+            'iframe.shopify-buy-frame, iframe[name^="frame-"]'
+          )
+        ),
+
       ])
     ) as HTMLIFrameElement[];
     if (!frames.length) return false;
