@@ -158,11 +158,11 @@ export function MobileTabBar() {
           opacity: dim ? 0.75 : 1,
           transition: "opacity 250ms ease",
         }}
-        className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-6 md:hidden"
+        className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-4 md:hidden"
       >
         <div
-          className={`pointer-events-auto relative flex h-14 items-center justify-center rounded-full border border-white/70 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            collapsed ? "w-auto px-2" : "w-full max-w-sm justify-between px-4"
+          className={`pointer-events-auto relative flex h-11 items-center justify-center rounded-full border border-white/70 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            collapsed ? "w-auto px-2" : "w-full max-w-[22rem] justify-between px-2"
           }`}
           style={{
             background:
@@ -191,10 +191,10 @@ export function MobileTabBar() {
             const baseClassName = `group flex h-full items-center justify-center overflow-hidden transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95 ${
               collapsed
                 ? "pointer-events-none w-0 scale-90 opacity-0 blur-[3px]"
-                : "w-12 scale-100 opacity-100 blur-0"
+                : "w-full flex-1 scale-100 opacity-100 blur-0"
             }`;
 
-            const iconClassName = `tabbar-icon ${isActive ? "is-active" : ""} flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+            const iconClassName = `tabbar-icon ${isActive ? "is-active" : ""} flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
               isActive
                 ? "bg-gradient-to-b from-[#ffd76b] via-gold to-[#b8761a] text-black scale-110 shadow-[0_4px_10px_-2px_rgba(248,165,45,0.35),inset_0_1px_0_rgba(255,255,255,0.6)]"
                 : "text-black group-hover:bg-black/5"
@@ -213,7 +213,7 @@ export function MobileTabBar() {
                   className={baseClassName}
                 >
                   <span className={iconClassName} key={iconKey} style={iconStyle}>
-                    <Icon size={28} strokeWidth={1.25} absoluteStrokeWidth />
+                    <Icon size={22} strokeWidth={1.25} absoluteStrokeWidth />
                   </span>
                 </button>
               );
@@ -235,7 +235,7 @@ export function MobileTabBar() {
                 className={baseClassName}
               >
                 <span className={iconClassName} key={iconKey} style={iconStyle}>
-                  <Icon size={28} strokeWidth={1.25} absoluteStrokeWidth />
+                  <Icon size={22} strokeWidth={1.25} absoluteStrokeWidth />
                 </span>
               </Link>
             );
