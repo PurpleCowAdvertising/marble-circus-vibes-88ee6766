@@ -27,10 +27,10 @@ export function LaunchCountdown() {
   const [isMobile, setIsMobile] = useState(false);
   const [vh, setVh] = useState(0);
   const [footerVisible, setFooterVisible] = useState(false);
-  const [barOffset, setBarOffset] = useState(0);
+  const [barActive, setBarActive] = useState(false);
 
   useEffect(() => {
-    const onBar = (event: Event) => setBarOffset(Number((event as CustomEvent).detail) || 0);
+    const onBar = (event: Event) => setBarActive(Boolean((event as CustomEvent).detail));
     window.addEventListener("sk-ticket-bar", onBar as EventListener);
     return () => window.removeEventListener("sk-ticket-bar", onBar as EventListener);
   }, []);
@@ -110,11 +110,19 @@ export function LaunchCountdown() {
         <motion.div
           key="sk-countdown"
           initial={false}
-          animate={{ opacity: footerVisible ? 0 : opacity, bottom: bottom + barOffset }}
+          animate={{
+            opacity: footerVisible || barActive ? 0 : opacity,
+            bottom,
+            scale: barActive ? 0.9 : 1,
+            filter: barActive ? "blur(6px)" : "blur(0px)",
+          }}
           exit={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="pointer-events-none fixed inset-x-0 z-[80] flex flex-col items-center px-4"
-          style={{ visibility: footerVisible ? "hidden" : "visible" }}
+          style={{
+            visibility: footerVisible ? "hidden" : "visible",
+            pointerEvents: barActive ? "none" : undefined,
+          }}
           aria-live="polite"
         >
 

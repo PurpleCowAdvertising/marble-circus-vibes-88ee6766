@@ -36,7 +36,7 @@ export function TicketUrgencyBar() {
 
   const visible = !dismissed && pastHero && !footerVisible;
 
-  // Let other floating chrome (countdown card) lift out of the way.
+  // Tell the countdown card to morph out while this card owns the slot.
   useEffect(() => {
     if (typeof window === "undefined") return;
     window.dispatchEvent(new CustomEvent(TICKET_BAR_EVENT, { detail: visible ? BAR_OFFSET : 0 }));
@@ -56,13 +56,14 @@ export function TicketUrgencyBar() {
       {visible && (
         <motion.div
           key="sk-ticket-bar"
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 32 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-[90] px-3 pb-3"
+          initial={{ opacity: 0, scale: 0.9, filter: "blur(6px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          exit={{ opacity: 0, scale: 0.9, filter: "blur(6px)" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="pointer-events-none fixed inset-x-0 bottom-6 z-[90] px-4"
         >
-          <div className="pointer-events-auto mx-auto flex max-w-4xl items-center gap-3 rounded-2xl border border-gold/50 bg-black/90 px-4 py-3 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl sm:gap-5 sm:px-6">
+          <div className="pointer-events-auto mx-auto flex max-w-xl items-center gap-3 rounded-full border border-gold/50 bg-black/70 px-4 py-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_24px_60px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl backdrop-saturate-150 sm:gap-5 sm:px-5 sm:py-3">
+
             <div className="min-w-0 flex-1">
               <p className="text-[9px] font-bold uppercase tracking-[0.35em] text-gold">Field · Selling out</p>
               <p className="mt-0.5 truncate font-display text-base font-bold leading-tight text-white sm:text-lg">
