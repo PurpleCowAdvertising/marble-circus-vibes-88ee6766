@@ -95,6 +95,9 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
 
 const RevealContext = createContext<boolean | null>(null);
 
+/** True inside another Reveal — nested reveals must not multiply opacity. */
+const NestedRevealContext = createContext(false);
+
 /**
  * One IntersectionObserver per section. Children read the trigger via context.
  */
