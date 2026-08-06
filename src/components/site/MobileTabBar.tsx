@@ -161,7 +161,9 @@ export function MobileTabBar() {
         className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-6 md:hidden"
       >
         <div
-          className="pointer-events-auto relative flex h-14 w-full max-w-sm items-center justify-between rounded-full border border-white/70 px-4 backdrop-blur-2xl backdrop-saturate-150"
+          className={`pointer-events-auto relative flex h-14 items-center justify-center rounded-full border border-white/70 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            collapsed ? "w-auto px-2" : "w-full max-w-sm justify-between px-4"
+          }`}
           style={{
             background:
               "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.85) 45%, rgba(210,210,215,0.85) 100%)",
@@ -173,7 +175,7 @@ export function MobileTabBar() {
           <div className="pointer-events-none absolute inset-x-3 top-0.5 h-1/2 rounded-full bg-gradient-to-b from-white/90 via-white/40 to-transparent" />
           <div className="pointer-events-none absolute inset-x-6 bottom-0.5 h-1/3 rounded-full bg-gradient-to-t from-black/15 to-transparent blur-[2px]" />
 
-          {TABS.map((tab, tabIndex) => {
+          {tabs.map((tab, tabIndex) => {
             const Icon = tab.icon;
             const iconStyle = { "--tabbar-delay": `${tabIndex * 180}ms` } as CSSProperties;
 
@@ -186,10 +188,13 @@ export function MobileTabBar() {
                   ? pathname === "/" && hash === `#${tab.hash}`
                   : false;
 
-            const baseClassName =
-              "group flex h-full w-12 items-center justify-center transition-transform duration-200 active:scale-95";
+            const baseClassName = `group flex h-full items-center justify-center overflow-hidden transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95 ${
+              collapsed
+                ? "pointer-events-none w-0 scale-90 opacity-0 blur-[3px]"
+                : "w-12 scale-100 opacity-100 blur-0"
+            }`;
 
-            const iconClassName = `tabbar-icon ${isActive ? "is-active" : ""} flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
+            const iconClassName = `tabbar-icon ${isActive ? "is-active" : ""} flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
               isActive
                 ? "bg-gradient-to-b from-[#ffd76b] via-gold to-[#b8761a] text-black scale-110 shadow-[0_4px_10px_-2px_rgba(248,165,45,0.35),inset_0_1px_0_rgba(255,255,255,0.6)]"
                 : "text-black group-hover:bg-black/5"
@@ -203,6 +208,7 @@ export function MobileTabBar() {
                   key={tab.hash}
                   type="button"
                   aria-label={tab.label}
+                  tabIndex={collapsed ? -1 : 0}
                   onClick={() => handleScrollTab(tab.hash)}
                   className={baseClassName}
                 >
@@ -225,6 +231,7 @@ export function MobileTabBar() {
                   setDrawKey((k) => k + 1);
                 }}
                 aria-label={tab.label}
+                tabIndex={collapsed ? -1 : 0}
                 className={baseClassName}
               >
                 <span className={iconClassName} key={iconKey} style={iconStyle}>
@@ -233,7 +240,34 @@ export function MobileTabBar() {
               </Link>
             );
           })}
+
+          {/* Buy action that emerges as the bar retracts on scroll */}
+          <button
+            type="button"
+            aria-hidden={!collapsed}
+            tabIndex={collapsed ? 0 : -1}
+            onClick={() => handleScrollTab(BUY_ACTIONS[buyIndex].hash)}
+            className={`relative flex items-center justify-center overflow-hidden whitespace-nowrap rounded-full bg-[#f8a52d] text-[12px] font-bold tracking-tight text-black shadow-[0_8px_22px_-8px_rgba(248,165,45,0.8)] transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              collapsed
+                ? "pointer-events-auto max-w-[220px] scale-100 px-5 py-2 opacity-100 blur-0"
+                : "pointer-events-none max-w-0 scale-95 px-0 py-2 opacity-0 blur-[3px]"
+            }`}
+          >
+            <span className="relative block h-[16px] w-[88px] text-center">
+              {BUY_ACTIONS.map((action, index) => (
+                <span
+                  key={action.hash}
+                  className={`absolute inset-0 flex items-center justify-center leading-4 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    index === buyIndex ? "translate-y-0 opacity-100 blur-0" : "-translate-y-1.5 opacity-0 blur-[2px]"
+                  }`}
+                >
+                  {action.label}
+                </span>
+              ))}
+            </span>
+          </button>
         </div>
+
       </nav>
     </>
   );
