@@ -79,6 +79,15 @@ export function ShopifyCollection() {
                   ':hover': {
                     transform: 'translateY(-4px)',
                   },
+                  // Mobile: horizontal scroll carousel cards
+                  '@media (max-width: 639px)': {
+                    'max-width': '280px',
+                    'min-width': '280px',
+                    width: '280px',
+                    'margin-bottom': '0',
+                    'margin-right': '16px',
+                    flex: '0 0 280px',
+                  },
                   '@media (min-width: 640px)': {
                     'max-width': 'calc(50% - 24px)',
                     'margin-left': '24px',
