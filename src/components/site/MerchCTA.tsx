@@ -145,59 +145,101 @@ export function MerchCTA() {
         .shopify-buy__cart-toggle { display: none !important; }
       `}</style>
 
-      <button
-        type="button"
-        onClick={handleClick}
+      <div
+        className={[
+          'fixed right-0 top-1/2 z-[60] -translate-y-1/2',
+          'transition-[transform,opacity] duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
+          mounted ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0',
+        ].join(' ')}
         onMouseEnter={() => setExpanded(true)}
         onMouseLeave={() => {
           if (!firstReveal) collapse();
         }}
-        aria-label={
-          count > 0 ? `Open cart (${count} items)` : 'Buy official merch'
-        }
-        className={[
-          'group fixed right-0 top-1/2 z-[60] -translate-y-1/2',
-          'flex items-center gap-2 overflow-hidden',
-          'rounded-l-full border border-r-0 border-white/25',
-          'bg-gold/90 text-[color:var(--gold-foreground,#1a1408)] backdrop-blur-xl',
-          'shadow-[0_10px_40px_-12px_rgba(0,0,0,0.7)]',
-          'py-3 pl-3 pr-3',
-          'transition-[transform,opacity,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
-          'hover:bg-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60',
-          mounted ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0',
-          firstReveal ? 'scale-[1.04]' : 'scale-100',
-        ].join(' ')}
       >
-        <ChevronLeft
-          className={[
-            'h-4 w-4 shrink-0 transition-transform duration-300',
-            expanded ? '-translate-x-0.5' : 'translate-x-0',
-          ].join(' ')}
-          strokeWidth={2.5}
+        {/* Floating product preview */}
+        <div
           aria-hidden
-        />
-
-        <span className="relative flex shrink-0 items-center justify-center">
-          <ShoppingBag className="h-5 w-5" strokeWidth={2.2} aria-hidden />
-          {count > 0 && (
-            <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-black px-1 text-[10px] font-bold leading-none text-gold">
-              {count}
-            </span>
-          )}
-        </span>
-
-        <span
           className={[
-            'whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.14em]',
-            'transition-[max-width,opacity,margin] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
-            expanded
-              ? 'ml-0.5 max-w-[180px] opacity-100'
-              : 'ml-0 max-w-0 opacity-0',
+            'pointer-events-none absolute bottom-full right-2 mb-3',
+            'w-28 overflow-hidden rounded-2xl border border-white/15',
+            'bg-background/70 p-2 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.85)] backdrop-blur-xl',
+            'transition-[opacity,transform] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
+            expanded && featured
+              ? 'translate-y-0 scale-100 opacity-100'
+              : 'pointer-events-none translate-y-2 scale-95 opacity-0',
           ].join(' ')}
         >
-          {count > 0 ? 'View your cart' : 'Buy official merch'}
-        </span>
-      </button>
+          {featured && (
+            <>
+              <img
+                src={featured.image}
+                alt=""
+                loading="lazy"
+                className="aspect-square w-full rounded-xl object-cover"
+              />
+              <p className="mt-1.5 truncate text-center text-[9px] font-semibold uppercase tracking-[0.12em] text-foreground/80">
+                {featured.title}
+              </p>
+            </>
+          )}
+        </div>
+
+        <button
+          type="button"
+          onClick={handleClick}
+          aria-label={
+            count > 0 ? `Open cart (${count} items)` : 'Buy official merch'
+          }
+          className={[
+            'group relative flex items-center overflow-hidden',
+            'rounded-l-2xl border border-r-0 border-white/20',
+            'bg-gradient-to-l from-gold to-gold/85 text-gold-foreground',
+            'shadow-[0_16px_44px_-18px_rgba(0,0,0,0.85)] backdrop-blur-xl',
+            'h-12 pl-2.5 pr-3',
+            'transition-[box-shadow,filter] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
+            'hover:shadow-[0_20px_50px_-16px_rgba(0,0,0,0.9)] hover:brightness-105',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60',
+          ].join(' ')}
+        >
+          <ChevronLeft
+            className={[
+              'h-4 w-4 shrink-0 transition-[opacity,transform] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
+              expanded ? '-translate-x-0.5 opacity-100' : 'opacity-60',
+            ].join(' ')}
+            strokeWidth={2.5}
+            aria-hidden
+          />
+
+          <span className="relative ml-1 flex shrink-0 items-center justify-center">
+            <ShoppingBag className="h-5 w-5" strokeWidth={2.1} aria-hidden />
+            {count > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-background px-1 text-[10px] font-bold leading-none text-gold">
+                {count}
+              </span>
+            )}
+          </span>
+
+          <span
+            className={[
+              'grid transition-[grid-template-columns] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
+              expanded ? 'grid-cols-[1fr]' : 'grid-cols-[0fr]',
+            ].join(' ')}
+          >
+            <span className="overflow-hidden">
+              <span
+                className={[
+                  'block whitespace-nowrap pl-2 text-[11px] font-bold uppercase tracking-[0.16em]',
+                  'transition-opacity duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
+                  expanded ? 'opacity-100' : 'opacity-0',
+                ].join(' ')}
+              >
+                {count > 0 ? 'View your cart' : 'Buy merch'}
+              </span>
+            </span>
+          </span>
+        </button>
+      </div>
     </>
   );
 }
+
