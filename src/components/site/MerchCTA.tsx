@@ -41,7 +41,7 @@ export function MerchCTA() {
     setExpanded(false);
   }, []);
 
-  const expandTemporarily = useCallback((ms = 2200) => {
+  const expandTemporarily = useCallback((ms = 2600) => {
     if (autoTimer.current) window.clearTimeout(autoTimer.current);
     setExpanded(true);
     autoTimer.current = window.setTimeout(() => setExpanded(false), ms);
