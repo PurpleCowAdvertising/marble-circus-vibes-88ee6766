@@ -36,6 +36,9 @@ export function Header() {
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [condensed, setCondensed] = useState(false);
+  const [navHovered, setNavHovered] = useState(false);
+  const [buyIndex, setBuyIndex] = useState(0);
 
   const { open: openSubscribe } = useSubscribePopup();
 
@@ -47,6 +50,7 @@ export function Header() {
 
   useEffect(() => {
     let ticking = false;
+    let lastY = typeof window === "undefined" ? 0 : window.scrollY;
 
     const onScroll = () => {
       if (ticking) return;
@@ -54,7 +58,19 @@ export function Header() {
       ticking = true;
 
       requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 20);
+        const y = window.scrollY;
+
+        setScrolled(y > 20);
+
+        if (y < 140) {
+          setCondensed(false);
+        } else if (y > lastY + 4) {
+          setCondensed(true);
+        } else if (y < lastY - 6) {
+          setCondensed(false);
+        }
+
+        lastY = y;
         ticking = false;
       });
     };
@@ -65,6 +81,19 @@ export function Header() {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // While the bar is condensed, the exposed buy action alternates between
+  // tickets and merch so both entry points surface.
+  const collapsed = condensed && !navHovered;
+
+  useEffect(() => {
+    if (!collapsed) return;
+
+    const id = window.setInterval(() => setBuyIndex((i) => (i + 1) % BUY_ACTIONS.length), 4200);
+
+    return () => window.clearInterval(id);
+  }, [collapsed]);
+
 
   useEffect(() => {
     const previousBodyOverflow = document.body.style.overflow;
