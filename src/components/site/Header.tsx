@@ -145,7 +145,11 @@ export function Header() {
             />
           </Link>
 
-          <div className="relative hidden md:block">
+          <div
+            className="relative hidden md:block"
+            onMouseEnter={() => setNavHovered(true)}
+            onMouseLeave={() => setNavHovered(false)}
+          >
             <span
               aria-hidden
               className={`pointer-events-none absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_55%,transparent),transparent_70%)] blur-2xl transition-opacity duration-700 ease-out ${
@@ -155,15 +159,18 @@ export function Header() {
 
             <nav
               aria-label="Primary"
-              className={`pointer-events-auto relative flex items-center gap-1 rounded-full border px-2 py-1.5 backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ease-out ${
+              className={`pointer-events-auto relative flex items-center gap-1 rounded-full border px-2 py-1.5 backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                 scrolled
                   ? "border-white/15 bg-black/45 shadow-[0_14px_34px_-18px_rgba(0,0,0,0.75)]"
                   : "border-white/25 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)]"
               }`}
             >
               {nav.map((item) => {
-                const className =
-                  "group relative rounded-full px-2.5 py-1 text-[11px] font-medium tracking-tight text-white transition-all duration-300 hover:text-white sm:px-3 sm:py-1.5 sm:text-[12px] lg:px-3.5 lg:text-[13px]";
+                const className = `group relative overflow-hidden whitespace-nowrap rounded-full text-[11px] font-medium tracking-tight text-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-[12px] lg:text-[13px] ${
+                  collapsed
+                    ? "pointer-events-none max-w-0 px-0 py-1 opacity-0 blur-[2px] sm:px-0 lg:px-0"
+                    : "max-w-[180px] px-2.5 py-1 opacity-100 blur-0 sm:px-3 sm:py-1.5 lg:px-3.5"
+                }`;
 
                 const inner = (
                   <>
@@ -180,6 +187,7 @@ export function Header() {
                     <button
                       key={item.hash}
                       type="button"
+                      tabIndex={collapsed ? -1 : 0}
                       onClick={() => handleScrollNav(item.hash)}
                       className={className}
                     >
@@ -195,6 +203,7 @@ export function Header() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      tabIndex={collapsed ? -1 : 0}
                       onClick={closeMenu}
                       className={className}
                     >
@@ -208,6 +217,7 @@ export function Header() {
                     key={item.to}
                     to={item.to}
                     activeOptions={{ exact: item.to === "/" }}
+                    tabIndex={collapsed ? -1 : 0}
                     className={className}
                     activeProps={{
                       className: "font-semibold text-white",
@@ -217,8 +227,35 @@ export function Header() {
                   </Link>
                 );
               })}
+
+              {/* Buy action that emerges as the menu retracts on scroll */}
+              <button
+                type="button"
+                aria-hidden={!collapsed}
+                tabIndex={collapsed ? 0 : -1}
+                onClick={() => handleScrollNav(BUY_ACTIONS[buyIndex].hash)}
+                className={`relative flex items-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-[#f8a52d] text-[12px] font-bold tracking-tight text-black shadow-[0_8px_22px_-8px_rgba(248,165,45,0.8)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  collapsed
+                    ? "pointer-events-auto max-w-[200px] scale-100 px-4 py-1.5 opacity-100 blur-0"
+                    : "pointer-events-none max-w-0 scale-95 px-0 py-1.5 opacity-0 blur-[2px]"
+                }`}
+              >
+                <span className="relative block h-[16px] w-[86px] text-left">
+                  {BUY_ACTIONS.map((action, index) => (
+                    <span
+                      key={action.hash}
+                      className={`absolute inset-0 leading-4 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                        index === buyIndex ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
+                      }`}
+                    >
+                      {action.label}
+                    </span>
+                  ))}
+                </span>
+              </button>
             </nav>
           </div>
+
 
           <div className="hidden shrink-0 items-center gap-2 md:flex">
             <button
