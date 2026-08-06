@@ -135,27 +135,28 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-out">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5">
+      <header className="fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-out">
+        <div className="relative mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5">
           <Link to="/" aria-label="Scorpion Kings Live" className="hidden shrink-0 items-center md:flex" onClick={closeMenu}>
             <img
               src={logo}
               alt="Scorpion Kings Live"
-              className={`w-auto transition-all duration-500 ease-out ${scrolled ? "h-8 md:h-8" : "h-10 md:h-10"}`}
+              className={`w-auto transition-all duration-700 ease-out ${scrolled ? "h-8 md:h-8" : "h-10 md:h-10"}`}
             />
           </Link>
 
           <div
-            className="relative hidden md:block"
+            className="absolute left-1/2 top-3 z-10 flex -translate-x-1/2 justify-center sm:top-4 md:top-5"
             onMouseEnter={() => setNavHovered(true)}
             onMouseLeave={() => setNavHovered(false)}
           >
             <span
               aria-hidden
-              className={`pointer-events-none absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_55%,transparent),transparent_70%)] blur-2xl transition-opacity duration-700 ease-out ${
+              className={`pointer-events-none absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_55%,transparent),transparent_70%)] blur-2xl transition-opacity duration-1000 ease-out ${
                 scrolled ? "opacity-30" : "opacity-90"
               }`}
             />
+
 
             <nav
               aria-label="Primary"
