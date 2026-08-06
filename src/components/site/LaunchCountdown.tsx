@@ -110,7 +110,7 @@ export function LaunchCountdown() {
         <motion.div
           key="sk-countdown"
           initial={false}
-          animate={{ opacity: footerVisible ? 0 : opacity, bottom }}
+          animate={{ opacity: footerVisible ? 0 : opacity, bottom: bottom + barOffset }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="pointer-events-none fixed inset-x-0 z-[80] flex flex-col items-center px-4"
