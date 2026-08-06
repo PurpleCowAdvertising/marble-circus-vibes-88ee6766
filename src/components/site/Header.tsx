@@ -160,18 +160,19 @@ export function Header() {
 
             <nav
               aria-label="Primary"
-              className={`pointer-events-auto relative flex items-center gap-1 rounded-full border px-2 py-1.5 backdrop-blur-xl backdrop-saturate-150 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              className={`pointer-events-auto relative flex items-center justify-center gap-0.5 rounded-full border px-1.5 py-1 backdrop-blur-xl backdrop-saturate-150 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:gap-1 sm:px-2 sm:py-1.5 ${
                 scrolled
                   ? "border-white/15 bg-black/45 shadow-[0_14px_34px_-18px_rgba(0,0,0,0.75)]"
                   : "border-white/25 bg-white/10 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)]"
               }`}
             >
               {nav.map((item) => {
-                const className = `group relative overflow-hidden whitespace-nowrap rounded-full text-[11px] font-medium tracking-tight text-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-[12px] lg:text-[13px] ${
+                const className = `group relative overflow-hidden whitespace-nowrap rounded-full text-center text-[10px] font-medium tracking-tight text-white transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:text-[12px] lg:text-[13px] ${
                   collapsed
-                    ? "pointer-events-none max-w-0 px-0 py-1 opacity-0 blur-[2px] sm:px-0 lg:px-0"
-                    : "max-w-[180px] px-2.5 py-1 opacity-100 blur-0 sm:px-3 sm:py-1.5 lg:px-3.5"
+                    ? "pointer-events-none max-w-0 px-0 py-1 opacity-0 blur-[3px] sm:px-0 lg:px-0"
+                    : "max-w-[180px] px-2 py-1 opacity-100 blur-0 sm:px-3 sm:py-1.5 lg:px-3.5"
                 }`;
+
 
                 const inner = (
                   <>
