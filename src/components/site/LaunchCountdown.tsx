@@ -27,6 +27,13 @@ export function LaunchCountdown() {
   const [isMobile, setIsMobile] = useState(false);
   const [vh, setVh] = useState(0);
   const [footerVisible, setFooterVisible] = useState(false);
+  const [barOffset, setBarOffset] = useState(0);
+
+  useEffect(() => {
+    const onBar = (event: Event) => setBarOffset(Number((event as CustomEvent).detail) || 0);
+    window.addEventListener("sk-ticket-bar", onBar as EventListener);
+    return () => window.removeEventListener("sk-ticket-bar", onBar as EventListener);
+  }, []);
 
   const [localLabel, setLocalLabel] = useState<string>("");
   const [localTz, setLocalTz] = useState<string>("local");
@@ -93,6 +100,7 @@ export function LaunchCountdown() {
     ? Math.max(24, vh * 0.3 - 208)
     : Math.max(24, vh * 0.3 - 26 - 52);
   const bottom = restBottom + (24 - restBottom) * ease;
+
   // Never fully disappears — fades to ~55% on scroll.
   const opacity = 1 - 0.45 * ease;
 
@@ -102,7 +110,7 @@ export function LaunchCountdown() {
         <motion.div
           key="sk-countdown"
           initial={false}
-          animate={{ opacity: footerVisible ? 0 : opacity, bottom }}
+          animate={{ opacity: footerVisible ? 0 : opacity, bottom: bottom + barOffset }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="pointer-events-none fixed inset-x-0 z-[80] flex flex-col items-center px-4"

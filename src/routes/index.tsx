@@ -10,6 +10,7 @@ import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { ParkRideModal } from "@/components/site/ParkRideModal";
+import { FieldTicketsPopup } from "@/components/site/FieldTicketsPopup";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ShopifyCollection } from "@/components/ShopifyCollection";
 
@@ -218,6 +219,9 @@ function HomePage() {
 
   return (
     <PageGate keyName="page:home">
+      <FieldTicketsPopup />
+
+
 
       <VisibilityGate keyName="section:home.hero">
       <section ref={heroRef} aria-labelledby="hero-heading" className="relative isolate z-0 overflow-hidden bg-black">

@@ -55,11 +55,17 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem(SESSION_KEY, "true");
   }, []);
 
+  // Ticket sell-out push: while the Field tickets campaign is running, the
+  // tickets popup is the only interruption on the site. Flip this back to
+  // false to restore the engagement-triggered subscribe popup.
+  const TICKET_PUSH_ACTIVE = true;
+
   // Non-intrusive trigger: never on load or on scroll. The popup only appears
   // after the visitor actively engages — i.e. clicks a button, link or card
   // somewhere on the site (second interaction, so the first click never gets
   // interrupted).
   useEffect(() => {
+    if (TICKET_PUSH_ACTIVE) return;
     if (typeof window === "undefined") return;
     if (localStorage.getItem(SESSION_KEY)) return;
 
