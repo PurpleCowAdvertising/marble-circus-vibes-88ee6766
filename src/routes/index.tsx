@@ -149,7 +149,18 @@ export const Route = createFileRoute("/")({
         content: "Home of the artists, the events and the culture.",
       },
     ],
+    links: [
+      { rel: "preconnect", href: "https://sdks.shopifycdn.com" },
+      { rel: "preconnect", href: "https://cdn.shopify.com" },
+      { rel: "preconnect", href: "https://galxboy-sa.myshopify.com" },
+      {
+        rel: "preload",
+        as: "script",
+        href: "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js",
+      },
+    ],
   }),
+
   component: HomePage,
 });
 
