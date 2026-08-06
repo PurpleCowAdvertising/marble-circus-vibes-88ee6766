@@ -229,7 +229,16 @@ function injectIframeCss(node: HTMLElement) {
         fill: rgba(255,255,255,0.7) !important;
         right: 8px !important;
       }
+      /* Sold-out cards: dimmed, still browsable */
+      .shopify-buy__product[data-sold-out="true"] .shopify-buy__product__variant-img,
+      .shopify-buy__product[data-sold-out="true"] img {
+        filter: grayscale(0.55) brightness(0.75) !important;
+      }
+      .shopify-buy__product[data-sold-out="true"] .shopify-buy__product__title {
+        opacity: 0.75 !important;
+      }
       .shopify-buy__btn[disabled],
+
       .shopify-buy__btn:disabled {
         background: #ffffff !important;
         color: ${GOLD_FOREGROUND} !important;
