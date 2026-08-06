@@ -236,18 +236,18 @@ export function Header() {
                 aria-hidden={!collapsed}
                 tabIndex={collapsed ? 0 : -1}
                 onClick={() => handleScrollNav(BUY_ACTIONS[buyIndex].hash)}
-                className={`relative flex items-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-[#f8a52d] text-[12px] font-bold tracking-tight text-black shadow-[0_8px_22px_-8px_rgba(248,165,45,0.8)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                className={`relative flex items-center justify-center overflow-hidden whitespace-nowrap rounded-full bg-[#f8a52d] text-[12px] font-bold tracking-tight text-black shadow-[0_8px_22px_-8px_rgba(248,165,45,0.8)] transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   collapsed
-                    ? "pointer-events-auto max-w-[200px] scale-100 px-4 py-1.5 opacity-100 blur-0"
-                    : "pointer-events-none max-w-0 scale-95 px-0 py-1.5 opacity-0 blur-[2px]"
+                    ? "pointer-events-auto max-w-[220px] scale-100 px-5 py-1.5 opacity-100 blur-0"
+                    : "pointer-events-none max-w-0 scale-95 px-0 py-1.5 opacity-0 blur-[3px]"
                 }`}
               >
-                <span className="relative block h-[16px] w-[86px] text-left">
+                <span className="relative block h-[16px] w-[88px] text-center">
                   {BUY_ACTIONS.map((action, index) => (
                     <span
                       key={action.hash}
-                      className={`absolute inset-0 leading-4 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                        index === buyIndex ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
+                      className={`absolute inset-0 flex items-center justify-center leading-4 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                        index === buyIndex ? "translate-y-0 opacity-100 blur-0" : "-translate-y-1.5 opacity-0 blur-[2px]"
                       }`}
                     >
                       {action.label}
@@ -255,6 +255,7 @@ export function Header() {
                   ))}
                 </span>
               </button>
+
             </nav>
           </div>
 
