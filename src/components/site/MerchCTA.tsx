@@ -213,7 +213,7 @@ export function MerchCTA() {
           type="button"
           onClick={handleClick}
           aria-label={
-            count > 0 ? `Open cart (${count} items)` : 'Buy official merch'
+            count > 0 ? `Open cart (${count} items)` : 'BUY MERCH'
           }
           className={[
             'group relative flex items-center overflow-hidden',
@@ -258,7 +258,7 @@ export function MerchCTA() {
                   expanded ? 'opacity-100' : 'opacity-0',
                 ].join(' ')}
               >
-                {count > 0 ? 'View your cart' : 'Buy merch'}
+                {count > 0 ? 'View your cart' : 'BUY MERCH'}
               </span>
             </span>
           </span>
