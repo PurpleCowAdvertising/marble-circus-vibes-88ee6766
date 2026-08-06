@@ -229,7 +229,7 @@ export function Reveal({
       onTransitionEnd={() => setAnimating(false)}
       {...rest}
     >
-      {children}
+      <NestedRevealContext.Provider value={true}>{children}</NestedRevealContext.Provider>
     </Tag>
   );
 }
