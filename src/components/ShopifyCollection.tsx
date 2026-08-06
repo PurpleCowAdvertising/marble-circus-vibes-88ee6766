@@ -260,5 +260,29 @@ export function ShopifyCollection() {
     document.head.appendChild(script);
   }, []);
 
-  return <div ref={containerRef} />;
+  return (
+    <>
+      <style>{`
+        .shopify-collection-wrapper .shopify-buy__collection-products {
+          display: flex;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          padding-bottom: 0.5rem;
+        }
+        .shopify-collection-wrapper .shopify-buy__collection-products::-webkit-scrollbar {
+          display: none;
+        }
+        @media (min-width: 640px) {
+          .shopify-collection-wrapper .shopify-buy__collection-products {
+            display: block;
+            flex-wrap: wrap;
+            overflow-x: visible;
+          }
+        }
+      `}</style>
+      <div ref={containerRef} className="shopify-collection-wrapper" />
+    </>
+  );
 }
