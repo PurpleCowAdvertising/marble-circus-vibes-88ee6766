@@ -20,7 +20,13 @@ const NAV: readonly NavItem[] = [
   { kind: "route", to: "/merchandise", label: "Merch" },
 ] as const;
 
+const BUY_ACTIONS = [
+  { label: "Buy Tickets", hash: "tickets" },
+  { label: "Buy Merch", hash: "merchandise" },
+] as const;
+
 function scrollToHash(hash: string) {
+
   const target = document.getElementById(hash);
 
   if (!target) return;
