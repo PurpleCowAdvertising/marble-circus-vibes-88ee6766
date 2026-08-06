@@ -204,13 +204,13 @@ export function MerchCTA() {
         <div
           aria-hidden
           className={[
-            'pointer-events-none absolute bottom-full right-2 mb-3',
-            'w-28 overflow-hidden rounded-2xl border border-white/15',
-            'bg-neutral-950/85 p-2 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.85)] backdrop-blur-xl',
-            'transition-[opacity,transform] duration-[550ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
+            'pointer-events-none absolute bottom-full right-2 mb-4',
+            'w-40 sm:w-44 overflow-hidden rounded-3xl border border-white/20',
+            'bg-neutral-950/80 p-3 shadow-[0_28px_70px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl',
+            'transition-[opacity,transform,filter] duration-[750ms] ease-[cubic-bezier(0.22,1,0.36,1)]',
             expanded && featured
-              ? 'translate-y-0 scale-100 opacity-100'
-              : 'pointer-events-none translate-y-2 scale-95 opacity-0',
+              ? 'translate-y-0 scale-100 opacity-100 blur-0'
+              : 'pointer-events-none translate-y-5 scale-[0.88] opacity-0 blur-[8px]',
           ].join(' ')}
         >
           {featured && (
@@ -219,9 +219,9 @@ export function MerchCTA() {
                 src={featured.image}
                 alt=""
                 loading="lazy"
-                className="aspect-square w-full rounded-xl object-cover"
+                className="aspect-square w-full rounded-2xl object-cover"
               />
-              <p className="mt-1.5 truncate text-center text-[9px] font-semibold uppercase tracking-[0.12em] text-white/85">
+              <p className="mt-2 truncate text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-white/90">
                 {featured.title}
               </p>
             </>
