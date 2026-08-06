@@ -37,6 +37,7 @@ export const VISIBILITY_REGISTRY: RegistryEntry[] = [
   { key: "section:home.lineup-grid", kind: "section", label: "Lineup grid (desktop)", parentKey: "page:home", sortOrder: 60 },
   { key: "section:home.tickets", kind: "section", label: "Tickets tier cards", parentKey: "page:home", sortOrder: 70 },
   { key: "section:home.experience", kind: "section", label: "Experience blocks", parentKey: "page:home", sortOrder: 80 },
+  { key: "section:home.merchandise", kind: "section", label: "Home merchandise preview", parentKey: "page:home", sortOrder: 85 },
   { key: "section:home.partners", kind: "section", label: "Partners row", parentKey: "page:home", sortOrder: 90 },
 
   // -------- About sections --------

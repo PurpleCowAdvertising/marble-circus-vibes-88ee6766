@@ -11,6 +11,7 @@ import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { ParkRideModal } from "@/components/site/ParkRideModal";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ShopifyCollection } from "@/components/ShopifyCollection";
 
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
@@ -848,6 +849,25 @@ function HomePage() {
 
         </Section>
       </div>
+      </VisibilityGate>
+
+      <VisibilityGate keyName="section:home.merchandise">
+        <div id="merchandise" className="relative isolate z-30 scroll-mt-24 bg-black text-white">
+          <Section className="!py-10 md:!py-14">
+            <FadeIn>
+              <div className="flex flex-wrap items-end justify-between gap-6">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Merchandise</p>
+                  <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl">Official merch.</h2>
+                </div>
+              </div>
+            </FadeIn>
+
+            <Reveal className="mt-8">
+              <ShopifyCollection />
+            </Reveal>
+          </Section>
+        </div>
       </VisibilityGate>
 
       <VisibilityGate keyName="section:home.partners">
