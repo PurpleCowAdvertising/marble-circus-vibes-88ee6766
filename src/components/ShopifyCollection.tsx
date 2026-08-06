@@ -111,18 +111,36 @@ const optionSelectStyles = {
 
 
 function injectIframeCss(node: HTMLElement) {
-  // The Shopify Buy Button renders inside a same-origin iframe that the SDK
-  // creates without a src attribute. We can inject an extra stylesheet to style
-  // elements that the SDK's `styles` object does not expose (disabled button
-  // state, dropdown chevron, etc.) and to strengthen the glass-card effect.
+  // The Shopify Buy Button renders inside same-origin iframes that the SDK
+  // creates without a src attribute (product grid, cart, and the product
+  // detail modal). We inject an extra stylesheet to style elements that the
+  // SDK's `styles` object does not expose (disabled button state, dropdown
+  // chevron, modal chrome, etc.).
   const tryInject = () => {
-    const iframe = node.querySelector('iframe') as HTMLIFrameElement | null;
-    if (!iframe) return false;
-    const doc = iframe.contentDocument;
-    if (!doc) return false;
+    const frames = Array.from(
+      new Set([
+        ...Array.from(node.querySelectorAll('iframe')),
+        ...Array.from(
+          document.querySelectorAll(
+            'iframe.shopify-buy-frame, iframe[name^="frame-"]'
+          )
+        ),
 
-    const id = 'shopify-glass-override';
-    if (doc.getElementById(id)) return true;
+      ])
+    ) as HTMLIFrameElement[];
+    if (!frames.length) return false;
+    let injected = false;
+    for (const iframe of frames) {
+      const doc = iframe.contentDocument;
+      if (!doc || !doc.head) continue;
+
+      const id = 'shopify-glass-override';
+      if (doc.getElementById(id)) {
+        injected = true;
+        continue;
+      }
+      injected = true;
+
 
     const style = doc.createElement('style');
     style.id = id;
@@ -238,19 +256,62 @@ function injectIframeCss(node: HTMLElement) {
       .shopify-buy__product::after {
         animation: glassShimmer 4s ease-in-out infinite !important;
       }
+      /* Product detail modal — dark glass to match the site */
+      .shopify-buy-modal, .shopify-buy__modal {
+        background: rgba(2, 6, 23, 0.94) !important;
+        border: 1px solid ${ORANGE_500_20} !important;
+        border-radius: 28px !important;
+        color: #ffffff !important;
+      }
+      .shopify-buy__modal-item, .shopify-buy__modal-item * {
+        color: #ffffff;
+      }
+      .shopify-buy__modal .shopify-buy__option-select__label,
+      .shopify-buy__modal-item .shopify-buy__option-select__label {
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        clip: auto !important;
+        color: rgba(255,255,255,0.65) !important;
+        font-size: 11px !important;
+        letter-spacing: 0.08em !important;
+        text-transform: uppercase !important;
+        margin-bottom: 6px !important;
+      }
+      .shopify-buy__modal .shopify-buy__option-select,
+      .shopify-buy__modal-item .shopify-buy__option-select {
+        flex: 1 1 calc(50% - 8px) !important;
+      }
+      .shopify-buy__quantity {
+        color: #ffffff !important;
+        background: rgba(255,255,255,0.06) !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 9999px !important;
+      }
+      .shopify-buy__btn--close {
+        color: rgba(255,255,255,0.8) !important;
+      }
+      .shopify-buy__product-description,
+      .shopify-buy__product-description * {
+        color: rgba(255,255,255,0.75) !important;
+      }
     `;
 
-    doc.head.appendChild(style);
-    return true;
+      doc.head.appendChild(style);
+    }
+    return injected;
   };
 
-  // Try immediately and then poll a few times as the SDK builds the iframe.
-  if (tryInject()) return;
+  // Try immediately, then keep polling as the SDK lazily builds the modal
+  // iframe on first product click.
+  tryInject();
   let attempts = 0;
   const timer = setInterval(() => {
-    if (tryInject() || attempts++ > 40) clearInterval(timer);
-  }, 100);
+    tryInject();
+    if (attempts++ > 600) clearInterval(timer);
+  }, 500);
 }
+
 
 export function ShopifyCollection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -276,7 +337,14 @@ export function ShopifyCollection() {
           moneyFormat: 'R%20%7B%7Bamount%7D%7D',
           options: {
             product: {
+              // Colour / size are chosen in the product detail view instead of
+              // on the card, keeping the grid cards compact.
+              buttonDestination: 'modal',
+              contents: {
+                options: false,
+              },
               styles: {
+
                 product: {
                   // Gilded glass card outer wrapper
                   position: 'relative',
@@ -400,7 +468,8 @@ export function ShopifyCollection() {
                 },
                 button: goldButtonStyles,
               },
-              text: { button: 'Add to cart' },
+              text: { button: 'Select options' },
+
             },
             productSet: {
               styles: {
@@ -461,7 +530,17 @@ export function ShopifyCollection() {
                 wrapper: optionWrapperStyles,
               },
             },
+            modal: {
+              styles: {
+                modal: {
+                  'background-color': 'rgba(2, 6, 23, 0.94)',
+                  'border-radius': '28px',
+                  'max-width': '900px',
+                },
+              },
+            },
             cart: {
+
               styles: {
                 button: goldButtonStyles,
               },
