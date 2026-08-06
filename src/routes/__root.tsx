@@ -267,6 +267,7 @@ function RootComponent() {
         {!isBareRoute && <ConsentBanner />}
         {!isBareRoute && <LaunchCountdown />}
         {!isBareRoute && <MerchCTA />}
+        {!isBareRoute && <TicketUrgencyBar />}
 
         <Toaster />
       </SubscribeProvider>
