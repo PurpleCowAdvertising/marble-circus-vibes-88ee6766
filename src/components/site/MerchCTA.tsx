@@ -175,6 +175,12 @@ export function MerchCTA() {
   }, [smoothScrollTo]);
 
   const handleClick = useCallback(() => {
+    // If the cart already has items, the CTA becomes the cart opener.
+    if (getCartCount() > 0) {
+      expandTemporarily(1400);
+      if (openCart()) return;
+    }
+
     // Touch devices have no hover: the first tap reveals the preview,
     // the second tap performs the action.
     const coarse =
@@ -196,7 +202,6 @@ export function MerchCTA() {
       return;
     }
 
-    if (getCartCount() > 0 && openCart()) return;
     if (!scrollToMerch()) {
       navigate({ to: '/' }).then(() => {
         window.setTimeout(scrollToMerch, 400);

@@ -17,9 +17,9 @@ function getCart(): any | null {
 }
 
 export function getCartCount(): number {
-  const cart = getCart();
-  const items = cart?.model?.lineItems ?? [];
   try {
+    const cart = getCart();
+    const items = cart?.lineItems ?? [];
     return items.reduce(
       (total: number, item: any) => total + (item?.quantity ?? 0),
       0
