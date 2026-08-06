@@ -530,7 +530,17 @@ export function ShopifyCollection() {
                 wrapper: optionWrapperStyles,
               },
             },
+            modal: {
+              styles: {
+                modal: {
+                  'background-color': 'rgba(2, 6, 23, 0.94)',
+                  'border-radius': '28px',
+                  'max-width': '900px',
+                },
+              },
+            },
             cart: {
+
               styles: {
                 button: goldButtonStyles,
               },
