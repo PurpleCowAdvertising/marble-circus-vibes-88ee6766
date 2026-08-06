@@ -128,17 +128,81 @@ function injectIframeCss(node: HTMLElement) {
     const style = doc.createElement('style');
     style.id = id;
     style.textContent = `
+      @font-face {
+        font-family: "Chinese Rocks";
+        font-style: normal;
+        font-weight: 400 900;
+        font-display: swap;
+        src: url("/fonts/chinese-rocks.otf") format("opentype");
+      }
+      @font-face {
+        font-family: "Syne";
+        font-style: normal;
+        font-weight: 400 800;
+        font-display: swap;
+        src: url("https://fonts.gstatic.com/s/syne/v22/8vIS7w4qzmVxsWxjBZRjr0FKM_04uT6k.woff2") format("woff2");
+      }
+      .shopify-buy-frame, .shopify-buy__product, .shopify-buy__product * {
+        font-family: ${FONT_SANS} !important;
+      }
+      .shopify-buy__product__title {
+        font-family: ${FONT_DISPLAY} !important;
+        letter-spacing: -0.01em !important;
+      }
+      .shopify-buy__product__price,
+      .shopify-buy__product__actual-price {
+        color: ${GOLD} !important;
+        font-weight: 700 !important;
+      }
+      /* Compact, pill-shaped variant selectors, side by side */
+      .shopify-buy__product__variant-selectors {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        margin: 8px 0 0 !important;
+        position: relative;
+        z-index: 2;
+      }
+      .shopify-buy__option-select {
+        flex: 1 1 calc(50% - 8px) !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+      }
+      .shopify-buy__option-select__label {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        overflow: hidden !important;
+        clip: rect(0 0 0 0) !important;
+        white-space: nowrap !important;
+      }
       .shopify-buy__option-select-wrapper {
-        background: rgba(255,255,255,0.06) !important;
-        border: 1px solid rgba(255,255,255,0.15) !important;
-        border-radius: 0.75rem !important;
+        background: rgba(255,255,255,0.05) !important;
+        border: 1px solid rgba(255,255,255,0.12) !important;
+        border-radius: 9999px !important;
+        width: 100% !important;
+        margin: 0 !important;
+        transition: border-color 0.2s ease, background-color 0.2s ease !important;
+      }
+      .shopify-buy__option-select-wrapper:hover {
+        border-color: ${ORANGE_500_40} !important;
+        background: rgba(255,255,255,0.09) !important;
       }
       .shopify-buy__option-select__select {
         color: #ffffff !important;
         background: transparent !important;
         border: 0 !important;
-        border-radius: 0.75rem !important;
-        padding: 10px 12px !important;
+        border-radius: 9999px !important;
+        padding: 6px 24px 6px 12px !important;
+        height: 32px !important;
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+        letter-spacing: 0.02em !important;
+        text-transform: none !important;
+      }
+      .shopify-buy__option-select__select option {
+        color: #ffffff !important;
+        background: #0b1020 !important;
       }
       .shopify-buy__option-select__select:focus {
         outline: none !important;
@@ -146,6 +210,7 @@ function injectIframeCss(node: HTMLElement) {
       }
       .shopify-buy__select-icon {
         fill: rgba(255,255,255,0.7) !important;
+        right: 8px !important;
       }
       .shopify-buy__btn[disabled],
       .shopify-buy__btn:disabled {
@@ -175,6 +240,7 @@ function injectIframeCss(node: HTMLElement) {
         animation: glassShimmer 4s ease-in-out infinite !important;
       }
     `;
+
     doc.head.appendChild(style);
     return true;
   };
