@@ -913,6 +913,23 @@ export function ShopifyCollection() {
                 notice: 'Shipping and discounts calculated at checkout.',
               },
               popup: false,
+              events: {
+                openCheckout: (cart: any) => {
+                  const url: string | undefined =
+                    cart?.checkout?.webUrl ??
+                    cart?.model?.webUrl ??
+                    cart?.checkoutUrl;
+                  if (!url) return;
+                  // Always navigate the top-level window so checkout is never
+                  // trapped inside the Buy Button iframe or blocked as a popup.
+                  try {
+                    const top = window.top ?? window;
+                    top.location.href = url;
+                  } catch {
+                    window.location.href = url;
+                  }
+                },
+              },
             },
             lineItem: {
               styles: {
