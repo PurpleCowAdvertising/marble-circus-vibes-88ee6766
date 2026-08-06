@@ -251,19 +251,62 @@ function injectIframeCss(node: HTMLElement) {
       .shopify-buy__product::after {
         animation: glassShimmer 4s ease-in-out infinite !important;
       }
+      /* Product detail modal — dark glass to match the site */
+      .shopify-buy-modal, .shopify-buy__modal {
+        background: rgba(2, 6, 23, 0.94) !important;
+        border: 1px solid ${ORANGE_500_20} !important;
+        border-radius: 28px !important;
+        color: #ffffff !important;
+      }
+      .shopify-buy__modal-item, .shopify-buy__modal-item * {
+        color: #ffffff;
+      }
+      .shopify-buy__modal .shopify-buy__option-select__label,
+      .shopify-buy__modal-item .shopify-buy__option-select__label {
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        clip: auto !important;
+        color: rgba(255,255,255,0.65) !important;
+        font-size: 11px !important;
+        letter-spacing: 0.08em !important;
+        text-transform: uppercase !important;
+        margin-bottom: 6px !important;
+      }
+      .shopify-buy__modal .shopify-buy__option-select,
+      .shopify-buy__modal-item .shopify-buy__option-select {
+        flex: 1 1 calc(50% - 8px) !important;
+      }
+      .shopify-buy__quantity {
+        color: #ffffff !important;
+        background: rgba(255,255,255,0.06) !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 9999px !important;
+      }
+      .shopify-buy__btn--close {
+        color: rgba(255,255,255,0.8) !important;
+      }
+      .shopify-buy__product-description,
+      .shopify-buy__product-description * {
+        color: rgba(255,255,255,0.75) !important;
+      }
     `;
 
-    doc.head.appendChild(style);
-    return true;
+      doc.head.appendChild(style);
+    }
+    return injected;
   };
 
-  // Try immediately and then poll a few times as the SDK builds the iframe.
-  if (tryInject()) return;
+  // Try immediately, then keep polling as the SDK lazily builds the modal
+  // iframe on first product click.
+  tryInject();
   let attempts = 0;
   const timer = setInterval(() => {
-    if (tryInject() || attempts++ > 40) clearInterval(timer);
-  }, 100);
+    tryInject();
+    if (attempts++ > 600) clearInterval(timer);
+  }, 500);
 }
+
 
 export function ShopifyCollection() {
   const containerRef = useRef<HTMLDivElement>(null);
