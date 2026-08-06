@@ -1,86 +1,53 @@
-# Content Visibility Manager — Phase 1
+# Field Tickets Sell-Out Push
 
-## Goal
-Admin-only dashboard at `/admin` to toggle visibility of pages and sections
-across the site, with a draft/live workflow (edit → preview → publish).
-Zero visual change to the public site until an admin publishes.
+## Objective
+For this period, the site's single conversion goal is selling the remaining Field
+tickets (from R990). Landing experience leads with that call to action.
 
-## Auth
-- Google sign-in via Lovable Cloud managed OAuth.
-- Admin allowlist: `ADMIN_EMAILS` secret (comma-separated). Only listed
-  emails see `/admin`; everyone else is redirected to `/`.
-- `/auth` route: single "Sign in with Google" button.
-- No public signup, no email/password — this is a private admin surface.
+## 1. Landing ticket popup
+New `FieldTicketsPopup` component, styled to match the existing dark glass /
+gold brand modals (same treatment as the ticket and Park & Ride modals).
 
-## Data model
-Single table `content_visibility`:
-- `key` text primary key — stable identifier, e.g. `page:music`, `section:home.hero`.
-- `kind` text — `page` | `section`.
-- `label` text — human label shown in admin ("Home / Hero", "Music page").
-- `parent_key` text nullable — for section→page grouping.
-- `draft_hidden` boolean default false — pending state.
-- `live_hidden` boolean default false — what the public site sees.
-- `updated_at`, `updated_by` — audit trail.
+- Fires 4 seconds after landing on the home page, once per session
+  (sessionStorage flag so it doesn't nag on every route change).
+- Content:
+  - Eyebrow: "Final release · Selling out"
+  - Headline: "Field tickets — from R990"
+  - Short urgency line: FNB Stadium, 19 September 2026, limited Field
+    inventory remaining.
+  - Primary gold button "Buy Field Tickets" → Webtickets event link, new tab.
+  - Secondary quiet link "Not now" to dismiss.
+- Escape key, backdrop click, and close button all dismiss; body scroll locked
+  while open, matching existing modal behaviour.
+- Not shown to users who arrive via a deep link with the cart drawer open, and
+  never blocks the hero video load.
 
-RLS:
-- Public `SELECT` allowed for `live_hidden` reads (needed at SSR for every visitor).
-- All writes and `draft_hidden` reads require admin role check via server functions.
+## 2. Subscribe popup takes a back seat
+The existing "Join the Movement" popup is suppressed while the tickets push is
+active — the tickets popup is the only interruption. The subscribe form stays
+reachable from the footer/subscribe route; only the automatic popup trigger is
+disabled for this period, behind a single flag so it can be switched back on.
 
-## Registry
-`src/lib/visibility-registry.ts` — the canonical list of every toggleable key
-on the site. Seed migration inserts a row per registry entry. When a section
-is added to a route, the developer adds one line to the registry; a startup
-sync (server fn callable from admin) inserts missing keys into the DB.
+## 3. Sticky bottom ticket banner
+Slim persistent gold bar across the bottom of the viewport:
 
-## Component wiring
-- Hook `useVisibility()` fetches all live visibility rows once, caches in
-  QueryClient with a long stale time.
-- `<VisibilityGate keyName="section:home.hero">…</VisibilityGate>` wraps each
-  section. Hidden = renders nothing (layout reflows naturally, no placeholder).
-- Route-level: each page's `beforeLoad` throws `notFound()` when the page is
-  hidden and preview mode is off.
-- Header/MobileTabBar nav: filter out links whose page is hidden.
+```text
+[ Field selling out — from R990 ]        [ Buy Now ]   [x]
+```
 
-## Preview mode
-- Admin toggle in the dashboard sets a `?preview=draft` search param or a
-  `lovable-preview` cookie via a server fn (httpOnly, admin-only).
-- `useVisibility()` reads `draft_hidden` instead of `live_hidden` when the
-  preview cookie is present AND the caller is admin.
-- Draft badge fixed at top of screen while preview is on, with "Back to live".
+- Appears after the hero section scrolls past, on desktop and mobile.
+- Dismissible; stays dismissed for the session.
+- On mobile it sits above the existing bottom tab bar so nothing overlaps, and
+  it hides when the footer is in view (same pattern as the countdown card).
+- Does not interfere with the floating merch/cart pill on the right.
 
-## Publish workflow
-- Admin edits change `draft_hidden` only. UI shows unsaved-change count.
-- "Publish changes" server fn copies `draft_hidden → live_hidden` for all
-  changed rows in a transaction, bumps a `visibility_version` value so
-  clients revalidate.
-- "Discard changes" resets `draft_hidden = live_hidden`.
-
-## Admin UI (`/admin`)
-- Left sidebar: search + tree (Pages → Sections).
-- Right pane: selected page/section detail with toggle, status pill
-  (Live / Hidden / Draft change pending), last-edited-by.
-- Top bar: unsaved count, Preview toggle, Publish, Discard.
-- Bulk actions per page: Hide all sections / Show all sections.
-
-## Route/page inventory (initial registry)
-Pages: `/`, `/about`, `/music`, `/news`, `/tickets`, `/partners`,
-`/experience`, `/merchandise`, `/legacy`, `/contact`, `/faqs`, `/privacy`,
-`/terms`. `/auth` and `/admin` are never toggleable.
-
-Sections per page — enumerated during the wiring pass by reading each route
-file and adding one `<VisibilityGate>` per top-level section, with matching
-registry entries.
-
-## Out of scope (Phase 2)
-- Individual component/card toggles (each artist, each FAQ).
-- Inline text editing.
-- Scheduled publish, role tiers, version history, undo/redo, recycle bin.
-- Multi-admin sync conflict resolution (single-admin assumption for now).
-
-## Build order
-1. `ADMIN_EMAILS` secret + Google OAuth config + migration.
-2. `/auth` route + admin middleware + `/admin` shell (empty tree, wired auth).
-3. Registry + `useVisibility` + `<VisibilityGate>` + nav filtering.
-4. Instrument every route with section gates + seed registry.
-5. Preview mode + publish/discard.
-6. Polish: search, bulk actions, status pills, audit display.
+## Technical notes
+- New files: `src/components/site/FieldTicketsPopup.tsx`,
+  `src/components/site/TicketUrgencyBar.tsx`.
+- Both mounted in `src/routes/__root.tsx` (banner) / home route (popup), using
+  existing semantic tokens and the gold brand accent — no hardcoded colours.
+- Subscribe suppression is a constant in `SubscribePopup.tsx`, not a deletion.
+- Ticket URL reused from the existing tiers data:
+  `https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143`.
+- Verified with Playwright at mobile and desktop widths: popup timing, dismiss
+  persistence, banner stacking above the tab bar, footer hide behaviour.
