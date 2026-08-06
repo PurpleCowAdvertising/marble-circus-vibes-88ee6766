@@ -179,6 +179,9 @@ export function MerchCTA() {
     if (getCartCount() > 0) {
       expandTemporarily(1400);
       if (openCart()) return;
+      // The SDK may still be booting — retry once shortly after.
+      window.setTimeout(() => openCart(), 350);
+      return;
     }
 
     // Touch devices have no hover: the first tap reveals the preview,

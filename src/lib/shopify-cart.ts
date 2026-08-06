@@ -30,10 +30,45 @@ export function getCartCount(): number {
 }
 
 export function openCart(): boolean {
+  // 1) Preferred: ask the SDK cart component to open.
   const cart = getCart();
-  if (!cart || typeof cart.open !== 'function') return false;
-  cart.open();
-  return true;
+  if (cart && typeof cart.open === 'function') {
+    try {
+      cart.open();
+      return true;
+    } catch {
+      /* fall through to the DOM fallbacks */
+    }
+  }
+
+  // 2) Fallback: click the SDK's own (hidden) cart toggle.
+  try {
+    const ui = getUI();
+    const toggle = ui?.components?.toggle?.[0];
+    if (toggle?.node) {
+      const btn =
+        toggle.node.querySelector('iframe')?.contentDocument?.querySelector(
+          '.shopify-buy__cart-toggle'
+        ) ?? toggle.node.querySelector('button');
+      if (btn) {
+        (btn as HTMLElement).click();
+        return true;
+      }
+    }
+  } catch {
+    /* ignore */
+  }
+
+  // 3) Last resort: reveal the cart drawer element directly.
+  const wrapper = document.querySelector<HTMLElement>(
+    '.shopify-buy-cart-wrapper, .shopify-buy-frame--cart'
+  );
+  if (wrapper) {
+    wrapper.classList.add('is-active', 'shopify-buy-frame--cart--visible');
+    return true;
+  }
+
+  return false;
 }
 
 /** Polls the cart count and calls back whenever it changes. */

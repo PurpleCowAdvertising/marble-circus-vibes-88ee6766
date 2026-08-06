@@ -141,7 +141,9 @@
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    overscroll-behavior-y: auto;
+    /* Stops the rubber-band overscroll that exposed a black strip
+       under the white footer on mobile. */
+    overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
   }
 
