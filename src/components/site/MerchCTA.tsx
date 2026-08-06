@@ -95,16 +95,20 @@ export function MerchCTA() {
     };
   }, [collapse]);
 
-  // Collapse the intro pill as soon as the visitor starts scrolling.
+  // Collapse the intro pill once the visitor has scrolled a meaningful amount,
+  // so it eases away rather than snapping shut on the first pixel of scroll.
   useEffect(() => {
     if (!expanded || !firstReveal) return;
+    const start = window.scrollY;
     const onScroll = () => {
+      if (Math.abs(window.scrollY - start) < 160) return;
       setExpanded(false);
       setFirstReveal(false);
     };
-    window.addEventListener('scroll', onScroll, { passive: true, once: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, [expanded, firstReveal]);
+
 
   // Track whether the merch section has been reached this session.
   useEffect(() => {
