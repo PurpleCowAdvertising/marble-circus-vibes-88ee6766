@@ -479,6 +479,11 @@ export function ShopifyCollection() {
 
       window.ShopifyBuy.UI.onReady(client).then((ui: any) => {
         if (!containerRef.current) return;
+        // Expose the SDK instance so the floating merch CTA can read the cart
+        // line-item count and open the cart drawer.
+        (window as any).__skShopifyUI = ui;
+        window.dispatchEvent(new CustomEvent('sk-shopify-ready'));
+
         ui.createComponent('collection', {
           id: COLLECTION_ID,
           node: containerRef.current,
