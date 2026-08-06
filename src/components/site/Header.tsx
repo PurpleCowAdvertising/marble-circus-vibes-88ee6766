@@ -146,7 +146,7 @@ export function Header() {
           </Link>
 
           <div
-            className="absolute left-1/2 top-3 z-10 flex -translate-x-1/2 justify-center sm:top-4 md:top-5"
+            className="absolute left-1/2 top-3 z-10 hidden -translate-x-1/2 justify-center sm:top-4 md:top-5 md:flex"
             onMouseEnter={() => setNavHovered(true)}
             onMouseLeave={() => setNavHovered(false)}
           >
