@@ -1,7 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useRouterState } from '@tanstack/react-router';
 import { ChevronLeft, ShoppingBag } from 'lucide-react';
-import { getCartCount, openCart, subscribeCartCount } from '@/lib/shopify-cart';
+import {
+  fetchFeaturedMerch,
+  getCartCount,
+  openCart,
+  subscribeCartCount,
+} from '@/lib/shopify-cart';
+
 
 const MERCH_ID = 'merchandise';
 const SEEN_KEY = 'sk-merch-cta-seen';
