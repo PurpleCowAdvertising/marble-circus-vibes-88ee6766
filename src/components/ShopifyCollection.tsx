@@ -369,7 +369,7 @@ export function ShopifyCollection() {
                 title: {
                   color: '#ffffff',
                   'font-family':
-                    '"Chinese Rocks", "Syne", "Bebas Neue", system-ui, sans-serif',
+                    FONT_DISPLAY,
                   'font-weight': '700',
                   'letter-spacing': '-0.02em',
                   'font-size': '20px',
@@ -382,9 +382,10 @@ export function ShopifyCollection() {
                   },
                 },
                 price: {
-                  color: ORANGE_500,
+                  color: GOLD,
+                  'font-family': FONT_SANS,
                   'font-size': '16px',
-                  'font-weight': '600',
+                  'font-weight': '700',
                   'margin-top': '0.25rem',
                   'margin-bottom': '0.75rem',
                   'z-index': '2',
@@ -434,10 +435,11 @@ export function ShopifyCollection() {
                 title: {
                   color: '#ffffff',
                   'font-family':
-                    '"Chinese Rocks", "Syne", "Bebas Neue", system-ui, sans-serif',
+                    FONT_DISPLAY,
                 },
                 price: {
-                  color: ORANGE_500,
+                  color: GOLD,
+                  'font-family': FONT_SANS,
                 },
                 button: goldButtonStyles,
               },
@@ -447,7 +449,7 @@ export function ShopifyCollection() {
               styles: {
                 label: {
                   color: '#ffffff',
-                  'font-family': 'Candara, sans-serif',
+                  'font-family': FONT_SANS,
                   'font-size': '11px',
                   'font-weight': '600',
                   'text-transform': 'uppercase',
