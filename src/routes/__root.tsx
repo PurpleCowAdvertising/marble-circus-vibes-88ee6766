@@ -252,6 +252,8 @@ function RootComponent() {
 
         {!isBareRoute && <ConsentBanner />}
         {!isBareRoute && <LaunchCountdown />}
+        {!isBareRoute && <MerchCTA />}
+
         <Toaster />
       </SubscribeProvider>
     </QueryClientProvider>
