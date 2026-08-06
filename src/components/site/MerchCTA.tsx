@@ -149,16 +149,42 @@ export function MerchCTA() {
     return () => io.disconnect();
   }, [pathname]);
 
+  const smoothScrollTo = useCallback((top: number, duration = 1600) => {
+    const start = window.scrollY;
+    const delta = top - start;
+    if (Math.abs(delta) < 4) return;
+    const t0 = performance.now();
+    const ease = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const step = (now: number) => {
+      const p = Math.min(1, (now - t0) / duration);
+      window.scrollTo(0, start + delta * ease(p));
+      if (p < 1) window.requestAnimationFrame(step);
+    };
+    window.requestAnimationFrame(step);
+  }, []);
+
   const scrollToMerch = useCallback(() => {
     const el = document.getElementById(MERCH_ID);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const top = el.getBoundingClientRect().top + window.scrollY - 8;
+      smoothScrollTo(top);
       return true;
     }
     return false;
-  }, []);
+  }, [smoothScrollTo]);
 
   const handleClick = useCallback(() => {
+    // Touch devices have no hover: the first tap reveals the preview,
+    // the second tap performs the action.
+    const coarse =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(hover: none)').matches;
+    if (coarse && !expanded) {
+      expandTemporarily(4000);
+      return;
+    }
+
     expandTemporarily(1400);
 
     // Not yet at the merch section → take them there first.
@@ -176,7 +202,8 @@ export function MerchCTA() {
         window.setTimeout(scrollToMerch, 400);
       });
     }
-  }, [expandTemporarily, navigate, scrollToMerch]);
+  }, [expanded, expandTemporarily, navigate, scrollToMerch]);
+
 
   return (
     <>
