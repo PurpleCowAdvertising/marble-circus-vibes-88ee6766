@@ -51,6 +51,22 @@ export function MerchCTA() {
   // Cart count
   useEffect(() => subscribeCartCount(setCount), []);
 
+  // Soft fade while the page is scrolling (never fully hides).
+  useEffect(() => {
+    let idle: number | null = null;
+    const onScroll = () => {
+      setScrolling(true);
+      if (idle) window.clearTimeout(idle);
+      idle = window.setTimeout(() => setScrolling(false), 420);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      if (idle) window.clearTimeout(idle);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+
   // Merch preview thumbnail (loaded lazily, after first paint).
   useEffect(() => {
     const id = window.setTimeout(() => {
