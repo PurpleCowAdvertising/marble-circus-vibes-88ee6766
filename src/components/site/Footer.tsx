@@ -40,7 +40,7 @@ const SOCIAL_LINKS = [
   { href: "https://www.facebook.com/share/1D9ccSVuU3/?mibextid=wwXIfr", label: "Facebook", icon: Facebook },
   { href: "https://www.youtube.com/channel/UCe0qO9T8tdTwKLR6rnPTRPQ", label: "YouTube", icon: Youtube },
   { href: "https://x.com/scorpionkingslv?s=21", label: "X", icon: X },
-  { href: "https://www.tiktok.com/@scorpionkingslive?_r=1&_t=ZS-97paQvcDRTt", label: "TikTok", icon: TikTokIcon },
+  { href: "https://www.tiktok.com/@scorpion.kings.live", label: "TikTok", icon: TikTokIcon },
 ] as const;
 
 export function Footer() {
