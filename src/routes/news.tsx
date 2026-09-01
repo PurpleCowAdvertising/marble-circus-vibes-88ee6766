@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
+import posterAsset from "@/assets/preshow-lineup-poster.png.asset.json";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -44,6 +46,7 @@ export const Route = createFileRoute("/news")({
               headline: post.title,
               description: post.excerpt,
               datePublished: post.datePublished,
+              ...(post.image ? { image: post.image } : {}),
               articleSection: post.tag,
               inLanguage: "en-ZA",
               author: { "@type": "Organization", name: "Scorpion Kings Live" },
@@ -76,10 +79,51 @@ type Post = {
   body: string[];
   href?: string;
   hrefLabel?: string;
+  image?: string;
+  imageAlt?: string;
+  groups?: { label: string; names: string }[];
+  highlight?: { title: string; body: string };
+  footnote?: string;
 };
 
-
 const POSTS: Post[] = [
+  {
+    tag: "Pre-show line-up",
+    date: "01 September 2026 · 09h00",
+    datePublished: "2026-09-01T09:00:00+02:00",
+    title: "Scorpion Kings Live announces a vibrant pre-show line-up.",
+    excerpt:
+      "The countdown to Scorpion Kings Live continues with an explosive pre-show line-up set to get fans moving long before the Scorpion Kings take to the stage on 19 September 2026.",
+    image: posterAsset.url,
+    imageAlt: "Scorpion Kings Live pre-show line-up poster — 19 September 2026, FNB Stadium, doors open 12:00",
+    body: [
+      "Johannesburg, South Africa — Bringing together some of the biggest names across Amapiano, hip-hop, house, Bacardi and Maskandi, the pre-show promises to turn the day into a full-scale celebration of South African music and culture.",
+      "The pre-show will also celebrate the richness and diversity of South African music, designed to get the party started early and set the tone for a day dedicated to the sounds, artists and cultures that continue to shape South Africa’s musical landscape.",
+      "Scorpion Kings Live have already made history following unprecedented ticket demand. The addition of the pre-show line-up further expands the experience, giving fans even more reason to arrive early and make a full day of it.",
+      "On 19 September 2026, the celebrations start early. Doors open at 12:00 for a full day of music.",
+      "Be sure to follow @scorpionkingslive for all updates and more announcements, and check scorpionkings.live for hospitality suite tickets and all things Scorpion Kings Live.",
+    ],
+    groups: [
+      {
+        label: "Amapiano & house",
+        names:
+          "Dlala Thukzin · Mdu aka TRP · Jnr SA · Dark Horse · Sam Deep · Stixx · DJ’s @ Work · Banques · Venom · Natiey Lepaka · Shandesh · Wendy Moon · Ba Bethe Gashoazen",
+      },
+      { label: "Hip-hop", names: "A-Reece" },
+      { label: "Bacardi showcase", names: "Big Baller CEO · Sia The Bee · Zela Force" },
+      {
+        label: "Maskandi showcase",
+        names: "Mnotho · Mjabulisi · Mjolisi · Shenge Wasehlalankosi · Jikijiki",
+      },
+    ],
+    highlight: {
+      title: "Standard Bank cardholder offer",
+      body: "Limited Scorpion Kings Live tickets are available exclusively to Standard Bank cardholders via Webtickets — 10% off for debit cardholders and 20% off for credit cardholders. Tickets are limited, so secure yours while they last.",
+    },
+    footnote: "Doors open 12:00 · 19 September 2026 · FNB Stadium, Johannesburg",
+    href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143",
+    hrefLabel: "Buy on Webtickets",
+  },
   {
     tag: "Tickets out now",
     date: "05 May 2026 · 10h00",
@@ -114,7 +158,47 @@ const POSTS: Post[] = [
   },
 ];
 
+function PosterLightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={alt}
+      onClick={onClose}
+      className="fixed inset-0 z-[120] flex items-center justify-center bg-black/85 p-4 backdrop-blur-xl md:p-10"
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close poster"
+        className="absolute right-4 top-4 rounded-full border border-white/20 bg-white/10 p-2 text-white transition hover:bg-white/20 md:right-8 md:top-8"
+      >
+        <X size={18} />
+      </button>
+
+      <img
+        src={src}
+        alt={alt}
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-full max-w-full rounded-2xl border border-white/15 object-contain shadow-2xl"
+      />
+    </div>
+  );
+}
+
 function NewsPage() {
+  const [poster, setPoster] = useState<{ src: string; alt: string } | null>(null);
+
   return (
     <PageGate keyName="page:news">
       <PageHero
@@ -171,22 +255,84 @@ function NewsPage() {
 
                   <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">{post.excerpt}</p>
 
-                  <div className="mt-6 space-y-3 text-sm leading-relaxed text-white/60 md:text-base">
-                    {post.body.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
-                  </div>
+                  <div className={post.image ? "mt-6 grid gap-6 md:grid-cols-[38%_1fr] md:gap-8" : "contents"}>
+                    {post.image && (
+                      <button
+                        type="button"
+                        onClick={() => setPoster({ src: post.image!, alt: post.imageAlt ?? post.title })}
+                        className="group block overflow-hidden rounded-2xl border border-white/15 bg-black/40 md:self-start"
+                        aria-label="View full line-up poster"
+                      >
+                        <img
+                          src={post.image}
+                          alt={post.imageAlt ?? post.title}
+                          loading="lazy"
+                          className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
 
-                  {post.href && (
-                    <a
-                      href={post.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
-                    >
-                      {post.hrefLabel} <ArrowUpRight size={14} />
-                    </a>
-                  )}
+                        <span className="block bg-black/60 px-3 py-2 text-[10px] uppercase tracking-[0.3em] text-white/60">
+                          Tap to enlarge
+                        </span>
+                      </button>
+                    )}
+
+                    <div className={post.image ? "" : "mt-6"}>
+                      <div className="space-y-3 text-sm leading-relaxed text-white/60 md:text-base">
+                        {post.body.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+
+                      {post.groups && (
+                        <dl className="mt-6 space-y-4 rounded-2xl border border-gold/25 bg-gold/[0.06] p-5">
+                          {post.groups.map((group) => (
+                            <div key={group.label}>
+                              <dt className="text-[10px] uppercase tracking-[0.35em] text-gold">{group.label}</dt>
+
+                              <dd className="mt-1.5 text-sm leading-relaxed text-white/80">{group.names}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      )}
+
+                      {post.highlight && (
+                        <div className="mt-5 rounded-2xl border border-white/15 bg-white/[0.05] p-5">
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-gold">
+                            {post.highlight.title}
+                          </p>
+
+                          <p className="mt-2 text-sm leading-relaxed text-white/75">{post.highlight.body}</p>
+                        </div>
+                      )}
+
+                      {post.footnote && (
+                        <p className="mt-5 text-[11px] uppercase tracking-[0.3em] text-white/50">{post.footnote}</p>
+                      )}
+
+                      <div className="flex flex-wrap items-center gap-3">
+                        {post.href && (
+                          <a
+                            href={post.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
+                          >
+                            {post.hrefLabel} <ArrowUpRight size={14} />
+                          </a>
+                        )}
+
+                        {post.image && (
+                          <button
+                            type="button"
+                            onClick={() => setPoster({ src: post.image!, alt: post.imageAlt ?? post.title })}
+                            className="mt-7 inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-white transition hover:bg-white/10"
+                          >
+                            View full line-up poster
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </article>
               </FadeIn>
             ))}
@@ -214,6 +360,8 @@ function NewsPage() {
           </FadeIn>
         </VisibilityGate>
       </Section>
+
+      {poster && <PosterLightbox src={poster.src} alt={poster.alt} onClose={() => setPoster(null)} />}
     </PageGate>
   );
 }
