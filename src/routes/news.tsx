@@ -158,7 +158,47 @@ const POSTS: Post[] = [
   },
 ];
 
+function PosterLightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={alt}
+      onClick={onClose}
+      className="fixed inset-0 z-[120] flex items-center justify-center bg-black/85 p-4 backdrop-blur-xl md:p-10"
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close poster"
+        className="absolute right-4 top-4 rounded-full border border-white/20 bg-white/10 p-2 text-white transition hover:bg-white/20 md:right-8 md:top-8"
+      >
+        <X size={18} />
+      </button>
+
+      <img
+        src={src}
+        alt={alt}
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-full max-w-full rounded-2xl border border-white/15 object-contain shadow-2xl"
+      />
+    </div>
+  );
+}
+
 function NewsPage() {
+  const [poster, setPoster] = useState<{ src: string; alt: string } | null>(null);
+
   return (
     <PageGate keyName="page:news">
       <PageHero
