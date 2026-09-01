@@ -921,7 +921,7 @@ function HomePage() {
                       alt={`${sponsor.name} logo`}
                       loading="lazy"
                       className={sponsor.wide
-                        ? "mx-auto h-14 w-full object-fill object-center"
+                        ? "mx-auto h-12 w-[88%] object-contain object-center md:h-14"
                         : sponsor.imgClassName ?? "max-h-12 w-auto max-w-full object-contain md:max-h-14"
                       }
                     />
