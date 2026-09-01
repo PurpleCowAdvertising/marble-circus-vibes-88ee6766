@@ -109,18 +109,6 @@ const POSTS: Post[] = [
       "Be sure to follow @scorpionkingslive on Instagram for all updates and more announcements.",
       "Check out www.scorpionkings.live for hospitality suite tickets and for all things Scorpion Kings Live.",
     ],
-    groups: [
-      {
-        label: "Amapiano & house",
-        names:
-          "A-Reece · Dlala Thukzin · Dark Horse · DJs @ Work · Venom · Banques · Sam Deep · Stixx · Mdu aka TRP · Jnr SA · Natiey Lepaka · Wendy Moon · Shandesh · Ba Bethe Gashoazen",
-      },
-      { label: "Bacardi showcase", names: "Big Baller CEO · Black Boy · Sia The Bee · Zela Force" },
-      {
-        label: "Maskandi showcase",
-        names: "Mnotho · Mjabulisi · Mjolisi · Shenge Wasehlalankosi · Jikjiki",
-      },
-    ],
     highlight: {
       title: "Standard Bank cardholder offer",
       body: "For Standard Bank customers, there’s still an opportunity to be part of the historic experience. Limited Scorpion Kings Live tickets are available exclusively to Standard Bank cardholders via Webtickets, with 10% off for Standard Bank debit cardholders and 20% off for Standard Bank credit cardholders.",
