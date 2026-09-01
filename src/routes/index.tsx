@@ -908,7 +908,7 @@ function HomePage() {
                 {SPONSORS.map((sponsor) => (
                   <li
                     key={sponsor.name}
-                    className={`flex h-24 w-40 items-center justify-center rounded-2xl border p-5 backdrop-blur-xl transition-colors md:h-28 md:w-auto ${
+                    className={`flex h-24 w-40 items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors md:h-28 md:w-auto ${
                       sponsor.onLight
                         ? "border-white/15 bg-white/90"
                         : "border-white/10 bg-white/[0.06] hover:border-white/25"
