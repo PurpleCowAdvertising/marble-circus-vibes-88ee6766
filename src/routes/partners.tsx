@@ -171,12 +171,12 @@ function PartnersPage() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          <ul className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
             {SPONSORS.map((sponsor) => (
               <li
                 key={sponsor.name}
-                className={`flex h-32 items-center justify-center rounded-3xl border py-6 backdrop-blur-xl ${
-                  sponsor.wide ? "px-3" : "px-6"
+                className={`flex h-24 items-center justify-center rounded-2xl border py-4 backdrop-blur-xl ${
+                  sponsor.wide ? "px-2.5" : "px-5"
                 } ${
                   sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
                 }`}
@@ -186,8 +186,8 @@ function PartnersPage() {
                   alt={`${sponsor.name} logo`}
                   loading="lazy"
                   className={sponsor.wide
-                    ? "mx-auto h-14 w-[88%] object-contain object-center"
-                    : sponsor.imgClassName ?? "max-h-14 w-auto max-w-full object-contain"
+                    ? "mx-auto h-11 w-[88%] object-contain object-center"
+                    : sponsor.imgClassName ?? "max-h-11 w-auto max-w-full object-contain md:max-h-12"
                   }
                 />
               </li>
@@ -218,7 +218,7 @@ function PartnersPage() {
           <div
             role="tablist"
             aria-label="Filter partner packages by tier"
-            className="mt-8 flex flex-wrap gap-2 border-b border-white/10 pb-6"
+            className="mt-6 flex flex-wrap gap-2 border-b border-white/10 pb-5"
           >
             {FILTERS.map((filter) => {
               const active = activeTier === filter.key;
@@ -251,7 +251,7 @@ function PartnersPage() {
           </div>
         </FadeIn>
 
-        <div className="mt-10">
+        <div className="mt-7">
           <FadeIn>
             <p className="text-xs uppercase tracking-widest text-white/50">
               Showing {filtered.length} {filtered.length === 1 ? "package" : "packages"}
@@ -259,7 +259,7 @@ function PartnersPage() {
             </p>
           </FadeIn>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((partner, index) => {
               const meta = TIER_META[partner.tier];
               const logo = partner.tier === "platinum" || partner.tier === "gold" ? partnerLogoFull : partnerLogoMark;
@@ -267,7 +267,7 @@ function PartnersPage() {
               return (
                 <FadeIn key={partner.name} delay={index * 0.03}>
                   <article
-                    className={`group relative flex h-full min-h-[320px] flex-col justify-between overflow-hidden rounded-3xl border p-5 backdrop-blur-xl transition-transform hover:-translate-y-1 ${meta.card}`}
+                    className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border p-5 backdrop-blur-xl transition-transform hover:-translate-y-1 ${meta.card}`}
                   >
                     <div>
                       <div className="flex items-start justify-between gap-3">
@@ -283,17 +283,17 @@ function PartnersPage() {
                         />
                       </div>
 
-                      <div className="mt-6 flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/35 p-6">
+                      <div className="mt-4 flex h-24 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/35 p-4">
                         <img
                           src={logo}
                           alt={`${partner.name} package visual`}
                           loading="lazy"
-                          className="max-h-20 w-auto object-contain"
+                          className="max-h-14 w-auto object-contain"
                         />
                       </div>
                     </div>
 
-                    <div className="mt-6">
+                    <div className="mt-5">
                       <p className="text-[10px] uppercase tracking-[0.35em] text-gold">{partner.status}</p>
 
                       <h3 className="mt-2 font-display text-2xl font-bold leading-tight text-white">{partner.name}</h3>
@@ -309,7 +309,7 @@ function PartnersPage() {
       </Section></VisibilityGate>
 
       <VisibilityGate keyName="section:partners.cta"><Section className="bg-orange-rich text-white">
-        <div className="rounded-3xl border border-white/15 bg-black/35 p-8 backdrop-blur-xl md:p-12">
+        <div className="rounded-3xl border border-white/15 bg-black/35 p-7 backdrop-blur-xl md:p-10">
           <FadeIn>
             <p className="text-xs uppercase tracking-[0.4em] text-gold">Partner with us</p>
 
