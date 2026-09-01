@@ -85,6 +85,7 @@ export const VISIBILITY_REGISTRY: RegistryEntry[] = [
   // -------- Contact sections --------
   { key: "section:contact.info", kind: "section", label: "Contact info column", parentKey: "page:contact", sortOrder: 10 },
   { key: "section:contact.form", kind: "section", label: "Contact form", parentKey: "page:contact", sortOrder: 20 },
+  { key: "section:contact.partners", kind: "section", label: "Contact sponsor logos", parentKey: "page:contact", sortOrder: 30 },
 
   // -------- FAQs sections --------
   { key: "section:faqs.intro", kind: "section", label: "Intro header", parentKey: "page:faqs", sortOrder: 10 },
