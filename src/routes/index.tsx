@@ -891,51 +891,43 @@ function HomePage() {
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Partners</p>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Proudly partnered by</p>
                 <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl">Built with the right crew.</h2>
               </div>
 
-              <p className="max-w-md text-sm text-white/70 md:text-base">
-                Brand, media and culture partners helping bring Scorpion Kings Live to the fans.
-              </p>
+              <Link
+                to="/partners"
+                className="text-xs uppercase tracking-[0.25em] text-white/60 transition-colors hover:text-gold"
+              >
+                Partner with us
+              </Link>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {[
-                {
-                  name: "Scorpion Kings Live",
-                  logo: skLiveLogo,
-                  description: "Event platform",
-                },
-                {
-                  name: "Purple Cow Advertising",
-                  logo: partnerLogoFull,
-                  description: "Creative and digital partner",
-                },
-                {
-                  name: "Purple Cow",
-                  logo: partnerLogoMark,
-                  description: "Production support",
-                },
-              ].map((partner) => (
-                <div
-                  key={partner.name}
-                  className="flex min-h-[160px] flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.06] p-6 text-center backdrop-blur-xl"
-                >
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    loading="lazy"
-                    className="max-h-16 w-auto object-contain"
-                  />
-                  <h3 className="mt-5 font-display text-xl font-bold">{partner.name}</h3>
-                  <p className="mt-1 text-xs uppercase tracking-[0.25em] text-white/50">{partner.description}</p>
-                </div>
-              ))}
+            <div className="mt-8 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
+              <ul className="flex min-w-max items-stretch gap-3 md:grid md:min-w-0 md:grid-cols-5 md:gap-4">
+                {SPONSORS.map((sponsor) => (
+                  <li
+                    key={sponsor.name}
+                    className={`flex h-24 w-40 items-center justify-center rounded-2xl border p-5 backdrop-blur-xl transition-colors md:h-28 md:w-auto ${
+                      sponsor.onLight
+                        ? "border-white/15 bg-white/90"
+                        : "border-white/10 bg-white/[0.06] hover:border-white/25"
+                    }`}
+                  >
+                    <img
+                      src={sponsor.logo}
+                      alt={`${sponsor.name} logo`}
+                      loading="lazy"
+                      className="max-h-12 w-auto max-w-full object-contain md:max-h-14"
+                    />
+                  </li>
+                ))}
+              </ul>
             </div>
           </FadeIn>
+
         </Section>
       </div>
       </VisibilityGate>
