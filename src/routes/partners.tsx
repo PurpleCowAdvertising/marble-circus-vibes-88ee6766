@@ -251,7 +251,7 @@ function PartnersPage() {
           </div>
         </FadeIn>
 
-        <div className="mt-10">
+        <div className="mt-7">
           <FadeIn>
             <p className="text-xs uppercase tracking-widest text-white/50">
               Showing {filtered.length} {filtered.length === 1 ? "package" : "packages"}
