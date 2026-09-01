@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
+import { SPONSORS } from "@/config/sponsors";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.webp";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.webp";
 
