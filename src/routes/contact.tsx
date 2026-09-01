@@ -128,10 +128,10 @@ function ContactPage() {
         eyebrow="Contact"
         title="Let's talk."
         description="Press, partnerships, artist enquiries and general questions. Drop us a line."
-        className="pb-4 sm:pb-5 md:pb-6"
+        className="pb-2 sm:pb-3 md:pb-4"
       />
 
-      <Section className="bg-black text-white !pt-4 sm:!pt-6 md:!pt-8">
+      <Section className="bg-black text-white !pt-2 sm:!pt-3 md:!pt-4">
         <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-10">
           <VisibilityGate keyName="section:contact.info">
           <FadeIn>
