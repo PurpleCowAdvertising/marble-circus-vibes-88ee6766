@@ -283,7 +283,7 @@ function PartnersPage() {
                         />
                       </div>
 
-                      <div className="mt-6 flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/35 p-6">
+                      <div className="mt-4 flex h-24 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/35 p-4">
                         <img
                           src={logo}
                           alt={`${partner.name} package visual`}
