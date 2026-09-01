@@ -360,6 +360,8 @@ function NewsPage() {
           </FadeIn>
         </VisibilityGate>
       </Section>
+
+      {poster && <PosterLightbox src={poster.src} alt={poster.alt} onClose={() => setPoster(null)} />}
     </PageGate>
   );
 }
