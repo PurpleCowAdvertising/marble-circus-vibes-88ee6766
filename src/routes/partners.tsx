@@ -171,12 +171,12 @@ function PartnersPage() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          <ul className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
             {SPONSORS.map((sponsor) => (
               <li
                 key={sponsor.name}
-                className={`flex h-32 items-center justify-center rounded-3xl border py-6 backdrop-blur-xl ${
-                  sponsor.wide ? "px-3" : "px-6"
+                className={`flex h-24 items-center justify-center rounded-2xl border py-4 backdrop-blur-xl ${
+                  sponsor.wide ? "px-2.5" : "px-5"
                 } ${
                   sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
                 }`}
