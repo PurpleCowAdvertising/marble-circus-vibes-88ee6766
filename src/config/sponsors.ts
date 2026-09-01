@@ -17,7 +17,7 @@ export type Sponsor = {
 export const SPONSORS: Sponsor[] = [
   { name: "Galxboy", logo: galxboy.url },
   { name: "McCafé", logo: mccafe.url },
-  { name: "RocoMamas", logo: rocomamas.url, onLight: true },
+  { name: "RocoMamas", logo: rocomamas.url, onLight: true, imgClassName: "h-full w-full object-contain" },
   { name: "Sprite", logo: sprite.url, onLight: true },
   { name: "Standard Bank", logo: standardBank.url },
 ];
