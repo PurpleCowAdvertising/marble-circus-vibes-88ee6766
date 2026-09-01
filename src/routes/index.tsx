@@ -918,7 +918,10 @@ function HomePage() {
                       src={sponsor.logo}
                       alt={`${sponsor.name} logo`}
                       loading="lazy"
-                      className="max-h-12 w-auto max-w-full object-contain md:max-h-14"
+                      className={
+                        sponsor.imgClassName ??
+                        "max-h-12 w-auto max-w-full object-contain md:max-h-14"
+                      }
                     />
                   </li>
                 ))}
