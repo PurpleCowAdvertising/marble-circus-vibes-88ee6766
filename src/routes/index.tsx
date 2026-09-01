@@ -42,9 +42,6 @@ const SCORPION_KINGS = [
   },
 ] as const;
 
-import partnerLogoFull from "@/assets/partners/purple-cow-full.webp";
-import partnerLogoMark from "@/assets/partners/purple-cow-mark.webp";
-import skLiveLogo from "@/assets/scorpion-kings-live-logo-cutout.webp";
 import parkRideShuttle from "@/assets/park-ride-shuttle.webp";
 
 import pastFanPhone from "@/assets/past-event/fan-phone.webp";
