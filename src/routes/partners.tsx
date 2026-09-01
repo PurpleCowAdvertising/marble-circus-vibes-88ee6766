@@ -218,7 +218,7 @@ function PartnersPage() {
           <div
             role="tablist"
             aria-label="Filter partner packages by tier"
-            className="mt-8 flex flex-wrap gap-2 border-b border-white/10 pb-6"
+            className="mt-6 flex flex-wrap gap-2 border-b border-white/10 pb-5"
           >
             {FILTERS.map((filter) => {
               const active = activeTier === filter.key;
