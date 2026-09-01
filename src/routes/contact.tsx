@@ -292,7 +292,7 @@ function ContactPage() {
               <div className="md:col-start-2">
                 <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Proudly partnered by</p>
 
-                <ul className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-3">
+                <ul className="mt-2 grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-3">
                   {SPONSORS.map((sponsor) => (
                     <li
                       key={sponsor.name}
