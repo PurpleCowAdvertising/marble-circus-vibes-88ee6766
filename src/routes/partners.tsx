@@ -183,7 +183,10 @@ function PartnersPage() {
                   src={sponsor.logo}
                   alt={`${sponsor.name} logo`}
                   loading="lazy"
-                  className="max-h-14 w-auto max-w-full object-contain"
+                  className={
+                    sponsor.imgClassName ??
+                    "max-h-14 w-auto max-w-full object-contain"
+                  }
                 />
               </li>
             ))}
