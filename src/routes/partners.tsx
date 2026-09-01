@@ -267,7 +267,7 @@ function PartnersPage() {
               return (
                 <FadeIn key={partner.name} delay={index * 0.03}>
                   <article
-                    className={`group relative flex h-full min-h-[320px] flex-col justify-between overflow-hidden rounded-3xl border p-5 backdrop-blur-xl transition-transform hover:-translate-y-1 ${meta.card}`}
+                    className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border p-5 backdrop-blur-xl transition-transform hover:-translate-y-1 ${meta.card}`}
                   >
                     <div>
                       <div className="flex items-start justify-between gap-3">
