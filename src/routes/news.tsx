@@ -255,22 +255,84 @@ function NewsPage() {
 
                   <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">{post.excerpt}</p>
 
-                  <div className="mt-6 space-y-3 text-sm leading-relaxed text-white/60 md:text-base">
-                    {post.body.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
-                  </div>
+                  <div className={post.image ? "mt-6 grid gap-6 md:grid-cols-[38%_1fr] md:gap-8" : "contents"}>
+                    {post.image && (
+                      <button
+                        type="button"
+                        onClick={() => setPoster({ src: post.image!, alt: post.imageAlt ?? post.title })}
+                        className="group block overflow-hidden rounded-2xl border border-white/15 bg-black/40 md:self-start"
+                        aria-label="View full line-up poster"
+                      >
+                        <img
+                          src={post.image}
+                          alt={post.imageAlt ?? post.title}
+                          loading="lazy"
+                          className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
 
-                  {post.href && (
-                    <a
-                      href={post.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
-                    >
-                      {post.hrefLabel} <ArrowUpRight size={14} />
-                    </a>
-                  )}
+                        <span className="block bg-black/60 px-3 py-2 text-[10px] uppercase tracking-[0.3em] text-white/60">
+                          Tap to enlarge
+                        </span>
+                      </button>
+                    )}
+
+                    <div className={post.image ? "" : "mt-6"}>
+                      <div className="space-y-3 text-sm leading-relaxed text-white/60 md:text-base">
+                        {post.body.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+
+                      {post.groups && (
+                        <dl className="mt-6 space-y-4 rounded-2xl border border-gold/25 bg-gold/[0.06] p-5">
+                          {post.groups.map((group) => (
+                            <div key={group.label}>
+                              <dt className="text-[10px] uppercase tracking-[0.35em] text-gold">{group.label}</dt>
+
+                              <dd className="mt-1.5 text-sm leading-relaxed text-white/80">{group.names}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      )}
+
+                      {post.highlight && (
+                        <div className="mt-5 rounded-2xl border border-white/15 bg-white/[0.05] p-5">
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-gold">
+                            {post.highlight.title}
+                          </p>
+
+                          <p className="mt-2 text-sm leading-relaxed text-white/75">{post.highlight.body}</p>
+                        </div>
+                      )}
+
+                      {post.footnote && (
+                        <p className="mt-5 text-[11px] uppercase tracking-[0.3em] text-white/50">{post.footnote}</p>
+                      )}
+
+                      <div className="flex flex-wrap items-center gap-3">
+                        {post.href && (
+                          <a
+                            href={post.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
+                          >
+                            {post.hrefLabel} <ArrowUpRight size={14} />
+                          </a>
+                        )}
+
+                        {post.image && (
+                          <button
+                            type="button"
+                            onClick={() => setPoster({ src: post.image!, alt: post.imageAlt ?? post.title })}
+                            className="mt-7 inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-white transition hover:bg-white/10"
+                          >
+                            View full line-up poster
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </article>
               </FadeIn>
             ))}
