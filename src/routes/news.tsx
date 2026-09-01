@@ -353,7 +353,8 @@ function NewsPage() {
                 Kim Sineke ·{" "}
                 <a href="mailto:kim@iam4.co.za" className="text-gold hover:underline">
                   kim@iam4.co.za
-                </a>
+                </a>{" "}
+                · +27810421076
               </p>
 
               <p className="mt-3">
