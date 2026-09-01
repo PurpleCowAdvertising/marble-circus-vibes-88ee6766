@@ -288,7 +288,7 @@ function PartnersPage() {
                           src={logo}
                           alt={`${partner.name} package visual`}
                           loading="lazy"
-                          className="max-h-20 w-auto object-contain"
+                          className="max-h-14 w-auto object-contain"
                         />
                       </div>
                     </div>
