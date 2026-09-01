@@ -10,12 +10,14 @@ export type Sponsor = {
   /** Logo artwork needs a light chip behind it to stay legible on dark sections. */
   onLight?: boolean;
   url?: string;
+  /** Optional override for the logo image sizing class. */
+  imgClassName?: string;
 };
 
 export const SPONSORS: Sponsor[] = [
   { name: "Galxboy", logo: galxboy.url },
   { name: "McCafé", logo: mccafe.url },
-  { name: "RocoMamas", logo: rocomamas.url, onLight: true },
+  { name: "RocoMamas", logo: rocomamas.url, onLight: true, imgClassName: "h-auto w-full max-w-[92%] object-contain" },
   { name: "Sprite", logo: sprite.url, onLight: true },
   { name: "Standard Bank", logo: standardBank.url },
 ];
