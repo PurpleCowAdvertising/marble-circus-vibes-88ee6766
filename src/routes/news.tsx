@@ -46,6 +46,7 @@ export const Route = createFileRoute("/news")({
               headline: post.title,
               description: post.excerpt,
               datePublished: post.datePublished,
+              ...(post.image ? { image: post.image } : {}),
               articleSection: post.tag,
               inLanguage: "en-ZA",
               author: { "@type": "Organization", name: "Scorpion Kings Live" },
