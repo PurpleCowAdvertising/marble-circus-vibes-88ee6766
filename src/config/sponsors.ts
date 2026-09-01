@@ -10,6 +10,8 @@ export type Sponsor = {
   /** Logo artwork needs a light chip behind it to stay legible on dark sections. */
   onLight?: boolean;
   url?: string;
+  /** Optional override for the logo image sizing class. */
+  imgClassName?: string;
 };
 
 export const SPONSORS: Sponsor[] = [
