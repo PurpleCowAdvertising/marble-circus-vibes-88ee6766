@@ -285,6 +285,38 @@ function ContactPage() {
             </form>
           </FadeIn>
           </VisibilityGate>
+
+          <VisibilityGate keyName="section:contact.partners">
+            <FadeIn delay={0.15}>
+              <div className="md:col-start-2">
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Proudly partnered by</p>
+
+                <ul className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-3">
+                  {SPONSORS.map((sponsor) => (
+                    <li
+                      key={sponsor.name}
+                      className={`flex h-20 items-center justify-center rounded-2xl border py-3 backdrop-blur-xl ${
+                        sponsor.wide ? "px-2" : "px-4"
+                      } ${
+                        sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
+                      }`}
+                    >
+                      <img
+                        src={sponsor.logo}
+                        alt={`${sponsor.name} logo`}
+                        loading="lazy"
+                        className={
+                          sponsor.wide
+                            ? "mx-auto h-9 w-[88%] object-contain object-center"
+                            : "max-h-9 w-auto max-w-full object-contain"
+                        }
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
+          </VisibilityGate>
         </div>
       </Section>
     </PageGate>
