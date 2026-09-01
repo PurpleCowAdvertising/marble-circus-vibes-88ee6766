@@ -79,10 +79,51 @@ type Post = {
   body: string[];
   href?: string;
   hrefLabel?: string;
+  image?: string;
+  imageAlt?: string;
+  groups?: { label: string; names: string }[];
+  highlight?: { title: string; body: string };
+  footnote?: string;
 };
 
-
 const POSTS: Post[] = [
+  {
+    tag: "Pre-show line-up",
+    date: "01 September 2026 · 09h00",
+    datePublished: "2026-09-01T09:00:00+02:00",
+    title: "Scorpion Kings Live announces a vibrant pre-show line-up.",
+    excerpt:
+      "The countdown to Scorpion Kings Live continues with an explosive pre-show line-up set to get fans moving long before the Scorpion Kings take to the stage on 19 September 2026.",
+    image: posterAsset.url,
+    imageAlt: "Scorpion Kings Live pre-show line-up poster — 19 September 2026, FNB Stadium, doors open 12:00",
+    body: [
+      "Johannesburg, South Africa — Bringing together some of the biggest names across Amapiano, hip-hop, house, Bacardi and Maskandi, the pre-show promises to turn the day into a full-scale celebration of South African music and culture.",
+      "The pre-show will also celebrate the richness and diversity of South African music, designed to get the party started early and set the tone for a day dedicated to the sounds, artists and cultures that continue to shape South Africa’s musical landscape.",
+      "Scorpion Kings Live have already made history following unprecedented ticket demand. The addition of the pre-show line-up further expands the experience, giving fans even more reason to arrive early and make a full day of it.",
+      "On 19 September 2026, the celebrations start early. Doors open at 12:00 for a full day of music.",
+      "Be sure to follow @scorpionkingslive for all updates and more announcements, and check scorpionkings.live for hospitality suite tickets and all things Scorpion Kings Live.",
+    ],
+    groups: [
+      {
+        label: "Amapiano & house",
+        names:
+          "Dlala Thukzin · Mdu aka TRP · Jnr SA · Dark Horse · Sam Deep · Stixx · DJ’s @ Work · Banques · Venom · Natiey Lepaka · Shandesh · Wendy Moon · Ba Bethe Gashoazen",
+      },
+      { label: "Hip-hop", names: "A-Reece" },
+      { label: "Bacardi showcase", names: "Big Baller CEO · Sia The Bee · Zela Force" },
+      {
+        label: "Maskandi showcase",
+        names: "Mnotho · Mjabulisi · Mjolisi · Shenge Wasehlalankosi · Jikijiki",
+      },
+    ],
+    highlight: {
+      title: "Standard Bank cardholder offer",
+      body: "Limited Scorpion Kings Live tickets are available exclusively to Standard Bank cardholders via Webtickets — 10% off for debit cardholders and 20% off for credit cardholders. Tickets are limited, so secure yours while they last.",
+    },
+    footnote: "Doors open 12:00 · 19 September 2026 · FNB Stadium, Johannesburg",
+    href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143",
+    hrefLabel: "Buy on Webtickets",
+  },
   {
     tag: "Tickets out now",
     date: "05 May 2026 · 10h00",
