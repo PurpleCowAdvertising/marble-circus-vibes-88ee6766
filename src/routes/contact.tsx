@@ -131,7 +131,7 @@ function ContactPage() {
       />
 
       <Section className="bg-black text-white">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-16">
+        <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-10">
           <VisibilityGate keyName="section:contact.info">
           <FadeIn>
             <div>
