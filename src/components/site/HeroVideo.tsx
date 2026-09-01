@@ -155,7 +155,7 @@ export function HeroVideo() {
           {/* Bleeds a soft black-to-transparent taper down into the next section for a seamless seam */}
           <div
             aria-hidden
-            className="pointer-events-none relative z-10 -mt-24 h-24 w-full bg-gradient-to-b from-black to-transparent md:-mt-32 md:h-32"
+            className="pointer-events-none relative z-10 -mt-16 h-16 w-full bg-gradient-to-b from-black/60 to-transparent md:-mt-24 md:h-24"
           />
         </motion.div>
       </div>
