@@ -257,23 +257,35 @@ function NewsPage() {
 
                   <div className={post.image ? "mt-6 grid gap-6 md:grid-cols-[38%_1fr] md:gap-8" : "contents"}>
                     {post.image && (
-                      <button
-                        type="button"
-                        onClick={() => setPoster({ src: post.image!, alt: post.imageAlt ?? post.title })}
-                        className="group block overflow-hidden rounded-2xl border border-white/15 bg-black/40 md:self-start"
-                        aria-label="View full line-up poster"
-                      >
-                        <img
-                          src={post.image}
-                          alt={post.imageAlt ?? post.title}
-                          loading="lazy"
-                          className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                        />
+                      <div className="space-y-5 md:self-start">
+                        <button
+                          type="button"
+                          onClick={() => setPoster({ src: post.image!, alt: post.imageAlt ?? post.title })}
+                          className="group block w-full overflow-hidden rounded-2xl border border-white/15 bg-black/40"
+                          aria-label="View full line-up poster"
+                        >
+                          <img
+                            src={post.image}
+                            alt={post.imageAlt ?? post.title}
+                            loading="lazy"
+                            className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          />
 
-                        <span className="block bg-black/60 px-3 py-2 text-[10px] uppercase tracking-[0.3em] text-white/60">
-                          Tap to enlarge
-                        </span>
-                      </button>
+                          <span className="block bg-black/60 px-3 py-2 text-[10px] uppercase tracking-[0.3em] text-white/60">
+                            Tap to enlarge
+                          </span>
+                        </button>
+
+                        {post.highlight && (
+                          <div className="rounded-2xl border border-white/15 bg-white/[0.05] p-5">
+                            <p className="text-[11px] font-bold uppercase tracking-widest text-gold">
+                              {post.highlight.title}
+                            </p>
+
+                            <p className="mt-2 text-sm leading-relaxed text-white/75">{post.highlight.body}</p>
+                          </div>
+                        )}
+                      </div>
                     )}
 
                     <div className={post.image ? "" : "mt-6"}>
@@ -293,16 +305,6 @@ function NewsPage() {
                             </div>
                           ))}
                         </dl>
-                      )}
-
-                      {post.highlight && (
-                        <div className="mt-5 rounded-2xl border border-white/15 bg-white/[0.05] p-5">
-                          <p className="text-[11px] font-bold uppercase tracking-widest text-gold">
-                            {post.highlight.title}
-                          </p>
-
-                          <p className="mt-2 text-sm leading-relaxed text-white/75">{post.highlight.body}</p>
-                        </div>
                       )}
 
                       {post.footnote && (
