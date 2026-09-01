@@ -91,36 +91,41 @@ const POSTS: Post[] = [
     tag: "Pre-show line-up",
     date: "01 September 2026 · 09h00",
     datePublished: "2026-09-01T09:00:00+02:00",
-    title: "Scorpion Kings Live announces a vibrant pre-show line-up.",
+    title: "SCORPION KINGS LIVE ANNOUNCES A VIBRANT PRE-SHOW LINEUP",
     excerpt:
-      "The countdown to Scorpion Kings Live continues with an explosive pre-show line-up set to get fans moving long before the Scorpion Kings take to the stage on 19 September 2026.",
+      "The countdown to Scorpion Kings Live continues with an exciting announcement of an explosive pre-show lineup set to get fans moving long before the Scorpion Kings take to the stage on 19 September 2026.",
     image: posterAsset.url,
     imageAlt: "Scorpion Kings Live pre-show line-up poster — 19 September 2026, FNB Stadium, doors open 12:00",
     body: [
-      "Johannesburg, South Africa — Bringing together some of the biggest names across Amapiano, hip-hop, house, Bacardi and Maskandi, the pre-show promises to turn the day into a full-scale celebration of South African music and culture.",
-      "The pre-show will also celebrate the richness and diversity of South African music, designed to get the party started early and set the tone for a day dedicated to the sounds, artists and cultures that continue to shape South Africa’s musical landscape.",
-      "Scorpion Kings Live have already made history following unprecedented ticket demand. The addition of the pre-show line-up further expands the experience, giving fans even more reason to arrive early and make a full day of it.",
-      "On 19 September 2026, the celebrations start early. Doors open at 12:00 for a full day of music.",
-      "Be sure to follow @scorpionkingslive for all updates and more announcements, and check scorpionkings.live for hospitality suite tickets and all things Scorpion Kings Live.",
+      "Johannesburg, South Africa — The countdown to Scorpion Kings Live continues with an exciting announcement of an explosive pre-show lineup set to get fans moving long before the Scorpion Kings take to the stage on 19 September 2026.",
+      "Bringing together some of the biggest names across Amapiano, hip-hop, house, Bacardi and Maskandi, the pre-show promises to turn the day into a full-scale celebration of South African music and culture.",
+      "Fans can expect performances from A-Reece, Dlala Thukzin, Dark Horse, DJs @ Work, Venom, Banques, Sam Deep, Stixx, Mdu aka TRP, Jnr SA, Natiey Lepaka, Wendy Moon, Shandesh and Ba Bethe Gashoazen, alongside a special Bacardi showcase featuring Big Baller CEO, Black Boy, Sia The Bee and Zela Force.",
+      "The pre-show will also celebrate the richness and diversity of South African music with a Maskandi showcase featuring Mnotho, Mjabulisi, Mjolisi, Shenge Wasehlalankosi and Jikjiki.",
+      "Designed to get the party started early, the pre-show will set the tone for a day dedicated to the sounds, artists and cultures that continue to shape South Africa’s musical landscape.",
+      "Scorpion Kings Live have already made history following unprecedented ticket demand, the addition of the pre-show lineup further expands the experience, giving fans even more reason to arrive early and make a full day of it.",
+      "For Standard Bank customers, there’s still an opportunity to be part of the historic experience. Limited Scorpion Kings Live tickets are available exclusively to Standard Bank cardholders via Webtickets, with 10% off for Standard Bank debit cardholders and 20% off for Standard Bank credit cardholders.",
+      "Tickets are limited and fans are encouraged to secure theirs while they are available.",
+      "On 19 September 2026, the celebrations start early. Doors open at 12pm for a full day of music.",
+      "Be sure to follow @scorpionkingslive on Instagram for all updates and more announcements.",
+      "Check out www.scorpionkings.live for hospitality suite tickets and for all things Scorpion Kings Live.",
     ],
     groups: [
       {
         label: "Amapiano & house",
         names:
-          "Dlala Thukzin · Mdu aka TRP · Jnr SA · Dark Horse · Sam Deep · Stixx · DJ’s @ Work · Banques · Venom · Natiey Lepaka · Shandesh · Wendy Moon · Ba Bethe Gashoazen",
+          "A-Reece · Dlala Thukzin · Dark Horse · DJs @ Work · Venom · Banques · Sam Deep · Stixx · Mdu aka TRP · Jnr SA · Natiey Lepaka · Wendy Moon · Shandesh · Ba Bethe Gashoazen",
       },
-      { label: "Hip-hop", names: "A-Reece" },
-      { label: "Bacardi showcase", names: "Big Baller CEO · Sia The Bee · Zela Force" },
+      { label: "Bacardi showcase", names: "Big Baller CEO · Black Boy · Sia The Bee · Zela Force" },
       {
         label: "Maskandi showcase",
-        names: "Mnotho · Mjabulisi · Mjolisi · Shenge Wasehlalankosi · Jikijiki",
+        names: "Mnotho · Mjabulisi · Mjolisi · Shenge Wasehlalankosi · Jikjiki",
       },
     ],
     highlight: {
       title: "Standard Bank cardholder offer",
-      body: "Limited Scorpion Kings Live tickets are available exclusively to Standard Bank cardholders via Webtickets — 10% off for debit cardholders and 20% off for credit cardholders. Tickets are limited, so secure yours while they last.",
+      body: "For Standard Bank customers, there’s still an opportunity to be part of the historic experience. Limited Scorpion Kings Live tickets are available exclusively to Standard Bank cardholders via Webtickets, with 10% off for Standard Bank debit cardholders and 20% off for Standard Bank credit cardholders.",
     },
-    footnote: "Doors open 12:00 · 19 September 2026 · FNB Stadium, Johannesburg",
+    footnote: "Doors open at 12pm · 19 September 2026 · FNB Stadium, Johannesburg",
     href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143",
     hrefLabel: "Buy on Webtickets",
   },
@@ -348,7 +353,8 @@ function NewsPage() {
                 Kim Sineke ·{" "}
                 <a href="mailto:kim@iam4.co.za" className="text-gold hover:underline">
                   kim@iam4.co.za
-                </a>
+                </a>{" "}
+                · +27810421076
               </p>
 
               <p className="mt-3">
