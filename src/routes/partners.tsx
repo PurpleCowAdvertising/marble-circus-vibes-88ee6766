@@ -293,7 +293,7 @@ function PartnersPage() {
                       </div>
                     </div>
 
-                    <div className="mt-6">
+                    <div className="mt-5">
                       <p className="text-[10px] uppercase tracking-[0.35em] text-gold">{partner.status}</p>
 
                       <h3 className="mt-2 font-display text-2xl font-bold leading-tight text-white">{partner.name}</h3>
@@ -309,7 +309,7 @@ function PartnersPage() {
       </Section></VisibilityGate>
 
       <VisibilityGate keyName="section:partners.cta"><Section className="bg-orange-rich text-white">
-        <div className="rounded-3xl border border-white/15 bg-black/35 p-8 backdrop-blur-xl md:p-12">
+        <div className="rounded-3xl border border-white/15 bg-black/35 p-7 backdrop-blur-xl md:p-10">
           <FadeIn>
             <p className="text-xs uppercase tracking-[0.4em] text-gold">Partner with us</p>
 
