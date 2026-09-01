@@ -13,6 +13,7 @@ import { ParkRideModal } from "@/components/site/ParkRideModal";
 import { FieldTicketsPopup } from "@/components/site/FieldTicketsPopup";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ShopifyCollection } from "@/components/ShopifyCollection";
+import { SPONSORS } from "@/config/sponsors";
 
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
