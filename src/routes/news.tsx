@@ -285,6 +285,31 @@ function NewsPage() {
                             <p className="mt-2 text-sm leading-relaxed text-white/75">{post.highlight.body}</p>
                           </div>
                         )}
+
+                        {post.footnote && (
+                          <p className="text-[11px] uppercase tracking-[0.3em] text-white/50">{post.footnote}</p>
+                        )}
+
+                        <div className="flex flex-wrap items-center gap-3">
+                          {post.href && (
+                            <a
+                              href={post.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
+                            >
+                              {post.hrefLabel} <ArrowUpRight size={14} />
+                            </a>
+                          )}
+
+                          <button
+                            type="button"
+                            onClick={() => setPoster({ src: post.image!, alt: post.imageAlt ?? post.title })}
+                            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-white transition hover:bg-white/10"
+                          >
+                            View full line-up poster
+                          </button>
+                        </div>
                       </div>
                     )}
 
@@ -306,33 +331,6 @@ function NewsPage() {
                           ))}
                         </dl>
                       )}
-
-                      {post.footnote && (
-                        <p className="mt-5 text-[11px] uppercase tracking-[0.3em] text-white/50">{post.footnote}</p>
-                      )}
-
-                      <div className="flex flex-wrap items-center gap-3">
-                        {post.href && (
-                          <a
-                            href={post.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
-                          >
-                            {post.hrefLabel} <ArrowUpRight size={14} />
-                          </a>
-                        )}
-
-                        {post.image && (
-                          <button
-                            type="button"
-                            onClick={() => setPoster({ src: post.image!, alt: post.imageAlt ?? post.title })}
-                            className="mt-7 inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-white transition hover:bg-white/10"
-                          >
-                            View full line-up poster
-                          </button>
-                        )}
-                      </div>
                     </div>
                   </div>
                 </article>
