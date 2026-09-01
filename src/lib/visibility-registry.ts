@@ -51,6 +51,7 @@ export const VISIBILITY_REGISTRY: RegistryEntry[] = [
   { key: "section:music.releases", kind: "section", label: "Latest releases", parentKey: "page:music", sortOrder: 20 },
 
   // -------- Partners sections --------
+  { key: "section:partners.confirmed", kind: "section", label: "Confirmed partner logos", parentKey: "page:partners", sortOrder: 5 },
   { key: "section:partners.packages", kind: "section", label: "Package tiers + filters", parentKey: "page:partners", sortOrder: 10 },
   { key: "section:partners.cta", kind: "section", label: "Partner-with-us CTA", parentKey: "page:partners", sortOrder: 20 },
 

@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
+import { SPONSORS } from "@/config/sponsors";
 import partnerLogoFull from "@/assets/partners/purple-cow-full.webp";
 import partnerLogoMark from "@/assets/partners/purple-cow-mark.webp";
 
@@ -159,6 +160,36 @@ function PartnersPage() {
         title="Powered by the bold."
         description="Partner opportunities for brands that want to move with the artists, the fans and the culture."
       />
+
+      <VisibilityGate keyName="section:partners.confirmed"><Section className="bg-black text-white !pb-0">
+        <FadeIn>
+          <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Our partners</p>
+
+          <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
+            Proudly partnered by.
+          </h2>
+        </FadeIn>
+
+        <FadeIn delay={0.1}>
+          <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {SPONSORS.map((sponsor) => (
+              <li
+                key={sponsor.name}
+                className={`flex h-32 items-center justify-center rounded-3xl border p-6 backdrop-blur-xl ${
+                  sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
+                }`}
+              >
+                <img
+                  src={sponsor.logo}
+                  alt={`${sponsor.name} logo`}
+                  loading="lazy"
+                  className="max-h-14 w-auto max-w-full object-contain"
+                />
+              </li>
+            ))}
+          </ul>
+        </FadeIn>
+      </Section></VisibilityGate>
 
       <VisibilityGate keyName="section:partners.packages"><Section className="bg-black text-white">
         <FadeIn>
