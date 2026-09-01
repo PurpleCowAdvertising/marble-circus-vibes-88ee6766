@@ -161,13 +161,25 @@ export function FadeIn({
 
 
 
-export function PageHero({ eyebrow, title, description }: { eyebrow?: string; title?: string; description?: string }) {
+export function PageHero({
+  eyebrow,
+  title,
+  description,
+  className = "",
+}: {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  className?: string;
+}) {
   return (
     <>
       <HeroVideo />
 
       {(eyebrow || title || description) && (
-        <section className="relative z-10 mx-auto max-w-[1400px] bg-black px-5 pb-8 pt-10 text-white sm:px-6 sm:pb-10 sm:pt-14 md:px-10 md:pb-14 md:pt-20">
+        <section
+          className={`relative z-10 mx-auto max-w-[1400px] bg-black px-5 pb-8 pt-10 text-white sm:px-6 sm:pb-10 sm:pt-14 md:px-10 md:pb-14 md:pt-20 ${className}`}
+        >
           <FadeIn once>
             {eyebrow && <p className="text-[10px] uppercase tracking-[0.4em] text-gold sm:text-xs">{eyebrow}</p>}
 
