@@ -7,6 +7,7 @@ import { Briefcase, Mail, Newspaper } from "lucide-react";
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { supabase } from "@/integrations/supabase/client";
+import { SPONSORS } from "@/config/sponsors";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
