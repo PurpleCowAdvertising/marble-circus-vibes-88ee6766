@@ -175,7 +175,9 @@ function PartnersPage() {
             {SPONSORS.map((sponsor) => (
               <li
                 key={sponsor.name}
-                className={`flex h-32 items-center justify-center rounded-3xl border p-6 backdrop-blur-xl ${
+                className={`flex h-32 items-center justify-center rounded-3xl border py-6 backdrop-blur-xl ${
+                  sponsor.wide ? "px-3" : "px-6"
+                } ${
                   sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
                 }`}
               >

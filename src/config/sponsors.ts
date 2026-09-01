@@ -12,12 +12,14 @@ export type Sponsor = {
   url?: string;
   /** Optional override for the logo image sizing class. */
   imgClassName?: string;
+  /** Extra-wide artwork: reduce chip padding so the logo reads at the same size. */
+  wide?: boolean;
 };
 
 export const SPONSORS: Sponsor[] = [
   { name: "Galxboy", logo: galxboy.url },
   { name: "McCafé", logo: mccafe.url },
-  { name: "RocoMamas", logo: rocomamas.url },
+  { name: "RocoMamas", logo: rocomamas.url, wide: true },
   { name: "Sprite", logo: sprite.url },
   { name: "Standard Bank", logo: standardBank.url },
 ];
