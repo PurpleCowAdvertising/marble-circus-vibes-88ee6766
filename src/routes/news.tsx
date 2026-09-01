@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
+import posterAsset from "@/assets/preshow-lineup-poster.png.asset.json";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
