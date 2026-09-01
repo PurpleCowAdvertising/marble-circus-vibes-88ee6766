@@ -1,7 +1,7 @@
 import galxboy from "@/assets/sponsors/1-galxboy.png.asset.json";
 import mccafe from "@/assets/sponsors/2-mccafe.png.asset.json";
 import rocomamas from "@/assets/sponsors/3-rocomamas.png.asset.json";
-import sprite from "@/assets/sponsors/4-sprite.png.asset.json";
+import sprite from "@/assets/sponsors/4-sprite-white.png.asset.json";
 import standardBank from "@/assets/sponsors/5-standard-bank.png.asset.json";
 
 export type Sponsor = {
@@ -17,7 +17,7 @@ export type Sponsor = {
 export const SPONSORS: Sponsor[] = [
   { name: "Galxboy", logo: galxboy.url },
   { name: "McCafé", logo: mccafe.url },
-  { name: "RocoMamas", logo: rocomamas.url, onLight: true, imgClassName: "h-auto w-full max-w-[92%] object-contain" },
-  { name: "Sprite", logo: sprite.url, onLight: true },
+  { name: "RocoMamas", logo: rocomamas.url },
+  { name: "Sprite", logo: sprite.url },
   { name: "Standard Bank", logo: standardBank.url },
 ];
