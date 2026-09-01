@@ -91,21 +91,21 @@ export function HeroVideo() {
               style={{
                 filter: isMobile ? undefined : videoBlur,
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, #000 0%, #000 62%, rgba(0,0,0,0.75) 82%, rgba(0,0,0,0) 100%)",
+                  "linear-gradient(to bottom, #000 0%, #000 78%, rgba(0,0,0,0.6) 90%, rgba(0,0,0,0) 100%)",
                 maskImage:
-                  "linear-gradient(to bottom, #000 0%, #000 62%, rgba(0,0,0,0.75) 82%, rgba(0,0,0,0) 100%)",
+                  "linear-gradient(to bottom, #000 0%, #000 78%, rgba(0,0,0,0.6) 90%, rgba(0,0,0,0) 100%)",
               }}
               className="relative h-full w-full object-cover"
             />
 
 
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/20" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-black/20" />
 
             {/* Soft blend into the next section — dissolves the hard bottom edge on scroll */}
             <motion.div
               aria-hidden
               style={{ opacity: seamOpacity }}
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-black/60 to-black md:h-80"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent via-black/30 to-black/60 md:h-40"
             />
 
 
