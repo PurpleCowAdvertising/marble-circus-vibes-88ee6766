@@ -1,15 +1,15 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, Music, Ticket, Map, Mail } from "lucide-react";
+import { Home, Ticket, ConciergeBell, Handshake, Newspaper } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
 import { useVisiblePageRoutes } from "./visibility";
 
 const TABS = [
   { kind: "route", to: "/", label: "Home", icon: Home, exact: true },
-  { kind: "scroll", hash: "lineup", label: "Line-Up", icon: Music },
   { kind: "scroll", hash: "tickets", label: "Tickets", icon: Ticket },
-  { kind: "scroll", hash: "experience", label: "Hospitality", icon: Map },
-  { kind: "route", to: "/contact", label: "Contact", icon: Mail, exact: false },
+  { kind: "scroll", hash: "experience", label: "Hospitality", icon: ConciergeBell },
+  { kind: "route", to: "/contact", label: "Partners", icon: Handshake, exact: false },
+  { kind: "route", to: "/news", label: "News", icon: Newspaper, exact: false },
 ] as const;
 
 function vibrate() {
