@@ -243,7 +243,7 @@ export function MerchCTA() {
             'w-40 sm:w-44 overflow-hidden rounded-3xl border border-white/20',
             'bg-neutral-950/80 p-3 shadow-[0_28px_70px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl',
             'transition-[opacity,transform,filter] duration-[750ms] ease-[cubic-bezier(0.22,1,0.36,1)]',
-            expanded && featured
+            expanded && featured && !firstReveal
               ? 'translate-y-0 scale-100 opacity-100 blur-0'
               : 'pointer-events-none translate-y-5 scale-[0.88] opacity-0 blur-[8px]',
           ].join(' ')}
