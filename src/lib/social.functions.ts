@@ -46,6 +46,8 @@ async function withSignedThumbnail(row: SocialPost): Promise<SocialPost> {
 
 const YOUTUBE_CHANNEL_ID = "UCe0qO9T8tdTwKLR6rnPTRPQ";
 const YOUTUBE_AUTO_LIMIT = 4;
+const INSTAGRAM_USERNAME = "scorpionkingslive";
+const INSTAGRAM_AUTO_LIMIT = 4;
 
 /** Pulls the channel's latest uploads from YouTube's public RSS feed (no API key needed). */
 async function fetchLatestYouTubePosts(): Promise<SocialPost[]> {
@@ -81,6 +83,65 @@ async function fetchLatestYouTubePosts(): Promise<SocialPost[]> {
   }
 }
 
+/** Pulls recent public Instagram posts without requiring a platform token. */
+async function fetchLatestInstagramPosts(): Promise<SocialPost[]> {
+  try {
+    const res = await fetch(
+      `https://i.instagram.com/api/v1/users/web_profile_info/?username=${INSTAGRAM_USERNAME}`,
+      {
+        headers: {
+          "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36",
+          "x-ig-app-id": "936619743392459",
+          accept: "application/json",
+        },
+      },
+    );
+    if (!res.ok) return [];
+
+    const payload = (await res.json()) as {
+      data?: {
+        user?: {
+          edge_owner_to_timeline_media?: {
+            edges?: Array<{ node?: {
+              id?: string;
+              shortcode?: string;
+              display_url?: string;
+              thumbnail_src?: string;
+              is_video?: boolean;
+              taken_at_timestamp?: number;
+              edge_media_to_caption?: { edges?: Array<{ node?: { text?: string } }> };
+            } }>;
+          };
+        };
+      };
+    };
+    const edges = payload.data?.user?.edge_owner_to_timeline_media?.edges ?? [];
+
+    return edges.slice(0, INSTAGRAM_AUTO_LIMIT).flatMap((edge, index) => {
+      const post = edge.node;
+      if (!post?.id || !post.shortcode) return [];
+      const caption = post.edge_media_to_caption?.edges?.[0]?.node?.text ?? null;
+      const published = post.taken_at_timestamp
+        ? new Date(post.taken_at_timestamp * 1000).toISOString()
+        : new Date().toISOString();
+      return [{
+        id: `ig-${post.id}`,
+        platform: "instagram" as const,
+        post_url: `https://www.instagram.com/p/${post.shortcode}/`,
+        thumbnail_url: post.display_url ?? post.thumbnail_src ?? null,
+        caption,
+        is_video: post.is_video ?? false,
+        sort_order: -900 + index,
+        published: true,
+        created_at: published,
+        updated_at: published,
+      }];
+    });
+  } catch {
+    return [];
+  }
+}
+
 function decodeXml(value: string) {
   return value
     .replace(/&lt;/g, "<")
@@ -90,22 +151,69 @@ function decodeXml(value: string) {
     .replace(/&amp;/g, "&");
 }
 
+/**
+ * Instagram and YouTube expose public latest-post feeds. Facebook and TikTok do not,
+ * so they get always-current profile cards until their official APIs are connected.
+ * Curated posts for any platform replace its automatic result.
+ */
+const PROFILE_FALLBACKS: SocialPost[] = [
+  {
+    id: "profile-instagram",
+    platform: "instagram",
+    post_url: "https://www.instagram.com/scorpionkingslive/",
+    thumbnail_url: null,
+    caption: "Latest on Instagram — @scorpionkingslive",
+    is_video: false,
+    sort_order: 100,
+    published: true,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "profile-tiktok",
+    platform: "tiktok",
+    post_url: "https://www.tiktok.com/@scorpion.kings.live",
+    thumbnail_url: null,
+    caption: "Latest on TikTok — @scorpion.kings.live",
+    is_video: true,
+    sort_order: 101,
+    published: true,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "profile-facebook",
+    platform: "facebook",
+    post_url: "https://www.facebook.com/scorpionkingslive",
+    thumbnail_url: null,
+    caption: "Latest on Facebook — Scorpion Kings Live",
+    is_video: false,
+    sort_order: 102,
+    published: true,
+    created_at: "",
+    updated_at: "",
+  },
+];
+
 export const getPublicSocialPosts = createServerFn({ method: "GET" }).handler(async () => {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const [{ data, error }, autoPosts] = await Promise.all([
+  const [{ data, error }, [youtubePosts, instagramPosts]] = await Promise.all([
     supabaseAdmin
       .from("social_posts")
       .select("*")
       .eq("published", true)
       .order("sort_order", { ascending: true })
       .order("created_at", { ascending: false }),
-    fetchLatestYouTubePosts(),
+    Promise.all([fetchLatestYouTubePosts(), fetchLatestInstagramPosts()]),
   ]);
 
   if (error) throw error;
   const curated = await Promise.all(((data ?? []) as SocialPost[]).map(withSignedThumbnail));
+  const autoPosts = [...youtubePosts, ...instagramPosts];
   const curatedUrls = new Set(curated.map((post) => post.post_url));
-  return [...autoPosts.filter((post) => !curatedUrls.has(post.post_url)), ...curated];
+  const covered = new Set([...curated, ...autoPosts].map((post) => post.platform));
+  const fallbacks = PROFILE_FALLBACKS.filter((post) => !covered.has(post.platform));
+  return [...autoPosts.filter((post) => !curatedUrls.has(post.post_url)), ...curated, ...fallbacks];
 });
 
 
