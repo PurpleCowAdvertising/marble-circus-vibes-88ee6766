@@ -220,6 +220,45 @@ export type Database = {
         }
         Relationships: []
       }
+      social_posts: {
+        Row: {
+          caption: string | null
+          created_at: string
+          id: string
+          is_video: boolean
+          platform: string
+          post_url: string
+          published: boolean
+          sort_order: number
+          thumbnail_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          caption?: string | null
+          created_at?: string
+          id?: string
+          is_video?: boolean
+          platform: string
+          post_url: string
+          published?: boolean
+          sort_order?: number
+          thumbnail_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          caption?: string | null
+          created_at?: string
+          id?: string
+          is_video?: boolean
+          platform?: string
+          post_url?: string
+          published?: boolean
+          sort_order?: number
+          thumbnail_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           consent_at: string | null
