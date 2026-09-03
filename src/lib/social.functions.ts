@@ -87,11 +87,12 @@ async function fetchLatestYouTubePosts(): Promise<SocialPost[]> {
 async function fetchLatestInstagramPosts(): Promise<SocialPost[]> {
   try {
     const res = await fetch(
-      `https://www.instagram.com/api/v1/users/web_profile_info/?username=${INSTAGRAM_USERNAME}`,
+      `https://i.instagram.com/api/v1/users/web_profile_info/?username=${INSTAGRAM_USERNAME}`,
       {
         headers: {
           "user-agent": "Mozilla/5.0",
           "x-ig-app-id": "936619743392459",
+          accept: "application/json",
         },
       },
     );
