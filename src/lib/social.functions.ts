@@ -196,18 +196,19 @@ const PROFILE_FALLBACKS: SocialPost[] = [
 
 export const getPublicSocialPosts = createServerFn({ method: "GET" }).handler(async () => {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const [{ data, error }, autoPosts] = await Promise.all([
+  const [{ data, error }, [youtubePosts, instagramPosts]] = await Promise.all([
     supabaseAdmin
       .from("social_posts")
       .select("*")
       .eq("published", true)
       .order("sort_order", { ascending: true })
       .order("created_at", { ascending: false }),
-    fetchLatestYouTubePosts(),
+    Promise.all([fetchLatestYouTubePosts(), fetchLatestInstagramPosts()]),
   ]);
 
   if (error) throw error;
   const curated = await Promise.all(((data ?? []) as SocialPost[]).map(withSignedThumbnail));
+  const autoPosts = [...youtubePosts, ...instagramPosts];
   const curatedUrls = new Set(curated.map((post) => post.post_url));
   const covered = new Set([...curated, ...autoPosts].map((post) => post.platform));
   const fallbacks = PROFILE_FALLBACKS.filter((post) => !covered.has(post.platform));
