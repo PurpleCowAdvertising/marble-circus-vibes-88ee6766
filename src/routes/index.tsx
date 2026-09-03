@@ -905,7 +905,7 @@ function HomePage() {
 
           <FadeIn delay={0.1}>
             <div className="mt-8 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
-              <ul className="flex min-w-max items-stretch gap-3 md:grid md:min-w-0 md:grid-cols-5 md:gap-4">
+              <ul className="flex min-w-max items-stretch gap-3 md:grid md:min-w-0 md:grid-cols-6 md:gap-4">
                 {SPONSORS.map((sponsor) => (
                   <li
                     key={sponsor.name}
