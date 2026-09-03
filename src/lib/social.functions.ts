@@ -46,6 +46,8 @@ async function withSignedThumbnail(row: SocialPost): Promise<SocialPost> {
 
 const YOUTUBE_CHANNEL_ID = "UCe0qO9T8tdTwKLR6rnPTRPQ";
 const YOUTUBE_AUTO_LIMIT = 4;
+const INSTAGRAM_USERNAME = "scorpionkingslive";
+const INSTAGRAM_AUTO_LIMIT = 4;
 
 /** Pulls the channel's latest uploads from YouTube's public RSS feed (no API key needed). */
 async function fetchLatestYouTubePosts(): Promise<SocialPost[]> {
@@ -81,6 +83,64 @@ async function fetchLatestYouTubePosts(): Promise<SocialPost[]> {
   }
 }
 
+/** Pulls recent public Instagram posts without requiring a platform token. */
+async function fetchLatestInstagramPosts(): Promise<SocialPost[]> {
+  try {
+    const res = await fetch(
+      `https://www.instagram.com/api/v1/users/web_profile_info/?username=${INSTAGRAM_USERNAME}`,
+      {
+        headers: {
+          "user-agent": "Mozilla/5.0",
+          "x-ig-app-id": "936619743392459",
+        },
+      },
+    );
+    if (!res.ok) return [];
+
+    const payload = (await res.json()) as {
+      data?: {
+        user?: {
+          edge_owner_to_timeline_media?: {
+            edges?: Array<{ node?: {
+              id?: string;
+              shortcode?: string;
+              display_url?: string;
+              thumbnail_src?: string;
+              is_video?: boolean;
+              taken_at_timestamp?: number;
+              edge_media_to_caption?: { edges?: Array<{ node?: { text?: string } }> };
+            } }>;
+          };
+        };
+      };
+    };
+    const edges = payload.data?.user?.edge_owner_to_timeline_media?.edges ?? [];
+
+    return edges.slice(0, INSTAGRAM_AUTO_LIMIT).flatMap((edge, index) => {
+      const post = edge.node;
+      if (!post?.id || !post.shortcode) return [];
+      const caption = post.edge_media_to_caption?.edges?.[0]?.node?.text ?? null;
+      const published = post.taken_at_timestamp
+        ? new Date(post.taken_at_timestamp * 1000).toISOString()
+        : new Date().toISOString();
+      return [{
+        id: `ig-${post.id}`,
+        platform: "instagram" as const,
+        post_url: `https://www.instagram.com/p/${post.shortcode}/`,
+        thumbnail_url: post.display_url ?? post.thumbnail_src ?? null,
+        caption,
+        is_video: post.is_video ?? false,
+        sort_order: -900 + index,
+        published: true,
+        created_at: published,
+        updated_at: published,
+      }];
+    });
+  } catch {
+    return [];
+  }
+}
+
 function decodeXml(value: string) {
   return value
     .replace(/&lt;/g, "<")
@@ -91,9 +151,9 @@ function decodeXml(value: string) {
 }
 
 /**
- * Instagram, Facebook and TikTok have no free public feed (they require an approved
- * app + tokens), so each of those platforms gets an always-current "latest" card that
- * links straight to the live profile. Curated posts for a platform replace its card.
+ * Instagram and YouTube expose public latest-post feeds. Facebook and TikTok do not,
+ * so they get always-current profile cards until their official APIs are connected.
+ * Curated posts for any platform replace its automatic result.
  */
 const PROFILE_FALLBACKS: SocialPost[] = [
   {
