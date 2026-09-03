@@ -18,15 +18,9 @@ const PLATFORM_COLORS: Record<SocialPost["platform"], string> = {
   tiktok: "border-cyan-200/20 bg-cyan-200/10",
 };
 
+const FEATURED_VIDEO_ID = "809nBZ8Gch0";
+
 export function SocialWall() {
-  const { data: posts = [], isLoading } = useQuery({
-    queryKey: ["public-social-posts"],
-    queryFn: () => getPublicSocialPosts(),
-    staleTime: 5 * 60_000,
-  });
-
-  if (!isLoading && posts.length === 0) return null;
-
   return (
     <div id="social" className="relative isolate z-30 bg-black text-white">
       <Section className="!py-10 md:!py-14">
