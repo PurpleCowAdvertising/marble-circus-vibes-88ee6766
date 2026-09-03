@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import posterAsset from "@/assets/preshow-lineup-poster.png.asset.json";
+import mainShowPosterAsset from "@/assets/mainshow-lineup-poster.png.asset.json";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
