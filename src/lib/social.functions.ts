@@ -90,6 +90,50 @@ function decodeXml(value: string) {
     .replace(/&amp;/g, "&");
 }
 
+/**
+ * Instagram, Facebook and TikTok have no free public feed (they require an approved
+ * app + tokens), so each of those platforms gets an always-current "latest" card that
+ * links straight to the live profile. Curated posts for a platform replace its card.
+ */
+const PROFILE_FALLBACKS: SocialPost[] = [
+  {
+    id: "profile-instagram",
+    platform: "instagram",
+    post_url: "https://www.instagram.com/scorpionkingslive/",
+    thumbnail_url: null,
+    caption: "Latest on Instagram — @scorpionkingslive",
+    is_video: false,
+    sort_order: 100,
+    published: true,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "profile-tiktok",
+    platform: "tiktok",
+    post_url: "https://www.tiktok.com/@scorpion.kings.live",
+    thumbnail_url: null,
+    caption: "Latest on TikTok — @scorpion.kings.live",
+    is_video: true,
+    sort_order: 101,
+    published: true,
+    created_at: "",
+    updated_at: "",
+  },
+  {
+    id: "profile-facebook",
+    platform: "facebook",
+    post_url: "https://www.facebook.com/scorpionkingslive",
+    thumbnail_url: null,
+    caption: "Latest on Facebook — Scorpion Kings Live",
+    is_video: false,
+    sort_order: 102,
+    published: true,
+    created_at: "",
+    updated_at: "",
+  },
+];
+
 export const getPublicSocialPosts = createServerFn({ method: "GET" }).handler(async () => {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   const [{ data, error }, autoPosts] = await Promise.all([
