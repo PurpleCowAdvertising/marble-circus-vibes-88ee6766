@@ -14,7 +14,7 @@ const SHOPIFY_SCRIPT_URL =
 // make it easy to swap stores per environment.
 const SHOPIFY_DOMAIN = 'galxboy-sa.myshopify.com';
 const STOREFRONT_TOKEN = '3b7f71847b99743ed81f6d61ea90dfc1';
-const COLLECTION_ID = '496493461795';
+const COLLECTION_ID = '496460366115';
 
 // Gold accent + its paired dark text color, copied from the site's
 // design tokens (--gold / --gold-foreground in src/styles.css) so the
