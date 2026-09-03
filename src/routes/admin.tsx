@@ -16,6 +16,7 @@ import {
 } from "@/lib/visibility.functions";
 import { exportSubscribersCsv } from "@/lib/subscribers.functions";
 import { useInvalidatePublicVisibility } from "@/components/site/visibility";
+import { SocialAdminPanel } from "@/components/site/SocialAdminPanel";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
@@ -363,6 +364,8 @@ function AdminPage() {
           )}
         </section>
       </div>
+
+      <SocialAdminPanel />
     </div>
   );
 }

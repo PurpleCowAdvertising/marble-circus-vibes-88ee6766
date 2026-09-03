@@ -39,6 +39,7 @@ export const VISIBILITY_REGISTRY: RegistryEntry[] = [
   { key: "section:home.experience", kind: "section", label: "Experience blocks", parentKey: "page:home", sortOrder: 80 },
   { key: "section:home.merchandise", kind: "section", label: "Home merchandise preview", parentKey: "page:home", sortOrder: 85 },
   { key: "section:home.partners", kind: "section", label: "Partners row", parentKey: "page:home", sortOrder: 90 },
+  { key: "section:home.social", kind: "section", label: "Social feed", parentKey: "page:home", sortOrder: 95 },
 
   // -------- About sections --------
   { key: "section:about.story", kind: "section", label: "Our story", parentKey: "page:about", sortOrder: 10 },
