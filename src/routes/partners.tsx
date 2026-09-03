@@ -171,7 +171,7 @@ function PartnersPage() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <ul className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+          <ul className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
             {SPONSORS.map((sponsor) => (
               <li
                 key={sponsor.name}
