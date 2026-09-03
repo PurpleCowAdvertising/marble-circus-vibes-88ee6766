@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { ExternalLink, Play, Radio } from "lucide-react";
 import { getPublicSocialPosts, type SocialPost } from "@/lib/social.functions";
-import { FadeIn, Reveal, RevealGroup, Section } from "./Section";
+import { FadeIn, Section } from "./Section";
+import { Reveal, RevealGroup } from "./Reveal";
 
 const PLATFORM_LABELS: Record<SocialPost["platform"], string> = {
   instagram: "Instagram",
