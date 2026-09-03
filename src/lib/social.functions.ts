@@ -44,18 +44,70 @@ async function withSignedThumbnail(row: SocialPost): Promise<SocialPost> {
   return { ...row, thumbnail_url: data?.signedUrl ?? null };
 }
 
+const YOUTUBE_CHANNEL_ID = "UCe0qO9T8tdTwKLR6rnPTRPQ";
+const YOUTUBE_AUTO_LIMIT = 4;
+
+/** Pulls the channel's latest uploads from YouTube's public RSS feed (no API key needed). */
+async function fetchLatestYouTubePosts(): Promise<SocialPost[]> {
+  try {
+    const res = await fetch(
+      `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`,
+      { headers: { "user-agent": "Mozilla/5.0" } },
+    );
+    if (!res.ok) return [];
+    const xml = await res.text();
+
+    const entries = xml.split("<entry>").slice(1, YOUTUBE_AUTO_LIMIT + 1);
+    return entries.flatMap((entry, index) => {
+      const videoId = /<yt:videoId>([^<]+)<\/yt:videoId>/.exec(entry)?.[1];
+      if (!videoId) return [];
+      const title = /<title>([\s\S]*?)<\/title>/.exec(entry)?.[1]?.trim() ?? null;
+      const published = /<published>([^<]+)<\/published>/.exec(entry)?.[1] ?? new Date().toISOString();
+      return [{
+        id: `yt-${videoId}`,
+        platform: "youtube" as const,
+        post_url: `https://www.youtube.com/watch?v=${videoId}`,
+        thumbnail_url: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+        caption: title ? decodeXml(title) : null,
+        is_video: true,
+        sort_order: -1000 + index,
+        published: true,
+        created_at: published,
+        updated_at: published,
+      }];
+    });
+  } catch {
+    return [];
+  }
+}
+
+function decodeXml(value: string) {
+  return value
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, "&");
+}
+
 export const getPublicSocialPosts = createServerFn({ method: "GET" }).handler(async () => {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data, error } = await supabaseAdmin
-    .from("social_posts")
-    .select("*")
-    .eq("published", true)
-    .order("sort_order", { ascending: true })
-    .order("created_at", { ascending: false });
+  const [{ data, error }, autoPosts] = await Promise.all([
+    supabaseAdmin
+      .from("social_posts")
+      .select("*")
+      .eq("published", true)
+      .order("sort_order", { ascending: true })
+      .order("created_at", { ascending: false }),
+    fetchLatestYouTubePosts(),
+  ]);
 
   if (error) throw error;
-  return Promise.all(((data ?? []) as SocialPost[]).map(withSignedThumbnail));
+  const curated = await Promise.all(((data ?? []) as SocialPost[]).map(withSignedThumbnail));
+  const curatedUrls = new Set(curated.map((post) => post.post_url));
+  return [...autoPosts.filter((post) => !curatedUrls.has(post.post_url)), ...curated];
 });
+
 
 export const listSocialPosts = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
