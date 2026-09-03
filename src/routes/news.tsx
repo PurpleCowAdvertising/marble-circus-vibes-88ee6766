@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import posterAsset from "@/assets/preshow-lineup-poster.png.asset.json";
+import mainShowPosterAsset from "@/assets/mainshow-lineup-poster.png.asset.json";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -87,6 +88,44 @@ type Post = {
 };
 
 const POSTS: Post[] = [
+  {
+    tag: "Line-up announced",
+    date: "03 September 2026 · 09h00",
+    datePublished: "2026-09-03T09:00:00+02:00",
+    title: "SCORPION KINGS LIVE UNVEILS MASSIVE LINEUP FOR HISTORIC SHOW AT FNB STADIUM",
+    excerpt:
+      "South Africa’s biggest Amapiano celebration brings together an extraordinary selection of music heavyweights, with an all-star lineup and powerhouse brand partners joining the experience.",
+    image: mainShowPosterAsset.url,
+    imageAlt:
+      "Scorpion Kings Live main show line-up poster — 19 September 2026, FNB Stadium, doors open 12:00, artists A–Z",
+    body: [
+      "Johannesburg, South Africa — The wait is over. Scorpion Kings Live has officially unveiled its highly anticipated lineup, bringing together an extraordinary collection of South Africa’s biggest and most influential music names for what promises to be one of the country’s defining live music experiences of 2026.",
+      "Taking place on 19 September 2026, Scorpion Kings Live will unite pioneers, innovators, chart-toppers and the next generation of South African music for an unmissable celebration of Amapiano, Afro-soul, hip-hop, house and contemporary African sounds.",
+      "At the centre of the experience are the legendary Scorpion Kings — Kabza De Small and DJ Maphorisa — joined by a phenomenal lineup that reflects the breadth, evolution and influence of South African music.",
+      "This year’s historic show will bring over 70 000 fans to FNB Stadium to witness Ami Faku, Amaroto, Aymos, Angekebabuye MC, Beekayrsa28, Blxckie, Bontle Smith, Busiswa, Busta 929, Daliwonga, DJ Maphorisa, Dladla Mshuniqisi, Focalistic, Kabelo Sings, Kabza De Small, Kamo Mphela, Kammu Dee, Key Tech, Khalil Harrison, Lady Du, Leehleza, LeeMckrazy, Madumane, Mark Khoza, MaWhoo, Mhaw Keys, Miano, Mkeyz, Mlindo The Vocalist, Mnqobi Yazo, Mr JazziQ, Msaki, Mthunzi, Nasty C, Nia Pearl, Njelic, Nkosazana Daughter, Nobuhle, Nokwazi, Pcee, Ricky Lenyora, Ringo Madlingozi, Scotts Maphuma, Semi Tee, Soweto’s Finest, Sykes, Thatohatsi, Toss, Tman Xpress, Tracy, Uncool MC, Vulela, Xduppy, Young Stunna, Zaba and Zawadi Yamungu on one stage!",
+      "And the celebration starts early. Fans can arrive from 12h00 as the Scorpion Kings Live pre-show gets the party started, setting the tone for a full day of music, culture and entertainment.",
+      "From the soulful sounds of Ami Faku, Msaki, Nobuhle, Nokwazi, Nkosazana Daughter and Mlindo The Vocalist, to the infectious Amapiano energy of Daliwonga, Young Stunna, Focalistic, Kamo Mphela, Toss, Tman Xpress, LeeMckrazy and MaWhoo, the lineup promises something for every generation of music lover.",
+      "The event will also showcase the genre-crossing energy of Blxckie and Nasty C, the enduring influence of Ringo Madlingozi, and the unmistakable presence of artists such as Busiswa, Lady Du, Busta 929, Semi Tee, Njelic and many more.",
+      "Scorpion Kings Live is not only bringing together an incredible collection of artists; it is also partnering with some of South Africa’s most recognisable and culturally relevant brands to create a complete live entertainment experience for fans.",
+      "SABC1 joins Scorpion Kings Live as an Official Broadcast Partner, bringing together two brands deeply rooted in South African music, youth culture and entertainment. The partnership reflects a shared commitment to celebrating the sounds, stories and cultural movements that continue to shape Mzansi and influence the world.",
+      "Fashion and culture brand GalxBoy comes on board as the Official Merch Distribution Partner, giving fans the opportunity to take a piece of the Scorpion Kings Live experience home with them.",
+      "For fans making their way to and from the event, Gautrain joins as the Official Transport Partner, supporting convenient and accessible travel to and from the celebration.",
+      "Sprite is the Official Refreshment Partner, keeping fans refreshed throughout the day, while Castle Lite joins as the Official Beer Partner, adding to the festival atmosphere.",
+      "The experience will be further amplified through dedicated brand activations, with McCafé and RocoMamas coming on board as Official Activations Partners, bringing their unique energy and experiences directly to fans on the ground.",
+      "Together, these partnerships reinforce the scale of Scorpion Kings Live and the experience that extends beyond the stage; bringing together music, fashion, culture, transport, food, refreshments and entertainment to the iconic sporting calabash — FNB Stadium.",
+      "19 September 2026 will see an exceptional lineup and a powerful collection of partners for a historic Scorpion Kings Live at FNB Stadium.",
+      "More than a concert — it will be a celebration of South African music, culture and the communities that continue to make the country one of the world’s most exciting musical forces.",
+      "Watch the line up announcement and follow @scorpionkingslive on all social platforms for the latest updates.",
+      "Limited ticketing options remain available on www.scorpionkings.live.",
+    ],
+    highlight: {
+      title: "Official partners",
+      body: "SABC1 — Official Broadcast Partner · GalxBoy — Official Merch Distribution Partner · Gautrain — Official Transport Partner · Sprite — Official Refreshment Partner · Castle Lite — Official Beer Partner · McCafé and RocoMamas — Official Activations Partners.",
+    },
+    footnote: "Doors open at 12:00 · 19 September 2026 · FNB Stadium, Johannesburg",
+    href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143",
+    hrefLabel: "Buy on Webtickets",
+  },
   {
     tag: "Pre-show line-up",
     date: "01 September 2026 · 09h00",
