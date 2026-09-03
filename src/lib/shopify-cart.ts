@@ -92,7 +92,7 @@ export function subscribeCartCount(cb: (count: number) => void): () => void {
 
 const SHOPIFY_DOMAIN = 'galxboy-sa.myshopify.com';
 const STOREFRONT_TOKEN = '3b7f71847b99743ed81f6d61ea90dfc1';
-const COLLECTION_GID = 'gid://shopify/Collection/496493461795';
+const COLLECTION_GID = 'gid://shopify/Collection/496460366115';
 
 let featuredPromise: Promise<{ title: string; image: string } | null> | null =
   null;
