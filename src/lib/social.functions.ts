@@ -90,7 +90,7 @@ async function fetchLatestInstagramPosts(): Promise<SocialPost[]> {
       `https://i.instagram.com/api/v1/users/web_profile_info/?username=${INSTAGRAM_USERNAME}`,
       {
         headers: {
-          "user-agent": "Mozilla/5.0",
+          "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36",
           "x-ig-app-id": "936619743392459",
           accept: "application/json",
         },
