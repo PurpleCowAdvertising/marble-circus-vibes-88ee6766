@@ -149,7 +149,9 @@ export const getPublicSocialPosts = createServerFn({ method: "GET" }).handler(as
   if (error) throw error;
   const curated = await Promise.all(((data ?? []) as SocialPost[]).map(withSignedThumbnail));
   const curatedUrls = new Set(curated.map((post) => post.post_url));
-  return [...autoPosts.filter((post) => !curatedUrls.has(post.post_url)), ...curated];
+  const covered = new Set([...curated, ...autoPosts].map((post) => post.platform));
+  const fallbacks = PROFILE_FALLBACKS.filter((post) => !covered.has(post.platform));
+  return [...autoPosts.filter((post) => !curatedUrls.has(post.post_url)), ...curated, ...fallbacks];
 });
 
 
