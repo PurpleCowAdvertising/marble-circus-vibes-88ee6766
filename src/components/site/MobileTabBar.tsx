@@ -8,7 +8,7 @@ const TABS = [
   { kind: "route", to: "/", label: "Home", icon: Home, exact: true },
   { kind: "scroll", hash: "tickets", label: "Tickets", icon: Ticket },
   { kind: "scroll", hash: "experience", label: "Hospitality", icon: ConciergeBell },
-  { kind: "route", to: "/contact", label: "Partners", icon: Handshake, exact: false },
+  { kind: "route", to: "/partners", label: "Partners", icon: Handshake, exact: false },
   { kind: "route", to: "/news", label: "News", icon: Newspaper, exact: false },
   { kind: "route", to: "/feed", label: "Feed", icon: Play, exact: false },
 ] as const;
