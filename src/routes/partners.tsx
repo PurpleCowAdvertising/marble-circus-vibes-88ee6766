@@ -1,23 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { SPONSORS } from "@/config/sponsors";
-import partnerLogoFull from "@/assets/partners/purple-cow-full.webp";
-import partnerLogoMark from "@/assets/partners/purple-cow-mark.webp";
 
-const CATEGORIES = ["all", "platinum", "gold", "silver", "bronze"] as const;
-
-type Category = (typeof CATEGORIES)[number];
-
-type PartnerPackage = {
-  name: string;
-  tier: Exclude<Category, "all">;
-  blurb: string;
-  status: "Available" | "Confirmed";
-};
+const TIER_A_ORDER = ["SABC 1", "Sprite", "RocoMamas", "VEEV", "Standard Bank"];
+const TIER_B_ORDER = ["McCafé", "Galxboy"];
 
 export const Route = createFileRoute("/partners")({
   head: () => ({
@@ -26,12 +14,12 @@ export const Route = createFileRoute("/partners")({
       {
         name: "description",
         content:
-          "Sponsorship and partnership opportunities for Scorpion Kings Live at FNB Stadium, 19 September 2026. Email sponsorship@scorpionkings.live to reach the team.",
+          "Proud partners of Scorpion Kings Live at FNB Stadium, 19 September 2026. Sponsorship enquiries: sponsorship@scorpionkings.live.",
       },
       { property: "og:title", content: "Partners & Sponsorship | Scorpion Kings Live" },
       {
         property: "og:description",
-        content: "Powered by brands that move with the culture. Partnership packages available now.",
+        content: "Powered by brands that move with the culture. Meet our proud partners.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/partners" },
@@ -39,7 +27,7 @@ export const Route = createFileRoute("/partners")({
       { name: "twitter:title", content: "Partners & Sponsorship | Scorpion Kings Live" },
       {
         name: "twitter:description",
-        content: "Sponsorship packages for Scorpion Kings Live at FNB Stadium, 19 September 2026.",
+        content: "Proud partners of Scorpion Kings Live at FNB Stadium, 19 September 2026.",
       },
     ],
     links: [{ rel: "canonical", href: "/partners" }],
@@ -47,306 +35,103 @@ export const Route = createFileRoute("/partners")({
   component: PartnersPage,
 });
 
-
-const PARTNER_PACKAGES: PartnerPackage[] = [
-  {
-    name: "Headline Partner",
-    tier: "platinum",
-    blurb: "Maximum visibility across the event, digital campaign, stage moments and fan communications.",
-    status: "Available",
-  },
-  {
-    name: "Official Ticketing Partner",
-    tier: "platinum",
-    blurb: "Ticketing, access and fan purchase journey integration across the campaign.",
-    status: "Available",
-  },
-  {
-    name: "Stage Partner",
-    tier: "gold",
-    blurb: "Own a key stage moment, visual package or branded fan experience.",
-    status: "Available",
-  },
-  {
-    name: "VIP Experience Partner",
-    tier: "gold",
-    blurb: "Premium hospitality visibility across VIP areas, hosting and guest touchpoints.",
-    status: "Available",
-  },
-  {
-    name: "Digital Content Partner",
-    tier: "silver",
-    blurb: "Social-first content, behind-the-scenes access and digital storytelling opportunities.",
-    status: "Available",
-  },
-  {
-    name: "Merch Partner",
-    tier: "silver",
-    blurb: "Limited-edition merchandise, fan drops and branded retail moments.",
-    status: "Available",
-  },
-  {
-    name: "Food + Beverage Partner",
-    tier: "bronze",
-    blurb: "Vendor visibility, sampling opportunities and on-site fan engagement.",
-    status: "Available",
-  },
-  {
-    name: "Transport Partner",
-    tier: "bronze",
-    blurb: "Ride-share, parking, shuttle or access-support partnership opportunities.",
-    status: "Available",
-  },
-] as const;
-
-const FILTERS: { key: Category; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "platinum", label: "Platinum" },
-  { key: "gold", label: "Gold" },
-  { key: "silver", label: "Silver" },
-  { key: "bronze", label: "Bronze" },
-];
-
-const TIER_META: Record<Exclude<Category, "all">, { label: string; card: string; badge: string }> = {
-  platinum: {
-    label: "Platinum",
-    card: "border-white/30 bg-white/[0.08]",
-    badge: "bg-white text-black",
-  },
-  gold: {
-    label: "Gold",
-    card: "border-gold/50 bg-gold/[0.12]",
-    badge: "bg-gold text-black",
-  },
-  silver: {
-    label: "Silver",
-    card: "border-white/20 bg-white/[0.06]",
-    badge: "bg-white/80 text-black",
-  },
-  bronze: {
-    label: "Bronze",
-    card: "border-white/15 bg-white/[0.04]",
-    badge: "bg-white/15 text-white",
-  },
-};
+function sortByName(names: string[]) {
+  const map = new Map(SPONSORS.map((s) => [s.name, s]));
+  return names.map((name) => map.get(name)).filter(Boolean) as typeof SPONSORS;
+}
 
 function PartnersPage() {
-  const [activeTier, setActiveTier] = useState<Category>("all");
-
-  const filtered = useMemo(() => {
-    if (activeTier === "all") return PARTNER_PACKAGES;
-
-    return PARTNER_PACKAGES.filter((partner) => partner.tier === activeTier);
-  }, [activeTier]);
-
-  const counts = useMemo(() => {
-    return FILTERS.reduce(
-      (acc, filter) => {
-        acc[filter.key] =
-          filter.key === "all"
-            ? PARTNER_PACKAGES.length
-            : PARTNER_PACKAGES.filter((partner) => partner.tier === filter.key).length;
-
-        return acc;
-      },
-      {} as Record<Category, number>,
-    );
-  }, []);
+  const tierA = sortByName(TIER_A_ORDER);
+  const tierB = sortByName(TIER_B_ORDER);
 
   return (
     <PageGate keyName="page:partners">
       <PageHero
         eyebrow="Our partners"
         title="Powered by the bold."
-        description="Partner opportunities for brands that want to move with the artists, the fans and the culture."
+        description="The brands and partners standing with Scorpion Kings Live."
       />
 
-      <VisibilityGate keyName="section:partners.confirmed"><Section className="bg-black text-white !pb-0">
-        <FadeIn>
-          <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Our partners</p>
-
-          <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
-            Proudly partnered by.
-          </h2>
-        </FadeIn>
-
-        <FadeIn delay={0.1}>
-          <ul className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
-            {SPONSORS.map((sponsor) => (
-              <li
-                key={sponsor.name}
-                className={`flex h-24 items-center justify-center rounded-2xl border py-4 backdrop-blur-xl ${
-                  sponsor.wide ? "px-2.5" : "px-5"
-                } ${
-                  sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
-                }`}
-              >
-                <img
-                  src={sponsor.logo}
-                  alt={`${sponsor.name} logo`}
-                  loading="lazy"
-                  className={sponsor.wide
-                    ? "mx-auto h-11 w-[88%] object-contain object-center"
-                    : sponsor.imgClassName ?? "max-h-11 w-auto max-w-full object-contain md:max-h-12"
-                  }
-                />
-              </li>
-            ))}
-          </ul>
-        </FadeIn>
-      </Section></VisibilityGate>
-
-      <VisibilityGate keyName="section:partners.packages"><Section className="bg-black text-white">
-        <FadeIn>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Partnership tiers</p>
-
-              <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
-                Built for brands with rhythm.
-              </h2>
-            </div>
-
-            <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
-              This page can be updated as partners are confirmed. For now, it presents clean, credible sponsorship
-              opportunities without naming unconfirmed brands.
-            </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.1}>
-          <div
-            role="tablist"
-            aria-label="Filter partner packages by tier"
-            className="mt-6 flex flex-wrap gap-2 border-b border-white/10 pb-5"
-          >
-            {FILTERS.map((filter) => {
-              const active = activeTier === filter.key;
-
-              return (
-                <button
-                  key={filter.key}
-                  type="button"
-                  role="tab"
-                  aria-selected={active}
-                  onClick={() => setActiveTier(filter.key)}
-                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all ${
-                    active
-                      ? "border-gold bg-gold text-black"
-                      : "border-white/15 bg-white/[0.05] text-white/65 hover:border-white/35 hover:text-white"
-                  }`}
-                >
-                  {filter.label}
-
-                  <span
-                    className={`rounded-full px-1.5 py-0.5 text-[10px] tabular-nums ${
-                      active ? "bg-black/10 text-black" : "bg-white/10 text-white/60"
-                    }`}
-                  >
-                    {counts[filter.key]}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </FadeIn>
-
-        <div className="mt-7">
+      <VisibilityGate keyName="section:partners.confirmed">
+        <Section className="bg-black text-white !pb-24">
           <FadeIn>
-            <p className="text-xs uppercase tracking-widest text-white/50">
-              Showing {filtered.length} {filtered.length === 1 ? "package" : "packages"}
-              {activeTier !== "all" ? ` · ${TIER_META[activeTier].label}` : ""}
-            </p>
+            <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Headline partners</p>
+            <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
+              Proudly partnered by.
+            </h2>
           </FadeIn>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((partner, index) => {
-              const meta = TIER_META[partner.tier];
-              const logo = partner.tier === "platinum" || partner.tier === "gold" ? partnerLogoFull : partnerLogoMark;
+          <FadeIn delay={0.1}>
+            <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+              {tierA.map((sponsor) => (
+                <li
+                  key={sponsor.name}
+                  className={`flex h-32 items-center justify-center rounded-2xl border py-5 backdrop-blur-xl md:h-40 ${
+                    sponsor.wide ? "px-3" : "px-6"
+                  } ${
+                    sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
+                  }`}
+                >
+                  <img
+                    src={sponsor.logo}
+                    alt={`${sponsor.name} logo`}
+                    loading="lazy"
+                    className={
+                      sponsor.wide
+                        ? "mx-auto h-14 w-[90%] object-contain object-center md:h-16"
+                        : sponsor.imgClassName ?? "max-h-14 w-auto max-w-full object-contain md:max-h-16"
+                    }
+                  />
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
 
-              return (
-                <FadeIn key={partner.name} delay={index * 0.03}>
-                  <article
-                    className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border p-5 backdrop-blur-xl transition-transform hover:-translate-y-1 ${meta.card}`}
-                  >
-                    <div>
-                      <div className="flex items-start justify-between gap-3">
-                        <span
-                          className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest ${meta.badge}`}
-                        >
-                          {meta.label}
-                        </span>
-
-                        <ArrowUpRight
-                          size={16}
-                          className="text-white/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
-                        />
-                      </div>
-
-                      <div className="mt-4 flex h-24 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/35 p-4">
-                        <img
-                          src={logo}
-                          alt={`${partner.name} package visual`}
-                          loading="lazy"
-                          className="max-h-14 w-auto object-contain"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="mt-5">
-                      <p className="text-[10px] uppercase tracking-[0.35em] text-gold">{partner.status}</p>
-
-                      <h3 className="mt-2 font-display text-2xl font-bold leading-tight text-white">{partner.name}</h3>
-
-                      <p className="mt-2 text-sm leading-relaxed text-white/65">{partner.blurb}</p>
-                    </div>
-                  </article>
-                </FadeIn>
-              );
-            })}
-          </div>
-        </div>
-      </Section></VisibilityGate>
-
-      <VisibilityGate keyName="section:partners.cta"><Section className="bg-orange-rich text-white">
-        <div className="rounded-3xl border border-white/15 bg-black/35 p-7 backdrop-blur-xl md:p-10">
-          <FadeIn>
-            <p className="text-xs uppercase tracking-[0.4em] text-gold">Partner with us</p>
-
-            <h2 className="mt-4 font-display text-4xl font-bold leading-tight md:text-6xl">
-              Let’s build something unforgettable.
-            </h2>
-
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
-              Reach a passionate, culture-defining audience across live, digital, content and on-site experiences.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href="mailto:sponsorship@scorpionkings.live?subject=Scorpion%20Kings%20Live%20partnership%20enquiry"
-                className="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
-              >
-                Email the sponsorship team <ArrowUpRight size={16} />
-              </a>
-
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/[0.06] px-7 py-4 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-xl transition-colors hover:border-white/50"
-              >
-                Use the contact form
-              </Link>
+          <FadeIn delay={0.2}>
+            <div className="mt-10 flex items-center gap-4">
+              <div className="h-px flex-1 bg-white/10" />
+              <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Official partners</p>
+              <div className="h-px flex-1 bg-white/10" />
             </div>
 
-            <p className="mt-4 text-sm text-white/70">
+            <ul className="mt-8 flex flex-wrap justify-center gap-4">
+              {tierB.map((sponsor) => (
+                <li
+                  key={sponsor.name}
+                  className={`flex h-24 w-[calc(50%-0.5rem)] items-center justify-center rounded-2xl border py-4 backdrop-blur-xl sm:w-[calc(33.333%-0.75rem)] md:h-28 lg:w-64 ${
+                    sponsor.wide ? "px-3" : "px-6"
+                  } ${
+                    sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
+                  }`}
+                >
+                  <img
+                    src={sponsor.logo}
+                    alt={`${sponsor.name} logo`}
+                    loading="lazy"
+                    className={
+                      sponsor.wide
+                        ? "mx-auto h-10 w-[88%] object-contain object-center md:h-12"
+                        : sponsor.imgClassName ?? "max-h-10 w-auto max-w-full object-contain md:max-h-12"
+                    }
+                  />
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+
+          <FadeIn delay={0.3}>
+            <p className="mt-12 text-center text-sm text-white/50">
               Sponsorship enquiries:{" "}
-              <a href="mailto:sponsorship@scorpionkings.live" className="text-gold hover:underline">
+              <a
+                href="mailto:sponsorship@scorpionkings.live"
+                className="text-gold hover:underline"
+              >
                 sponsorship@scorpionkings.live
               </a>
             </p>
-
           </FadeIn>
-        </div>
-      </Section></VisibilityGate>
+        </Section>
+      </VisibilityGate>
     </PageGate>
   );
 }
