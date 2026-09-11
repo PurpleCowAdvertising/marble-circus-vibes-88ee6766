@@ -30,4 +30,5 @@ export const SPONSORS: Sponsor[] = [
   { name: "SABC 1", logo: sabc1.url, onLight: true },
   { name: "Sprite", logo: sprite.url },
   { name: "Standard Bank", logo: standardBank.url },
+  { name: "VEEV", logo: veev.url },
 ];
