@@ -18,6 +18,7 @@ export const VISIBILITY_REGISTRY: RegistryEntry[] = [
   { key: "page:about", kind: "page", label: "About", sortOrder: 20, route: "/about" },
   { key: "page:music", kind: "page", label: "Line-Up (Music)", sortOrder: 30, route: "/music" },
   { key: "page:news", kind: "page", label: "News", sortOrder: 40, route: "/news" },
+  { key: "page:feed", kind: "page", label: "Feed", sortOrder: 45, route: "/feed" },
   { key: "page:tickets", kind: "page", label: "Tickets", sortOrder: 50, route: "/tickets" },
   { key: "page:partners", kind: "page", label: "Partners", sortOrder: 60, route: "/partners" },
   { key: "page:experience", kind: "page", label: "Hospitality", sortOrder: 70, route: "/experience" },
