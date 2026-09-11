@@ -16,6 +16,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as FeedRouteImport } from './routes/feed'
 import { Route as LegacyRouteImport } from './routes/legacy'
 import { Route as MerchandiseRouteImport } from './routes/merchandise'
 import { Route as MusicRouteImport } from './routes/music'
@@ -62,6 +63,11 @@ const ExperienceRoute = ExperienceRouteImport.update({
 const FaqsRoute = FaqsRouteImport.update({
   id: '/faqs',
   path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeedRoute = FeedRouteImport.update({
+  id: '/feed',
+  path: '/feed',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LegacyRoute = LegacyRouteImport.update({
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
+  '/feed': typeof FeedRoute
   '/legacy': typeof LegacyRoute
   '/merchandise': typeof MerchandiseRoute
   '/music': typeof MusicRoute
@@ -155,6 +162,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
+  '/feed': typeof FeedRoute
   '/legacy': typeof LegacyRoute
   '/merchandise': typeof MerchandiseRoute
   '/music': typeof MusicRoute
@@ -177,6 +185,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/faqs': typeof FaqsRoute
+  '/feed': typeof FeedRoute
   '/legacy': typeof LegacyRoute
   '/merchandise': typeof MerchandiseRoute
   '/music': typeof MusicRoute
@@ -200,6 +209,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience'
     | '/faqs'
+    | '/feed'
     | '/legacy'
     | '/merchandise'
     | '/music'
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience'
     | '/faqs'
+    | '/feed'
     | '/legacy'
     | '/merchandise'
     | '/music'
@@ -242,6 +253,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience'
     | '/faqs'
+    | '/feed'
     | '/legacy'
     | '/merchandise'
     | '/music'
@@ -264,6 +276,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ExperienceRoute: typeof ExperienceRoute
   FaqsRoute: typeof FaqsRoute
+  FeedRoute: typeof FeedRoute
   LegacyRoute: typeof LegacyRoute
   MerchandiseRoute: typeof MerchandiseRoute
   MusicRoute: typeof MusicRoute
@@ -327,6 +340,13 @@ declare module '@tanstack/react-router' {
       path: '/faqs'
       fullPath: '/faqs'
       preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feed': {
+      id: '/feed'
+      path: '/feed'
+      fullPath: '/feed'
+      preLoaderRoute: typeof FeedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/legacy': {
@@ -424,6 +444,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ExperienceRoute: ExperienceRoute,
   FaqsRoute: FaqsRoute,
+  FeedRoute: FeedRoute,
   LegacyRoute: LegacyRoute,
   MerchandiseRoute: MerchandiseRoute,
   MusicRoute: MusicRoute,
