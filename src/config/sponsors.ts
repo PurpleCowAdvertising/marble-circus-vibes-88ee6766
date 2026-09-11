@@ -26,6 +26,7 @@ export const SPONSORS: Sponsor[] = [
     logo: rocomamas,
     wide: true,
     imgClassName: "h-14 w-full object-fill object-center",
+    url: "https://rocomamas.com/za/campaign/rocomamas-x-scorpion-kings",
   },
   { name: "SABC 1", logo: sabc1.url, onLight: true },
   { name: "Sprite", logo: sprite.url },
