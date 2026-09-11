@@ -14,6 +14,7 @@ const EXPLORE_LINKS = [
   { to: "/about", label: "About" },
   { to: "/partners", label: "Partners" },
   { to: "/news", label: "News" },
+  { to: "/feed", label: "Feed" },
   { to: "/legacy", label: "Legacy / CSI" },
   { to: "/merchandise", label: "Merchandise" },
   { to: "/faqs", label: "FAQs" },
