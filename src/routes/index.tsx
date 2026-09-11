@@ -902,28 +902,42 @@ function HomePage() {
           <FadeIn delay={0.1}>
             <div className="mt-8 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
               <ul className="flex min-w-max items-stretch gap-3 md:grid md:min-w-0 md:grid-cols-6 md:gap-4">
-                {SPONSORS.map((sponsor) => (
-                  <li
-                    key={sponsor.name}
-                    className={`flex h-24 w-40 items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors md:h-28 md:w-auto ${
-                      sponsor.wide ? "px-2.5" : "px-5"
-                    } ${
-                      sponsor.onLight
-                        ? "border-white/15 bg-white/90"
-                        : "border-white/10 bg-white/[0.06] hover:border-white/25"
-                    }`}
-                  >
+                {SPONSORS.map((sponsor) => {
+                  const chipClassName = `flex h-24 w-40 items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors md:h-28 md:w-auto ${
+                    sponsor.wide ? "px-2.5" : "px-5"
+                  } ${
+                    sponsor.onLight
+                      ? "border-white/15 bg-white/90"
+                      : "border-white/10 bg-white/[0.06] hover:border-white/25"
+                  } ${sponsor.url ? "hover:border-gold/40" : ""}`;
+                  const imageClassName = sponsor.wide
+                    ? "mx-auto h-12 w-[88%] object-contain object-center md:h-14"
+                    : sponsor.imgClassName ?? "max-h-12 w-auto max-w-full object-contain md:max-h-14";
+                  const image = (
                     <img
                       src={sponsor.logo}
                       alt={`${sponsor.name} logo`}
                       loading="lazy"
-                      className={sponsor.wide
-                        ? "mx-auto h-12 w-[88%] object-contain object-center md:h-14"
-                        : sponsor.imgClassName ?? "max-h-12 w-auto max-w-full object-contain md:max-h-14"
-                      }
+                      className={imageClassName}
                     />
-                  </li>
-                ))}
+                  );
+                  return (
+                    <li key={sponsor.name}>
+                      {sponsor.url ? (
+                        <a
+                          href={sponsor.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={chipClassName}
+                        >
+                          {image}
+                        </a>
+                      ) : (
+                        <div className={chipClassName}>{image}</div>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </FadeIn>

@@ -63,27 +63,44 @@ function PartnersPage() {
 
           <FadeIn delay={0.1}>
             <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-              {tierA.map((sponsor) => (
-                <li
-                  key={sponsor.name}
-                  className={`flex h-32 items-center justify-center rounded-2xl border py-5 backdrop-blur-xl md:h-40 ${
-                    sponsor.wide ? "px-3" : "px-6"
-                  } ${
-                    sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
-                  }`}
-                >
-                  <img
-                    src={sponsor.logo}
-                    alt={`${sponsor.name} logo`}
-                    loading="lazy"
-                    className={
-                      sponsor.wide
-                        ? "mx-auto h-14 w-[90%] object-contain object-center md:h-16"
-                        : sponsor.imgClassName ?? "max-h-14 w-auto max-w-full object-contain md:max-h-16"
-                    }
-                  />
-                </li>
-              ))}
+              {tierA.map((sponsor) => {
+                const chipClassName = `flex h-32 items-center justify-center rounded-2xl border py-5 backdrop-blur-xl transition-colors md:h-40 ${
+                  sponsor.wide ? "px-3" : "px-6"
+                } ${
+                  sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06] hover:border-white/25"
+                } ${sponsor.url ? "hover:border-gold/40" : ""}`;
+                const imageClassName = sponsor.wide
+                  ? "mx-auto h-14 w-[90%] object-contain object-center md:h-16"
+                  : sponsor.imgClassName ?? "max-h-14 w-auto max-w-full object-contain md:max-h-16";
+                return (
+                  <li key={sponsor.name}>
+                    {sponsor.url ? (
+                      <a
+                        href={sponsor.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={chipClassName}
+                      >
+                        <img
+                          src={sponsor.logo}
+                          alt={`${sponsor.name} logo`}
+                          loading="lazy"
+                          className={imageClassName}
+                        />
+                      </a>
+                    ) : (
+                      <div className={chipClassName}>
+                        <img
+                          src={sponsor.logo}
+                          alt={`${sponsor.name} logo`}
+                          loading="lazy"
+                          className={imageClassName}
+                        />
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </FadeIn>
 
@@ -95,27 +112,44 @@ function PartnersPage() {
             </div>
 
             <ul className="mt-8 flex flex-wrap justify-center gap-4">
-              {tierB.map((sponsor) => (
-                <li
-                  key={sponsor.name}
-                  className={`flex h-24 w-[calc(50%-0.5rem)] items-center justify-center rounded-2xl border py-4 backdrop-blur-xl sm:w-[calc(33.333%-0.75rem)] md:h-28 lg:w-64 ${
-                    sponsor.wide ? "px-3" : "px-6"
-                  } ${
-                    sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
-                  }`}
-                >
-                  <img
-                    src={sponsor.logo}
-                    alt={`${sponsor.name} logo`}
-                    loading="lazy"
-                    className={
-                      sponsor.wide
-                        ? "mx-auto h-10 w-[88%] object-contain object-center md:h-12"
-                        : sponsor.imgClassName ?? "max-h-10 w-auto max-w-full object-contain md:max-h-12"
-                    }
-                  />
-                </li>
-              ))}
+              {tierB.map((sponsor) => {
+                const chipClassName = `flex h-24 w-[calc(50%-0.5rem)] items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors sm:w-[calc(33.333%-0.75rem)] md:h-28 lg:w-64 ${
+                  sponsor.wide ? "px-3" : "px-6"
+                } ${
+                  sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06] hover:border-white/25"
+                } ${sponsor.url ? "hover:border-gold/40" : ""}`;
+                const imageClassName = sponsor.wide
+                  ? "mx-auto h-10 w-[88%] object-contain object-center md:h-12"
+                  : sponsor.imgClassName ?? "max-h-10 w-auto max-w-full object-contain md:max-h-12";
+                return (
+                  <li key={sponsor.name}>
+                    {sponsor.url ? (
+                      <a
+                        href={sponsor.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={chipClassName}
+                      >
+                        <img
+                          src={sponsor.logo}
+                          alt={`${sponsor.name} logo`}
+                          loading="lazy"
+                          className={imageClassName}
+                        />
+                      </a>
+                    ) : (
+                      <div className={chipClassName}>
+                        <img
+                          src={sponsor.logo}
+                          alt={`${sponsor.name} logo`}
+                          loading="lazy"
+                          className={imageClassName}
+                        />
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </FadeIn>
 
