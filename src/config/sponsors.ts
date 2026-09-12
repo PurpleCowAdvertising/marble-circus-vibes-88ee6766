@@ -3,7 +3,6 @@ import mccafe from "@/assets/sponsors/2-mccafe.png.asset.json";
 import rocomamas from "@/assets/sponsors/3-rocomamas-cropped.png";
 import sabc1 from "@/assets/sponsors/6-sabc1.png.asset.json";
 import sprite from "@/assets/sponsors/4-sprite-white.png.asset.json";
-import standardBank from "@/assets/sponsors/5-standard-bank.png.asset.json";
 import veev from "@/assets/sponsors/7-veev.png.asset.json";
 
 export type Sponsor = {
@@ -30,6 +29,5 @@ export const SPONSORS: Sponsor[] = [
   },
   { name: "SABC 1", logo: sabc1.url, onLight: true },
   { name: "Sprite", logo: sprite.url },
-  { name: "Standard Bank", logo: standardBank.url },
   { name: "VEEV", logo: veev.url },
 ];
