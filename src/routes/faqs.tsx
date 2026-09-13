@@ -104,6 +104,12 @@ function FaqsPage() {
       />
 
       <Section className="!pt-4 bg-black text-white">
+        <VisibilityGate keyName="section:faqs.parkride">
+          <FadeIn>
+            <ParkRideInfo />
+          </FadeIn>
+        </VisibilityGate>
+
         <VisibilityGate keyName="section:faqs.categories">
           <div className="mt-4 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
             {CATEGORIES.map((category, categoryIndex) => (
