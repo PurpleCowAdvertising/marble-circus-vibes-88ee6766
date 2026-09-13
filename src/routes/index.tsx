@@ -768,7 +768,7 @@ function HomePage() {
                     />
                   </div>
 
-                  <div className="flex items-center justify-end">
+                  <div className="flex flex-col items-end justify-center gap-2">
                     <button
                       type="button"
                       onClick={() => setParkRideOpen(true)}
