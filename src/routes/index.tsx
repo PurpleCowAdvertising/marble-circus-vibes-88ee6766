@@ -927,11 +927,8 @@ function HomePage() {
                       className={imageClassName}
                     />
                   );
-                  return (
-                    <li
-                      key={sponsor.name}
-                      className={sponsor.name === "Gautrain" ? "md:col-span-2" : ""}
-                    >
+                    return (
+                    <li key={sponsor.name}>
                       {sponsor.url ? (
                         <a
                           href={sponsor.url}
