@@ -31,5 +31,5 @@ export const SPONSORS: Sponsor[] = [
   { name: "SABC 1", logo: sabc1.url, onLight: true },
   { name: "Sprite", logo: sprite.url },
   { name: "VEEV", logo: veev.url },
-  { name: "Gautrain", logo: gautrain.url, onLight: true, wide: true, imgClassName: "h-full w-full object-contain object-center" },
+  { name: "Gautrain", logo: gautrain.url, onLight: true, imgClassName: "max-h-16 w-auto max-w-full object-contain md:max-h-20" },
 ];

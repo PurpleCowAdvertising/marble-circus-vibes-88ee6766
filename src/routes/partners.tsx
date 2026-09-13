@@ -113,10 +113,7 @@ function PartnersPage() {
 
             <ul className="mt-8 flex flex-wrap justify-center gap-4">
               {tierB.map((sponsor) => {
-                const isGautrain = sponsor.name === "Gautrain";
-                const chipClassName = `flex h-24 w-[calc(50%-0.5rem)] items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors sm:w-[calc(33.333%-0.75rem)] md:h-28 ${
-                  isGautrain ? "lg:w-96" : "lg:w-64"
-                } ${
+                const chipClassName = `flex h-24 w-[calc(50%-0.5rem)] items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors sm:w-[calc(33.333%-0.75rem)] md:h-28 lg:w-64 ${
                   sponsor.wide ? "px-3" : "px-6"
                 } ${
                   sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06] hover:border-white/25"
