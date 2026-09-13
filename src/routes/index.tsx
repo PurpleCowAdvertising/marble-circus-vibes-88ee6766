@@ -518,7 +518,7 @@ function HomePage() {
 
         <div className="bg-black">
           <Section className="!bg-black !pt-4 md:!pt-2">
-            <RevealGroup className="grid gap-4 md:grid-cols-3">
+            <RevealGroup className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {[
                 {
                   name: "Field - selling out!",
@@ -538,6 +538,12 @@ function HomePage() {
                   price: "Select your Premium Hospitality Package",
                   tag: "Hospitality",
                   externalUrl: "https://www.sailhospitality.co.za/upcoming-events/scorpion-kings",
+                },
+                {
+                  name: "Parking tickets",
+                  price: "Secure your parking",
+                  tag: "Parking",
+                  externalUrl: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143",
                 },
               ].map((tier, index) => {
                 const gold = index % 2 === 0;
