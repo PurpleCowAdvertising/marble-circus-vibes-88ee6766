@@ -6,6 +6,7 @@ import sprite from "@/assets/sponsors/4-sprite-white.png.asset.json";
 import veev from "@/assets/sponsors/7-veev.png.asset.json";
 import gautrain from "@/assets/sponsors/8-gautrain.png.asset.json";
 import castleLite from "@/assets/sponsors/9-castle-lite.png.asset.json";
+import sampra from "@/assets/sponsors/10-sampra.png.asset.json";
 
 export type Sponsor = {
   name: string;
@@ -34,4 +35,5 @@ export const SPONSORS: Sponsor[] = [
   { name: "VEEV", logo: veev.url },
   { name: "Gautrain", logo: gautrain.url, onLight: true, wide: true, imgClassName: "h-auto w-full max-h-24 object-contain object-center" },
   { name: "Castle Lite", logo: castleLite.url, onLight: true, wide: true, imgClassName: "h-auto w-full max-h-24 object-contain object-center" },
+  { name: "SAMPRA", logo: sampra.url, onLight: true, wide: true, imgClassName: "h-auto w-full max-h-24 object-contain object-center" },
 ];
