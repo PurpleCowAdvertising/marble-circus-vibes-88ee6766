@@ -126,12 +126,12 @@ export const Route = createRootRouteWithContext<{
       {
         property: "og:image",
         content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8c4e17d7-28f6-42be-a735-b866b4d2b1ed/id-preview-79c1df9e--b14f59e7-9cd4-4bcb-a19b-ee187eb36f3f.lovable.app-1778249006123.png",
+          "https://www.scorpionkings.live/__l5e/assets-v1/add7b745-4186-459e-9beb-4a5457840ff9/scorpion-kings-social-preview.png",
       },
       {
         name: "twitter:image",
         content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8c4e17d7-28f6-42be-a735-b866b4d2b1ed/id-preview-79c1df9e--b14f59e7-9cd4-4bcb-a19b-ee187eb36f3f.lovable.app-1778249006123.png",
+          "https://www.scorpionkings.live/__l5e/assets-v1/add7b745-4186-459e-9beb-4a5457840ff9/scorpion-kings-social-preview.png",
       },
     ],
     links: [
