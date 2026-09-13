@@ -928,7 +928,10 @@ function HomePage() {
                     />
                   );
                   return (
-                    <li key={sponsor.name}>
+                    <li
+                      key={sponsor.name}
+                      className={sponsor.name === "Gautrain" ? "md:col-span-2" : ""}
+                    >
                       {sponsor.url ? (
                         <a
                           href={sponsor.url}
