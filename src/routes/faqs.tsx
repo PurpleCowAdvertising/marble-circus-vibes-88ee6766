@@ -98,58 +98,12 @@ function FaqsPage() {
   return (
     <PageGate keyName="page:faqs">
       <PageHero
-        eyebrow="Maps & FAQs"
+        eyebrow="FAQs"
         title="Know before you go."
-        description="Stadium maps, parking prices, gate info and quick answers to the questions fans ask most."
+        description="Parking prices, gate info and quick answers to the questions fans ask most."
       />
 
       <Section className="bg-black text-white">
-        <VisibilityGate keyName="section:faqs.maps">
-          <FadeIn>
-            <div className="flex flex-wrap items-end justify-between gap-6">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Venue guide</p>
-
-                <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
-                  Maps & directions.
-                </h2>
-              </div>
-
-              <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
-                Find your gate and parking area before you arrive. Plans are subject to official traffic and venue updates.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {MAPS.map((map, mapIndex) => (
-              <FadeIn key={map.title} delay={mapIndex * 0.08}>
-                <article className="overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-xl sm:p-5">
-                  <h3 className="font-display text-2xl font-bold text-gold md:text-3xl">{map.title}</h3>
-
-                  <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-black">
-                    <img
-                      src={map.image}
-                      alt={map.alt}
-                      loading="lazy"
-                      className="w-full object-contain"
-                    />
-                  </div>
-
-                  <ul className="mt-5 space-y-2">
-                    {map.points.map((point) => (
-                      <li key={point} className="flex items-start gap-3 text-sm text-white/80">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-        </VisibilityGate>
-
         <VisibilityGate keyName="section:faqs.categories">
           <div className="mt-16 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
             {CATEGORIES.map((category, categoryIndex) => (
