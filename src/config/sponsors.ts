@@ -4,7 +4,7 @@ import rocomamas from "@/assets/sponsors/3-rocomamas-cropped.png";
 import sabc1 from "@/assets/sponsors/6-sabc1.png.asset.json";
 import sprite from "@/assets/sponsors/4-sprite-white.png.asset.json";
 import veev from "@/assets/sponsors/7-veev.png.asset.json";
-import gautrain from "@/assets/sponsors/8-gautrain.jpg.asset.json";
+import gautrain from "@/assets/sponsors/8-gautrain.png.asset.json";
 import castleLite from "@/assets/sponsors/9-castle-lite.png.asset.json";
 
 export type Sponsor = {
@@ -32,6 +32,6 @@ export const SPONSORS: Sponsor[] = [
   { name: "SABC 1", logo: sabc1.url, onLight: true },
   { name: "Sprite", logo: sprite.url },
   { name: "VEEV", logo: veev.url },
-  { name: "Gautrain", logo: gautrain.url, onLight: true, imgClassName: "max-h-16 w-auto max-w-full object-contain md:max-h-20" },
-  { name: "Castle Lite", logo: castleLite.url, imgClassName: "max-h-16 w-auto max-w-full object-contain md:max-h-20" },
+  { name: "Gautrain", logo: gautrain.url, onLight: true, wide: true, imgClassName: "h-14 w-auto max-w-full object-contain md:h-16" },
+  { name: "Castle Lite", logo: castleLite.url, onLight: true, wide: true, imgClassName: "h-14 w-auto max-w-full object-contain md:h-16" },
 ];
