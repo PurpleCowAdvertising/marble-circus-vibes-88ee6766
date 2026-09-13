@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import { ArrowRight, MapPin, X } from "lucide-react";
