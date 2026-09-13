@@ -1,8 +1,7 @@
+import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ArrowUpRight, X } from "lucide-react";
-
-import { TICKETS_URL } from "./FieldTicketsPopup";
+import { ArrowUpRight, BusFront, X } from "lucide-react";
 
 const SESSION_KEY = "sk_ticket_bar_dismissed";
 export const TICKET_BAR_EVENT = "sk-ticket-bar";
