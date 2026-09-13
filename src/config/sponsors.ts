@@ -6,6 +6,7 @@ import sprite from "@/assets/sponsors/4-sprite-white.png.asset.json";
 import veev from "@/assets/sponsors/7-veev.png.asset.json";
 import gautrain from "@/assets/sponsors/8-gautrain.png.asset.json";
 import castleLite from "@/assets/sponsors/9-castle-lite.png.asset.json";
+import sampra from "@/assets/sponsors/10-sampra.png.asset.json";
 
 export type Sponsor = {
   name: string;
