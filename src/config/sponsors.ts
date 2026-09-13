@@ -4,6 +4,7 @@ import rocomamas from "@/assets/sponsors/3-rocomamas-cropped.png";
 import sabc1 from "@/assets/sponsors/6-sabc1.png.asset.json";
 import sprite from "@/assets/sponsors/4-sprite-white.png.asset.json";
 import veev from "@/assets/sponsors/7-veev.png.asset.json";
+import gautrain from "@/assets/sponsors/8-gautrain.jpg.asset.json";
 
 export type Sponsor = {
   name: string;
