@@ -371,27 +371,6 @@ function NewsPage() {
           </div>
         </VisibilityGate>
 
-        <VisibilityGate keyName="section:news.press">
-          <FadeIn delay={0.3}>
-            <div className="mt-10 rounded-3xl border border-white/15 bg-white/[0.06] p-6 text-sm text-white/65 backdrop-blur-xl md:p-8">
-              <p className="font-bold uppercase tracking-widest text-white">Press queries</p>
-
-              <p className="mt-2">
-                Kim Sineke ·{" "}
-                <a href="mailto:kim@iam4.co.za" className="text-gold hover:underline">
-                  kim@iam4.co.za
-                </a>{" "}
-                · +27810421076
-              </p>
-
-              <p className="mt-3">
-                <a href="mailto:press@scorpionkings.live" className="text-gold hover:underline">
-                  press@scorpionkings.live
-                </a>
-              </p>
-            </div>
-          </FadeIn>
-        </VisibilityGate>
       </Section>
 
       {poster && <PosterLightbox src={poster.src} alt={poster.alt} onClose={() => setPoster(null)} />}

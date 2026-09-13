@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Briefcase, Mail, Newspaper } from "lucide-react";
+import { Briefcase, Mail } from "lucide-react";
+
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
@@ -35,7 +36,7 @@ const schema = z.object({
 });
 
 type ContactEntry = {
-  icon: typeof Newspaper;
+  icon: typeof Mail;
   label: string;
   name: string;
   email: string;
@@ -44,12 +45,6 @@ type ContactEntry = {
 };
 
 const CONTACTS: readonly ContactEntry[] = [
-  {
-    icon: Newspaper,
-    label: "Press",
-    name: "Kim Sineke",
-    email: "kim@iam4.co.za",
-  },
   {
     icon: Mail,
     label: "General",
