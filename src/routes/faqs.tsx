@@ -103,9 +103,9 @@ function FaqsPage() {
         description="Parking prices, gate info and quick answers to the questions fans ask most."
       />
 
-      <Section className="bg-black text-white">
+      <Section className="!pt-4 bg-black text-white">
         <VisibilityGate keyName="section:faqs.categories">
-          <div className="mt-16 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
+          <div className="mt-4 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
             {CATEGORIES.map((category, categoryIndex) => (
               <FadeIn key={category.title} delay={categoryIndex * 0.05} className="contents">
                 <div className="md:sticky md:top-24 md:self-start">
