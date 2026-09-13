@@ -4,98 +4,118 @@ import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
+import stadiumMapAsset from "@/assets/faqs/stadium-map.jpg.asset.json";
+import parkingMapAsset from "@/assets/faqs/parking-map.jpg.asset.json";
+
 export const Route = createFileRoute("/faqs")({
   head: () => ({
     meta: [
-      { title: "FAQs | Scorpion Kings Live" },
+      { title: "Maps & FAQs | Scorpion Kings Live" },
       {
         name: "description",
-        content: "Everything you need to know about Scorpion Kings Live: tickets, venue, travel, policies and more.",
+        content:
+          "Stadium maps, parking info and everything you need to know about Scorpion Kings Live at FNB Stadium: gates, transport, tickets, policies and more.",
       },
-      { property: "og:title", content: "FAQs | Scorpion Kings Live" },
+      { property: "og:title", content: "Maps & FAQs | Scorpion Kings Live" },
       {
         property: "og:description",
-        content: "Tickets, venue, travel and policies answered.",
+        content: "Stadium maps, parking, transport and fan guide for Scorpion Kings Live.",
       },
     ],
   }),
   component: FaqsPage,
 });
 
+const MAPS = [
+  {
+    title: "Stadium Map",
+    image: stadiumMapAsset.url,
+    alt: "Satellite map of FNB Stadium showing gate entrances",
+    points: [
+      "Gate M & G – Scorpion Ring & Scorpion Field Standing",
+      "Gate J, K & L – All seated tickets",
+      "Gate A & C – VIP",
+    ],
+  },
+  {
+    title: "Parking Map",
+    image: parkingMapAsset.url,
+    alt: "Satellite map of parking areas near NASREC",
+    points: [
+      "Parking Ext 1/2 = R220",
+      "Parking Ext 5/6 = R220",
+      "Parking Ext 7/8 = R220",
+      "Premium Parking = R300",
+    ],
+  },
+] as const;
+
 const CATEGORIES = [
+  {
+    title: "Gates & Times",
+    items: [
+      {
+        q: "What time do gates open?",
+        a: "Gates open at 12pm.",
+      },
+      {
+        q: "Entry times?",
+        a: "Gates open 12pm – NO ENTRY WILL BE ALLOWED FROM 9pm onwards.",
+      },
+      {
+        q: "What time does the show start?",
+        a: "Pre-show starts 13:00pm – 18:30pm. Main show starts 19:00pm and ends 22:30pm.",
+      },
+    ],
+  },
   {
     title: "Tickets",
     items: [
       {
-        q: "When do tickets go on sale?",
-        a: "Tickets are available from 05 May 2026 via Webtickets, Pick n Pay and Boxer stores nationwide.",
+        q: "Are tickets still available?",
+        a: "Tickets are exclusively available through official channels. DO NOT BUY TICKETS THROUGH THIRD PARTIES OR VIAGOGO.",
       },
       {
-        q: "How much are tickets?",
-        a: "General Access tickets start from R400. VIP and Premium Table pricing will be confirmed through the official ticketing channels.",
+        q: "Are tickets sold at the gate?",
+        a: "No tickets will be sold at the venue. Tickets are only available via Webtickets.",
       },
       {
-        q: "Are there age restrictions?",
-        a: "Yes. The event is open to ages 14 and up. Valid ID may be required at entry.",
-      },
-      {
-        q: "Can I get a refund?",
-        a: "Ticket refunds, transfers and exchanges are governed by the official ticketing partner’s terms and conditions.",
+        q: "Is there parking available?",
+        a: "Parking Tickets are available on Webtickets.",
       },
     ],
   },
   {
-    title: "Venue",
+    title: "Travel & Parking",
     items: [
       {
-        q: "Where is the event held?",
-        a: "Scorpion Kings Live takes place at FNB Stadium in Johannesburg, South Africa.",
+        q: "Preferred transport?",
+        a: "Please use our Park & Ride services available on Webtickets. Gautrain services will also be available.",
       },
       {
-        q: "When is the event?",
-        a: "The event is scheduled for 19 September 2026.",
-      },
-      {
-        q: "Is the venue accessible?",
-        a: "Accessibility information will be shared closer to the event. For specific access arrangements, please contact the team directly.",
-      },
-      {
-        q: "Will there be food and drinks?",
-        a: "Yes. Food, bars and vendor areas are planned for the event. Final vendor details will be confirmed closer to the show.",
+        q: "How much is parking?",
+        a: "Parking Ext 1/2, 5/6 and 7/8 are R220 each. Premium Parking is R300.",
       },
     ],
   },
   {
-    title: "Travel",
+    title: "Venue & Experience",
     items: [
       {
-        q: "Is parking available?",
-        a: "Parking, drop-off and ride-share information will be shared before the event. We recommend checking official updates before travelling.",
+        q: "Is the event CASHLESS or CASH?",
+        a: "All formal vendors will be cashless. Informal vendors will accept both CASH or CASHLESS.",
       },
       {
-        q: "Will there be shuttle options?",
-        a: "Transport and shuttle details are still being finalised and will be announced through official channels.",
+        q: "What can I bring or can't bring?",
+        a: "Only bring your TICKETS, Cash or Bank Cards.",
       },
       {
-        q: "Are there hotel partners?",
-        a: "Hotel and accommodation partners may be announced closer to the event. Ticket holders and subscribers will receive updates first.",
-      },
-    ],
-  },
-  {
-    title: "Policies",
-    items: [
-      {
-        q: "What can I bring?",
-        a: "A full prohibited-items list will be shared before the event. As a guide, outside food and drinks, weapons and professional camera equipment are usually not permitted.",
+        q: "Is Merch going to be sold at the venue?",
+        a: "Yes, SK Live Merch will be available for sale.",
       },
       {
-        q: "Can I bring a professional camera?",
-        a: "Professional cameras, detachable lenses and recording equipment may require prior approval or accreditation.",
-      },
-      {
-        q: "Where can I read the privacy policy?",
-        a: "You can read the Privacy Policy on the dedicated Privacy Policy page.",
+        q: "Is the venue wheelchair friendly?",
+        a: "All entry points and gates into the stadium are wheelchair friendly.",
       },
     ],
   },
@@ -105,33 +125,60 @@ function FaqsPage() {
   return (
     <PageGate keyName="page:faqs">
       <PageHero
-        eyebrow="FAQs"
-        title="Everything you need."
-        description="Quick answers to the questions fans ask most. Still stuck? Contact the team."
+        eyebrow="Maps & FAQs"
+        title="Know before you go."
+        description="Stadium maps, parking prices, gate info and quick answers to the questions fans ask most."
       />
 
       <Section className="bg-black text-white">
-        <VisibilityGate keyName="section:faqs.intro">
+        <VisibilityGate keyName="section:faqs.maps">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Fan guide</p>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Venue guide</p>
 
                 <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
-                  Know before you go.
+                  Maps & directions.
                 </h2>
               </div>
 
               <p className="max-w-md text-sm leading-relaxed text-white/65 md:text-base">
-                Details will be updated as the event gets closer. Always use official channels for the latest ticket,
-                venue and access information.
+                Find your gate and parking area before you arrive. Plans are subject to official traffic and venue updates.
               </p>
             </div>
           </FadeIn>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {MAPS.map((map, mapIndex) => (
+              <FadeIn key={map.title} delay={mapIndex * 0.08}>
+                <article className="overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-xl sm:p-5">
+                  <h3 className="font-display text-2xl font-bold text-gold md:text-3xl">{map.title}</h3>
+
+                  <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-black">
+                    <img
+                      src={map.image}
+                      alt={map.alt}
+                      loading="lazy"
+                      className="w-full object-contain"
+                    />
+                  </div>
+
+                  <ul className="mt-5 space-y-2">
+                    {map.points.map((point) => (
+                      <li key={point} className="flex items-start gap-3 text-sm text-white/80">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
         </VisibilityGate>
 
         <VisibilityGate keyName="section:faqs.categories">
-          <div className="mt-10 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
+          <div className="mt-16 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
             {CATEGORIES.map((category, categoryIndex) => (
               <FadeIn key={category.title} delay={categoryIndex * 0.05} className="contents">
                 <div className="md:sticky md:top-24 md:self-start">

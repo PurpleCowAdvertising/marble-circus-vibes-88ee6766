@@ -7,7 +7,7 @@ import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.webp";
 
 type NavItem =
-  | { kind: "route"; to: "/" | "/feed" | "/news" | "/merchandise" | "/contact" | "/partners"; label: string }
+  | { kind: "route"; to: "/" | "/feed" | "/news" | "/merchandise" | "/contact" | "/partners" | "/faqs"; label: string }
   | { kind: "scroll"; hash: string; label: string }
   | { kind: "external"; href: string; label: string };
 
@@ -19,6 +19,7 @@ const NAV: readonly NavItem[] = [
   { kind: "route", to: "/news", label: "News" },
   { kind: "route", to: "/feed", label: "Feed" },
   { kind: "route", to: "/merchandise", label: "Merch" },
+  { kind: "route", to: "/faqs", label: "FAQs" },
 ] as const;
 
 const BUY_ACTIONS = [
