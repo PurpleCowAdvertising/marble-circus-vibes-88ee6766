@@ -16,12 +16,12 @@ export const Route = createFileRoute("/contact")({
       { title: "Contact | Scorpion Kings Live" },
       {
         name: "description",
-        content: "Get in touch with Scorpion Kings Live for general enquiries, press and partnerships.",
+        content: "Get in touch with Scorpion Kings Live for general enquiries and partnerships.",
       },
       { property: "og:title", content: "Contact | Scorpion Kings Live" },
       {
         property: "og:description",
-        content: "General, press and partnership enquiries.",
+        content: "General and partnership enquiries.",
       },
     ],
   }),
