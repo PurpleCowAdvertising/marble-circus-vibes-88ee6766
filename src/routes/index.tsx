@@ -720,6 +720,14 @@ function HomePage() {
                       className="transition-transform duration-500 ease-out group-hover:translate-x-1"
                     />
                   </button>
+
+                  <Link
+                    to="/faqs"
+                    hash="park-ride"
+                    className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 underline underline-offset-4 transition-colors hover:text-gold"
+                  >
+                    Full Park + Ride info
+                  </Link>
                 </div>
 
                 <div className="relative z-[1] hidden flex-row items-center justify-between gap-6 md:flex">
@@ -760,7 +768,7 @@ function HomePage() {
                     />
                   </div>
 
-                  <div className="flex items-center justify-end">
+                  <div className="flex flex-col items-end justify-center gap-2">
                     <button
                       type="button"
                       onClick={() => setParkRideOpen(true)}
@@ -772,6 +780,14 @@ function HomePage() {
                         className="transition-transform duration-500 ease-out group-hover:translate-x-1"
                       />
                     </button>
+
+                    <Link
+                      to="/faqs"
+                      hash="park-ride"
+                      className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 underline underline-offset-4 transition-colors hover:text-gold"
+                    >
+                      Full Park + Ride info
+                    </Link>
                   </div>
                 </div>
               </div>
