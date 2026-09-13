@@ -110,6 +110,17 @@ export function ParkRideModal({ open, onClose }: Props) {
             <p className="mt-4 text-center text-[10px] uppercase tracking-[0.3em] text-white/50 sm:mt-5">
               Secure checkout · Webtickets
             </p>
+
+            <p className="mt-3 text-center">
+              <Link
+                to="/faqs"
+                hash="park-ride"
+                onClick={onClose}
+                className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 underline underline-offset-4 transition-colors hover:text-gold"
+              >
+                Full Park + Ride info
+              </Link>
+            </p>
           </motion.div>
         </motion.div>
       )}
