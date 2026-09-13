@@ -91,6 +91,7 @@ export const VISIBILITY_REGISTRY: RegistryEntry[] = [
 
   // -------- FAQs sections --------
   { key: "section:faqs.intro", kind: "section", label: "Intro header", parentKey: "page:faqs", sortOrder: 10 },
+  { key: "section:faqs.maps", kind: "section", label: "Stadium & parking maps", parentKey: "page:faqs", sortOrder: 15 },
   { key: "section:faqs.categories", kind: "section", label: "FAQ categories accordion", parentKey: "page:faqs", sortOrder: 20 },
   { key: "section:faqs.cta", kind: "section", label: "'Send the team a message' CTA", parentKey: "page:faqs", sortOrder: 30 },
 ];
