@@ -5,6 +5,7 @@ import sabc1 from "@/assets/sponsors/6-sabc1.png.asset.json";
 import sprite from "@/assets/sponsors/4-sprite-white.png.asset.json";
 import veev from "@/assets/sponsors/7-veev.png.asset.json";
 import gautrain from "@/assets/sponsors/8-gautrain.jpg.asset.json";
+import castleLite from "@/assets/sponsors/9-castle-lite.png.asset.json";
 
 export type Sponsor = {
   name: string;
@@ -32,4 +33,5 @@ export const SPONSORS: Sponsor[] = [
   { name: "Sprite", logo: sprite.url },
   { name: "VEEV", logo: veev.url },
   { name: "Gautrain", logo: gautrain.url, onLight: true, imgClassName: "max-h-16 w-auto max-w-full object-contain md:max-h-20" },
+  { name: "Castle Lite", logo: castleLite.url, onLight: true },
 ];

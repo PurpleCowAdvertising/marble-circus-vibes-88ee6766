@@ -4,7 +4,7 @@ import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { SPONSORS } from "@/config/sponsors";
 
-const TIER_A_ORDER = ["SABC 1", "Sprite", "RocoMamas", "VEEV"];
+const TIER_A_ORDER = ["Castle Lite", "SABC 1", "Sprite", "RocoMamas", "VEEV"];
 const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain"];
 
 export const Route = createFileRoute("/partners")({
