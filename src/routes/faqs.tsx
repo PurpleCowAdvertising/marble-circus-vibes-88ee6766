@@ -4,51 +4,24 @@ import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-import stadiumMapAsset from "@/assets/faqs/stadium-map.jpg.asset.json";
-import parkingMapAsset from "@/assets/faqs/parking-map.jpg.asset.json";
-
 export const Route = createFileRoute("/faqs")({
   head: () => ({
     meta: [
-      { title: "Maps & FAQs | Scorpion Kings Live" },
+      { title: "FAQs | Scorpion Kings Live" },
       {
         name: "description",
         content:
-          "Stadium maps, parking info and everything you need to know about Scorpion Kings Live at FNB Stadium: gates, transport, tickets, policies and more.",
+          "Everything you need to know about Scorpion Kings Live at FNB Stadium: gates, transport, tickets, policies and more.",
       },
-      { property: "og:title", content: "Maps & FAQs | Scorpion Kings Live" },
+      { property: "og:title", content: "FAQs | Scorpion Kings Live" },
       {
         property: "og:description",
-        content: "Stadium maps, parking, transport and fan guide for Scorpion Kings Live.",
+        content: "Transport and fan guide for Scorpion Kings Live.",
       },
     ],
   }),
   component: FaqsPage,
 });
-
-const MAPS = [
-  {
-    title: "Stadium Map",
-    image: stadiumMapAsset.url,
-    alt: "Satellite map of FNB Stadium showing gate entrances",
-    points: [
-      "Gate M & G – Scorpion Ring & Scorpion Field Standing",
-      "Gate J, K & L – All seated tickets",
-      "Gate A & C – VIP",
-    ],
-  },
-  {
-    title: "Parking Map",
-    image: parkingMapAsset.url,
-    alt: "Satellite map of parking areas near NASREC",
-    points: [
-      "Parking Ext 1/2 = R220",
-      "Parking Ext 5/6 = R220",
-      "Parking Ext 7/8 = R220",
-      "Premium Parking = R300",
-    ],
-  },
-] as const;
 
 const CATEGORIES = [
   {
