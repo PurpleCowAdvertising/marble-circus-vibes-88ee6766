@@ -69,9 +69,11 @@ function PartnersPage() {
                 } ${
                   sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06] hover:border-white/25"
                 } ${sponsor.url ? "hover:border-gold/40" : ""}`;
-                const imageClassName = sponsor.wide
-                  ? "mx-auto h-14 w-[90%] object-contain object-center md:h-16"
-                  : sponsor.imgClassName ?? "max-h-14 w-auto max-w-full object-contain md:max-h-16";
+                const imageClassName =
+                  sponsor.imgClassName ??
+                  (sponsor.wide
+                    ? "mx-auto h-14 w-[90%] object-contain object-center md:h-16"
+                    : "max-h-14 w-auto max-w-full object-contain md:max-h-16");
                 return (
                   <li key={sponsor.name}>
                     {sponsor.url ? (
