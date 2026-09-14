@@ -82,15 +82,16 @@ function SponsorChip({
   size: "large" | "small";
 }) {
   const isLarge = size === "large";
+  const isGautrain = sponsor.name === "Gautrain";
   const chipClassName = `flex items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors ${
-    isLarge ? "h-28 px-4 md:h-32" : "h-16 px-4 md:h-20"
+    isLarge ? "h-28 px-4 md:h-32" : isGautrain ? "h-16 px-4 md:h-24 md:w-[calc(66.666%-0.75rem)]" : "h-16 px-4 md:h-20"
   } ${
     sponsor.wide ? (isLarge ? "px-3" : "px-3") : "px-6"
   } ${
     sponsor.onLight
       ? "border-white/15 bg-white/90"
       : "border-white/10 bg-white/[0.06] hover:border-white/25"
-  } ${sponsor.url ? "hover:border-gold/40" : ""} ${!isLarge ? "w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.75rem)] md:w-[calc(50%-0.5rem)]" : ""}`;
+  } ${sponsor.url ? "hover:border-gold/40" : ""} ${!isLarge && !isGautrain ? "w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.75rem)] md:w-[calc(50%-0.5rem)]" : ""} ${isGautrain ? "w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.75rem)]" : ""}`;
 
   const imageClassName =
     sponsor.imgClassName ??

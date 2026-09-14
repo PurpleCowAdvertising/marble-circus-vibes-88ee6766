@@ -33,7 +33,7 @@ export const SPONSORS: Sponsor[] = [
   { name: "SABC 1", logo: sabc1.url, onLight: true, url: "https://www.sabc1.co.za/sabc1/" },
   { name: "Sprite", logo: sprite.url, url: "https://www.instagram.com/sprite_rsa?stkn=dmZzeXVzM3gxMnFh" },
   { name: "VEEV", logo: veev.url, url: "https://www.instagram.com/veev_rsa?stkn=MW56b2Nwdmc5eDE1" },
-  { name: "Gautrain", logo: gautrain.url, onLight: true, wide: true, url: "https://www.mygautrain.co.za/competitions/scorpion-kings-live-at-fnb-stadium", imgClassName: "h-auto w-full max-h-24 object-contain object-center" },
+  { name: "Gautrain", logo: gautrain.url, onLight: true, wide: true, url: "https://www.mygautrain.co.za/competitions/scorpion-kings-live-at-fnb-stadium", imgClassName: "h-full w-full object-contain object-center" },
   { name: "Castle Lite", logo: castleLite.url, onLight: true, wide: true, imgClassName: "h-auto w-full max-h-24 object-contain object-center" },
   { name: "SAMPRA", logo: sampra.url, onLight: true, wide: true, url: "https://sampra.org.za/", imgClassName: "h-20 w-[92%] object-contain object-center md:h-24" },
 ];
