@@ -82,21 +82,21 @@ function SponsorChip({
   size: "large" | "small";
 }) {
   const isLarge = size === "large";
-  const chipClassName = `flex items-center justify-center rounded-2xl border backdrop-blur-xl transition-colors ${
-    isLarge ? "h-20 px-3" : "h-14 px-3"
+  const chipClassName = `flex items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors ${
+    isLarge ? "h-28 px-4 md:h-32" : "h-20 px-4 md:h-24"
   } ${
-    sponsor.wide ? (isLarge ? "px-2" : "px-2") : "px-4"
+    sponsor.wide ? (isLarge ? "px-3" : "px-3") : "px-6"
   } ${
     sponsor.onLight
       ? "border-white/15 bg-white/90"
       : "border-white/10 bg-white/[0.06] hover:border-white/25"
-  } ${sponsor.url ? "hover:border-gold/40" : ""} ${!isLarge ? "w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.5rem)] md:w-[calc(50%-0.375rem)]" : ""}`;
+  } ${sponsor.url ? "hover:border-gold/40" : ""} ${!isLarge ? "w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.75rem)] md:w-[calc(50%-0.5rem)]" : ""}`;
 
   const imageClassName =
     sponsor.imgClassName ??
     (sponsor.wide
-      ? `mx-auto w-[88%] object-contain object-center ${isLarge ? "h-10" : "h-8"}`
-      : `max-w-full object-contain ${isLarge ? "max-h-10 w-auto" : "max-h-8 w-auto"}`);
+      ? `mx-auto h-10 w-[90%] object-contain object-center md:h-12`
+      : `max-h-10 w-auto max-w-full object-contain md:max-h-12`);
 
   const content = (
     <img
