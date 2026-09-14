@@ -924,7 +924,7 @@ function HomePage() {
           <FadeIn delay={0.1}>
             <div className="mt-8 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
               <ul className="flex min-w-max items-stretch gap-3 md:grid md:min-w-0 md:grid-cols-6 md:gap-4">
-                {SPONSORS.map((sponsor) => {
+                {SPONSORS.filter((s) => s.name !== "Cabs Car Hire").map((sponsor) => {
                   const chipClassName = `flex h-24 w-40 items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors md:h-28 md:w-auto ${
                     sponsor.wide ? "px-2.5" : "px-5"
                   } ${
@@ -961,6 +961,51 @@ function HomePage() {
                   );
                 })}
               </ul>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.2}>
+            <div className="mt-6 flex items-center justify-center gap-4">
+              <div className="h-px w-16 bg-white/10 md:w-24" />
+              <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Official supplier</p>
+              <div className="h-px w-16 bg-white/10 md:w-24" />
+            </div>
+
+            <div className="mt-5 flex justify-center">
+              {SPONSORS.filter((s) => s.name === "Cabs Car Hire").map((sponsor) => {
+                const chipClassName = `flex h-20 w-36 items-center justify-center rounded-2xl border py-3 backdrop-blur-xl transition-colors md:h-24 md:w-56 ${
+                  sponsor.wide ? "px-3" : "px-5"
+                } ${
+                  sponsor.onLight
+                    ? "border-white/15 bg-white/90"
+                    : "border-white/10 bg-white/[0.06] hover:border-white/25"
+                } ${sponsor.url ? "hover:border-gold/40" : ""}`;
+                const imageClassName = sponsor.imgClassName ?? "h-full w-full object-contain object-center";
+                const image = (
+                  <img
+                    src={sponsor.logo}
+                    alt={`${sponsor.name} logo`}
+                    loading="lazy"
+                    className={imageClassName}
+                  />
+                );
+                return (
+                  <li key={sponsor.name} className="list-none">
+                    {sponsor.url ? (
+                      <a
+                        href={sponsor.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={chipClassName}
+                      >
+                        {image}
+                      </a>
+                    ) : (
+                      <div className={chipClassName}>{image}</div>
+                    )}
+                  </li>
+                );
+              })}
             </div>
           </FadeIn>
 
