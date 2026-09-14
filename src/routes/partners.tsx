@@ -117,14 +117,14 @@ function PartnersPage() {
 
             <ul className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-4">
               {tierB.map((sponsor) => {
-                const chipClassName = `flex h-20 w-full items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors sm:w-[calc(33.333%-0.75rem)] md:h-24 lg:w-64 ${
-                  sponsor.wide ? "px-3" : "px-6"
+                const chipClassName = `flex h-24 w-full items-center justify-center rounded-2xl border py-3 backdrop-blur-xl transition-colors sm:h-20 sm:w-[calc(33.333%-0.75rem)] sm:py-4 md:h-24 lg:w-64 ${
+                  sponsor.wide ? "px-3" : "px-4 sm:px-6"
                 } ${
                   sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06] hover:border-white/25"
                 } ${sponsor.url ? "hover:border-gold/40" : ""}`;
-                const imageClassName = sponsor.imgClassName ?? (sponsor.wide
+                const imageClassName = `${sponsor.imgClassName ?? (sponsor.wide
                   ? "mx-auto h-8 w-[88%] object-contain object-center md:h-10"
-                  : "max-h-8 w-auto max-w-full object-contain md:max-h-10");
+                  : "max-h-8 w-auto max-w-full object-contain md:max-h-10")} max-sm:!h-auto max-sm:!max-h-12 max-sm:!w-[90%] max-sm:!object-contain max-sm:!object-center`;
                 return (
                   <li key={sponsor.name} className="min-w-0 sm:contents">
                     {sponsor.url ? (
