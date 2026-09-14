@@ -124,9 +124,7 @@ function PartnersPage() {
                 } ${sponsor.url ? "hover:border-gold/40" : ""}`;
                 const imageClassName = `${sponsor.imgClassName ?? (sponsor.wide
                   ? "mx-auto h-8 w-[88%] object-contain object-center md:h-10"
-                  : "max-h-8 w-auto max-w-full object-contain md:max-h-10")} max-sm:!h-12 max-sm:!max-h-12 max-sm:!object-contain max-sm:!object-center ${
-                    sponsor.name === "SAMPRA" ? "max-sm:!w-full max-sm:scale-150" : "max-sm:!w-[90%]"
-                  }`;
+                  : "max-h-8 w-auto max-w-full object-contain md:max-h-10")} max-sm:!h-12 max-sm:!max-h-12 max-sm:!object-contain max-sm:!object-center max-sm:!w-[90%]`;
                 return (
                   <li key={sponsor.name} className="min-w-0 sm:contents">
                     {sponsor.url ? (
