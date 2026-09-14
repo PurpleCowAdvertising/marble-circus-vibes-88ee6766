@@ -82,8 +82,9 @@ function SponsorChip({
   size: "large" | "small";
 }) {
   const isLarge = size === "large";
+  const isGautrain = sponsor.name === "Gautrain";
   const chipClassName = `flex items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors ${
-    isLarge ? "h-28 px-4 md:h-32" : "h-16 px-4 md:h-20"
+    isLarge ? "h-28 px-4 md:h-32" : isGautrain ? "h-16 px-4 md:h-24" : "h-16 px-4 md:h-20"
   } ${
     sponsor.wide ? (isLarge ? "px-3" : "px-3") : "px-6"
   } ${
