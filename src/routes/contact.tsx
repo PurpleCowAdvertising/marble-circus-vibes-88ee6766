@@ -66,7 +66,7 @@ type FormState = {
   message: string;
 };
 
-const TIER_A_ORDER = ["Castle Lite", "SABC 1", "Sprite", "RocoMamas", "VEEV"];
+const TIER_A_ORDER = ["SABC 1", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
 const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
 
 function sortByName(names: string[]) {
@@ -83,7 +83,7 @@ function SponsorChip({
 }) {
   const isLarge = size === "large";
   const chipClassName = `flex items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors ${
-    isLarge ? "h-28 px-4 md:h-32" : "h-20 px-4 md:h-24"
+    isLarge ? "h-28 px-4 md:h-32" : "h-16 px-4 md:h-20"
   } ${
     sponsor.wide ? (isLarge ? "px-3" : "px-3") : "px-6"
   } ${
@@ -95,8 +95,8 @@ function SponsorChip({
   const imageClassName =
     sponsor.imgClassName ??
     (sponsor.wide
-      ? `mx-auto h-10 w-[90%] object-contain object-center md:h-12`
-      : `max-h-10 w-auto max-w-full object-contain md:max-h-12`);
+      ? `mx-auto w-[90%] object-contain object-center ${isLarge ? "h-10 md:h-12" : "h-8 md:h-10"}`
+      : `max-w-full object-contain ${isLarge ? "max-h-10 w-auto md:max-h-12" : "max-h-8 w-auto md:max-h-10"}`);
 
   const content = (
     <img
