@@ -6,6 +6,7 @@ import { SPONSORS } from "@/config/sponsors";
 
 const TIER_A_ORDER = ["SABC 1", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
 const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
+const TIER_C_ORDER = ["Cabs Car Hire"];
 
 export const Route = createFileRoute("/partners")({
   head: () => ({
@@ -43,6 +44,7 @@ function sortByName(names: string[]) {
 function PartnersPage() {
   const tierA = sortByName(TIER_A_ORDER);
   const tierB = sortByName(TIER_B_ORDER);
+  const tierC = sortByName(TIER_C_ORDER);
 
   return (
     <PageGate keyName="page:partners">
