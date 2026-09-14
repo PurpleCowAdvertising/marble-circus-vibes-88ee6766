@@ -66,6 +66,65 @@ type FormState = {
   message: string;
 };
 
+const TIER_A_ORDER = ["Castle Lite", "SABC 1", "Sprite", "RocoMamas", "VEEV"];
+const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
+
+function sortByName(names: string[]) {
+  const map = new Map(SPONSORS.map((s) => [s.name, s]));
+  return names.map((name) => map.get(name)).filter(Boolean) as typeof SPONSORS;
+}
+
+function SponsorChip({
+  sponsor,
+  size,
+}: {
+  sponsor: (typeof SPONSORS)[number];
+  size: "large" | "small";
+}) {
+  const isLarge = size === "large";
+  const chipClassName = `flex items-center justify-center rounded-2xl border backdrop-blur-xl transition-colors ${
+    isLarge ? "h-20 px-3" : "h-14 px-3"
+  } ${
+    sponsor.wide ? (isLarge ? "px-2" : "px-2") : "px-4"
+  } ${
+    sponsor.onLight
+      ? "border-white/15 bg-white/90"
+      : "border-white/10 bg-white/[0.06] hover:border-white/25"
+  } ${sponsor.url ? "hover:border-gold/40" : ""} ${!isLarge ? "w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.5rem)] md:w-[calc(50%-0.375rem)]" : ""}`;
+
+  const imageClassName =
+    sponsor.imgClassName ??
+    (sponsor.wide
+      ? `mx-auto w-[88%] object-contain object-center ${isLarge ? "h-10" : "h-8"}`
+      : `max-w-full object-contain ${isLarge ? "max-h-10 w-auto" : "max-h-8 w-auto"}`);
+
+  const content = (
+    <img
+      src={sponsor.logo}
+      alt={`${sponsor.name} logo`}
+      loading="lazy"
+      className={imageClassName}
+    />
+  );
+
+  return (
+    <li key={sponsor.name} className={isLarge ? "" : "contents"}>
+      {sponsor.url ? (
+        <a
+          href={sponsor.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={chipClassName}
+        >
+          {content}
+        </a>
+      ) : (
+        <div className={chipClassName}>{content}</div>
+      )}
+    </li>
+  );
+}
+
 function ContactPage() {
   const [form, setForm] = useState<FormState>({
     name: "",
