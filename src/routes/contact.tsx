@@ -345,15 +345,25 @@ function ContactPage() {
           <VisibilityGate keyName="section:contact.partners">
             <FadeIn delay={0.15}>
               <div className="md:col-start-2">
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Proudly partnered by</p>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Headline partners</p>
 
-                <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-5 md:grid-cols-3">
+                <h2 className="mt-2 font-display text-3xl font-bold leading-none text-white md:text-4xl">
+                  Proudly partnered by.
+                </h2>
+
+                <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-5 md:grid-cols-3">
                   {sortByName(TIER_A_ORDER).map((sponsor) => (
                     <SponsorChip key={sponsor.name} sponsor={sponsor} size="large" />
                   ))}
                 </ul>
 
-                <ul className="mt-3 flex flex-wrap gap-3">
+                <div className="mt-6 flex items-center gap-4">
+                  <div className="h-px flex-1 bg-white/10" />
+                  <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Official partners</p>
+                  <div className="h-px flex-1 bg-white/10" />
+                </div>
+
+                <ul className="mt-5 flex flex-wrap justify-center gap-3">
                   {sortByName(TIER_B_ORDER).map((sponsor) => (
                     <SponsorChip key={sponsor.name} sponsor={sponsor} size="small" />
                   ))}
