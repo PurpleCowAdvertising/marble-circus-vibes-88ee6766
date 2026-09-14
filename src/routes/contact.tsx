@@ -95,8 +95,8 @@ function SponsorChip({
   const imageClassName =
     sponsor.imgClassName ??
     (sponsor.wide
-      ? `mx-auto h-10 w-[90%] object-contain object-center md:h-12`
-      : `max-h-10 w-auto max-w-full object-contain md:max-h-12`);
+      ? `mx-auto w-[90%] object-contain object-center ${isLarge ? "h-10 md:h-12" : "h-8 md:h-10"}`
+      : `max-w-full object-contain ${isLarge ? "max-h-10 w-auto md:max-h-12" : "max-h-8 w-auto md:max-h-10"}`);
 
   const content = (
     <img
