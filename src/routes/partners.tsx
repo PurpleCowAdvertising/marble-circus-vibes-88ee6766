@@ -64,7 +64,7 @@ function PartnersPage() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+            <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
               {tierA.map((sponsor) => {
                 const chipClassName = `flex h-32 items-center justify-center rounded-2xl border py-5 backdrop-blur-xl transition-colors md:h-40 ${
                   sponsor.wide ? "px-3" : "px-6"
@@ -77,7 +77,7 @@ function PartnersPage() {
                     ? "mx-auto h-14 w-[90%] object-contain object-center md:h-16"
                     : "max-h-14 w-auto max-w-full object-contain md:max-h-16");
                 return (
-                  <li key={sponsor.name} className="min-w-0 last:col-span-2 last:mx-auto last:w-[calc(50%-0.375rem)] sm:last:col-span-1 sm:last:mx-0 sm:last:w-auto">
+                  <li key={sponsor.name} className="min-w-0">
                     {sponsor.url ? (
                       <a
                         href={sponsor.url}
@@ -115,7 +115,7 @@ function PartnersPage() {
               <div className="h-px flex-1 bg-white/10" />
             </div>
 
-            <ul className="mt-8 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-4">
+            <ul className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-4">
               {tierB.map((sponsor) => {
                 const chipClassName = `flex h-24 w-full items-center justify-center rounded-2xl border py-3 backdrop-blur-xl transition-colors sm:h-20 sm:w-[calc(33.333%-0.75rem)] sm:py-4 md:h-24 lg:w-64 ${
                   sponsor.wide ? "px-3" : "px-4 sm:px-6"
