@@ -121,8 +121,8 @@ function PartnersPage() {
                   sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06] hover:border-white/25"
                 } ${sponsor.url ? "hover:border-gold/40" : ""}`;
                 const imageClassName = sponsor.imgClassName ?? (sponsor.wide
-                  ? "mx-auto h-10 w-[88%] object-contain object-center md:h-12"
-                  : "max-h-10 w-auto max-w-full object-contain md:max-h-12");
+                  ? "mx-auto h-8 w-[88%] object-contain object-center md:h-10"
+                  : "max-h-8 w-auto max-w-full object-contain md:max-h-10");
                 return (
                   <li key={sponsor.name}>
                     {sponsor.url ? (
