@@ -66,7 +66,7 @@ type FormState = {
   message: string;
 };
 
-const TIER_A_ORDER = ["Castle Lite", "SABC 1", "Sprite", "RocoMamas", "VEEV"];
+const TIER_A_ORDER = ["SABC 1", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
 const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
 
 function sortByName(names: string[]) {
