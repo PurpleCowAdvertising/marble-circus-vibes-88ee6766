@@ -66,6 +66,65 @@ type FormState = {
   message: string;
 };
 
+const TIER_A_ORDER = ["Castle Lite", "SABC 1", "Sprite", "RocoMamas", "VEEV"];
+const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
+
+function sortByName(names: string[]) {
+  const map = new Map(SPONSORS.map((s) => [s.name, s]));
+  return names.map((name) => map.get(name)).filter(Boolean) as typeof SPONSORS;
+}
+
+function SponsorChip({
+  sponsor,
+  size,
+}: {
+  sponsor: (typeof SPONSORS)[number];
+  size: "large" | "small";
+}) {
+  const isLarge = size === "large";
+  const chipClassName = `flex items-center justify-center rounded-2xl border backdrop-blur-xl transition-colors ${
+    isLarge ? "h-20 px-3" : "h-14 px-3"
+  } ${
+    sponsor.wide ? (isLarge ? "px-2" : "px-2") : "px-4"
+  } ${
+    sponsor.onLight
+      ? "border-white/15 bg-white/90"
+      : "border-white/10 bg-white/[0.06] hover:border-white/25"
+  } ${sponsor.url ? "hover:border-gold/40" : ""} ${!isLarge ? "w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.5rem)] md:w-[calc(50%-0.375rem)]" : ""}`;
+
+  const imageClassName =
+    sponsor.imgClassName ??
+    (sponsor.wide
+      ? `mx-auto w-[88%] object-contain object-center ${isLarge ? "h-10" : "h-8"}`
+      : `max-w-full object-contain ${isLarge ? "max-h-10 w-auto" : "max-h-8 w-auto"}`);
+
+  const content = (
+    <img
+      src={sponsor.logo}
+      alt={`${sponsor.name} logo`}
+      loading="lazy"
+      className={imageClassName}
+    />
+  );
+
+  return (
+    <li key={sponsor.name} className={isLarge ? "" : "contents"}>
+      {sponsor.url ? (
+        <a
+          href={sponsor.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={chipClassName}
+        >
+          {content}
+        </a>
+      ) : (
+        <div className={chipClassName}>{content}</div>
+      )}
+    </li>
+  );
+}
+
 function ContactPage() {
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -288,27 +347,15 @@ function ContactPage() {
               <div className="md:col-start-2">
                 <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Proudly partnered by</p>
 
-                <ul className="mt-2 grid grid-cols-3 gap-3 sm:grid-cols-5 md:grid-cols-3">
-                  {SPONSORS.map((sponsor) => (
-                    <li
-                      key={sponsor.name}
-                      className={`flex h-20 items-center justify-center rounded-2xl border py-3 backdrop-blur-xl ${
-                        sponsor.wide ? "px-2" : "px-4"
-                      } ${
-                        sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06]"
-                      }`}
-                    >
-                      <img
-                        src={sponsor.logo}
-                        alt={`${sponsor.name} logo`}
-                        loading="lazy"
-                        className={
-                          sponsor.wide
-                            ? "mx-auto h-9 w-[88%] object-contain object-center"
-                            : "max-h-9 w-auto max-w-full object-contain"
-                        }
-                      />
-                    </li>
+                <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-5 md:grid-cols-3">
+                  {sortByName(TIER_A_ORDER).map((sponsor) => (
+                    <SponsorChip key={sponsor.name} sponsor={sponsor} size="large" />
+                  ))}
+                </ul>
+
+                <ul className="mt-3 flex flex-wrap gap-3">
+                  {sortByName(TIER_B_ORDER).map((sponsor) => (
+                    <SponsorChip key={sponsor.name} sponsor={sponsor} size="small" />
                   ))}
                 </ul>
               </div>
