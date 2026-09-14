@@ -68,6 +68,7 @@ type FormState = {
 
 const TIER_A_ORDER = ["SABC 1", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
 const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
+const TIER_C_ORDER = ["Cabs Car Hire"];
 
 function sortByName(names: string[]) {
   const map = new Map(SPONSORS.map((s) => [s.name, s]));
@@ -79,13 +80,14 @@ function SponsorChip({
   size,
 }: {
   sponsor: (typeof SPONSORS)[number];
-  size: "large" | "small";
+  size: "large" | "small" | "compact";
 }) {
   const isLarge = size === "large";
-  const chipClassName = `flex items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors ${
-    isLarge ? "h-28 px-4 md:h-32" : "h-16 px-4 md:h-20"
+  const isCompact = size === "compact";
+  const chipClassName = `flex items-center justify-center rounded-2xl border backdrop-blur-xl transition-colors ${
+    isLarge ? "h-28 px-4 py-4 md:h-32" : isCompact ? "h-14 px-3 py-2.5 md:h-16" : "h-16 px-4 py-4 md:h-20"
   } ${
-    sponsor.wide ? (isLarge ? "px-3" : "px-3") : "px-6"
+    sponsor.wide ? (isLarge ? "px-3" : isCompact ? "px-2.5" : "px-3") : "px-6"
   } ${
     sponsor.onLight
       ? "border-white/15 bg-white/90"
@@ -95,8 +97,8 @@ function SponsorChip({
   const imageClassName =
     sponsor.imgClassName ??
     (sponsor.wide
-      ? `mx-auto w-[90%] object-contain object-center ${isLarge ? "h-10 md:h-12" : "h-8 md:h-10"}`
-      : `max-w-full object-contain ${isLarge ? "max-h-10 w-auto md:max-h-12" : "max-h-8 w-auto md:max-h-10"}`);
+      ? `mx-auto w-[90%] object-contain object-center ${isLarge ? "h-10 md:h-12" : isCompact ? "h-6 md:h-7" : "h-8 md:h-10"}`
+      : `max-w-full object-contain ${isLarge ? "max-h-10 w-auto md:max-h-12" : isCompact ? "max-h-6 w-auto md:max-h-7" : "max-h-8 w-auto md:max-h-10"}`);
 
   const content = (
     <img
