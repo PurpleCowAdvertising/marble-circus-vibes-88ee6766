@@ -64,7 +64,7 @@ function PartnersPage() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
               {tierA.map((sponsor) => {
                 const chipClassName = `flex h-32 items-center justify-center rounded-2xl border py-5 backdrop-blur-xl transition-colors md:h-40 ${
                   sponsor.wide ? "px-3" : "px-6"
@@ -77,7 +77,7 @@ function PartnersPage() {
                     ? "mx-auto h-14 w-[90%] object-contain object-center md:h-16"
                     : "max-h-14 w-auto max-w-full object-contain md:max-h-16");
                 return (
-                  <li key={sponsor.name}>
+                  <li key={sponsor.name} className="min-w-0 last:col-span-2 last:mx-auto last:w-[calc(50%-0.375rem)] sm:last:col-span-1 sm:last:mx-0 sm:last:w-auto">
                     {sponsor.url ? (
                       <a
                         href={sponsor.url}
@@ -115,9 +115,9 @@ function PartnersPage() {
               <div className="h-px flex-1 bg-white/10" />
             </div>
 
-            <ul className="mt-8 flex flex-wrap justify-center gap-4">
+            <ul className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-4">
               {tierB.map((sponsor) => {
-                const chipClassName = `flex h-20 w-[calc(50%-0.5rem)] items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors sm:w-[calc(33.333%-0.75rem)] md:h-24 lg:w-64 ${
+                const chipClassName = `flex h-20 w-full items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors sm:w-[calc(33.333%-0.75rem)] md:h-24 lg:w-64 ${
                   sponsor.wide ? "px-3" : "px-6"
                 } ${
                   sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06] hover:border-white/25"
@@ -126,7 +126,7 @@ function PartnersPage() {
                   ? "mx-auto h-8 w-[88%] object-contain object-center md:h-10"
                   : "max-h-8 w-auto max-w-full object-contain md:max-h-10");
                 return (
-                  <li key={sponsor.name}>
+                  <li key={sponsor.name} className="min-w-0 sm:contents">
                     {sponsor.url ? (
                       <a
                         href={sponsor.url}
@@ -164,9 +164,9 @@ function PartnersPage() {
               <div className="h-px flex-1 bg-white/10" />
             </div>
 
-            <ul className="mt-8 flex flex-wrap justify-center gap-4">
+            <ul className="mt-8 flex flex-wrap justify-center gap-3 sm:gap-4">
               {tierC.map((sponsor) => {
-                const chipClassName = `flex h-16 w-[calc(50%-0.5rem)] items-center justify-center rounded-2xl border py-3 backdrop-blur-xl transition-colors sm:w-[calc(33.333%-0.75rem)] md:h-20 lg:w-56 ${
+                const chipClassName = `flex h-16 w-full items-center justify-center rounded-2xl border py-3 backdrop-blur-xl transition-colors sm:w-[calc(33.333%-0.75rem)] md:h-20 lg:w-56 ${
                   sponsor.wide ? "px-3" : "px-6"
                 } ${
                   sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06] hover:border-white/25"
@@ -175,7 +175,7 @@ function PartnersPage() {
                   ? "mx-auto h-7 w-[88%] object-contain object-center md:h-8"
                   : "max-h-7 w-auto max-w-full object-contain md:max-h-8");
                 return (
-                  <li key={sponsor.name}>
+                  <li key={sponsor.name} className="w-[calc(50%-0.375rem)] sm:contents">
                     {sponsor.url ? (
                       <a
                         href={sponsor.url}
