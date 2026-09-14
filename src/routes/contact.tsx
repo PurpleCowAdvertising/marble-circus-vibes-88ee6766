@@ -370,6 +370,18 @@ function ContactPage() {
                     <SponsorChip key={sponsor.name} sponsor={sponsor} size="small" />
                   ))}
                 </ul>
+
+                <div className="mt-5 flex items-center gap-4">
+                  <div className="h-px flex-1 bg-white/10" />
+                  <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Official suppliers</p>
+                  <div className="h-px flex-1 bg-white/10" />
+                </div>
+
+                <ul className="mt-5 flex flex-wrap justify-center gap-3">
+                  {sortByName(TIER_C_ORDER).map((sponsor) => (
+                    <SponsorChip key={sponsor.name} sponsor={sponsor} size="compact" />
+                  ))}
+                </ul>
               </div>
             </FadeIn>
           </VisibilityGate>
