@@ -6,6 +6,7 @@ import { SPONSORS } from "@/config/sponsors";
 
 const TIER_A_ORDER = ["SABC 1", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
 const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
+const TIER_C_ORDER = ["Cabs Car Hire"];
 
 export const Route = createFileRoute("/partners")({
   head: () => ({
@@ -43,6 +44,7 @@ function sortByName(names: string[]) {
 function PartnersPage() {
   const tierA = sortByName(TIER_A_ORDER);
   const tierB = sortByName(TIER_B_ORDER);
+  const tierC = sortByName(TIER_C_ORDER);
 
   return (
     <PageGate keyName="page:partners">
@@ -155,7 +157,56 @@ function PartnersPage() {
             </ul>
           </FadeIn>
 
-          <FadeIn delay={0.3}>
+          <FadeIn delay={0.25}>
+            <div className="mt-10 flex items-center gap-4">
+              <div className="h-px flex-1 bg-white/10" />
+              <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Official suppliers</p>
+              <div className="h-px flex-1 bg-white/10" />
+            </div>
+
+            <ul className="mt-8 flex flex-wrap justify-center gap-4">
+              {tierC.map((sponsor) => {
+                const chipClassName = `flex h-16 w-[calc(50%-0.5rem)] items-center justify-center rounded-2xl border py-3 backdrop-blur-xl transition-colors sm:w-[calc(33.333%-0.75rem)] md:h-20 lg:w-56 ${
+                  sponsor.wide ? "px-3" : "px-6"
+                } ${
+                  sponsor.onLight ? "border-white/15 bg-white/90" : "border-white/10 bg-white/[0.06] hover:border-white/25"
+                } ${sponsor.url ? "hover:border-gold/40" : ""}`;
+                const imageClassName = sponsor.imgClassName ?? (sponsor.wide
+                  ? "mx-auto h-7 w-[88%] object-contain object-center md:h-8"
+                  : "max-h-7 w-auto max-w-full object-contain md:max-h-8");
+                return (
+                  <li key={sponsor.name}>
+                    {sponsor.url ? (
+                      <a
+                        href={sponsor.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={chipClassName}
+                      >
+                        <img
+                          src={sponsor.logo}
+                          alt={`${sponsor.name} logo`}
+                          loading="lazy"
+                          className={imageClassName}
+                        />
+                      </a>
+                    ) : (
+                      <div className={chipClassName}>
+                        <img
+                          src={sponsor.logo}
+                          alt={`${sponsor.name} logo`}
+                          loading="lazy"
+                          className={imageClassName}
+                        />
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </FadeIn>
+
+          <FadeIn delay={0.35}>
             <p className="mt-12 text-center text-sm text-white/50">
               Sponsorship enquiries:{" "}
               <a
