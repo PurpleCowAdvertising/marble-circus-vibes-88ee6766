@@ -110,7 +110,7 @@ function SponsorChip({
   );
 
   return (
-    <li key={sponsor.name} className={isLarge ? "" : "contents"}>
+    <li key={sponsor.name} className={isLarge ? "min-w-0" : "contents"}>
       {sponsor.url ? (
         <a
           href={sponsor.url}
@@ -353,7 +353,7 @@ function ContactPage() {
                   Proudly partnered by.
                 </h2>
 
-                <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-5 md:grid-cols-3">
+                <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-5 md:grid-cols-3 [&>li:last-child]:col-span-2 [&>li:last-child]:mx-auto [&>li:last-child]:w-[calc(50%-0.375rem)] sm:[&>li:last-child]:col-span-1 sm:[&>li:last-child]:mx-0 sm:[&>li:last-child]:w-auto">
                   {sortByName(TIER_A_ORDER).map((sponsor) => (
                     <SponsorChip key={sponsor.name} sponsor={sponsor} size="large" />
                   ))}
