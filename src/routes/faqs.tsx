@@ -160,6 +160,25 @@ function FaqsPage() {
           </div>
         </VisibilityGate>
 
+        <VisibilityGate keyName="section:faqs.categories">
+          <FadeIn delay={0.15}>
+            <div className="mt-12 rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-8">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Please note</p>
+
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {NOTES.map((note) => (
+                  <li key={note} className="flex gap-3 text-base leading-relaxed text-white/75">
+                    <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                    {note}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </FadeIn>
+        </VisibilityGate>
+
+
+
         <VisibilityGate keyName="section:faqs.cta">
           <FadeIn delay={0.25}>
             <div className="mt-12 flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-8">
