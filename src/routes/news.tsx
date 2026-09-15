@@ -93,6 +93,38 @@ type Post = {
 
 const POSTS: Post[] = [
   {
+    tag: "Hosts announced",
+    date: "15 September 2026 · 09h00",
+    datePublished: "2026-09-15T09:00:00+02:00",
+    title:
+      "SCORPION KINGS LIVE ANNOUNCE BONTLE MODISELLE AND ROBOT BOII AS HOSTS WITH BABA MTHETHWA ANNOUNCED AS CHIEF COMMENTATOR FOR HISTORIC FNB STADIUM SHOW",
+    excerpt:
+      "The trio will host and voice one of South Africa’s biggest live music moments as more than 70 000 fans prepare to experience the Scorpion Kings on 19 September.",
+    image: hostBontleAsset.url,
+    imageAlt: "Bontle Modiselle announced as host for Scorpion Kings Live at FNB Stadium, 19 September 2026",
+    secondImage: hostRobotBoiiAsset.url,
+    secondImageAlt: "Robot Boii announced as host for Scorpion Kings Live at FNB Stadium, 19 September 2026",
+    body: [
+      "The countdown to one of the biggest nights in South African entertainment continues, and Scorpion Kings Live at FNB Stadium has revealed the voices that will help take fans through this historic experience.",
+      "Taking place on Saturday, 19 September 2026, the iconic show has announced Bontle Modiselle and Robot Boii as official hosts, alongside Baba Mthethwa as the official Chief Commentator for Scorpion Kings Live, bringing their energy, personality and undeniable connection to South African entertainment to the country’s biggest stages.",
+      "Proudly supported by SABC 1, Sprite, RocoMamas, Castle Lite, VEEV, Gautrain, SAMPRA, GalxBoy, McCafé, Red Bull, the Gauteng Provincial Government, the Department of Sport, Arts and Culture and Cabs Car Hire — Scorpion Kings Live fans will enjoy food and refreshments, merchandise, safe transport options, entertainment and brand activations throughout the day which will now be hosted by these two dance favourites.",
+      "Bontle Modiselle brings her dynamic presence as a performer, presenter and creative force. With a career deeply rooted in South African entertainment and popular culture, Bontle will bring her signature energy and stage presence to FNB Stadium, helping guide fans through the day and into the main event.",
+      "Alongside her, Robot Boii will bring his infectious personality and unmistakable energy to the stage. Known for his ability to connect with audiences and his strong ties to contemporary South African music and culture, Robot Boii will help keep the stadium alive as the Scorpion Kings take fans on an unforgettable musical journey.",
+      "Together, Bontle and Robot Boii will help shape the vibe of the day as hosts — connecting the audience to the experience, keeping the energy high and celebrating the significance of seeing DJ Maphorisa and Kabza De Small command a stadium of this scale.",
+      "Adding his distinctive voice to the experience is veteran sports broadcaster Baba Mthethwa, one of South Africa’s most recognisable voices, as the official Chief Commentator. Mthethwa has built a reputation for his energetic, entertaining delivery and his ability to connect with audiences through language, humour and culture. The celebrated commentator has become a familiar voice in South African sport and entertainment, bringing his unmistakable personality and experience to the Scorpion Kings Live experience.",
+      "Scorpion Kings Live represents a major moment for Amapiano and South African entertainment, showcasing how far the genre and the culture surrounding it have travelled. What began as a powerful South African movement has evolved into a global sound, and the FNB Stadium show is a celebration of that journey.",
+      "On 19 September, more than 70 000 fans will gather at FNB Stadium as DJ Maphorisa and Kabza De Small — the Scorpion Kings — take their biggest stage yet, with Bontle Modiselle, Robot Boii and Baba Mthethwa leading the audience through an unforgettable day and night.",
+      "Be sure to follow @scorpionkingslive across social media and visit www.scorpionkings.live for official event information and updates.",
+    ],
+    highlight: {
+      title: "On the mic",
+      body: "Bontle Modiselle — Official Host · Robot Boii — Official Host · Baba Mthethwa — Official Chief Commentator.",
+    },
+    footnote: "Doors open at 12:00 · 19 September 2026 · FNB Stadium, Johannesburg",
+    href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143",
+    hrefLabel: "Buy on Webtickets",
+  },
+  {
     tag: "Line-up announced",
     date: "03 September 2026 · 09h00",
     datePublished: "2026-09-03T09:00:00+02:00",
