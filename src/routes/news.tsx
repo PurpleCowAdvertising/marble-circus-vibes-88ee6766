@@ -6,6 +6,8 @@ import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import posterAsset from "@/assets/preshow-lineup-poster.png.asset.json";
 import mainShowPosterAsset from "@/assets/mainshow-lineup-poster.png.asset.json";
+import hostBontleAsset from "@/assets/host-bontle-modiselle.jpg.asset.json";
+import hostRobotBoiiAsset from "@/assets/host-robot-boii.jpg.asset.json";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -82,6 +84,8 @@ type Post = {
   hrefLabel?: string;
   image?: string;
   imageAlt?: string;
+  secondImage?: string;
+  secondImageAlt?: string;
   groups?: { label: string; names: string }[];
   highlight?: { title: string; body: string };
   footnote?: string;
