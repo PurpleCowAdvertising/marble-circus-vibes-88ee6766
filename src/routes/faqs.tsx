@@ -29,16 +29,16 @@ const CATEGORIES = [
     title: "Gates & Times",
     items: [
       {
-        q: "What time do gates open?",
-        a: "Gates open at 12pm.",
+        q: "What time do the gates open?",
+        a: "Gates open at 12:00 PM.",
       },
       {
-        q: "Entry times?",
-        a: "Gates open 12pm – NO ENTRY WILL BE ALLOWED FROM 9pm onwards.",
+        q: "What are the entry times?",
+        a: "Gates open at 12:00 PM. No entry will be permitted after 9:00 PM.",
       },
       {
         q: "What time does the show start?",
-        a: "Pre-show starts 13:00pm – 18:30pm. Main show starts 19:00pm and ends 22:30pm.",
+        a: "Pre-show: 1:00 PM to 6:30 PM. Main show: 7:00 PM to 10:30 PM.",
       },
     ],
   },
@@ -47,15 +47,11 @@ const CATEGORIES = [
     items: [
       {
         q: "Are tickets still available?",
-        a: "Tickets are exclusively available through official channels. DO NOT BUY TICKETS THROUGH THIRD PARTIES OR VIAGOGO.",
+        a: "Tickets are available exclusively through Webtickets. Do not purchase tickets from third parties or Viagogo.",
       },
       {
-        q: "Are tickets sold at the gate?",
-        a: "No tickets will be sold at the venue. Tickets are only available via Webtickets.",
-      },
-      {
-        q: "Is there parking available?",
-        a: "Parking Tickets are available on Webtickets.",
+        q: "Can I buy tickets at the gate?",
+        a: "No. Tickets will not be sold at the venue. All tickets must be purchased through Webtickets.",
       },
     ],
   },
@@ -63,12 +59,16 @@ const CATEGORIES = [
     title: "Travel & Parking",
     items: [
       {
-        q: "Preferred transport?",
-        a: "Please use our Park & Ride services available on Webtickets. Gautrain services will also be available.",
+        q: "Is parking available?",
+        a: "Yes. Please note that no vehicles will be allowed near the venue without a valid parking ticket. Parking tickets are available through Webtickets.",
       },
       {
         q: "How much is parking?",
         a: "Parking Ext 1/2, 5/6 and 7/8 are R220 each. Premium Parking is R300.",
+      },
+      {
+        q: "What is the preferred transport option?",
+        a: "We recommend using our Park & Ride services, which are available through Webtickets. Gautrain services will also be available.",
       },
     ],
   },
@@ -76,24 +76,39 @@ const CATEGORIES = [
     title: "Venue & Experience",
     items: [
       {
-        q: "Is the event CASHLESS or CASH?",
-        a: "All formal vendors will be cashless. Informal vendors will accept both CASH or CASHLESS.",
+        q: "Is the event cashless or cash?",
+        a: "All formal vendors will be cashless only. Informal vendors will accept both cash and cashless payments.",
       },
       {
-        q: "What can I bring or can't bring?",
-        a: "Only bring your TICKETS, Cash or Bank Cards.",
+        q: "What can I bring, and what is prohibited?",
+        a: "Please bring only your ID, ticket(s) and a valid payment method, such as cash or a bank card.",
       },
       {
-        q: "Is Merch going to be sold at the venue?",
-        a: "Yes, SK Live Merch will be available for sale.",
+        q: "Will merchandise be sold at the venue?",
+        a: "Yes. SK Live merchandise will be available for purchase at the venue.",
       },
       {
-        q: "Is the venue wheelchair friendly?",
-        a: "All entry points and gates into the stadium are wheelchair friendly.",
+        q: "Is the venue wheelchair-friendly?",
+        a: "Yes. All entry points and gates into the stadium are wheelchair friendly.",
+      },
+      {
+        q: "Which gate do I use?",
+        a: "Gate M & G – Scorpion Ring & Scorpion Field Standing. Gate J, K & L – all seated tickets. Gate A & C – VIP.",
       },
     ],
   },
 ] as const;
+
+const NOTES = [
+  "No refunds",
+  "No outside food and drinks",
+  "No drugs / weapons / hubblys",
+  "No smoking of marijuana and edibles",
+  "No passouts",
+  "No entry after 21:30",
+  "No under 14's (ID will be required on entry) and must be accompanied by an adult",
+] as const;
+
 
 function FaqsPage() {
   return (
