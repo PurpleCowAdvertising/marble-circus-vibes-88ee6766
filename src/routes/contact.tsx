@@ -373,7 +373,7 @@ function ContactPage() {
 
                 <div className="mt-5 flex items-center gap-4">
                   <div className="h-px flex-1 bg-white/10" />
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Official suppliers</p>
+                  <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">TRANSPORT PARTNER</p>
                   <div className="h-px flex-1 bg-white/10" />
                 </div>
 
