@@ -397,7 +397,7 @@ function NewsPage() {
                             onClick={() => setPoster({ src: post.image!, alt: post.imageAlt ?? post.title })}
                             className="inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-white transition hover:bg-white/10"
                           >
-                            View full line-up poster
+                            {post.secondImage ? "View full poster" : "View full line-up poster"}
                           </button>
                         </div>
                       </div>
