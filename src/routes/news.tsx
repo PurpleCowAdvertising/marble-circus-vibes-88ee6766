@@ -344,6 +344,28 @@ function NewsPage() {
                           </span>
                         </button>
 
+                        {post.secondImage && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setPoster({ src: post.secondImage!, alt: post.secondImageAlt ?? post.title })
+                            }
+                            className="group block w-full overflow-hidden rounded-2xl border border-white/15 bg-black/40"
+                            aria-label="View second poster"
+                          >
+                            <img
+                              src={post.secondImage}
+                              alt={post.secondImageAlt ?? post.title}
+                              loading="lazy"
+                              className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                            />
+
+                            <span className="block bg-black/60 px-3 py-2 text-[10px] uppercase tracking-[0.3em] text-white/60">
+                              Tap to enlarge
+                            </span>
+                          </button>
+                        )}
+
                         {post.highlight && (
                           <div className="rounded-2xl border border-white/15 bg-white/[0.05] p-5">
                             <p className="text-[11px] font-bold uppercase tracking-widest text-gold">
