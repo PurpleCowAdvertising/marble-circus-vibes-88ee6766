@@ -6,7 +6,7 @@ import { SPONSORS } from "@/config/sponsors";
 
 const TIER_A_ORDER = ["SABC 1", "Gauteng Province", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
 const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
-const TIER_C_ORDER = ["Cabs Car Hire"];
+const TIER_C_ORDER = ["Cabs Car Hire", "Audi Centre Wonderboom"];
 
 export const Route = createFileRoute("/partners")({
   head: () => ({

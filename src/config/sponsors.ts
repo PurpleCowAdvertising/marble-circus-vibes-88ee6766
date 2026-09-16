@@ -9,6 +9,7 @@ import castleLite from "@/assets/sponsors/9-castle-lite.png.asset.json";
 import sampra from "@/assets/sponsors/10-sampra.png.asset.json";
 import cabsCarHire from "@/assets/sponsors/11-cabs-car-hire.png.asset.json";
 import gautengSacr from "@/assets/sponsors/12-gauteng-sacr.png.asset.json";
+import audiCentre from "@/assets/sponsors/13-audi-centre-wonderboom.png.asset.json";
 
 export type Sponsor = {
   name: string;
@@ -40,4 +41,5 @@ export const SPONSORS: Sponsor[] = [
   { name: "Castle Lite", logo: castleLite.url, wide: true, url: "https://www.castlelite.co.za/", imgClassName: "h-full w-full object-contain object-center" },
   { name: "SAMPRA", logo: sampra.url, wide: true, url: "https://sampra.org.za/", imgClassName: "h-full w-full object-contain object-center" },
   { name: "Cabs Car Hire", logo: cabsCarHire.url, wide: true, url: "https://cabscarhire.com/", imgClassName: "h-full w-full object-contain object-center" },
+  { name: "Audi Centre Wonderboom", logo: audiCentre.url, wide: true, imgClassName: "h-full w-full object-contain object-center" },
 ];
