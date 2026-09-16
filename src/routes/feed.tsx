@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Play } from "lucide-react";
+import { Play, Smartphone } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { Reveal, RevealGroup } from "@/components/site/Reveal";
@@ -48,6 +48,14 @@ const VIDEOS = [
   },
 ] as const;
 
+const SHORTS = [
+  { id: "DUA5mirDufg", title: "Scorpion Kings Live short 1" },
+  { id: "LVsraFLZZbs", title: "Scorpion Kings Live short 2" },
+  { id: "SaGeNJK0beE", title: "Scorpion Kings Live short 3" },
+  { id: "CUboqY6BC_4", title: "Scorpion Kings Live short 4" },
+  { id: "BbeAvruJ2Hc", title: "Scorpion Kings Live short 5" },
+] as const;
+
 function FeedPage() {
   return (
     <PageGate keyName="page:feed">
@@ -73,6 +81,33 @@ function FeedPage() {
                     <iframe
                       src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&playsinline=1`}
                       title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                      className="h-full w-full border-0"
+                    />
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </RevealGroup>
+        </Section>
+
+        <Section className="!pt-2 md:!pt-4">
+          <FadeIn>
+            <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.4em] text-gold">
+              <Smartphone size={12} /> Shorts
+            </p>
+          </FadeIn>
+
+          <RevealGroup className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5">
+            {SHORTS.map((short) => (
+              <Reveal key={short.id} bubble>
+                <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] backdrop-blur-sm transition-transform duration-500 hover:-translate-y-1">
+                  <div className="aspect-[9/16] w-full">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${short.id}?rel=0&playsinline=1`}
+                      title={short.title}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                       loading="lazy"
