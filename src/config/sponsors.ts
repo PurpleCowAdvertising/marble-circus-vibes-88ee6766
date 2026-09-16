@@ -34,7 +34,11 @@ export const SPONSORS: Sponsor[] = [
     url: "https://rocomamas.com/za/campaign/rocomamas-x-scorpion-kings",
   },
   { name: "SABC 1", logo: sabc1.url, url: "https://www.sabc1.co.za/sabc1/", imgClassName: "h-full w-full object-contain object-center" },
-  { name: "Gauteng Province", logo: gautengSacr.url },
+  {
+    name: "Gauteng Province",
+    logo: gautengSacr.url,
+    url: "https://www.gov.za/about-government/contact-directory/provincial-gov/gauteng-provincial-government",
+  },
   { name: "Sprite", logo: sprite.url, url: "https://www.instagram.com/sprite_rsa?stkn=dmZzeXVzM3gxMnFh", imgClassName: "h-full w-full object-contain object-center" },
   { name: "VEEV", logo: veev.url, url: "https://www.instagram.com/veev_rsa?stkn=MW56b2Nwdmc5eDE1" },
   { name: "Gautrain", logo: gautrain.url, wide: true, url: "https://www.mygautrain.co.za/competitions/scorpion-kings-live-at-fnb-stadium", imgClassName: "h-full w-full object-contain object-center" },
