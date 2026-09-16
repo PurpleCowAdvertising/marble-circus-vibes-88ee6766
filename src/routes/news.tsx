@@ -8,6 +8,7 @@ import posterAsset from "@/assets/preshow-lineup-poster.png.asset.json";
 import mainShowPosterAsset from "@/assets/mainshow-lineup-poster.png.asset.json";
 import hostBontleAsset from "@/assets/host-bontle-modiselle.jpg.asset.json";
 import hostRobotBoiiAsset from "@/assets/host-robot-boii.jpg.asset.json";
+import rocomamasLogoAsset from "@/assets/sponsors/3-rocomamas.png.asset.json";
 
 export const Route = createFileRoute("/news")({
   head: () => ({
@@ -84,6 +85,8 @@ type Post = {
   hrefLabel?: string;
   image?: string;
   imageAlt?: string;
+  logo?: string;
+  logoAlt?: string;
   secondImage?: string;
   secondImageAlt?: string;
   groups?: { label: string; names: string }[];
@@ -92,6 +95,52 @@ type Post = {
 };
 
 const POSTS: Post[] = [
+  {
+    tag: "Heritage Month",
+    date: "16 September 2026 · 09h00",
+    datePublished: "2026-09-16T09:00:00+02:00",
+    title:
+      "HERITAGE, SERVED HOT: HOW THE SCORPION KINGS AND ROCOMAMAS ARE TAKING AMAPIANO FROM THE DANCE FLOOR TO THE DINNER TABLE",
+    excerpt:
+      "As South Africa marks Heritage Month and FNB Stadium prepares for a landmark Scorpion Kings concert, a new collaboration with RocoMamas puts a fresh question on the menu: what does heritage taste like when it belongs to the present?",
+    logo: rocomamasLogoAsset.url,
+    logoAlt: "RocoMamas logo",
+    body: [
+      "Johannesburg, South Africa (16 September 2026) — Heritage is often framed as something South Africans inherit from the past. Yet the country’s most compelling cultural expressions have never stood still. They are sampled, remixed and carried forward, in the music people dance to, the languages they speak and the food they gather around.",
+      "Few contemporary movements capture that idea as powerfully as Amapiano. Born at home and now heard far beyond South Africa’s borders, the genre has become more than a soundtrack. It is a cultural calling card: unmistakably local, confidently modern and increasingly global.",
+      "This Heritage Month, Scorpion Kings, the musical force of DJ Maphorisa and Kabza De Small, are extending that story beyond sound. Their collaboration with RocoMamas turns the flavours of home into a limited-edition King’s Feast menu, available at participating restaurants nationwide since 01 September 2026. The partnership leads into Scorpion Kings Live at FNB Stadium on 19 September 2026, where RocoMamas will also serve fans and artists.",
+      "The timing gives the campaign an immediacy that goes beyond a celebrity menu. It arrives during a month when South Africans are invited to consider what culture means, who gets to shape it and how it remains relevant to a new generation. Here, heritage is not treated as a static display. It is loud, social and designed to be shared.",
+      "Amapiano changed the way the world sees South Africa. For DJ Maphorisa, Amapiano’s international reach has helped broaden the global picture of South Africa.",
+      "“It’s not just our music that people are connecting with, but our culture, language and creativity. Seeing that influence grow globally makes me very proud of where we come from,” says DJ Maphorisa.",
+      "That sense of pride matters during Heritage Month because Amapiano’s success has not required it to flatten its identity for international audiences. Its rhythms, dance culture and vernacular remain grounded in the place that produced them. The more the genre travels, the more visibly South African it becomes.",
+      "Kabza De Small’s advice to emerging artists is equally direct: “Stay true to yourself and your roots. That authenticity is what makes you different, and people around the world connect with that.”",
+      "It is a statement about music, but it also offers a useful way to read the King’s Feast. Instead of treating local ingredients as nostalgic curiosities, the collaboration places them inside the kind of bold, contemporary experience that RocoMamas has built its identity around. Chakalaka and atchar are not added as decorative nods to heritage. They carry memory, heat and familiarity into a new setting.",
+      "When flavour becomes cultural memory — food and music perform similar work in South African life. Both can summon a place, a person or a moment before a story has even been told. Both turn individual memory into a shared experience.",
+      "“Flavours like atchar bring back memories and bring people together, just like music does,” Kabza says. Maphorisa echoes the point: “Music and food both bring people together. Combining the two gives people another way to experience and celebrate what makes South African culture unique.”",
+      "The menu translates those ideas into three distinct offerings.",
+      "These are not quiet flavours, and that is the point. Kabza links the heat of the Papta Sting to the visceral pull of the duo’s sound: “The Papta Sting has that bold heat, and I think our music has the same energy; it’s meant to make you feel something.”",
+      "The comparison works because Amapiano has always been physical. It is experienced through movement, repetition and atmosphere as much as melody. Translating that energy into food is playful, but it also reflects how contemporary culture now moves across categories. Music shapes fashion. Artists influence lifestyle. A meal becomes part of the anticipation surrounding a stadium show.",
+      "A shared table before a shared stadium: the road to FNB Stadium gives this collaboration its news peg, but its cultural appeal lies in the sense of participation it creates. Not everyone encounters a major musical movement in the same way. Some discover it on a dance floor, others through a playlist, a fashion reference or a gathering with friends. The King’s Feast adds taste to that list.",
+      "“It makes the whole experience bigger,” Kabza says of the partnership. “Fans can celebrate the Scorpion Kings through both the music and the food, leading up to the FNB Stadium concert.”",
+      "For RocoMamas, the partnership also connects its language of bold self-expression with two artists who have helped define the global rise of Amapiano. Dr Tumi Sebopa, Head of Brands at Spur Corporation, describes it as a natural meeting point between the brand and musicians who are shaping South African culture. The menu, she says, draws on flavours South Africans know and love, then reimagines them through the burgers, wings and ribs associated with RocoMamas.",
+      "Cultural pride no longer lives only in commemorative moments. It travels through pop culture, entertainment and the everyday rituals that bring people together. That may be the most fitting Heritage Month message of all. South Africa’s roots do not lose their meaning when they are reworked for a new audience. They gain another route into the future.",
+      "As Kabza puts it, the menu is ultimately about more than a meal: “I hope they enjoy the food and feel proud of what it represents. It’s a celebration of our culture, our music and how far we’ve come.”",
+      "/ENDS",
+      "For more information, visit RocoMamas South Africa or follow the conversation on social media using @rocomamas and #RocoMamasxScorpionKings.",
+      "Editor’s note: The King’s Feast is a limited-edition menu available at participating RocoMamas restaurants nationwide from 1 September 2026 for a limited time. Scorpion Kings Live at FNB Stadium takes place on 19 September 2026.",
+      "About Spur Corporation: Spur Corporation is a leading casual dining franchised restaurant group with over 751 outlets throughout South Africa, Africa, India, and Mauritius. Its brands include RocoMamas, Spur Steak Ranches, Panarotti’s, John Dory’s, The Hussar Grill, Doppio Zero, Casa Bella, Pizza e Vino, and Modern Tailors.",
+      "Media contact: OnPoint PR | Lungile Nyembe | lungile@onpointpr.co.za",
+    ],
+    groups: [
+      {
+        label: "The King’s Feast menu",
+        names:
+          "Madumane Double — 200g double beef smash burger with chakalaka, chorizo and cheese on a brioche bun, inspired by DJ Maphorisa · Papta Sting — southern-fried chicken with jalapeños and atchar, inspired by Kabza De Small · Scorpion Kings Pan — ribs, chicken strips, wings, chakalaka, coleslaw and two dipping sauces, including a spicy peri sauce, built for the table.",
+      },
+    ],
+    href: "https://rocomamas.com/za/campaign/rocomamas-x-scorpion-kings",
+    hrefLabel: "RocoMamas x Scorpion Kings",
+  },
   {
     tag: "Hosts announced",
     date: "15 September 2026 · 09h00",
@@ -322,6 +371,28 @@ function NewsPage() {
                   </h2>
 
                   <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">{post.excerpt}</p>
+
+                  {post.logo && (
+                    <div className="mt-6 flex flex-wrap items-center gap-5">
+                      <img
+                        src={post.logo}
+                        alt={post.logoAlt ?? ""}
+                        loading="lazy"
+                        className="h-10 w-auto max-w-[220px] object-contain"
+                      />
+
+                      {post.href && (
+                        <a
+                          href={post.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
+                        >
+                          {post.hrefLabel} <ArrowUpRight size={14} />
+                        </a>
+                      )}
+                    </div>
+                  )}
 
                   <div className={post.image ? "mt-6 grid gap-6 md:grid-cols-[38%_1fr] md:gap-8" : "contents"}>
                     {post.image && (
