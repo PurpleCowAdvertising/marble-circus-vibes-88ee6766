@@ -46,6 +46,7 @@ export const SPONSORS: Sponsor[] = [
     logo: sportArtsCulture.url,
     wide: true,
     imgClassName: "h-full w-full object-contain object-center",
+    url: "https://www.dsac.gov.za/",
   },
   { name: "Sprite", logo: sprite.url, url: "https://www.instagram.com/sprite_rsa?stkn=dmZzeXVzM3gxMnFh", imgClassName: "h-full w-full object-contain object-center" },
   { name: "VEEV", logo: veev.url, url: "https://www.instagram.com/veev_rsa?stkn=MW56b2Nwdmc5eDE1" },
