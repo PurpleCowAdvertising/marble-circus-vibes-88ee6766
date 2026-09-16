@@ -9,6 +9,7 @@ import castleLite from "@/assets/sponsors/9-castle-lite.png.asset.json";
 import sampra from "@/assets/sponsors/10-sampra.png.asset.json";
 import cabsCarHire from "@/assets/sponsors/11-cabs-car-hire.png.asset.json";
 import gautengSacr from "@/assets/sponsors/12-gauteng-sacr.png.asset.json";
+import audiCentre from "@/assets/sponsors/13-audi-centre-wonderboom.png.asset.json";
 
 export type Sponsor = {
   name: string;
