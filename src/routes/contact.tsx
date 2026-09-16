@@ -66,7 +66,7 @@ type FormState = {
   message: string;
 };
 
-const TIER_A_ORDER = ["SABC 1", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
+const TIER_A_ORDER = ["SABC 1", "Gauteng Province", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
 const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
 const TIER_C_ORDER = ["Cabs Car Hire"];
 
@@ -353,7 +353,7 @@ function ContactPage() {
                   Proudly partnered by.
                 </h2>
 
-                <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-5 md:grid-cols-3 [&>li:last-child]:col-span-2 [&>li:last-child]:mx-auto [&>li:last-child]:w-[calc(50%-0.375rem)] sm:[&>li:last-child]:col-span-1 sm:[&>li:last-child]:mx-0 sm:[&>li:last-child]:w-auto">
+                <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-3">
                   {sortByName(TIER_A_ORDER).map((sponsor) => (
                     <SponsorChip key={sponsor.name} sponsor={sponsor} size="large" />
                   ))}
