@@ -953,9 +953,9 @@ function HomePage() {
                       ? "border-white/15 bg-white/90"
                       : "border-white/10 bg-white/[0.06] hover:border-white/25"
                   } ${sponsor.url ? "hover:border-gold/40" : ""}`;
-                  const imageClassName = sponsor.wide
+                  const imageClassName = sponsor.imgClassName ?? (sponsor.wide
                     ? "mx-auto h-12 w-[88%] object-contain object-center md:h-14"
-                    : sponsor.imgClassName ?? "max-h-12 w-auto max-w-full object-contain md:max-h-14";
+                    : "max-h-12 w-auto max-w-full object-contain md:max-h-14");
                   const image = (
                     <img
                       src={sponsor.logo}
