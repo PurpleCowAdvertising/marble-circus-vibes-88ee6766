@@ -924,7 +924,7 @@ function HomePage() {
           <FadeIn delay={0.1}>
             <div className="mt-8 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
               <ul className="flex min-w-max items-stretch gap-3 md:grid md:min-w-0 md:grid-cols-6 md:gap-4">
-                {SPONSORS.map((sponsor) => {
+                {HOME_PARTNER_ORDER.map((sponsor) => {
                   const chipClassName = `flex h-24 w-40 items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors md:h-28 md:w-auto ${
                     sponsor.wide ? "px-2.5" : "px-5"
                   } ${
