@@ -16,6 +16,27 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { ShopifyCollection } from "@/components/ShopifyCollection";
 import { SPONSORS } from "@/config/sponsors";
 
+const HOME_PARTNER_NAMES = [
+  "SABC 1",
+  "Gauteng Province",
+  "Castle Lite",
+  "Sprite",
+  "RocoMamas",
+  "VEEV",
+  "McCafé",
+  "Galxboy",
+  "Gautrain",
+  "SAMPRA",
+  "Cabs Car Hire",
+];
+
+const HOME_PARTNER_ORDER = [
+  ...HOME_PARTNER_NAMES
+    .map((name) => SPONSORS.find((s) => s.name === name))
+    .filter((s): s is (typeof SPONSORS)[number] => Boolean(s)),
+  ...SPONSORS.filter((s) => !HOME_PARTNER_NAMES.includes(s.name)),
+];
+
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
 
@@ -924,7 +945,7 @@ function HomePage() {
           <FadeIn delay={0.1}>
             <div className="mt-8 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
               <ul className="flex min-w-max items-stretch gap-3 md:grid md:min-w-0 md:grid-cols-6 md:gap-4">
-                {SPONSORS.map((sponsor) => {
+                {HOME_PARTNER_ORDER.map((sponsor) => {
                   const chipClassName = `flex h-24 w-40 items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors md:h-28 md:w-auto ${
                     sponsor.wide ? "px-2.5" : "px-5"
                   } ${
