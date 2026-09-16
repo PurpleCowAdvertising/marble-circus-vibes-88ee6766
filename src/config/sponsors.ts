@@ -1,6 +1,6 @@
 import galxboy from "@/assets/sponsors/1-galxboy.png.asset.json";
 import mccafe from "@/assets/sponsors/2-mccafe.png.asset.json";
-import rocomamas from "@/assets/sponsors/3-rocomamas-cropped.png";
+import rocomamas from "@/assets/sponsors/3-rocomamas.png.asset.json";
 import sabc1 from "@/assets/sponsors/6-sabc1.png.asset.json";
 import sprite from "@/assets/sponsors/4-sprite-white.png.asset.json";
 import veev from "@/assets/sponsors/7-veev.png.asset.json";
@@ -27,17 +27,17 @@ export const SPONSORS: Sponsor[] = [
   { name: "McCafé", logo: mccafe.url, url: "https://www.mcdonalds.co.za/mymrewards" },
   {
     name: "RocoMamas",
-    logo: rocomamas,
+    logo: rocomamas.url,
     wide: true,
-    imgClassName: "h-14 w-full object-fill object-center",
+    imgClassName: "h-full w-full object-contain object-center",
     url: "https://rocomamas.com/za/campaign/rocomamas-x-scorpion-kings",
   },
-  { name: "SABC 1", logo: sabc1.url, onLight: true, url: "https://www.sabc1.co.za/sabc1/" },
+  { name: "SABC 1", logo: sabc1.url, url: "https://www.sabc1.co.za/sabc1/", imgClassName: "h-full w-full object-contain object-center" },
   { name: "Gauteng Province", logo: gautengSacr.url },
-  { name: "Sprite", logo: sprite.url, url: "https://www.instagram.com/sprite_rsa?stkn=dmZzeXVzM3gxMnFh" },
+  { name: "Sprite", logo: sprite.url, url: "https://www.instagram.com/sprite_rsa?stkn=dmZzeXVzM3gxMnFh", imgClassName: "h-full w-full object-contain object-center" },
   { name: "VEEV", logo: veev.url, url: "https://www.instagram.com/veev_rsa?stkn=MW56b2Nwdmc5eDE1" },
-  { name: "Gautrain", logo: gautrain.url, onLight: true, wide: true, url: "https://www.mygautrain.co.za/competitions/scorpion-kings-live-at-fnb-stadium", imgClassName: "h-full w-full object-contain object-center" },
-  { name: "Castle Lite", logo: castleLite.url, onLight: true, wide: true, imgClassName: "h-auto w-full max-h-24 object-contain object-center" },
-  { name: "SAMPRA", logo: sampra.url, onLight: true, wide: true, url: "https://sampra.org.za/", imgClassName: "h-20 w-[92%] object-contain object-center md:h-24" },
+  { name: "Gautrain", logo: gautrain.url, wide: true, url: "https://www.mygautrain.co.za/competitions/scorpion-kings-live-at-fnb-stadium", imgClassName: "h-full w-full object-contain object-center" },
+  { name: "Castle Lite", logo: castleLite.url, wide: true, imgClassName: "h-full w-full object-contain object-center" },
+  { name: "SAMPRA", logo: sampra.url, wide: true, url: "https://sampra.org.za/", imgClassName: "h-full w-full object-contain object-center" },
   { name: "Cabs Car Hire", logo: cabsCarHire.url, wide: true, url: "https://cabscarhire.com/", imgClassName: "h-full w-full object-contain object-center" },
 ];
