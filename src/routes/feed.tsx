@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Play } from "lucide-react";
+import { Play, Smartphone } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { Reveal, RevealGroup } from "@/components/site/Reveal";
