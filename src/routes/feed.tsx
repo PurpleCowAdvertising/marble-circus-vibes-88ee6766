@@ -92,6 +92,33 @@ function FeedPage() {
             ))}
           </RevealGroup>
         </Section>
+
+        <Section className="!pt-2 md:!pt-4">
+          <FadeIn>
+            <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.4em] text-gold">
+              <Smartphone size={12} /> Shorts
+            </p>
+          </FadeIn>
+
+          <RevealGroup className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5">
+            {SHORTS.map((short) => (
+              <Reveal key={short.id} bubble>
+                <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] backdrop-blur-sm transition-transform duration-500 hover:-translate-y-1">
+                  <div className="aspect-[9/16] w-full">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${short.id}?rel=0&playsinline=1`}
+                      title={short.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                      className="h-full w-full border-0"
+                    />
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </RevealGroup>
+        </Section>
       </div>
     </PageGate>
   );
