@@ -16,7 +16,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { ShopifyCollection } from "@/components/ShopifyCollection";
 import { SPONSORS } from "@/config/sponsors";
 
-const HOME_PARTNER_ORDER = [
+const HOME_PARTNER_NAMES = [
   "SABC 1",
   "Gauteng Province",
   "Castle Lite",
@@ -28,26 +28,14 @@ const HOME_PARTNER_ORDER = [
   "Gautrain",
   "SAMPRA",
   "Cabs Car Hire",
-]
-  .map((name) => SPONSORS.find((s) => s.name === name))
-  .filter((s): s is (typeof SPONSORS)[number] => Boolean(s))
-  .concat(SPONSORS.filter((s) => !HOME_PARTNER_ORDER_NAMED(s.name)));
+];
 
-function HOME_PARTNER_ORDER_NAMED(name: string) {
-  return [
-    "SABC 1",
-    "Gauteng Province",
-    "Castle Lite",
-    "Sprite",
-    "RocoMamas",
-    "VEEV",
-    "McCafé",
-    "Galxboy",
-    "Gautrain",
-    "SAMPRA",
-    "Cabs Car Hire",
-  ].includes(name);
-}
+const HOME_PARTNER_ORDER = [
+  ...HOME_PARTNER_NAMES
+    .map((name) => SPONSORS.find((s) => s.name === name))
+    .filter((s): s is (typeof SPONSORS)[number] => Boolean(s)),
+  ...SPONSORS.filter((s) => !HOME_PARTNER_NAMES.includes(s.name)),
+];
 
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
