@@ -4,7 +4,7 @@ import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { SPONSORS } from "@/config/sponsors";
 
-const TIER_A_ORDER = ["SABC 1", "Gauteng Province", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
+const TIER_A_ORDER = ["SABC 1", "Gauteng Province", "Sport, Arts and Culture", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
 const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
 const TIER_C_ORDER = ["Cabs Car Hire", "Audi Centre Wonderboom"];
 
