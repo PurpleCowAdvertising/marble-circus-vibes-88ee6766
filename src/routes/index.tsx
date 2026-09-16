@@ -28,6 +28,7 @@ const HOME_PARTNER_NAMES = [
   "Gautrain",
   "SAMPRA",
   "Cabs Car Hire",
+  "Audi Centre Wonderboom",
 ];
 
 const HOME_PARTNER_ORDER = [

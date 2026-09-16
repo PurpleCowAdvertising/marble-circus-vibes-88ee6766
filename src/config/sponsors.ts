@@ -41,4 +41,5 @@ export const SPONSORS: Sponsor[] = [
   { name: "Castle Lite", logo: castleLite.url, wide: true, url: "https://www.castlelite.co.za/", imgClassName: "h-full w-full object-contain object-center" },
   { name: "SAMPRA", logo: sampra.url, wide: true, url: "https://sampra.org.za/", imgClassName: "h-full w-full object-contain object-center" },
   { name: "Cabs Car Hire", logo: cabsCarHire.url, wide: true, url: "https://cabscarhire.com/", imgClassName: "h-full w-full object-contain object-center" },
+  { name: "Audi Centre Wonderboom", logo: audiCentre.url, wide: true, imgClassName: "h-full w-full object-contain object-center" },
 ];
