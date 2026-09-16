@@ -1,12 +1,12 @@
 import galxboy from "@/assets/sponsors/1-galxboy.png.asset.json";
 import mccafe from "@/assets/sponsors/2-mccafe.png.asset.json";
-import rocomamas from "@/assets/sponsors/3-rocomamas-cropped.png";
-import sabc1 from "@/assets/sponsors/6-sabc1.png.asset.json";
-import sprite from "@/assets/sponsors/4-sprite-white.png.asset.json";
+import rocomamas from "@/assets/sponsors/3-rocomamas-v2.png.asset.json";
+import sabc1 from "@/assets/sponsors/6-sabc1-v2.png.asset.json";
+import sprite from "@/assets/sponsors/4-sprite-v2.png.asset.json";
 import veev from "@/assets/sponsors/7-veev.png.asset.json";
-import gautrain from "@/assets/sponsors/8-gautrain.png.asset.json";
-import castleLite from "@/assets/sponsors/9-castle-lite.png.asset.json";
-import sampra from "@/assets/sponsors/10-sampra.png.asset.json";
+import gautrain from "@/assets/sponsors/8-gautrain-white.png.asset.json";
+import castleLite from "@/assets/sponsors/9-castle-lite-v2.png.asset.json";
+import sampra from "@/assets/sponsors/10-sampra-v2.png.asset.json";
 import cabsCarHire from "@/assets/sponsors/11-cabs-car-hire.png.asset.json";
 import gautengSacr from "@/assets/sponsors/12-gauteng-sacr.png.asset.json";
 
@@ -27,7 +27,7 @@ export const SPONSORS: Sponsor[] = [
   { name: "McCafé", logo: mccafe.url, url: "https://www.mcdonalds.co.za/mymrewards" },
   {
     name: "RocoMamas",
-    logo: rocomamas,
+    logo: rocomamas.url,
     wide: true,
     imgClassName: "h-14 w-full object-fill object-center",
     url: "https://rocomamas.com/za/campaign/rocomamas-x-scorpion-kings",
