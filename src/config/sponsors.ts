@@ -38,6 +38,7 @@ export const SPONSORS: Sponsor[] = [
   {
     name: "Gauteng Province",
     logo: gautengSacr.url,
+    imgClassName: "h-full w-full object-contain object-center",
     url: "https://www.gov.za/about-government/contact-directory/provincial-gov/gauteng-provincial-government",
   },
   {
