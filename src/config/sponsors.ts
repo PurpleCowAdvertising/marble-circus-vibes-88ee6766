@@ -10,6 +10,7 @@ import sampra from "@/assets/sponsors/10-sampra.png.asset.json";
 import cabsCarHire from "@/assets/sponsors/11-cabs-car-hire.png.asset.json";
 import gautengSacr from "@/assets/sponsors/12-gauteng-sacr.png.asset.json";
 import audiCentre from "@/assets/sponsors/13-audi-centre-wonderboom.png.asset.json";
+import sportArtsCulture from "@/assets/sponsors/14-sport-arts-culture.png.asset.json";
 
 export type Sponsor = {
   name: string;
@@ -38,6 +39,12 @@ export const SPONSORS: Sponsor[] = [
     name: "Gauteng Province",
     logo: gautengSacr.url,
     url: "https://www.gov.za/about-government/contact-directory/provincial-gov/gauteng-provincial-government",
+  },
+  {
+    name: "Sport, Arts and Culture",
+    logo: sportArtsCulture.url,
+    wide: true,
+    imgClassName: "h-full w-full object-contain object-center",
   },
   { name: "Sprite", logo: sprite.url, url: "https://www.instagram.com/sprite_rsa?stkn=dmZzeXVzM3gxMnFh", imgClassName: "h-full w-full object-contain object-center" },
   { name: "VEEV", logo: veev.url, url: "https://www.instagram.com/veev_rsa?stkn=MW56b2Nwdmc5eDE1" },

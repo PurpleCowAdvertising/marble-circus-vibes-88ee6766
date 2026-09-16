@@ -19,6 +19,7 @@ import { SPONSORS } from "@/config/sponsors";
 const HOME_PARTNER_NAMES = [
   "SABC 1",
   "Gauteng Province",
+  "Sport, Arts and Culture",
   "Castle Lite",
   "Sprite",
   "RocoMamas",
