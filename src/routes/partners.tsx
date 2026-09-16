@@ -4,7 +4,7 @@ import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { SPONSORS } from "@/config/sponsors";
 
-const TIER_A_ORDER = ["SABC 1", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
+const TIER_A_ORDER = ["SABC 1", "Gauteng Province", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
 const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
 const TIER_C_ORDER = ["Cabs Car Hire"];
 
@@ -64,7 +64,7 @@ function PartnersPage() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+            <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
               {tierA.map((sponsor) => {
                 const chipClassName = `flex h-32 items-center justify-center rounded-2xl border py-5 backdrop-blur-xl transition-colors md:h-40 ${
                   sponsor.wide ? "px-3" : "px-6"

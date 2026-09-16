@@ -8,6 +8,7 @@ import gautrain from "@/assets/sponsors/8-gautrain.png.asset.json";
 import castleLite from "@/assets/sponsors/9-castle-lite.png.asset.json";
 import sampra from "@/assets/sponsors/10-sampra.png.asset.json";
 import cabsCarHire from "@/assets/sponsors/11-cabs-car-hire.png.asset.json";
+import gautengSacr from "@/assets/sponsors/12-gauteng-sacr.png.asset.json";
 
 export type Sponsor = {
   name: string;
@@ -32,6 +33,7 @@ export const SPONSORS: Sponsor[] = [
     url: "https://rocomamas.com/za/campaign/rocomamas-x-scorpion-kings",
   },
   { name: "SABC 1", logo: sabc1.url, onLight: true, url: "https://www.sabc1.co.za/sabc1/" },
+  { name: "Gauteng Province", logo: gautengSacr.url },
   { name: "Sprite", logo: sprite.url, url: "https://www.instagram.com/sprite_rsa?stkn=dmZzeXVzM3gxMnFh" },
   { name: "VEEV", logo: veev.url, url: "https://www.instagram.com/veev_rsa?stkn=MW56b2Nwdmc5eDE1" },
   { name: "Gautrain", logo: gautrain.url, onLight: true, wide: true, url: "https://www.mygautrain.co.za/competitions/scorpion-kings-live-at-fnb-stadium", imgClassName: "h-full w-full object-contain object-center" },
