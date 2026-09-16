@@ -48,6 +48,14 @@ const VIDEOS = [
   },
 ] as const;
 
+const SHORTS = [
+  { id: "DUA5mirDufg", title: "Scorpion Kings Live short 1" },
+  { id: "LVsraFLZZbs", title: "Scorpion Kings Live short 2" },
+  { id: "SaGeNJK0beE", title: "Scorpion Kings Live short 3" },
+  { id: "CUboqY6BC_4", title: "Scorpion Kings Live short 4" },
+  { id: "BbeAvruJ2Hc", title: "Scorpion Kings Live short 5" },
+] as const;
+
 function FeedPage() {
   return (
     <PageGate keyName="page:feed">
