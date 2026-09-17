@@ -308,9 +308,16 @@ export function PartnerShowcase() {
 
       <div className="relative z-10 flex flex-1 items-center justify-center">
         <div
-          className="flex h-40 w-[78vw] max-w-[620px] items-center justify-center md:h-56"
-          style={{ perspective: 1200 }}
+          className="relative flex h-40 w-[78vw] max-w-[620px] items-center justify-center md:h-56"
+          style={{ perspective: 1200, ["--aura" as string]: AURAS[sponsor.name] ?? "var(--color-accent)" }}
         >
+          {!reduceMotion && (
+            <span key={`fx-${sponsor.name}`} aria-hidden className="pointer-events-none absolute inset-0">
+              <span className="brand-aura" />
+              <BrandBurst />
+            </span>
+          )}
+
           <AnimatePresence mode="wait">
             <motion.div
               key={sponsor.name}
@@ -321,6 +328,7 @@ export function PartnerShowcase() {
               className="relative flex h-full w-full items-center justify-center"
             >
               {!reduceMotion && <BrandFx fx={brand.fx} count={brand.count} />}
+
               {sponsor.url ? (
                 <a
                   href={sponsor.url}
