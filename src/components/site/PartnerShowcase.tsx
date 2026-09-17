@@ -238,7 +238,7 @@ function BrandBurst() {
   );
 }
 
-const HOLD_MS = 3200;
+const HOLD_MS = 3800;
 
 const PARTICLES = Array.from({ length: 28 }, (_, index) => ({
   left: (index * 53) % 100,
