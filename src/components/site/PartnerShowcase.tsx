@@ -37,9 +37,9 @@ type Brand = { variant: Variant; fx: Fx; count: number };
 
 const DEFAULT_BRAND: Brand = {
   variant: {
-    initial: { opacity: 0, scale: 0.86, filter: "blur(14px)" },
+    initial: { opacity: 0, scale: 0.97, filter: "blur(18px) brightness(1.28)" },
     animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-    exit: { opacity: 0, scale: 1.08, filter: "blur(14px)" },
+    exit: { opacity: 0, scale: 1.03, filter: "blur(18px) brightness(1.2)" },
   },
   fx: null,
   count: 0,
@@ -50,9 +50,9 @@ const BRANDS: Record<string, Brand> = {
   // TV channel — the picture clicks on like a screen switching channel.
   "SABC 1": {
     variant: {
-      initial: { opacity: 0, scaleY: 0.02, scaleX: 1.25, filter: "brightness(3)" },
-      animate: { opacity: 1, scaleY: 1, scaleX: 1, filter: "brightness(1)" },
-      exit: { opacity: 0, scaleY: 0.02, scaleX: 1.3, filter: "brightness(2.4)" },
+      initial: { opacity: 0, scale: 0.98, filter: "blur(16px) brightness(2.2)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px) brightness(1)" },
+      exit: { opacity: 0, scale: 1.02, filter: "blur(16px) brightness(1.8)" },
     },
     fx: "scan",
     count: 3,
@@ -70,9 +70,9 @@ const BRANDS: Record<string, Brand> = {
   // Fizzy drink — pops up with bubbles.
   Sprite: {
     variant: {
-      initial: { opacity: 0, y: 70, scale: 0.8 },
-      animate: { opacity: 1, y: 0, scale: 1 },
-      exit: { opacity: 0, y: -60, scale: 1.05 },
+      initial: { opacity: 0, scale: 0.96, filter: "blur(18px)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+      exit: { opacity: 0, scale: 1.03, filter: "blur(18px)" },
     },
     fx: "fizz",
     count: 14,
@@ -80,9 +80,9 @@ const BRANDS: Record<string, Brand> = {
   // Flame-grilled burgers — drops in over sparks.
   RocoMamas: {
     variant: {
-      initial: { opacity: 0, y: -80, scale: 1.1, rotate: -4 },
-      animate: { opacity: 1, y: 0, scale: 1, rotate: 0 },
-      exit: { opacity: 0, y: 40, scale: 0.92, rotate: 3 },
+      initial: { opacity: 0, scale: 0.97, filter: "blur(17px) brightness(1.25)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px) brightness(1)" },
+      exit: { opacity: 0, scale: 1.03, filter: "blur(17px) brightness(1.18)" },
     },
     fx: "sizzle",
     count: 14,
@@ -100,9 +100,9 @@ const BRANDS: Record<string, Brand> = {
   // Coffee — warm rise with steam.
   "McCafé": {
     variant: {
-      initial: { opacity: 0, y: 60, filter: "blur(10px)" },
-      animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-      exit: { opacity: 0, y: -40, filter: "blur(10px)" },
+      initial: { opacity: 0, scale: 0.97, filter: "blur(18px)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+      exit: { opacity: 0, scale: 1.03, filter: "blur(18px)" },
     },
     fx: "steam",
     count: 5,
@@ -110,9 +110,9 @@ const BRANDS: Record<string, Brand> = {
   // Apparel — fabric-like swing with a shimmer pass.
   Galxboy: {
     variant: {
-      initial: { opacity: 0, rotate: -8, skewY: 6, scale: 0.9 },
-      animate: { opacity: 1, rotate: 0, skewY: 0, scale: 1 },
-      exit: { opacity: 0, rotate: 6, skewY: -5, scale: 0.94 },
+      initial: { opacity: 0, scale: 0.97, filter: "blur(16px)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+      exit: { opacity: 0, scale: 1.03, filter: "blur(16px)" },
     },
     fx: "shimmer",
     count: 1,
@@ -120,9 +120,9 @@ const BRANDS: Record<string, Brand> = {
   // Train — drives in fast from the left and pulls out to the right.
   Gautrain: {
     variant: {
-      initial: { opacity: 0, x: -320, filter: "blur(12px)" },
-      animate: { opacity: 1, x: 0, filter: "blur(0px)" },
-      exit: { opacity: 0, x: 320, filter: "blur(12px)" },
+      initial: { opacity: 0, scale: 0.97, filter: "blur(20px)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+      exit: { opacity: 0, scale: 1.03, filter: "blur(20px)" },
     },
     fx: "streaks",
     count: 6,
@@ -140,9 +140,9 @@ const BRANDS: Record<string, Brand> = {
   // Car rental — drives in from the right and brakes into place.
   "Cabs Car Hire": {
     variant: {
-      initial: { opacity: 0, x: 300, skewX: -8 },
-      animate: { opacity: 1, x: 0, skewX: 0 },
-      exit: { opacity: 0, x: -260, skewX: 6 },
+      initial: { opacity: 0, scale: 0.97, filter: "blur(18px)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+      exit: { opacity: 0, scale: 1.03, filter: "blur(18px)" },
     },
     fx: "streaks-rtl",
     count: 5,
@@ -327,9 +327,10 @@ export function PartnerShowcase() {
               animate={reduceMotion ? { opacity: 1 } : variant.animate}
               exit={reduceMotion ? { opacity: 0 } : variant.exit}
               transition={{
-                duration: reduceMotion ? 0.3 : 1.35,
-                ease: [0.22, 1, 0.36, 1],
-                opacity: { duration: reduceMotion ? 0.3 : 1.1, ease: "easeInOut" },
+                duration: reduceMotion ? 0.3 : 1.65,
+                ease: [0.4, 0, 0.2, 1],
+                opacity: { duration: reduceMotion ? 0.3 : 1.5, ease: "easeInOut" },
+                filter: { duration: reduceMotion ? 0.3 : 1.7, ease: "easeInOut" },
               }}
               className="absolute inset-0 flex h-full w-full items-center justify-center"
             >
