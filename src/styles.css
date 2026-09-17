@@ -361,6 +361,15 @@
     .partner-header-track {
       animation: none;
     }
+
+    .partner-header-marquee {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .partner-header-marquee::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   @keyframes marquee {
