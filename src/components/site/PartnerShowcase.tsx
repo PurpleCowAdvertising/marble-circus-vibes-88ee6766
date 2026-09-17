@@ -113,7 +113,7 @@ export function PartnerShowcase() {
   );
 
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden">
+    <div className="relative flex h-full w-full flex-col overflow-hidden">
       <span
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-black/55 [background-image:radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_18%,transparent),transparent_65%)]"
@@ -137,60 +137,64 @@ export function PartnerShowcase() {
         </span>
       )}
 
-      <p className="relative z-10 text-[10px] uppercase tracking-[0.5em] text-gold md:text-[11px]">
+      <p className="relative z-10 pt-16 text-center text-[10px] uppercase tracking-[0.5em] text-gold md:pt-[4.75rem] md:text-[11px]">
         Proudly partnered by
       </p>
 
-      <div
-        className="relative z-10 mt-8 flex h-40 w-[78vw] max-w-[620px] items-center justify-center md:mt-10 md:h-56"
-        style={{ perspective: 1200 }}
-      >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={sponsor.name}
-            initial={reduceMotion ? { opacity: 0 } : variant.initial}
-            animate={reduceMotion ? { opacity: 1 } : variant.animate}
-            exit={reduceMotion ? { opacity: 0 } : variant.exit}
-            transition={{ duration: reduceMotion ? 0.3 : 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="flex h-full w-full items-center justify-center"
-          >
-            {sponsor.url ? (
-              <a
-                href={sponsor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Visit ${sponsor.name}`}
-                className="flex h-full w-full items-center justify-center transition-transform duration-500 hover:scale-[1.04]"
-              >
-                {image}
-              </a>
-            ) : (
-              image
-            )}
-          </motion.div>
-        </AnimatePresence>
+      <div className="relative z-10 flex flex-1 items-center justify-center">
+        <div
+          className="flex h-40 w-[78vw] max-w-[620px] items-center justify-center md:h-56"
+          style={{ perspective: 1200 }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={sponsor.name}
+              initial={reduceMotion ? { opacity: 0 } : variant.initial}
+              animate={reduceMotion ? { opacity: 1 } : variant.animate}
+              exit={reduceMotion ? { opacity: 0 } : variant.exit}
+              transition={{ duration: reduceMotion ? 0.3 : 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="flex h-full w-full items-center justify-center"
+            >
+              {sponsor.url ? (
+                <a
+                  href={sponsor.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${sponsor.name}`}
+                  className="flex h-full w-full items-center justify-center transition-transform duration-500 hover:scale-[1.04]"
+                >
+                  {image}
+                </a>
+              ) : (
+                image
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
 
-      <div className="relative z-10 mt-10 flex items-center gap-1.5">
-        {SHOWCASE_PARTNERS.map((partner, i) => (
-          <button
-            key={partner.name}
-            type="button"
-            aria-label={`Show ${partner.name}`}
-            onClick={() => setIndex(i)}
-            className={`h-1 rounded-full transition-all duration-500 ${
-              i === index ? "w-6 bg-gold" : "w-1.5 bg-white/25 hover:bg-white/50"
-            }`}
-          />
-        ))}
-      </div>
+      <div className="relative z-10 flex flex-col items-center gap-4 pb-5 md:pb-7">
+        <div className="flex items-center gap-1.5">
+          {SHOWCASE_PARTNERS.map((partner, i) => (
+            <button
+              key={partner.name}
+              type="button"
+              aria-label={`Show ${partner.name}`}
+              onClick={() => setIndex(i)}
+              className={`h-1 rounded-full transition-all duration-500 ${
+                i === index ? "w-6 bg-gold" : "w-1.5 bg-white/25 hover:bg-white/50"
+              }`}
+            />
+          ))}
+        </div>
 
-      <Link
-        to="/partners"
-        className="relative z-10 mt-8 rounded-full border border-gold/40 px-5 py-2 text-[10px] uppercase tracking-[0.3em] text-white/80 transition-colors hover:border-gold hover:text-white"
-      >
-        All partners
-      </Link>
+        <Link
+          to="/partners"
+          className="rounded-full border border-gold/40 px-5 py-2 text-[10px] uppercase tracking-[0.3em] text-white/80 transition-colors hover:border-gold hover:text-white"
+        >
+          All partners
+        </Link>
+      </div>
     </div>
   );
 }
