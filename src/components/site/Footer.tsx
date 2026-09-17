@@ -149,7 +149,10 @@ export function Footer() {
       </div>
 
       <div className="border-t border-black/10 bg-white text-black md:border-0 md:bg-black md:text-white">
-        <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-center gap-1 px-6 py-3 text-center text-[10px] leading-tight md:gap-1.5 md:px-10 md:py-4 md:text-xs">
+        <div
+          className="mx-auto flex max-w-[1400px] flex-col items-center justify-center gap-1 px-6 py-3 text-center text-[10px] leading-tight md:gap-1.5 md:px-10 md:py-4 md:text-xs"
+          style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
+        >
           <p>Copyright 2016 Sony. All rights reserved.</p>
 
           <p className="tracking-widest">

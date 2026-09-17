@@ -163,6 +163,16 @@
     overflow-x: hidden;
   }
 
+  /* On phones the footer ends white, so the page canvas must be white too —
+     otherwise the browser reveals a dead black strip under the copyright when
+     the toolbar collapses or the scroll bounces. */
+  @media (max-width: 767px) {
+    html,
+    body {
+      background-color: #fff;
+    }
+  }
+
   #root {
     min-height: 100dvh;
   }
