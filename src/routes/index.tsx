@@ -7,7 +7,7 @@ import { FadeIn, Section } from "@/components/site/Section";
 import { Reveal, RevealGroup } from "@/components/site/Reveal";
 
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
-import { SocialWall } from "@/components/site/SocialWall";
+
 import { PartnerShowcase } from "@/components/site/PartnerShowcase";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
@@ -958,9 +958,6 @@ function HomePage() {
       </div>
       </VisibilityGate>
 
-      <VisibilityGate keyName="section:home.social">
-        <SocialWall />
-      </VisibilityGate>
 
       <TicketModal tier={activeTier} onClose={() => setActiveTier(null)} />
       <ParkRideModal open={parkRideOpen} onClose={() => setParkRideOpen(false)} />
