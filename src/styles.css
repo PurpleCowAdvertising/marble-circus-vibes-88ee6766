@@ -958,7 +958,8 @@
     opacity: 0;
   }
 }
-.brand-fx--streaks span {
+.brand-fx--streaks span,
+.brand-fx--streaks-rtl span {
   left: 0;
   width: 45%;
   height: 2px;
