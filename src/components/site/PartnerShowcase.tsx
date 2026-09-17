@@ -137,7 +137,7 @@ export function PartnerShowcase() {
         </span>
       )}
 
-      <p className="relative z-10 pt-3 text-center text-[10px] uppercase tracking-[0.5em] text-gold md:pt-4 md:text-[11px]">
+      <p className="relative z-10 pt-16 text-center text-[10px] uppercase tracking-[0.5em] text-gold md:pt-[4.75rem] md:text-[11px]">
         Proudly partnered by
       </p>
 
