@@ -263,9 +263,112 @@
     animation-play-state: paused;
   }
 
+  .partner-header-rail {
+    position: absolute;
+    top: calc(env(safe-area-inset-top) + 3.85rem);
+    left: 50%;
+    display: flex;
+    width: min(calc(100% - 2rem), 22rem);
+    height: 1.75rem;
+    transform: translateX(-50%);
+    align-items: center;
+    gap: 0.875rem;
+    overflow: hidden;
+    border-block: 1px solid color-mix(in oklab, var(--color-gold) 18%, transparent);
+    background: color-mix(in oklab, var(--color-background) 78%, transparent);
+    padding-inline: 0.5rem;
+    backdrop-filter: blur(16px) saturate(1.25);
+    transition: opacity 500ms ease, transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .partner-header-marquee {
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+
+  .partner-header-track {
+    display: flex;
+    width: max-content;
+    animation: partner-header-flow 48s linear infinite;
+    will-change: transform;
+  }
+
+  .partner-header-sequence {
+    display: flex;
+    height: 1.15rem;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .partner-header-logo {
+    display: flex;
+    width: 4.5rem;
+    height: 1.15rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.72;
+    transition: opacity 250ms ease, transform 250ms ease;
+  }
+
+  .partner-header-logo:hover,
+  .partner-header-logo:focus-visible {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  .partner-header-marquee:hover .partner-header-track,
+  .partner-header-marquee:focus-within .partner-header-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes partner-header-flow {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .partner-header-rail {
+      top: 0.55rem;
+      width: min(calc(100% - 4rem), 76rem);
+      height: 2rem;
+      padding-inline: 0.75rem;
+    }
+
+    .partner-header-sequence {
+      height: 1.35rem;
+      gap: 2rem;
+      padding-right: 2rem;
+    }
+
+    .partner-header-logo {
+      width: 5.5rem;
+      height: 1.35rem;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .marquee-track {
       animation-duration: 90s;
+    }
+
+    .partner-header-track {
+      animation: none;
+    }
+
+    .partner-header-marquee {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .partner-header-marquee::-webkit-scrollbar {
+      display: none;
     }
   }
 

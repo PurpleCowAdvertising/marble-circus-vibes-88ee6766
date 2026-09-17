@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { useSubscribePopup } from "./SubscribePopup";
 import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.webp";
+import { SPONSORS } from "@/config/sponsors";
 
 type NavItem =
   | { kind: "route"; to: "/" | "/feed" | "/news" | "/merchandise" | "/contact" | "/partners" | "/faqs"; label: string }
@@ -26,6 +27,82 @@ const BUY_ACTIONS = [
   { label: "Buy Tickets", hash: "tickets" },
   { label: "Buy Merch", hash: "merchandise" },
 ] as const;
+
+const HEADER_PARTNER_NAMES = [
+  "SABC 1",
+  "Gauteng Province",
+  "Sport, Arts and Culture",
+  "Castle Lite",
+  "Sprite",
+  "RocoMamas",
+  "VEEV",
+  "McCafé",
+  "Galxboy",
+  "Gautrain",
+  "SAMPRA",
+  "Cabs Car Hire",
+  "Audi Centre Wonderboom",
+] as const;
+
+const HEADER_PARTNERS = HEADER_PARTNER_NAMES.flatMap((name) => {
+  const sponsor = SPONSORS.find((item) => item.name === name);
+  return sponsor ? [sponsor] : [];
+});
+
+function PartnerLogoSequence({ duplicate = false }: { duplicate?: boolean }) {
+  return (
+    <div className="partner-header-sequence" aria-hidden={duplicate || undefined}>
+      {HEADER_PARTNERS.map((sponsor) => {
+        const logoImage = (
+          <img
+            src={sponsor.logo}
+            alt={duplicate ? "" : `${sponsor.name} logo`}
+            className={`h-full w-full object-contain object-center ${sponsor.wide ? "max-w-24" : "max-w-16"}`}
+          />
+        );
+
+        return sponsor.url ? (
+          <a
+            key={sponsor.name}
+            href={sponsor.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            tabIndex={duplicate ? -1 : 0}
+            aria-label={duplicate ? undefined : `Visit ${sponsor.name}`}
+            className="partner-header-logo"
+          >
+            {logoImage}
+          </a>
+        ) : (
+          <span key={sponsor.name} className="partner-header-logo">
+            {logoImage}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+function PartnerHeaderRail({ hidden }: { hidden: boolean }) {
+  return (
+    <div
+      className={`partner-header-rail ${hidden ? "md:pointer-events-none md:-translate-y-5 md:opacity-0" : "md:translate-y-0 md:opacity-100"}`}
+    >
+      <Link
+        to="/partners"
+        className="hidden shrink-0 whitespace-nowrap text-[8px] font-bold uppercase tracking-[0.3em] text-gold/70 transition-colors hover:text-gold md:block"
+      >
+        Official Partners
+      </Link>
+      <div className="partner-header-marquee" aria-label="Official partners">
+        <div className="partner-header-track">
+          <PartnerLogoSequence />
+          <PartnerLogoSequence duplicate />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function scrollToHash(hash: string) {
 
@@ -138,7 +215,13 @@ export function Header() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-out">
-        <div className="relative mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 pt-3 sm:px-6 sm:pt-4 md:px-8 md:pt-5">
+        <PartnerHeaderRail hidden={condensed} />
+
+        <div
+          className={`relative mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 transition-[padding] duration-700 ease-out sm:px-6 md:px-8 ${
+            condensed ? "pt-3 sm:pt-4 md:pt-5" : "pt-[4.65rem] sm:pt-[4.65rem] md:pt-[3.65rem]"
+          }`}
+        >
           <Link to="/" aria-label="Scorpion Kings Live" className="hidden shrink-0 items-center md:flex" onClick={closeMenu}>
             <img
               src={logo}
@@ -148,7 +231,9 @@ export function Header() {
           </Link>
 
           <div
-            className="absolute left-1/2 top-3 z-10 hidden -translate-x-1/2 justify-center sm:top-4 md:top-5 md:flex"
+            className={`absolute left-1/2 z-10 hidden -translate-x-1/2 justify-center transition-[top] duration-700 ease-out md:flex ${
+              condensed ? "top-3 sm:top-4 md:top-5" : "top-[4.65rem] sm:top-[4.65rem] md:top-[3.65rem]"
+            }`}
             onMouseEnter={() => setNavHovered(true)}
             onMouseLeave={() => setNavHovered(false)}
           >
