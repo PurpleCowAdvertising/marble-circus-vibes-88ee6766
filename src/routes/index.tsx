@@ -214,7 +214,21 @@ function HomePage() {
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
               <figure className="relative h-[100svh] w-full overflow-hidden bg-black md:h-[85vh] md:max-h-[820px] md:min-h-[420px]">
-                <PartnerShowcase />
+                <video
+                  key={isMobile ? "mobile" : "desktop"}
+                  src={isMobile ? heroVideoMobileAsset.url : heroVideoAsset.url}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 h-full w-full object-contain md:object-cover"
+                />
+
+                <div className="absolute inset-0">
+                  <PartnerShowcase />
+                </div>
 
                 <figcaption className="sr-only">
                   Official partners of Scorpion Kings Live.
