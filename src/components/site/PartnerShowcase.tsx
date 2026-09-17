@@ -264,8 +264,9 @@ export function PartnerShowcase() {
               animate={reduceMotion ? { opacity: 1 } : variant.animate}
               exit={reduceMotion ? { opacity: 0 } : variant.exit}
               transition={{ duration: reduceMotion ? 0.3 : 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="flex h-full w-full items-center justify-center"
+              className="relative flex h-full w-full items-center justify-center"
             >
+              {!reduceMotion && <BrandFx fx={brand.fx} count={brand.count} />}
               {sponsor.url ? (
                 <a
                   href={sponsor.url}
