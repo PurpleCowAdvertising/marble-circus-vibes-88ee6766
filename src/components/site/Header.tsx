@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 
 import { useSubscribePopup } from "./SubscribePopup";
 import { useVisiblePageRoutes } from "./visibility";
-import logo from "@/assets/logo.webp";
+
 
 type NavItem =
   | { kind: "route"; to: "/" | "/feed" | "/news" | "/merchandise" | "/contact" | "/partners" | "/faqs"; label: string }
@@ -304,12 +304,9 @@ export function Header() {
             menuOpen ? "translate-y-0" : "-translate-y-full"
           }`}
         >
-          <div className="flex items-center justify-between px-4 pt-4 sm:px-6">
-            <Link to="/" onClick={closeMenu} aria-label="Scorpion Kings Live">
-              <img src={logo} alt="Scorpion Kings Live" className="h-9 w-auto" />
-            </Link>
-
+          <div className="flex items-center justify-end px-4 pt-4 sm:px-6">
             <button
+
               type="button"
               onClick={closeMenu}
               aria-label="Close menu"
