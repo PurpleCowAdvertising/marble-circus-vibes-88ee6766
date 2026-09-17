@@ -73,27 +73,31 @@ const CATEGORIES = [
     ],
   },
   {
-    title: "Venue & Experience",
+    title: "Safety & Security",
     items: [
       {
-        q: "Is the event cashless or cash?",
-        a: "All formal vendors will be cashless only. Informal vendors will accept both cash and cashless payments.",
+        q: "Who is handling security at the event?",
+        a: "The same security company that successfully managed security operations for the Chris Brown and Travis Scott concerts has been appointed for Scorpion Kings Live, with security capacity doubled for the event.",
       },
       {
-        q: "What can I bring, and what is prohibited?",
-        a: "Please bring only your ID, ticket(s) and a valid payment method, such as cash or a bank card.",
+        q: "Is the event approved by the authorities?",
+        a: [
+          "Fully approved by the Joint Operations Committee (JOC).",
+          "Comprehensive SAPS and JMPD presence throughout the event.",
+          "Full support from FNB Stadium Security teams.",
+        ],
       },
       {
-        q: "Will merchandise be sold at the venue?",
-        a: "Yes. SK Live merchandise will be available for purchase at the venue.",
+        q: "How many marshals will be on site?",
+        a: "More than 400 marshals will be deployed and supported by dedicated security personnel.",
       },
       {
-        q: "Is the venue wheelchair-friendly?",
-        a: "Yes. All entry points and gates into the stadium are wheelchair friendly.",
+        q: "What happens if I need medical assistance?",
+        a: "There is an extensive Emergency Medical Services (EMS) deployment to provide on-site medical care and rapid response support.",
       },
       {
-        q: "Which gate do I use?",
-        a: "Gate M & G – Scorpion Ring & Scorpion Field Standing. Gate J, K & L – all seated tickets. Gate A & C – VIP.",
+        q: "What is the commitment to attendee safety?",
+        a: "Our commitment is to ensure a safe, secure, and enjoyable experience for all attendees.",
       },
     ],
   },
