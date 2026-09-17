@@ -224,7 +224,7 @@ export function MerchCTA() {
 
       <div
         className={[
-          'fixed right-0 z-[60]',
+          'fixed right-0 z-[60] hidden sm:block',
           'bottom-32 sm:bottom-36',
           'transition-[transform,opacity] duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)]',
           mounted ? 'translate-x-0' : 'translate-x-6 opacity-0',
