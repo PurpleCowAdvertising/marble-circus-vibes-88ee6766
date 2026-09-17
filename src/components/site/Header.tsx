@@ -220,11 +220,9 @@ export function Header() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-out">
-        <PartnerHeaderRail hidden={condensed} />
-
         <div
           className={`relative mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 transition-[padding] duration-700 ease-out sm:px-6 md:px-8 ${
-            condensed ? "pt-3 sm:pt-4 md:pt-5" : "pt-[4.65rem] sm:pt-[4.65rem] md:pt-[3.65rem]"
+            condensed ? "pt-3 sm:pt-4 md:pt-5" : "pt-3 sm:pt-4 md:pt-5"
           }`}
         >
           <Link to="/" aria-label="Scorpion Kings Live" className="hidden shrink-0 items-center md:flex" onClick={closeMenu}>
@@ -236,12 +234,11 @@ export function Header() {
           </Link>
 
           <div
-            className={`absolute left-1/2 z-10 hidden -translate-x-1/2 justify-center transition-[top] duration-700 ease-out md:flex ${
-              condensed ? "top-3 sm:top-4 md:top-5" : "top-[4.65rem] sm:top-[4.65rem] md:top-[3.65rem]"
-            }`}
+            className="absolute left-1/2 top-3 z-10 hidden -translate-x-1/2 justify-center transition-[top] duration-700 ease-out sm:top-4 md:top-5 md:flex"
             onMouseEnter={() => setNavHovered(true)}
             onMouseLeave={() => setNavHovered(false)}
           >
+
             <span
               aria-hidden
               className={`pointer-events-none absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_55%,transparent),transparent_70%)] blur-2xl transition-opacity duration-1000 ease-out ${
