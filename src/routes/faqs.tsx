@@ -228,7 +228,24 @@ function FaqsPage() {
         </VisibilityGate>
 
         <VisibilityGate keyName="section:faqs.categories">
-          <div className="mt-4 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
+          <FadeIn>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {QUICK_FACTS.map((fact) => (
+                <div
+                  key={fact.label}
+                  className="rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-xl"
+                >
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold">{fact.label}</p>
+
+                  <p className="mt-2 font-display text-lg font-bold leading-tight text-white">{fact.value}</p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </VisibilityGate>
+
+        <VisibilityGate keyName="section:faqs.categories">
+          <div className="mt-12 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
             {CATEGORIES.map((category, categoryIndex) => (
               <FadeIn key={category.title} delay={categoryIndex * 0.05} className="contents">
                 <div className="md:sticky md:top-24 md:self-start">
