@@ -15,6 +15,10 @@ import { ParkRideModal } from "@/components/site/ParkRideModal";
 
 import { ShopifyCollection } from "@/components/ShopifyCollection";
 import { SPONSORS } from "@/config/sponsors";
+import { useIsMobile } from "@/hooks/use-mobile";
+
+import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
+import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
 
 const HOME_PARTNER_NAMES = [
   "SABC 1",
@@ -188,6 +192,8 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
   const [parkRideOpen, setParkRideOpen] = useState(false);
+
+  const isMobile = useIsMobile();
 
   const heroRef = useRef<HTMLDivElement>(null);
 

@@ -113,10 +113,10 @@ export function PartnerShowcase() {
   );
 
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden bg-black">
+    <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden">
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_22%,transparent),transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-black/55 [background-image:radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent)_18%,transparent),transparent_65%)]"
       />
 
       {!reduceMotion && (
