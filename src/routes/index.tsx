@@ -17,8 +17,8 @@ import { ShopifyCollection } from "@/components/ShopifyCollection";
 import { SPONSORS } from "@/config/sponsors";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-import heroVideoAsset from "@/assets/hero-video-clean.mp4.asset.json";
-import heroVideoMobileAsset from "@/assets/hero-video-mobile-clean.mp4.asset.json";
+import heroVideoAsset from "@/assets/hero-video-clean.webm.asset.json";
+import heroVideoMobileAsset from "@/assets/hero-video-mobile-clean.webm.asset.json";
 
 const HOME_PARTNER_NAMES = [
   "SABC 1",
