@@ -318,15 +318,22 @@ export function PartnerShowcase() {
             </span>
           )}
 
-          <AnimatePresence mode="wait">
+          {/* No `mode="wait"`: the outgoing logo dissolves while the next one is
+              already forming, so one brand morphs straight into the next. */}
+          <AnimatePresence initial={false}>
             <motion.div
               key={sponsor.name}
               initial={reduceMotion ? { opacity: 0 } : variant.initial}
               animate={reduceMotion ? { opacity: 1 } : variant.animate}
               exit={reduceMotion ? { opacity: 0 } : variant.exit}
-              transition={{ duration: reduceMotion ? 0.3 : 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="relative flex h-full w-full items-center justify-center"
+              transition={{
+                duration: reduceMotion ? 0.3 : 1.35,
+                ease: [0.22, 1, 0.36, 1],
+                opacity: { duration: reduceMotion ? 0.3 : 1.1, ease: "easeInOut" },
+              }}
+              className="absolute inset-0 flex h-full w-full items-center justify-center"
             >
+
               {!reduceMotion && <BrandFx fx={brand.fx} count={brand.count} />}
 
               {sponsor.url ? (
