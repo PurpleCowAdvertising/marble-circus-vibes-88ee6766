@@ -128,6 +128,78 @@ const CATEGORIES = [
   },
 ] as const;
 
+const QUICK_FACTS = [
+  { label: "Gates open", value: "12:00 PM" },
+  { label: "No entry after", value: "9:30 PM" },
+  { label: "Pre-show", value: "1:00 – 6:30 PM" },
+  { label: "Main show", value: "7:00 – 10:30 PM" },
+  { label: "Payments", value: "Cashless at formal vendors" },
+  { label: "Age limit", value: "14+ with ID, adult required" },
+  { label: "Bring", value: "ID, ticket, card or cash" },
+  { label: "Tickets", value: "Webtickets only" },
+] as const;
+
+const PROHIBITED = [
+  {
+    title: "Weapons & dangerous items",
+    items: [
+      "Firearms and ammunition",
+      "Knives, traditional weapons or any dangerous weapon",
+      "Sharp or pointed objects that may be considered dangerous",
+      "Any object that may reasonably be used as a weapon",
+    ],
+  },
+  {
+    title: "Explosives & hazardous items",
+    items: [
+      "Fireworks, flares and smoke bombs",
+      "Explosives or incendiary devices",
+      "Gas bottles or compressed gas containers",
+      "Spray paint",
+      "Pepper spray, mace or similar self-defence sprays",
+      "Hazardous chemicals",
+    ],
+  },
+  {
+    title: "Alcohol, drugs, food & drinks",
+    items: [
+      "Alcohol brought into the venue",
+      "Illegal or non-prescribed narcotics",
+      "Outside alcoholic or non-alcoholic beverages",
+      "Glass bottles or containers",
+      "Cans and metal containers",
+      "Outside food, unless permitted for medical or special dietary needs",
+      "Braai or cooking equipment",
+    ],
+  },
+  {
+    title: "Equipment & large items",
+    items: [
+      "Bicycles, scooters and skateboards",
+      "Sporting equipment",
+      "Umbrellas with sharp steel pointed ends",
+      "Unauthorised musical instruments",
+      "Professional photographic equipment, including lenses over 300 mm",
+      "Professional video or audio recording equipment",
+      "Lasers, strobes and powerful detachable photographic flashes",
+      "Drones",
+    ],
+  },
+  {
+    title: "Flags, banners & promo material",
+    items: [
+      "Offensive, discriminatory, racist, sexist, vulgar or inflammatory banners, flags or signage",
+      "Unauthorised promotional material or hand-outs",
+      "Ambush-marketing material",
+      "Any item deemed to create a safety risk or nuisance",
+    ],
+  },
+  {
+    title: "Animals",
+    items: ["No animals are permitted, with the exception of authorised guide dogs."],
+  },
+] as const;
+
 const NOTES = [
   "No refunds",
   "No outside food and drinks",
