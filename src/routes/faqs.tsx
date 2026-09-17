@@ -97,6 +97,35 @@ const CATEGORIES = [
       },
     ],
   },
+  {
+    title: "Safety & Security",
+    items: [
+      {
+        q: "Who is handling security at the event?",
+        a: "The same security company that successfully managed security operations for the Chris Brown and Travis Scott concerts has been appointed for Scorpion Kings Live, with security capacity doubled for the event.",
+      },
+      {
+        q: "Is the event approved by the authorities?",
+        a: [
+          "Fully approved by the Joint Operations Committee (JOC).",
+          "Comprehensive SAPS and JMPD presence throughout the event.",
+          "Full support from FNB Stadium Security teams.",
+        ],
+      },
+      {
+        q: "How many marshals will be on site?",
+        a: "More than 400 marshals will be deployed and supported by dedicated security personnel.",
+      },
+      {
+        q: "What happens if I need medical assistance?",
+        a: "There is an extensive Emergency Medical Services (EMS) deployment to provide on-site medical care and rapid response support.",
+      },
+      {
+        q: "What is the commitment to attendee safety?",
+        a: "Our commitment is to ensure a safe, secure, and enjoyable experience for all attendees.",
+      },
+    ],
+  },
 ] as const;
 
 const NOTES = [
@@ -150,7 +179,18 @@ function FaqsPage() {
                       </AccordionTrigger>
 
                       <AccordionContent className="pb-6 text-base leading-relaxed text-white/65">
-                        {item.a}
+                        {typeof item.a === "string" ? (
+                          item.a
+                        ) : (
+                          <ul className="grid gap-2">
+                            {item.a.map((line) => (
+                              <li key={line} className="flex gap-3">
+                                <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                                {line}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
