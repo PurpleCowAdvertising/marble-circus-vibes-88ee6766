@@ -34,7 +34,7 @@ const CATEGORIES = [
       },
       {
         q: "What are the entry times?",
-        a: "Gates open at 12:00 PM. No entry will be permitted after 9:00 PM.",
+        a: "Gates open at 12:00 PM. No entry will be permitted after 9:30 PM.",
       },
       {
         q: "What time does the show start?",
