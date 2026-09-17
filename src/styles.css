@@ -793,8 +793,262 @@
   animation-iteration-count: infinite;
 }
 
+/* ---- brand-specific hero effects ---- */
+.brand-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.brand-fx span {
+  position: absolute;
+  border-radius: 9999px;
+}
+
+/* Castle Lite — frost crystals settling in */
+@keyframes brand-frost {
+  0% {
+    transform: translate(var(--fx-x), var(--fx-y)) scale(1.6) rotate(0deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(0.2) rotate(180deg);
+    opacity: 0;
+  }
+}
+.brand-fx--frost span {
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: #cfeaff;
+  box-shadow: 0 0 12px rgba(180, 225, 255, 0.9);
+  animation: brand-frost 2.4s ease-out infinite;
+}
+
+/* Sprite — fizzing bubbles */
+@keyframes brand-fizz {
+  0% {
+    transform: translateY(20px) scale(0.4);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-190px) scale(1.1);
+    opacity: 0;
+  }
+}
+.brand-fx--fizz span {
+  bottom: 10%;
+  width: 7px;
+  height: 7px;
+  background: rgba(214, 255, 226, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  animation: brand-fizz 2.6s ease-in infinite;
+}
+
+/* VEEV — soft smoke screen */
+@keyframes brand-smoke {
+  0% {
+    transform: translate(0, 40px) scale(0.6);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate(var(--fx-x), -120px) scale(2.2);
+    opacity: 0;
+  }
+}
+.brand-fx--smoke span {
+  bottom: 15%;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 70%);
+  filter: blur(14px);
+  animation: brand-smoke 4.2s ease-out infinite;
+}
+
+/* McCafé — rising steam */
+@keyframes brand-steam {
+  0% {
+    transform: translateY(30px) scaleX(0.6);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-150px) scaleX(1.6);
+    opacity: 0;
+  }
+}
+.brand-fx--steam span {
+  bottom: 18%;
+  width: 40px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(255, 236, 205, 0.45), transparent 70%);
+  filter: blur(10px);
+  animation: brand-steam 3.6s ease-out infinite;
+}
+
+/* RocoMamas — flame sparks */
+@keyframes brand-sizzle {
+  0% {
+    transform: translateY(10px) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) translateX(var(--fx-x)) scale(0.2);
+    opacity: 0;
+  }
+}
+.brand-fx--sizzle span {
+  bottom: 22%;
+  width: 4px;
+  height: 4px;
+  background: #ffb347;
+  box-shadow: 0 0 10px rgba(255, 110, 40, 0.9);
+  animation: brand-sizzle 2s ease-out infinite;
+}
+
+/* SAMPRA — sound rings */
+@keyframes brand-wave {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.4);
+    opacity: 0;
+  }
+}
+.brand-fx--waves span {
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  border: 1px solid color-mix(in oklab, var(--color-accent) 70%, transparent);
+  background: transparent;
+  animation: brand-wave 2.8s ease-out infinite;
+}
+
+/* Gautrain / Cabs / Audi — speed streaks */
+@keyframes brand-streak {
+  0% {
+    transform: translateX(-60%) scaleX(0.3);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(160%) scaleX(1.4);
+    opacity: 0;
+  }
+}
+.brand-fx--streaks span {
+  left: 0;
+  width: 45%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  animation: brand-streak 1.8s ease-out infinite;
+}
+.brand-fx--streaks-rtl span {
+  animation-direction: reverse;
+}
+
+/* Audi — precision light sweep */
+@keyframes brand-sweep {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(160%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+.brand-fx--sweep span {
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 16%;
+  border-radius: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: brand-sweep 3s ease-in-out infinite;
+}
+
+/* SABC 1 — CRT scanlines */
+@keyframes brand-scan {
+  0% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+}
+.brand-fx--scan span {
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 0;
+  background: linear-gradient(90deg, transparent, rgba(180, 235, 255, 0.8), transparent);
+  animation: brand-scan 2.4s linear infinite;
+}
+
+/* Galxboy — fabric shimmer */
+@keyframes brand-shimmer {
+  0% {
+    transform: translateX(-140%) skewX(-24deg);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(180%) skewX(-24deg);
+    opacity: 0;
+  }
+}
+.brand-fx--shimmer span {
+  top: 0;
+  height: 100%;
+  width: 22%;
+  border-radius: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--color-accent) 45%, transparent),
+    transparent
+  );
+  animation: brand-shimmer 3.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .partner-showcase-particle {
+  .partner-showcase-particle,
+  .brand-fx span {
     animation: none;
     opacity: 0;
   }
