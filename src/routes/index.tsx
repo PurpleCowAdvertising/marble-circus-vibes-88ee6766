@@ -958,9 +958,6 @@ function HomePage() {
       </div>
       </VisibilityGate>
 
-      <VisibilityGate keyName="section:home.social">
-        <SocialWall />
-      </VisibilityGate>
 
       <TicketModal tier={activeTier} onClose={() => setActiveTier(null)} />
       <ParkRideModal open={parkRideOpen} onClose={() => setParkRideOpen(false)} />
