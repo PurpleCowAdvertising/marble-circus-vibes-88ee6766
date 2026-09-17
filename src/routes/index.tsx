@@ -8,11 +8,11 @@ import { Reveal, RevealGroup } from "@/components/site/Reveal";
 
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { SocialWall } from "@/components/site/SocialWall";
+import { PartnerShowcase } from "@/components/site/PartnerShowcase";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { ParkRideModal } from "@/components/site/ParkRideModal";
 
-import { useIsMobile } from "@/hooks/use-mobile";
 import { ShopifyCollection } from "@/components/ShopifyCollection";
 import { SPONSORS } from "@/config/sponsors";
 
@@ -39,8 +39,6 @@ const HOME_PARTNER_ORDER = [
   ...SPONSORS.filter((s) => !HOME_PARTNER_NAMES.includes(s.name)),
 ];
 
-import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
-import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
 
 import majorLeague from "@/assets/artists/major-league.webp";
 import tyla from "@/assets/artists/tyla.webp";
@@ -191,11 +189,7 @@ function HomePage() {
   const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
   const [parkRideOpen, setParkRideOpen] = useState(false);
 
-  const isMobile = useIsMobile();
-
   const heroRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [cycle, setCycle] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -205,39 +199,6 @@ function HomePage() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  useEffect(() => {
-    const video = videoRef.current;
-
-    if (!video) return;
-
-    video.muted = true;
-
-    const tryPlay = () => {
-      video.play().catch(() => {});
-    };
-
-    tryPlay();
-
-    let lastTime = 0;
-
-    const onTimeUpdate = () => {
-      if (video.currentTime + 0.5 < lastTime) {
-        setCycle((current) => current + 1);
-      }
-
-      lastTime = video.currentTime;
-    };
-
-    video.addEventListener("timeupdate", onTimeUpdate);
-    video.addEventListener("loadedmetadata", tryPlay);
-    video.addEventListener("canplay", tryPlay);
-
-    return () => {
-      video.removeEventListener("timeupdate", onTimeUpdate);
-      video.removeEventListener("loadedmetadata", tryPlay);
-      video.removeEventListener("canplay", tryPlay);
-    };
-  }, []);
 
   return (
     <PageGate keyName="page:home">
@@ -253,24 +214,10 @@ function HomePage() {
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
               <figure className="relative h-[100svh] w-full overflow-hidden bg-black md:h-[85vh] md:max-h-[820px] md:min-h-[420px]">
-                <video
-                  ref={videoRef}
-                  key={isMobile ? "mobile" : "desktop"}
-                  src={isMobile ? heroVideoMobileAsset.url : heroVideoAsset.url}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  aria-label="Scorpion Kings Live logo reveal"
-                  className="relative h-full w-full object-contain md:object-cover"
-                />
-
-                <div className="pointer-events-none absolute inset-0" />
-
+                <PartnerShowcase />
 
                 <figcaption className="sr-only">
-                  Scorpion Kings Live footage of DJ Maphorisa and Kabza De Small on stage.
+                  Official partners of Scorpion Kings Live.
                 </figcaption>
               </figure>
             </motion.div>

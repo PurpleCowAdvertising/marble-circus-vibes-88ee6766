@@ -5,7 +5,6 @@ import { Menu, X } from "lucide-react";
 import { useSubscribePopup } from "./SubscribePopup";
 import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.webp";
-import { SPONSORS } from "@/config/sponsors";
 
 type NavItem =
   | { kind: "route"; to: "/" | "/feed" | "/news" | "/merchandise" | "/contact" | "/partners" | "/faqs"; label: string }
@@ -27,87 +26,6 @@ const BUY_ACTIONS = [
   { label: "Buy Tickets", hash: "tickets" },
   { label: "Buy Merch", hash: "merchandise" },
 ] as const;
-
-const HEADER_PARTNER_NAMES = [
-  "SABC 1",
-  "Gauteng Province",
-  "Sport, Arts and Culture",
-  "Castle Lite",
-  "Sprite",
-  "RocoMamas",
-  "VEEV",
-  "McCafé",
-  "Galxboy",
-  "Gautrain",
-  "SAMPRA",
-  "Cabs Car Hire",
-  "Audi Centre Wonderboom",
-] as const;
-
-const HEADER_PARTNERS = HEADER_PARTNER_NAMES.flatMap((name) => {
-  const sponsor = SPONSORS.find((item) => item.name === name);
-  return sponsor ? [sponsor] : [];
-});
-
-function PartnerLogoSequence({ duplicate = false }: { duplicate?: boolean }) {
-  return (
-    <div className="partner-header-sequence" aria-hidden={duplicate || undefined}>
-      {HEADER_PARTNERS.map((sponsor, index) => {
-        const inner = (
-          <>
-            <span aria-hidden className="partner-header-spark" />
-            <span aria-hidden className="partner-header-spark partner-header-spark--two" />
-            <img
-              src={sponsor.logo}
-              alt={duplicate ? "" : `${sponsor.name} logo`}
-              className={`h-full w-full object-contain object-center ${sponsor.wide ? "max-w-36" : "max-w-24"}`}
-            />
-          </>
-        );
-
-        const style = { animationDelay: `${(index % 7) * 0.9}s` } as const;
-
-        return sponsor.url ? (
-          <a
-            key={sponsor.name}
-            href={sponsor.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            tabIndex={duplicate ? -1 : 0}
-            aria-label={duplicate ? undefined : `Visit ${sponsor.name}`}
-            className="partner-header-logo"
-            style={style}
-          >
-            {inner}
-          </a>
-        ) : (
-          <span key={sponsor.name} className="partner-header-logo" style={style}>
-            {inner}
-          </span>
-        );
-      })}
-    </div>
-  );
-}
-
-function PartnerHeaderRail({ hidden }: { hidden: boolean }) {
-  return (
-    <div
-      className={`partner-header-rail ${hidden ? "md:pointer-events-none md:-translate-y-3 md:opacity-0" : "md:translate-y-0 md:opacity-100"}`}
-    >
-      <Link to="/partners" className="partner-header-label">
-        Official Partners
-      </Link>
-      <div className="partner-header-marquee" aria-label="Official partners">
-        <div className="partner-header-track">
-          <PartnerLogoSequence />
-          <PartnerLogoSequence duplicate />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 
 function scrollToHash(hash: string) {
 
@@ -370,7 +288,7 @@ export function Header() {
           </button>
         </div>
 
-        <PartnerHeaderRail hidden={condensed} />
+        
       </header>
 
 
