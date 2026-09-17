@@ -143,15 +143,8 @@ export function Header() {
             condensed ? "pt-3 sm:pt-4 md:pt-5" : "pt-3 sm:pt-4 md:pt-5"
           }`}
         >
-          <Link to="/" aria-label="Scorpion Kings Live" className="hidden shrink-0 items-center md:flex" onClick={closeMenu}>
-            <img
-              src={logo}
-              alt="Scorpion Kings Live"
-              className={`w-auto transition-all duration-700 ease-out ${scrolled ? "h-8 md:h-8" : "h-10 md:h-10"}`}
-            />
-          </Link>
-
           <div
+
             className="absolute left-1/2 top-3 z-10 hidden -translate-x-1/2 justify-center transition-[top] duration-700 ease-out sm:top-4 md:top-5 md:flex"
             onMouseEnter={() => setNavHovered(true)}
             onMouseLeave={() => setNavHovered(false)}
@@ -267,7 +260,8 @@ export function Header() {
           </div>
 
 
-          <div className="hidden shrink-0 items-center gap-2 md:flex">
+          <div className="ml-auto hidden shrink-0 items-center gap-2 md:flex">
+
             <button
               type="button"
               onClick={() => openSubscribe("header")}
