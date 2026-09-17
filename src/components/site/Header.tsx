@@ -52,14 +52,20 @@ const HEADER_PARTNERS = HEADER_PARTNER_NAMES.flatMap((name) => {
 function PartnerLogoSequence({ duplicate = false }: { duplicate?: boolean }) {
   return (
     <div className="partner-header-sequence" aria-hidden={duplicate || undefined}>
-      {HEADER_PARTNERS.map((sponsor) => {
-        const logoImage = (
-          <img
-            src={sponsor.logo}
-            alt={duplicate ? "" : `${sponsor.name} logo`}
-            className={`h-full w-full object-contain object-center ${sponsor.wide ? "max-w-24" : "max-w-16"}`}
-          />
+      {HEADER_PARTNERS.map((sponsor, index) => {
+        const inner = (
+          <>
+            <span aria-hidden className="partner-header-spark" />
+            <span aria-hidden className="partner-header-spark partner-header-spark--two" />
+            <img
+              src={sponsor.logo}
+              alt={duplicate ? "" : `${sponsor.name} logo`}
+              className={`h-full w-full object-contain object-center ${sponsor.wide ? "max-w-36" : "max-w-24"}`}
+            />
+          </>
         );
+
+        const style = { animationDelay: `${(index % 7) * 0.9}s` } as const;
 
         return sponsor.url ? (
           <a
@@ -70,12 +76,13 @@ function PartnerLogoSequence({ duplicate = false }: { duplicate?: boolean }) {
             tabIndex={duplicate ? -1 : 0}
             aria-label={duplicate ? undefined : `Visit ${sponsor.name}`}
             className="partner-header-logo"
+            style={style}
           >
-            {logoImage}
+            {inner}
           </a>
         ) : (
-          <span key={sponsor.name} className="partner-header-logo">
-            {logoImage}
+          <span key={sponsor.name} className="partner-header-logo" style={style}>
+            {inner}
           </span>
         );
       })}
@@ -86,12 +93,9 @@ function PartnerLogoSequence({ duplicate = false }: { duplicate?: boolean }) {
 function PartnerHeaderRail({ hidden }: { hidden: boolean }) {
   return (
     <div
-      className={`partner-header-rail ${hidden ? "md:pointer-events-none md:-translate-y-5 md:opacity-0" : "md:translate-y-0 md:opacity-100"}`}
+      className={`partner-header-rail ${hidden ? "md:pointer-events-none md:-translate-y-3 md:opacity-0" : "md:translate-y-0 md:opacity-100"}`}
     >
-      <Link
-        to="/partners"
-        className="hidden shrink-0 whitespace-nowrap text-[8px] font-bold uppercase tracking-[0.3em] text-gold/70 transition-colors hover:text-gold md:block"
-      >
+      <Link to="/partners" className="partner-header-label">
         Official Partners
       </Link>
       <div className="partner-header-marquee" aria-label="Official partners">
@@ -103,6 +107,7 @@ function PartnerHeaderRail({ hidden }: { hidden: boolean }) {
     </div>
   );
 }
+
 
 function scrollToHash(hash: string) {
 
