@@ -369,7 +369,10 @@ export function Header() {
             <Menu size={20} />
           </button>
         </div>
+
+        <PartnerHeaderRail hidden={condensed} />
       </header>
+
 
       <div
         className={`fixed inset-0 z-[60] md:hidden ${menuOpen ? "" : "pointer-events-none"}`}
