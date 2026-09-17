@@ -128,6 +128,78 @@ const CATEGORIES = [
   },
 ] as const;
 
+const QUICK_FACTS = [
+  { label: "Gates open", value: "12:00 PM" },
+  { label: "No entry after", value: "9:30 PM" },
+  { label: "Pre-show", value: "1:00 – 6:30 PM" },
+  { label: "Main show", value: "7:00 – 10:30 PM" },
+  { label: "Payments", value: "Cashless at formal vendors" },
+  { label: "Age limit", value: "14+ with ID, adult required" },
+  { label: "Bring", value: "ID, ticket, card or cash" },
+  { label: "Tickets", value: "Webtickets only" },
+] as const;
+
+const PROHIBITED = [
+  {
+    title: "Weapons & dangerous items",
+    items: [
+      "Firearms and ammunition",
+      "Knives, traditional weapons or any dangerous weapon",
+      "Sharp or pointed objects that may be considered dangerous",
+      "Any object that may reasonably be used as a weapon",
+    ],
+  },
+  {
+    title: "Explosives & hazardous items",
+    items: [
+      "Fireworks, flares and smoke bombs",
+      "Explosives or incendiary devices",
+      "Gas bottles or compressed gas containers",
+      "Spray paint",
+      "Pepper spray, mace or similar self-defence sprays",
+      "Hazardous chemicals",
+    ],
+  },
+  {
+    title: "Alcohol, drugs, food & drinks",
+    items: [
+      "Alcohol brought into the venue",
+      "Illegal or non-prescribed narcotics",
+      "Outside alcoholic or non-alcoholic beverages",
+      "Glass bottles or containers",
+      "Cans and metal containers",
+      "Outside food, unless permitted for medical or special dietary needs",
+      "Braai or cooking equipment",
+    ],
+  },
+  {
+    title: "Equipment & large items",
+    items: [
+      "Bicycles, scooters and skateboards",
+      "Sporting equipment",
+      "Umbrellas with sharp steel pointed ends",
+      "Unauthorised musical instruments",
+      "Professional photographic equipment, including lenses over 300 mm",
+      "Professional video or audio recording equipment",
+      "Lasers, strobes and powerful detachable photographic flashes",
+      "Drones",
+    ],
+  },
+  {
+    title: "Flags, banners & promo material",
+    items: [
+      "Offensive, discriminatory, racist, sexist, vulgar or inflammatory banners, flags or signage",
+      "Unauthorised promotional material or hand-outs",
+      "Ambush-marketing material",
+      "Any item deemed to create a safety risk or nuisance",
+    ],
+  },
+  {
+    title: "Animals",
+    items: ["No animals are permitted, with the exception of authorised guide dogs."],
+  },
+] as const;
+
 const NOTES = [
   "No refunds",
   "No outside food and drinks",
@@ -156,7 +228,24 @@ function FaqsPage() {
         </VisibilityGate>
 
         <VisibilityGate keyName="section:faqs.categories">
-          <div className="mt-4 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
+          <FadeIn>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {QUICK_FACTS.map((fact) => (
+                <div
+                  key={fact.label}
+                  className="rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-xl"
+                >
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold">{fact.label}</p>
+
+                  <p className="mt-2 font-display text-lg font-bold leading-tight text-white">{fact.value}</p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </VisibilityGate>
+
+        <VisibilityGate keyName="section:faqs.categories">
+          <div className="mt-12 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
             {CATEGORIES.map((category, categoryIndex) => (
               <FadeIn key={category.title} delay={categoryIndex * 0.05} className="contents">
                 <div className="md:sticky md:top-24 md:self-start">
@@ -218,6 +307,40 @@ function FaqsPage() {
         </VisibilityGate>
 
 
+
+        <VisibilityGate keyName="section:faqs.categories">
+          <FadeIn delay={0.2}>
+            <div className="mt-12 rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-8">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Prohibited &amp; restricted items</p>
+
+              <h2 className="mt-2 font-display text-3xl font-bold text-white md:text-4xl">
+                Leave these at home.
+              </h2>
+
+              <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/65">
+                All persons, bags and belongings may be subject to security screening and inspection upon entry. Right
+                of admission is reserved.
+              </p>
+
+              <div className="mt-8 grid gap-8 md:grid-cols-2">
+                {PROHIBITED.map((group) => (
+                  <div key={group.title}>
+                    <h3 className="font-display text-lg font-bold uppercase tracking-wide text-gold">{group.title}</h3>
+
+                    <ul className="mt-3 grid gap-2">
+                      {group.items.map((item) => (
+                        <li key={item} className="flex gap-3 text-base leading-relaxed text-white/75">
+                          <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        </VisibilityGate>
 
         <VisibilityGate keyName="section:faqs.cta">
           <FadeIn delay={0.25}>
