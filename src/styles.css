@@ -454,6 +454,14 @@
       animation: none;
     }
 
+    .partner-header-logo,
+    .partner-header-spark {
+      animation: none;
+      opacity: 0.85;
+      transform: none;
+    }
+
+
     .partner-header-marquee {
       overflow-x: auto;
       scrollbar-width: none;
