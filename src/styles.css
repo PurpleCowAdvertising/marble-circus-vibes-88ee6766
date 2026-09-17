@@ -767,3 +767,35 @@
     padding-top: clamp(2.5rem, 6vw, 4rem);
   }
 }
+
+@keyframes partner-showcase-rise {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-70vh) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.partner-showcase-particle {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--color-accent) 85%, white);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--color-accent) 70%, transparent);
+  animation-name: partner-showcase-rise;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-showcase-particle {
+    animation: none;
+    opacity: 0;
+  }
+}

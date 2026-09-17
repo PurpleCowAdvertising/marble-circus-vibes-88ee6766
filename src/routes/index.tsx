@@ -13,7 +13,6 @@ import { PartnerShowcase } from "@/components/site/PartnerShowcase";
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { ParkRideModal } from "@/components/site/ParkRideModal";
 
-import { useIsMobile } from "@/hooks/use-mobile";
 import { ShopifyCollection } from "@/components/ShopifyCollection";
 import { SPONSORS } from "@/config/sponsors";
 
@@ -40,8 +39,6 @@ const HOME_PARTNER_ORDER = [
   ...SPONSORS.filter((s) => !HOME_PARTNER_NAMES.includes(s.name)),
 ];
 
-import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
-import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
 
 import majorLeague from "@/assets/artists/major-league.webp";
 import tyla from "@/assets/artists/tyla.webp";
