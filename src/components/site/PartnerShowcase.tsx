@@ -159,6 +159,21 @@ const BRANDS: Record<string, Brand> = {
   },
 };
 
+// Brand-tinted glow behind each logo.
+const AURAS: Record<string, string> = {
+  "SABC 1": "#4fc3f7",
+  "Castle Lite": "#8fd6ff",
+  Sprite: "#4ade80",
+  RocoMamas: "#ff7a3d",
+  VEEV: "#c9a7ff",
+  "McCafé": "#c98b52",
+  Galxboy: "#ffd166",
+  Gautrain: "#7dd3fc",
+  SAMPRA: "#f4b942",
+  "Cabs Car Hire": "#60a5fa",
+  "Audi Centre Wonderboom": "#e5e7eb",
+};
+
 function BrandFx({ fx, count }: { fx: Fx; count: number }) {
   if (!fx || count < 1) return null;
 
@@ -166,6 +181,7 @@ function BrandFx({ fx, count }: { fx: Fx; count: number }) {
     <span aria-hidden className={`brand-fx brand-fx--${fx}`}>
       {Array.from({ length: count }, (_, i) => {
         const spread = ((i * 37) % 100) - 50;
+        const scale = 0.7 + ((i * 29) % 70) / 100;
         return (
           <span
             key={i}
@@ -173,7 +189,9 @@ function BrandFx({ fx, count }: { fx: Fx; count: number }) {
               {
                 left: `${(i * 100) / count + 4}%`,
                 top: fx === "scan" ? `${(i * 100) / count}%` : undefined,
-                animationDelay: `${(i % 6) * 0.35}s`,
+                animationDelay: `${((i * 17) % 22) * 0.12}s`,
+                animationDuration: `${1.8 + ((i * 13) % 16) * 0.12}s`,
+                transform: fx === "scan" || fx === "sweep" || fx === "shimmer" ? undefined : `scale(${scale})`,
                 "--fx-x": `${spread * 2}px`,
                 "--fx-y": `${spread * 1.6}px`,
               } as React.CSSProperties
@@ -185,14 +203,50 @@ function BrandFx({ fx, count }: { fx: Fx; count: number }) {
   );
 }
 
+// A one-shot dust burst + halo ring each time a new logo lands.
+const BURST = Array.from({ length: 26 }, (_, i) => {
+  const angle = (i / 26) * Math.PI * 2;
+  const radius = 120 + ((i * 41) % 130);
+  return {
+    x: Math.cos(angle) * radius,
+    y: Math.sin(angle) * radius * 0.7,
+    delay: ((i * 7) % 12) * 0.03,
+    duration: 1.2 + ((i * 11) % 9) * 0.09,
+  };
+});
+
+function BrandBurst() {
+  return (
+    <>
+      <span aria-hidden className="brand-halo" />
+      <span aria-hidden className="brand-burst">
+        {BURST.map((dot, i) => (
+          <span
+            key={i}
+            style={
+              {
+                animationDelay: `${dot.delay}s`,
+                animationDuration: `${dot.duration}s`,
+                "--fx-x": `${dot.x}px`,
+                "--fx-y": `${dot.y}px`,
+              } as React.CSSProperties
+            }
+          />
+        ))}
+      </span>
+    </>
+  );
+}
+
 const HOLD_MS = 3200;
 
-const PARTICLES = Array.from({ length: 18 }, (_, index) => ({
+const PARTICLES = Array.from({ length: 28 }, (_, index) => ({
   left: (index * 53) % 100,
   delay: (index % 9) * 0.7,
   duration: 7 + (index % 5) * 1.4,
   size: index % 3 === 0 ? 3 : 2,
 }));
+
 
 export function PartnerShowcase() {
   const [index, setIndex] = useState(0);
