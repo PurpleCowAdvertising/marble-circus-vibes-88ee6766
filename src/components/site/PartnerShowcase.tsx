@@ -31,49 +31,159 @@ type Variant = {
   exit: Record<string, number | string>;
 };
 
-// Each partner gets its own way of arriving and leaving.
-const VARIANTS: Variant[] = [
-  {
-    initial: { opacity: 0, scale: 0.72, filter: "blur(18px)" },
+type Fx = "scan" | "frost" | "fizz" | "sizzle" | "smoke" | "steam" | "shimmer" | "streaks" | "streaks-rtl" | "waves" | "sweep" | null;
+
+type Brand = { variant: Variant; fx: Fx; count: number };
+
+const DEFAULT_BRAND: Brand = {
+  variant: {
+    initial: { opacity: 0, scale: 0.86, filter: "blur(14px)" },
     animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-    exit: { opacity: 0, scale: 1.25, filter: "blur(22px)" },
+    exit: { opacity: 0, scale: 1.08, filter: "blur(14px)" },
   },
-  {
-    initial: { opacity: 0, y: 90, rotateX: 55 },
-    animate: { opacity: 1, y: 0, rotateX: 0 },
-    exit: { opacity: 0, y: -90, rotateX: -55 },
+  fx: null,
+  count: 0,
+};
+
+// Each partner arrives in a way that nods to what the brand does.
+const BRANDS: Record<string, Brand> = {
+  // TV channel — the picture clicks on like a screen switching channel.
+  "SABC 1": {
+    variant: {
+      initial: { opacity: 0, scaleY: 0.02, scaleX: 1.25, filter: "brightness(3)" },
+      animate: { opacity: 1, scaleY: 1, scaleX: 1, filter: "brightness(1)" },
+      exit: { opacity: 0, scaleY: 0.02, scaleX: 1.3, filter: "brightness(2.4)" },
+    },
+    fx: "scan",
+    count: 3,
   },
-  {
-    initial: { opacity: 0, x: -160, skewX: 12 },
-    animate: { opacity: 1, x: 0, skewX: 0 },
-    exit: { opacity: 0, x: 160, skewX: -12 },
+  // Beer, extra cold — frost crystals settle onto the mark.
+  "Castle Lite": {
+    variant: {
+      initial: { opacity: 0, scale: 1.18, filter: "blur(20px) brightness(1.6)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px) brightness(1)" },
+      exit: { opacity: 0, scale: 0.92, filter: "blur(18px) brightness(1.4)" },
+    },
+    fx: "frost",
+    count: 16,
   },
-  {
-    initial: { opacity: 0, scale: 1.4, filter: "blur(26px)" },
-    animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-    exit: { opacity: 0, scale: 0.7, filter: "blur(20px)" },
+  // Fizzy drink — pops up with bubbles.
+  Sprite: {
+    variant: {
+      initial: { opacity: 0, y: 70, scale: 0.8 },
+      animate: { opacity: 1, y: 0, scale: 1 },
+      exit: { opacity: 0, y: -60, scale: 1.05 },
+    },
+    fx: "fizz",
+    count: 14,
   },
-  {
-    initial: { opacity: 0, rotate: -14, scale: 0.8 },
-    animate: { opacity: 1, rotate: 0, scale: 1 },
-    exit: { opacity: 0, rotate: 14, scale: 0.8 },
+  // Flame-grilled burgers — drops in over sparks.
+  RocoMamas: {
+    variant: {
+      initial: { opacity: 0, y: -80, scale: 1.1, rotate: -4 },
+      animate: { opacity: 1, y: 0, scale: 1, rotate: 0 },
+      exit: { opacity: 0, y: 40, scale: 0.92, rotate: 3 },
+    },
+    fx: "sizzle",
+    count: 14,
   },
-  {
-    initial: { opacity: 0, x: 160, filter: "blur(16px)" },
-    animate: { opacity: 1, x: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, x: -160, filter: "blur(16px)" },
+  // Emerges from a soft haze — no product imagery.
+  VEEV: {
+    variant: {
+      initial: { opacity: 0, scale: 1.1, filter: "blur(26px)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+      exit: { opacity: 0, scale: 1.05, filter: "blur(26px)" },
+    },
+    fx: "smoke",
+    count: 6,
   },
-  {
-    initial: { opacity: 0, y: -110, scale: 0.85 },
-    animate: { opacity: 1, y: 0, scale: 1 },
-    exit: { opacity: 0, y: 110, scale: 0.85 },
+  // Coffee — warm rise with steam.
+  "McCafé": {
+    variant: {
+      initial: { opacity: 0, y: 60, filter: "blur(10px)" },
+      animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+      exit: { opacity: 0, y: -40, filter: "blur(10px)" },
+    },
+    fx: "steam",
+    count: 5,
   },
-  {
-    initial: { opacity: 0, rotateY: 80, scale: 0.9 },
-    animate: { opacity: 1, rotateY: 0, scale: 1 },
-    exit: { opacity: 0, rotateY: -80, scale: 0.9 },
+  // Apparel — fabric-like swing with a shimmer pass.
+  Galxboy: {
+    variant: {
+      initial: { opacity: 0, rotate: -8, skewY: 6, scale: 0.9 },
+      animate: { opacity: 1, rotate: 0, skewY: 0, scale: 1 },
+      exit: { opacity: 0, rotate: 6, skewY: -5, scale: 0.94 },
+    },
+    fx: "shimmer",
+    count: 1,
   },
-];
+  // Train — drives in fast from the left and pulls out to the right.
+  Gautrain: {
+    variant: {
+      initial: { opacity: 0, x: -320, filter: "blur(12px)" },
+      animate: { opacity: 1, x: 0, filter: "blur(0px)" },
+      exit: { opacity: 0, x: 320, filter: "blur(12px)" },
+    },
+    fx: "streaks",
+    count: 6,
+  },
+  // Music rights — pulses to the beat with sound rings.
+  SAMPRA: {
+    variant: {
+      initial: { opacity: 0, scale: 0.7 },
+      animate: { opacity: 1, scale: [0.94, 1.04, 1] as unknown as number },
+      exit: { opacity: 0, scale: 1.2 },
+    },
+    fx: "waves",
+    count: 3,
+  },
+  // Car rental — drives in from the right and brakes into place.
+  "Cabs Car Hire": {
+    variant: {
+      initial: { opacity: 0, x: 300, skewX: -8 },
+      animate: { opacity: 1, x: 0, skewX: 0 },
+      exit: { opacity: 0, x: -260, skewX: 6 },
+    },
+    fx: "streaks-rtl",
+    count: 5,
+  },
+  // Audi — precision engineering, a clean light sweep across the rings.
+  "Audi Centre Wonderboom": {
+    variant: {
+      initial: { opacity: 0, scale: 1.12, filter: "blur(8px)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+      exit: { opacity: 0, scale: 0.94, filter: "blur(8px)" },
+    },
+    fx: "sweep",
+    count: 1,
+  },
+};
+
+function BrandFx({ fx, count }: { fx: Fx; count: number }) {
+  if (!fx || count < 1) return null;
+
+  return (
+    <span aria-hidden className={`brand-fx brand-fx--${fx}`}>
+      {Array.from({ length: count }, (_, i) => {
+        const spread = ((i * 37) % 100) - 50;
+        return (
+          <span
+            key={i}
+            style={
+              {
+                left: `${(i * 100) / count + 4}%`,
+                top: fx === "scan" ? `${(i * 100) / count}%` : undefined,
+                animationDelay: `${(i % 6) * 0.35}s`,
+                "--fx-x": `${spread * 2}px`,
+                "--fx-y": `${spread * 1.6}px`,
+              } as React.CSSProperties
+            }
+          />
+        );
+      })}
+    </span>
+  );
+}
 
 const HOLD_MS = 3200;
 
