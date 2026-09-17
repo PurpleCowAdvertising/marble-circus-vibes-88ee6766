@@ -73,6 +73,31 @@ const CATEGORIES = [
     ],
   },
   {
+    title: "Venue & Experience",
+    items: [
+      {
+        q: "Is the event cashless or cash?",
+        a: "All formal vendors will be cashless only. Informal vendors will accept both cash and cashless payments.",
+      },
+      {
+        q: "What can I bring, and what is prohibited?",
+        a: "Please bring only your ID, ticket(s) and a valid payment method, such as cash or a bank card.",
+      },
+      {
+        q: "Will merchandise be sold at the venue?",
+        a: "Yes. SK Live merchandise will be available for purchase at the venue.",
+      },
+      {
+        q: "Is the venue wheelchair-friendly?",
+        a: "Yes. All entry points and gates into the stadium are wheelchair friendly.",
+      },
+      {
+        q: "Which gate do I use?",
+        a: "Gate M & G – Scorpion Ring & Scorpion Field Standing. Gate J, K & L – all seated tickets. Gate A & C – VIP.",
+      },
+    ],
+  },
+  {
     title: "Safety & Security",
     items: [
       {
@@ -154,7 +179,18 @@ function FaqsPage() {
                       </AccordionTrigger>
 
                       <AccordionContent className="pb-6 text-base leading-relaxed text-white/65">
-                        {item.a}
+                        {typeof item.a === "string" ? (
+                          item.a
+                        ) : (
+                          <ul className="grid gap-2">
+                            {item.a.map((line) => (
+                              <li key={line} className="flex gap-3">
+                                <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                                {line}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
