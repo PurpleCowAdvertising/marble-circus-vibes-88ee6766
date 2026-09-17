@@ -253,24 +253,10 @@ function HomePage() {
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
               <figure className="relative h-[100svh] w-full overflow-hidden bg-black md:h-[85vh] md:max-h-[820px] md:min-h-[420px]">
-                <video
-                  ref={videoRef}
-                  key={isMobile ? "mobile" : "desktop"}
-                  src={isMobile ? heroVideoMobileAsset.url : heroVideoAsset.url}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  aria-label="Scorpion Kings Live logo reveal"
-                  className="relative h-full w-full object-contain md:object-cover"
-                />
-
-                <div className="pointer-events-none absolute inset-0" />
-
+                <PartnerShowcase />
 
                 <figcaption className="sr-only">
-                  Scorpion Kings Live footage of DJ Maphorisa and Kabza De Small on stage.
+                  Official partners of Scorpion Kings Live.
                 </figcaption>
               </figure>
             </motion.div>
