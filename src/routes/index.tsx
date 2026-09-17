@@ -7,7 +7,7 @@ import { FadeIn, Section } from "@/components/site/Section";
 import { Reveal, RevealGroup } from "@/components/site/Reveal";
 
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
-import { SocialWall } from "@/components/site/SocialWall";
+
 import { PartnerShowcase } from "@/components/site/PartnerShowcase";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
