@@ -15,6 +15,10 @@ import { ParkRideModal } from "@/components/site/ParkRideModal";
 
 import { ShopifyCollection } from "@/components/ShopifyCollection";
 import { SPONSORS } from "@/config/sponsors";
+import { useIsMobile } from "@/hooks/use-mobile";
+
+import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
+import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
 
 const HOME_PARTNER_NAMES = [
   "SABC 1",
@@ -189,6 +193,8 @@ function HomePage() {
   const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
   const [parkRideOpen, setParkRideOpen] = useState(false);
 
+  const isMobile = useIsMobile();
+
   const heroRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -214,7 +220,21 @@ function HomePage() {
           <FadeIn>
             <motion.div style={{ y, opacity }} className="relative">
               <figure className="relative h-[100svh] w-full overflow-hidden bg-black md:h-[85vh] md:max-h-[820px] md:min-h-[420px]">
-                <PartnerShowcase />
+                <video
+                  key={isMobile ? "mobile" : "desktop"}
+                  src={isMobile ? heroVideoMobileAsset.url : heroVideoAsset.url}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 h-full w-full object-contain md:object-cover"
+                />
+
+                <div className="absolute inset-0">
+                  <PartnerShowcase />
+                </div>
 
                 <figcaption className="sr-only">
                   Official partners of Scorpion Kings Live.
