@@ -212,7 +212,8 @@ export function PartnerShowcase() {
 
   if (!sponsor) return null;
 
-  const variant = VARIANTS[index % VARIANTS.length]!;
+  const brand = BRANDS[sponsor.name] ?? DEFAULT_BRAND;
+  const variant = brand.variant;
 
   const image = (
     <img
