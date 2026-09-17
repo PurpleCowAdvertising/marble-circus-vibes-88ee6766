@@ -192,11 +192,7 @@ function HomePage() {
   const [activeTier, setActiveTier] = useState<TicketTier | null>(null);
   const [parkRideOpen, setParkRideOpen] = useState(false);
 
-  const isMobile = useIsMobile();
-
   const heroRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [cycle, setCycle] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -206,39 +202,6 @@ function HomePage() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  useEffect(() => {
-    const video = videoRef.current;
-
-    if (!video) return;
-
-    video.muted = true;
-
-    const tryPlay = () => {
-      video.play().catch(() => {});
-    };
-
-    tryPlay();
-
-    let lastTime = 0;
-
-    const onTimeUpdate = () => {
-      if (video.currentTime + 0.5 < lastTime) {
-        setCycle((current) => current + 1);
-      }
-
-      lastTime = video.currentTime;
-    };
-
-    video.addEventListener("timeupdate", onTimeUpdate);
-    video.addEventListener("loadedmetadata", tryPlay);
-    video.addEventListener("canplay", tryPlay);
-
-    return () => {
-      video.removeEventListener("timeupdate", onTimeUpdate);
-      video.removeEventListener("loadedmetadata", tryPlay);
-      video.removeEventListener("canplay", tryPlay);
-    };
-  }, []);
 
   return (
     <PageGate keyName="page:home">
