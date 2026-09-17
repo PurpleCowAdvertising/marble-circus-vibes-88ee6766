@@ -17,7 +17,7 @@ import { ConsentBanner } from "@/components/site/ConsentBanner";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { MobileTabBar } from "@/components/site/MobileTabBar";
-import { LaunchCountdown } from "@/components/site/LaunchCountdown";
+
 import { MerchCTA } from "@/components/site/MerchCTA";
 import { TicketUrgencyBar } from "@/components/site/TicketUrgencyBar";
 
@@ -266,7 +266,6 @@ function RootComponent() {
         </div>
 
         {!isBareRoute && <ConsentBanner />}
-        {!isBareRoute && <LaunchCountdown />}
         {!isBareRoute && <MerchCTA />}
         {!isBareRoute && <TicketUrgencyBar />}
 
