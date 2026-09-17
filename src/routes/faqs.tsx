@@ -308,6 +308,40 @@ function FaqsPage() {
 
 
 
+        <VisibilityGate keyName="section:faqs.categories">
+          <FadeIn delay={0.2}>
+            <div className="mt-12 rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-8">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Prohibited &amp; restricted items</p>
+
+              <h2 className="mt-2 font-display text-3xl font-bold text-white md:text-4xl">
+                Leave these at home.
+              </h2>
+
+              <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/65">
+                All persons, bags and belongings may be subject to security screening and inspection upon entry. Right
+                of admission is reserved.
+              </p>
+
+              <div className="mt-8 grid gap-8 md:grid-cols-2">
+                {PROHIBITED.map((group) => (
+                  <div key={group.title}>
+                    <h3 className="font-display text-lg font-bold uppercase tracking-wide text-gold">{group.title}</h3>
+
+                    <ul className="mt-3 grid gap-2">
+                      {group.items.map((item) => (
+                        <li key={item} className="flex gap-3 text-base leading-relaxed text-white/75">
+                          <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        </VisibilityGate>
+
         <VisibilityGate keyName="section:faqs.cta">
           <FadeIn delay={0.25}>
             <div className="mt-12 flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl md:p-8">
