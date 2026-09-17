@@ -370,7 +370,7 @@ export function Header() {
           </button>
         </div>
 
-        <PartnerHeaderRail hidden={condensed} />
+        
       </header>
 
 
