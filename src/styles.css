@@ -141,6 +141,11 @@
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
+    /* White under-layer: when a mobile browser rubber-bands at the bottom or
+       its toolbar collapses, the canvas beyond the document shows through.
+       It must match the white footer (never the dark theme) or a dead black
+       strip appears below the copyright. */
+    background-color: #fff;
     /* Stops the rubber-band overscroll that exposed a black strip
        under the white footer on mobile. */
     overscroll-behavior-y: none;
