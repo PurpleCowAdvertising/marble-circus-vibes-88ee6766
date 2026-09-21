@@ -571,6 +571,31 @@ function NewsPage() {
                           ))}
                         </dl>
                       )}
+
+                      {!post.image && post.highlight && (
+                        <div className="mt-6 rounded-2xl border border-gold/25 bg-gold/[0.06] p-5">
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-gold">
+                            {post.highlight.title}
+                          </p>
+
+                          <p className="mt-2 text-sm leading-relaxed text-white/80">{post.highlight.body}</p>
+                        </div>
+                      )}
+
+                      {!post.image && post.footnote && (
+                        <p className="mt-5 text-[11px] uppercase tracking-[0.3em] text-white/50">{post.footnote}</p>
+                      )}
+
+                      {!post.image && post.href && (
+                        <a
+                          href={post.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
+                        >
+                          {post.hrefLabel} <ArrowUpRight size={14} />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </article>
