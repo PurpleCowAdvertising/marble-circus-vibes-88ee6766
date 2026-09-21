@@ -31,6 +31,7 @@ const HOME_PARTNER_NAMES = [
   "McCafé",
   "Galxboy",
   "Gautrain",
+  "Rea Vaya",
   "SAMPRA",
   "Cabs Car Hire",
   "Audi Centre Wonderboom",

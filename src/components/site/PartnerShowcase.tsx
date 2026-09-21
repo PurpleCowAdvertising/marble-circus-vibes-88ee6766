@@ -15,6 +15,7 @@ const SHOWCASE_PARTNER_NAMES = [
   "McCafé",
   "Galxboy",
   "Gautrain",
+  "Rea Vaya",
   "SAMPRA",
   "Cabs Car Hire",
   "Audi Centre Wonderboom",
@@ -127,6 +128,15 @@ const BRANDS: Record<string, Brand> = {
     fx: "streaks",
     count: 6,
   },
+  "Rea Vaya": {
+    variant: {
+      initial: { opacity: 0, scale: 0.97, filter: "blur(20px)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+      exit: { opacity: 0, scale: 1.03, filter: "blur(20px)" },
+    },
+    fx: "streaks",
+    count: 6,
+  },
   // Music rights — pulses to the beat with sound rings.
   SAMPRA: {
     variant: {
@@ -169,6 +179,7 @@ const AURAS: Record<string, string> = {
   "McCafé": "#c98b52",
   Galxboy: "#ffd166",
   Gautrain: "#7dd3fc",
+  "Rea Vaya": "#f4b942",
   SAMPRA: "#f4b942",
   "Cabs Car Hire": "#60a5fa",
   "Audi Centre Wonderboom": "#e5e7eb",
