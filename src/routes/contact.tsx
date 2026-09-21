@@ -67,7 +67,7 @@ type FormState = {
 };
 
 const TIER_A_ORDER = ["SABC 1", "Gauteng Province", "Sport, Arts and Culture", "Castle Lite", "Sprite", "RocoMamas", "VEEV"];
-const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "SAMPRA"];
+const TIER_B_ORDER = ["McCafé", "Galxboy", "Gautrain", "Rea Vaya", "SAMPRA"];
 const TIER_C_ORDER = ["Cabs Car Hire", "Audi Centre Wonderboom"];
 
 function sortByName(names: string[]) {
