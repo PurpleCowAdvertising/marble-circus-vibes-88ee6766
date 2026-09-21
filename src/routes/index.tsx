@@ -28,6 +28,7 @@ const HOME_PARTNER_NAMES = [
   "Sprite",
   "RocoMamas",
   "VEEV",
+  "Smirnoff",
   "McCafé",
   "Galxboy",
   "Gautrain",
