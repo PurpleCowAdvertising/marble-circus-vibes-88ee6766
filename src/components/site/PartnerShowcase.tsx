@@ -12,6 +12,7 @@ const SHOWCASE_PARTNER_NAMES = [
   "Sprite",
   "RocoMamas",
   "VEEV",
+  "Smirnoff",
   "McCafé",
   "Galxboy",
   "Gautrain",
@@ -98,6 +99,15 @@ const BRANDS: Record<string, Brand> = {
     fx: "smoke",
     count: 6,
   },
+  Smirnoff: {
+    variant: {
+      initial: { opacity: 0, scale: 1.08, filter: "blur(22px) brightness(1.35)" },
+      animate: { opacity: 1, scale: 1, filter: "blur(0px) brightness(1)" },
+      exit: { opacity: 0, scale: 1.04, filter: "blur(22px) brightness(1.2)" },
+    },
+    fx: "shimmer",
+    count: 1,
+  },
   // Coffee — warm rise with steam.
   "McCafé": {
     variant: {
@@ -176,6 +186,7 @@ const AURAS: Record<string, string> = {
   Sprite: "#4ade80",
   RocoMamas: "#ff7a3d",
   VEEV: "#c9a7ff",
+  Smirnoff: "#e4002b",
   "McCafé": "#c98b52",
   Galxboy: "#ffd166",
   Gautrain: "#7dd3fc",
