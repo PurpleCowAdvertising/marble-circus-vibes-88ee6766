@@ -3,10 +3,11 @@ import { ArrowUpRight, Check } from "lucide-react";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
+import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 
 export const Route = createFileRoute("/tickets")({
   head: () => ({
-    meta: [
+    meta: TICKET_SALES_VISIBLE ? [
       { title: "Tickets | Scorpion Kings Live at FNB Stadium" },
       {
         name: "description",
@@ -21,6 +22,16 @@ export const Route = createFileRoute("/tickets")({
         property: "og:description",
         content: "On sale now from R400. Webtickets, Pick n Pay and Boxer stores nationwide.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ] : [
+      { title: "Page unavailable | Scorpion Kings Live" },
+      { name: "description", content: "This page is currently unavailable." },
+      { property: "og:title", content: "Page unavailable | Scorpion Kings Live" },
+      { property: "og:description", content: "This page is currently unavailable." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "noindex, nofollow" },
     ],
   }),
   component: TicketsPage,
