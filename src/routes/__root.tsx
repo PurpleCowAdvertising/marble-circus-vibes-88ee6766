@@ -20,6 +20,7 @@ import { MobileTabBar } from "@/components/site/MobileTabBar";
 
 import { MerchCTA } from "@/components/site/MerchCTA";
 import { TicketUrgencyBar } from "@/components/site/TicketUrgencyBar";
+import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 
 import { SubscribeProvider } from "@/components/site/SubscribePopup";
 import { Toaster } from "@/components/ui/sonner";
@@ -267,7 +268,7 @@ function RootComponent() {
 
         {!isBareRoute && <ConsentBanner />}
         {!isBareRoute && <MerchCTA />}
-        {!isBareRoute && <TicketUrgencyBar />}
+        {!isBareRoute && TICKET_SALES_VISIBLE && <TicketUrgencyBar />}
 
         <Toaster />
       </SubscribeProvider>

@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 
 const SESSION_KEY = "sk_subscribe_seen";
 
@@ -58,7 +59,7 @@ export function SubscribeProvider({ children }: { children: React.ReactNode }) {
   // Ticket sell-out push: while the Field tickets campaign is running, the
   // tickets popup is the only interruption on the site. Flip this back to
   // false to restore the engagement-triggered subscribe popup.
-  const TICKET_PUSH_ACTIVE = true;
+  const TICKET_PUSH_ACTIVE = TICKET_SALES_VISIBLE;
 
   // Non-intrusive trigger: never on load or on scroll. The popup only appears
   // after the visitor actively engages — i.e. clicks a button, link or card

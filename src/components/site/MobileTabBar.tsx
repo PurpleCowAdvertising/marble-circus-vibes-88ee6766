@@ -3,10 +3,11 @@ import { Home, Ticket, ConciergeBell, Handshake, Newspaper, Play } from "lucide-
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
 import { useVisiblePageRoutes } from "./visibility";
+import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 
 const TABS = [
   { kind: "route", to: "/", label: "Home", icon: Home, exact: true },
-  { kind: "scroll", hash: "tickets", label: "Tickets", icon: Ticket },
+  ...(TICKET_SALES_VISIBLE ? [{ kind: "scroll" as const, hash: "tickets", label: "Tickets", icon: Ticket }] : []),
   { kind: "scroll", hash: "experience", label: "Hospitality", icon: ConciergeBell },
   { kind: "route", to: "/partners", label: "Partners", icon: Handshake, exact: false },
   { kind: "route", to: "/news", label: "News", icon: Newspaper, exact: false },
@@ -60,7 +61,6 @@ function useScrollDim() {
 }
 
 const BUY_ACTIONS = [
-  { label: "Buy Tickets", hash: "tickets" },
   { label: "Buy Merch", hash: "merchandise" },
 ] as const;
 

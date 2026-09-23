@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 
 const BASE_URL = "https://scorpionkings.live";
 
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/about", changefreq: "monthly", priority: "0.7" },
           { path: "/experience", changefreq: "monthly", priority: "0.8" },
-          { path: "/tickets", changefreq: "weekly", priority: "0.9" },
+          ...(TICKET_SALES_VISIBLE ? [{ path: "/tickets", changefreq: "weekly" as const, priority: "0.9" }] : []),
           { path: "/music", changefreq: "weekly", priority: "0.8" },
           { path: "/merchandise", changefreq: "weekly", priority: "0.7" },
           { path: "/news", changefreq: "weekly", priority: "0.7" },
