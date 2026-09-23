@@ -6,14 +6,14 @@ import { Reveal, RevealGroup } from "@/components/site/Reveal";
 import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.webp";
 import ticketsAvailable from "@/assets/tickets-available.webp";
-import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
+import { HOSPITALITY_PACKAGES_VISIBLE, TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 
 const EXPLORE_LINKS = [
   { to: "/music", label: "Line-Up" },
   ...(TICKET_SALES_VISIBLE
     ? [{ href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", label: "Tickets", external: true as const }]
     : []),
-  { to: "/experience", label: "Hospitality" },
+  ...(HOSPITALITY_PACKAGES_VISIBLE ? [{ to: "/experience" as const, label: "Hospitality" }] : []),
   { to: "/about", label: "About" },
   { to: "/partners", label: "Partners" },
   { to: "/news", label: "News" },

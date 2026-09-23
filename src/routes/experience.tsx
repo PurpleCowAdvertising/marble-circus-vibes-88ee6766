@@ -2,10 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { FadeIn, PageHero, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
+import { HOSPITALITY_PACKAGES_VISIBLE } from "@/config/site-campaign";
 
 export const Route = createFileRoute("/experience")({
   head: () => ({
-    meta: [
+    meta: HOSPITALITY_PACKAGES_VISIBLE ? [
       { title: "Hospitality | Scorpion Kings Live" },
       {
         name: "description",
@@ -17,6 +18,16 @@ export const Route = createFileRoute("/experience")({
         property: "og:description",
         content: "Elevated viewing, premium hospitality and bespoke packages for the night.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ] : [
+      { title: "Page unavailable | Scorpion Kings Live" },
+      { name: "description", content: "This page is currently unavailable." },
+      { property: "og:title", content: "Page unavailable | Scorpion Kings Live" },
+      { property: "og:description", content: "This page is currently unavailable." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "noindex, nofollow" },
     ],
   }),
   component: HospitalityPage,

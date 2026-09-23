@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 
 import { useSubscribePopup } from "./SubscribePopup";
 import { useVisiblePageRoutes } from "./visibility";
-import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
+import { HOSPITALITY_PACKAGES_VISIBLE, TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 
 
 type NavItem =
@@ -15,7 +15,7 @@ type NavItem =
 const NAV: readonly NavItem[] = [
   { kind: "route", to: "/", label: "Home" },
   ...(TICKET_SALES_VISIBLE ? [{ kind: "scroll" as const, hash: "tickets", label: "Tickets" }] : []),
-  { kind: "scroll", hash: "experience", label: "Hospitality" },
+  ...(HOSPITALITY_PACKAGES_VISIBLE ? [{ kind: "scroll" as const, hash: "experience", label: "Hospitality" }] : []),
   { kind: "route", to: "/partners", label: "Partners" },
   { kind: "route", to: "/news", label: "News" },
   { kind: "route", to: "/feed", label: "Feed" },
