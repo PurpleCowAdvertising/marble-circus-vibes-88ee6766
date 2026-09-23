@@ -6,10 +6,13 @@ import { Reveal, RevealGroup } from "@/components/site/Reveal";
 import { useVisiblePageRoutes } from "./visibility";
 import logo from "@/assets/logo.webp";
 import ticketsAvailable from "@/assets/tickets-available.webp";
+import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 
 const EXPLORE_LINKS = [
   { to: "/music", label: "Line-Up" },
-  { href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", label: "Tickets", external: true as const },
+  ...(TICKET_SALES_VISIBLE
+    ? [{ href: "https://www.webtickets.co.za/v2/event.aspx?itemid=1594173143", label: "Tickets", external: true as const }]
+    : []),
   { to: "/experience", label: "Hospitality" },
   { to: "/about", label: "About" },
   { to: "/partners", label: "Partners" },
@@ -58,12 +61,14 @@ export function Footer() {
               <img src={logo} alt="Scorpion Kings Live" className="h-12 w-auto md:h-28" />
             </Link>
 
-            <div
-              className="mt-4 block max-w-[260px] overflow-hidden md:mt-5 md:max-w-[300px]"
-              style={{ aspectRatio: "1313 / 232" }}
-            >
-              <img src={ticketsAvailable} alt="Tickets available from Webtickets" className="block h-auto w-full" />
-            </div>
+            {TICKET_SALES_VISIBLE && (
+              <div
+                className="mt-4 block max-w-[260px] overflow-hidden md:mt-5 md:max-w-[300px]"
+                style={{ aspectRatio: "1313 / 232" }}
+              >
+                <img src={ticketsAvailable} alt="Tickets available from Webtickets" className="block h-auto w-full" />
+              </div>
+            )}
 
             <p className="mt-5 max-w-md text-sm leading-relaxed text-black/70">
               Drops, lineup reveals, ticket waves and exclusive behind-the-scenes updates.

@@ -5,3 +5,4 @@
 - [x] Verify both posts on desktop and mobile.
 - [x] Add the supplied Rea Vaya logo immediately after Gautrain across all partner displays.
 - [x] Add the supplied Smirnoff logo immediately after VEEV across all partner displays.
+- [x] Hide all ticket-sales elements site-wide while preserving editorial ticket references.

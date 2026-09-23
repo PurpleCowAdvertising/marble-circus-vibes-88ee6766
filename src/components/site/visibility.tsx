@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { getPublicVisibility, type PublicVisibility } from "@/lib/visibility.functions";
 import { PAGE_KEY_BY_ROUTE } from "@/lib/visibility-registry";
+import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 
 // Public: what's hidden on live. Cached long, revalidated on window focus.
 export function usePublicVisibility() {
@@ -32,6 +33,7 @@ export function usePublicVisibility() {
 // Small hook: is this specific key hidden right now?
 export function useIsHidden(key: string): boolean {
   const { data } = usePublicVisibility();
+  if (!TICKET_SALES_VISIBLE && (key === "page:tickets" || key === "section:home.tickets")) return true;
   if (!data) return false;
   return data.hiddenLive.includes(key);
 }
@@ -78,6 +80,7 @@ export function useVisiblePageRoutes(): Set<string> {
   const hidden = new Set(data?.hiddenLive ?? []);
   const visible = new Set<string>();
   for (const [route, pageKey] of Object.entries(PAGE_KEY_BY_ROUTE)) {
+    if (!TICKET_SALES_VISIBLE && pageKey === "page:tickets") continue;
     if (!hidden.has(pageKey)) visible.add(route);
   }
   return visible;
