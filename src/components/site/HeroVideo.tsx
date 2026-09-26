@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
+import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 /**
@@ -140,17 +141,19 @@ export function HeroVideo({ overlay }: { overlay?: ReactNode }) {
                 <span>FNB Stadium</span>
               </motion.div>
 
-              <motion.button
-                key={`cta-${cycle}`}
-                type="button"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 8, ease: "easeOut" }}
-                onClick={handleTicketsClick}
-                className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150 transition-transform hover:scale-105 sm:text-base"
-              >
-                Buy Tickets
-              </motion.button>
+              {TICKET_SALES_VISIBLE && (
+                <motion.button
+                  key={`cta-${cycle}`}
+                  type="button"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 8, ease: "easeOut" }}
+                  onClick={handleTicketsClick}
+                  className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 font-display text-sm font-bold uppercase tracking-widest text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35),inset_0_-1px_0_0_rgba(0,0,0,0.25),0_18px_40px_-12px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150 transition-transform hover:scale-105 sm:text-base"
+                >
+                  Buy Tickets
+                </motion.button>
+              )}
             </div>
 
             <figcaption className="sr-only">
