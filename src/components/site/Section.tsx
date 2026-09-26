@@ -165,16 +165,29 @@ export function PageHero({
   eyebrow,
   title,
   description,
+  videoHeadline,
   className = "",
 }: {
   eyebrow?: string;
   title?: string;
   description?: string;
+  videoHeadline?: string;
   className?: string;
 }) {
   return (
     <>
-      <HeroVideo />
+      <HeroVideo
+        overlay={
+          videoHeadline ? (
+            <div className="max-w-5xl text-white drop-shadow-[0_3px_16px_rgba(0,0,0,0.9)]">
+              <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-gold sm:text-xs">Latest news</p>
+              <h1 className="mt-3 text-balance font-display text-[clamp(2rem,6vw,5.5rem)] font-bold leading-[0.92] tracking-tight">
+                {videoHeadline}
+              </h1>
+            </div>
+          ) : undefined
+        }
+      />
 
       {(eyebrow || title || description) && (
         <section

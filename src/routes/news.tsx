@@ -96,6 +96,31 @@ type Post = {
 
 const POSTS: Post[] = [
   {
+    tag: "Broadcast announcement",
+    date: "22 September 2026",
+    datePublished: "2026-09-22T09:00:00+02:00",
+    title: "SABC1 PIONEERS THE FIRST SCORPION KINGS LIVE TELEVISION BROADCAST TO VIEWERS ON 3 OCTOBER",
+    excerpt:
+      "In a landmark first, SABC1 brings Scorpion Kings Live to television audiences across South Africa on 3 October at 20:00.",
+    body: [
+      "Johannesburg, Tuesday, 22 September 2026 — SABC1 is proud to pioneer the first-ever television broadcast of Scorpion Kings Live in South Africa. As the event’s Official Broadcast Partner, the channel will bring this landmark concert experience to audiences nationwide on Saturday, 3 October 2026, at 20:00 on SABC1 and SABC Plus.",
+      "Staged at the iconic FNB Stadium on 19 September 2026, Scorpion Kings Live brought together some of South Africa’s most influential musical heavyweights for a celebration of the sounds, talent and cultural movements shaping Mzansi’s music landscape and making waves around the world.",
+      "At the heart of this spectacular experience were the legendary Scorpion Kings, Kabza De Small and DJ Maphorisa, whose contribution to the evolution and global reach of Amapiano has helped define a new era in South African music. Joining them was a phenomenal lineup of artists representing the diversity, creativity and vibrancy of the country’s contemporary music scene.",
+      "From the soulful sounds of Ami Faku, Msaki, Nobuhle, Nokwazi, Nkosazana Daughter and Mlindo The Vocalist to the infectious Amapiano energy of Daliwonga, Young Stunna, Focalistic, Kamo Mphela, Toss, Tman Xpress and LeeMckrazy, the concert delivered an unforgettable musical journey for fans across generations.",
+      "The partnership between SABC1 and Scorpion Kings Live brings together two brands deeply rooted in South African music, youth culture and entertainment. By taking Scorpion Kings Live to television for the first time, SABC1 is opening this important cultural experience to millions of viewers beyond the stadium and creating a new broadcast milestone for South African music. The partnership also reflects a shared commitment to celebrating local talent, amplifying authentic African stories and connecting audiences with the music and cultural expressions that resonate with them.",
+      "As a channel that continues to champion South African talent and youth culture, SABC1 recognises the significance of platforms such as Scorpion Kings Live in showcasing the country’s musical excellence while creating opportunities for audiences to experience major cultural moments beyond the concert venue.",
+      "Dichaba Phalatse, SABC Video Entertainment Marketing Manager, comments: “Scorpion Kings Live is more than a concert; it is a defining South African cultural moment. SABC1 is proud to pioneer the event’s first-ever television broadcast and bring the energy of FNB Stadium to audiences across the country. This is what it means to be The Source of Mzansi: connecting viewers to the artists, sounds and moments shaping our culture, and ensuring that important cultural experiences are shared with the nation.”",
+      "The broadcast will offer audiences an opportunity to relive the excitement, performances and energy of one of the country’s major music events from the comfort of their homes, bringing the stadium experience to viewers nationwide.",
+      "Don’t miss Scorpion Kings Live, broadcasting on Saturday, 3 October 2026, at 20:00 on SABC1 and SABC Plus.",
+      "Media enquiries: Caroline Phalakatshela, Publicity Specialist – Video Entertainment · 072 382 2032 · phalakatshelamc@sabc.co.za",
+    ],
+    highlight: {
+      title: "Airing times",
+      body: "Saturday, 3 October 2026 at 20:00 · On SABC1 · Simulcast on SABC Plus",
+    },
+    footnote: "Issued by SABC1 · 22 September 2026",
+  },
+  {
     tag: "Safety update",
     date: "18 September 2026",
     datePublished: "2026-09-18T12:00:00+02:00",
@@ -401,6 +426,7 @@ function NewsPage() {
         eyebrow="News"
         title="From the Kings."
         description="Announcements, press releases and updates direct from the team."
+        videoHeadline={POSTS[0].title}
       />
 
       <Section className="bg-black text-white">

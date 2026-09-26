@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
@@ -9,7 +9,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
  * Looping hero video used on inner landing pages.
  * Video background + date row + Buy Tickets CTA.
  */
-export function HeroVideo() {
+export function HeroVideo({ overlay }: { overlay?: ReactNode }) {
   const isMobile = useIsMobile();
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -100,6 +100,12 @@ export function HeroVideo() {
 
 
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-black/20" />
+
+            {overlay && (
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto flex max-w-[1400px] px-5 pb-[calc(22svh+4.5rem)] sm:px-6 md:px-10 md:pb-[calc(22vh+3rem)]">
+                {overlay}
+              </div>
+            )}
 
             {/* Soft blend into the next section — dissolves the hard bottom edge on scroll */}
             <motion.div

@@ -7,3 +7,4 @@
 - [x] Add the supplied Smirnoff logo immediately after VEEV across all partner displays.
 - [x] Hide all ticket-sales elements site-wide while preserving editorial ticket references.
 - [x] Hide all hospitality packages and their site-wide access points.
+- [x] Add the 22 September SABC1 television broadcast statement as the newest News post and headline it over the News video.
