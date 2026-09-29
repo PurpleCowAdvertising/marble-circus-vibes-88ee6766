@@ -169,7 +169,8 @@ export function MobileTabBar() {
                   key={tab.hash}
                   type="button"
                   aria-label={tab.label}
-                  tabIndex={collapsed ? -1 : 0}
+                  tabIndex={0}
+
                   onClick={() => handleScrollTab(tab.hash)}
                   className={baseClassName}
                 >
@@ -192,7 +193,7 @@ export function MobileTabBar() {
                   setDrawKey((k) => k + 1);
                 }}
                 aria-label={tab.label}
-                tabIndex={collapsed ? -1 : 0}
+                tabIndex={0}
                 className={baseClassName}
               >
                 <span className={iconClassName} key={iconKey} style={iconStyle}>
