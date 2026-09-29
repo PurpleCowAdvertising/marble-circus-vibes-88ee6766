@@ -20,7 +20,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { GALLERY_SLIDER_PHOTOS } from "@/config/gallery";
 
 import heroVideoAsset from "@/assets/hero-video-finale.webm.asset.json";
-const heroVideoMobileAsset = heroVideoAsset;
+import heroVideoMp4Asset from "@/assets/hero-video-finale.mp4.asset.json";
 import sabc1Logo from "@/assets/sponsors/6-sabc1-transparent.png.asset.json";
 
 const HOME_PARTNER_NAMES = [
@@ -204,16 +204,26 @@ function HomePage() {
             <motion.div style={{ y, opacity }} className="relative">
               <figure className="relative h-[100svh] w-full overflow-hidden bg-black md:h-[85vh] md:max-h-[820px] md:min-h-[420px]">
                 <video
-                  key={isMobile ? "mobile" : "desktop"}
-                  src={isMobile ? heroVideoMobileAsset.url : heroVideoAsset.url}
+                  ref={(el) => {
+                    if (!el) return;
+                    el.muted = true;
+                    el.defaultMuted = true;
+                    el.setAttribute("muted", "");
+                    const play = () => el.play().catch(() => {});
+                    play();
+                    el.addEventListener("canplay", play, { once: true });
+                  }}
                   autoPlay
                   loop
                   muted
                   playsInline
-                  preload="metadata"
+                  preload="auto"
                   aria-hidden
                   className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-                />
+                >
+                  <source src={heroVideoMp4Asset.url} type="video/mp4" />
+                  <source src={heroVideoAsset.url} type="video/webm" />
+                </video>
 
                 <style>{`
                   @keyframes sabc-marquee {
