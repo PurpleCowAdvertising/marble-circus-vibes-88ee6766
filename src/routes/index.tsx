@@ -975,7 +975,7 @@ function HomePage() {
                 to="/partners"
                 className="text-xs uppercase tracking-[0.25em] text-white/60 transition-colors hover:text-gold"
               >
-                Partner with us
+                {"\n"}
               </Link>
             </div>
           </FadeIn>
