@@ -17,7 +17,7 @@ import { GalleryPreview } from "@/components/site/EventGallery";
 import { ShopifyCollection } from "@/components/ShopifyCollection";
 import { SPONSORS } from "@/config/sponsors";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { GALLERY_PHOTOS } from "@/config/gallery";
+import { GALLERY_SLIDER_PHOTOS } from "@/config/gallery";
 
 import heroVideoAsset from "@/assets/hero-video-finale.webm.asset.json";
 const heroVideoMobileAsset = heroVideoAsset;
@@ -346,7 +346,7 @@ function HomePage() {
             </div>
           </Reveal>
           <Reveal className="-mx-5 mt-7 px-5 sm:-mx-6 sm:px-6 md:-mx-10 md:mt-10 md:px-10">
-            <GalleryPreview photos={GALLERY_PHOTOS} />
+            <GalleryPreview photos={GALLERY_SLIDER_PHOTOS} />
           </Reveal>
           </RevealGroup>
 
