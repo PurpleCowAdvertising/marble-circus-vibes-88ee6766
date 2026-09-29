@@ -38,6 +38,15 @@ import raw9955g from "@/assets/gallery/RAW9955OFFGRIDZA.jpg.asset.json";
 import raw9978g from "@/assets/gallery/RAW9978OFFGRIDZA.jpg.asset.json";
 import asr03283g from "@/assets/gallery/ASR03283_OFFGRIDZA.jpg.asset.json";
 import asr03298g from "@/assets/gallery/ASR03298_OFFGRIDZA.jpg.asset.json";
+import dsc03183 from "@/assets/gallery/DSC03183OFFGRIDZA.jpg.asset.json";
+import dsc03226 from "@/assets/gallery/DSC03226OFFGRIDZA.jpg.asset.json";
+import dsc03254 from "@/assets/gallery/DSC03254OFFGRIDZA.jpg.asset.json";
+import dsc03266 from "@/assets/gallery/DSC03266OFFGRIDZA.jpg.asset.json";
+import dsc03277 from "@/assets/gallery/DSC03277OFFGRIDZA.jpg.asset.json";
+import dsc03438 from "@/assets/gallery/DSC03438OFFGRIDZA.jpg.asset.json";
+import dsc03458 from "@/assets/gallery/DSC03458OFFGRIDZA.jpg.asset.json";
+import dsc03492 from "@/assets/gallery/DSC03492OFFGRIDZA.jpg.asset.json";
+
 
 
 export type GalleryPhoto = {
@@ -91,7 +100,16 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
   { id: "hosts-flame-screen", src: raw9978g.url, alt: "Hosts on stage in front of a flame-lit raised fist screen", width: 1280, height: 1920, year: 2026 },
   { id: "backstage-interview", src: asr03283g.url, alt: "Media personality with sculpted hair interviewed backstage", width: 1280, height: 1920, year: 2026 },
   { id: "backstage-portrait", src: asr03298g.url, alt: "Backstage portrait beside the road cases", width: 1280, height: 1920, year: 2026 },
+  { id: "crowd-singing-lights", src: dsc03183.url, alt: "Fans singing and filming under the stadium lights", width: 1280, height: 1920, year: 2026 },
+  { id: "fan-blue-glow", src: dsc03226.url, alt: "Fan smiling in the blue glow of the stadium", width: 1280, height: 1920, year: 2026 },
+  { id: "fan-hands-up", src: dsc03254.url, alt: "Fan with hands in the air singing along", width: 1280, height: 1920, year: 2026 },
+  { id: "performer-orange-screen", src: dsc03266.url, alt: "Performer on stage in front of the fiery orange screen", width: 1280, height: 1920, year: 2026 },
+  { id: "fan-red-lights", src: dsc03277.url, alt: "Fan laughing in the red stage lights", width: 1280, height: 1920, year: 2026 },
+  { id: "sea-of-phone-lights", src: dsc03438.url, alt: "Drummer in white surrounded by a sea of phone lights", width: 1280, height: 1920, year: 2026 },
+  { id: "drummer-parade", src: dsc03458.url, alt: "Drummer marching along the stage runway in white", width: 1280, height: 1920, year: 2026 },
+  { id: "wide-stage-panorama", src: dsc03492.url, alt: "Wide shot of the full stage and packed stadium", width: 1920, height: 1280, year: 2026 },
 ];
+
 
 
 /** Year sections for the gallery page — newest edition first. */
