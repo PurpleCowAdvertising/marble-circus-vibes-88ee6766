@@ -147,7 +147,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Scorpion Kings Live, artists, events and the culture. Be first to know about lineup drops, tickets and exclusive content.",
+          "Scorpion Kings Live, artists, events and the culture. Relive the moments and be first to know what's next.",
       },
       { property: "og:title", content: "Scorpion Kings Live" },
       {
@@ -417,18 +417,6 @@ function HomePage() {
                 <p>
                   From amapiano floors to global pop stages, this is where the music, the visuals and the moment meet.
                 </p>
-
-                <a
-                  href="#experience"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    scrollToSection("experience");
-                  }}
-                  className="group inline-flex items-center gap-2 text-white hover:text-white/70"
-                >
-                  <span className="story-link">Explore hospitality</span>
-                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
               </div>
             </Reveal>
           </RevealGroup>
@@ -439,7 +427,7 @@ function HomePage() {
 
       <VisibilityGate keyName="section:home.past-photos">
       <div id="gallery" className="relative isolate z-20 scroll-mt-24 bg-orange-rich">
-        <Section className="!pb-10 !pt-5 text-foreground md:!pb-16 md:!pt-10">
+        <Section className="!pb-6 !pt-5 text-foreground md:!pb-16 md:!pt-10">
           <RevealGroup>
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
@@ -944,7 +932,7 @@ function HomePage() {
 
       <VisibilityGate keyName="section:home.merchandise">
         <div id="merchandise" className="relative isolate z-30 scroll-mt-24 bg-black text-white">
-          <Section className="!py-10 md:!py-14">
+          <Section className="!py-6 md:!py-14">
             <FadeIn>
               <div className="flex flex-wrap items-end justify-between gap-6">
                 <div>
@@ -963,25 +951,18 @@ function HomePage() {
 
       <VisibilityGate keyName="section:home.partners">
       <div id="partners" className="relative isolate z-30 scroll-mt-24 bg-black text-white">
-        <Section className="!py-10 md:!py-14">
+        <Section className="!py-6 md:!py-14">
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.4em] text-gold">PROUDLY PARTNERED WITH</p>
                 <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl">Thank you to our 2026 partners.</h2>
               </div>
-
-              <Link
-                to="/partners"
-                className="text-xs uppercase tracking-[0.25em] text-white/60 transition-colors hover:text-gold"
-              >
-                {"\n"}
-              </Link>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="mt-8 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
+            <div className="mt-4 -mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:mt-8 md:overflow-visible md:px-0 md:pb-0">
               <ul className="flex min-w-max items-stretch gap-3 md:grid md:min-w-0 md:grid-cols-6 md:gap-4">
                 {HOME_PARTNER_ORDER.map((sponsor) => {
                   const chipClassName = `flex h-24 w-40 items-center justify-center rounded-2xl border py-4 backdrop-blur-xl transition-colors md:h-28 md:w-auto ${
