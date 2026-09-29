@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, Ticket, ConciergeBell, Handshake, Newspaper, Play } from "lucide-react";
+import { Home, Ticket, ConciergeBell, Handshake, Newspaper, Play, Images } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
 import { useVisiblePageRoutes } from "./visibility";
@@ -12,6 +12,7 @@ const TABS = [
     ? [{ kind: "scroll" as const, hash: "experience", label: "Hospitality", icon: ConciergeBell }]
     : []),
   { kind: "route", to: "/partners", label: "Partners", icon: Handshake, exact: false },
+  { kind: "route", to: "/gallery", label: "Gallery", icon: Images, exact: false },
   { kind: "route", to: "/news", label: "News", icon: Newspaper, exact: false },
   { kind: "route", to: "/feed", label: "Feed", icon: Play, exact: false },
 ] as const;
