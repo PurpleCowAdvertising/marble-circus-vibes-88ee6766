@@ -132,7 +132,7 @@ export function FeedbackForm() {
 
             <div>
               <label className="mb-2 block text-xs uppercase tracking-widest text-white/50">
-                Your thoughts, ideas and where should we take the show next *
+                WHERE SHOULD WE TAKE THE SHOW NEXT?
               </label>
               <textarea
                 required
