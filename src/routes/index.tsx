@@ -216,18 +216,38 @@ function HomePage() {
                 {/* SABC1 broadcast banner */}
                 <div className="absolute inset-x-0 bottom-0 z-20 flex justify-center px-5 pb-[calc(5svh+3.5rem)] sm:px-6 md:pb-[calc(8vh+1.5rem)]">
                   <FadeIn>
-                    <div className="pointer-events-auto flex flex-col items-center gap-3 rounded-3xl border border-white/15 bg-black/50 px-6 py-5 text-center shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150 md:flex-row md:gap-6 md:px-9 md:py-4">
-                      <p className="text-[10px] uppercase tracking-[0.4em] text-gold">TV Broadcast</p>
-                      <h2 className="font-display text-2xl font-bold leading-tight text-white md:text-3xl">
-                        Watch on SABC1 · 3 October 2026
+                    <motion.div
+                      animate={{ scale: [1, 1.015, 1] }}
+                      transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
+                      className="pointer-events-auto relative flex flex-col items-center gap-3 overflow-hidden rounded-3xl border border-white/15 bg-black/50 px-6 py-5 text-center shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150 md:flex-row md:gap-6 md:px-9 md:py-4"
+                    >
+                      <motion.div
+                        aria-hidden
+                        className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/15 to-transparent"
+                        animate={{ x: ["-120%", "420%"] }}
+                        transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.6 }}
+                      />
+                      <p className="relative flex items-center gap-2 text-[10px] uppercase tracking-[0.4em] text-gold">
+                        <motion.span
+                          aria-hidden
+                          className="inline-block h-1.5 w-1.5 rounded-full bg-gold"
+                          animate={{ opacity: [1, 0.2, 1], scale: [1, 0.75, 1] }}
+                          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                        TV Broadcast
+                      </p>
+                      <h2 className="relative max-w-xl font-display text-base font-bold leading-snug text-white sm:text-lg md:text-xl">
+                        Scorpion Kings Live, broadcasting on{" "}
+                        <span className="text-gold">Saturday, 3 October 2026, at 20:00</span>{" "}
+                        on SABC1 and SABC Plus.
                       </h2>
                       <Link
                         to="/news"
-                        className="inline-flex items-center gap-2 rounded-full border border-gold/60 bg-gold/15 px-5 py-2 font-display text-xs font-bold uppercase tracking-widest text-gold transition-transform hover:scale-105 md:text-sm"
+                        className="relative inline-flex items-center gap-2 rounded-full border border-gold/60 bg-gold/15 px-5 py-2 font-display text-xs font-bold uppercase tracking-widest text-gold transition-transform hover:scale-105 md:text-sm"
                       >
                         Read More
                       </Link>
-                    </div>
+                    </motion.div>
                   </FadeIn>
                 </div>
 
