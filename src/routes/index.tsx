@@ -234,7 +234,7 @@ function HomePage() {
                         className="relative h-7 w-auto shrink-0 object-contain md:h-10"
                       />
                       <div
-                        className="relative w-52 min-w-0 overflow-hidden sm:w-72 md:w-96 lg:w-[30rem]"
+                        className="relative w-60 min-w-0 overflow-hidden sm:w-72 md:w-96 lg:w-[30rem]"
                         style={{
                           maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
                           WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
