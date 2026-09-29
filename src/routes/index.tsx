@@ -209,14 +209,29 @@ function HomePage() {
                     el.muted = true;
                     el.defaultMuted = true;
                     el.setAttribute("muted", "");
-                    const play = () => el.play().catch(() => {});
+                    el.playsInline = true;
+                    el.setAttribute("playsinline", "");
+                    el.setAttribute("webkit-playsinline", "");
+                    const play = () => {
+                      if (el.paused) el.play().catch(() => {});
+                    };
                     play();
-                    el.addEventListener("canplay", play, { once: true });
+                    ["loadedmetadata", "loadeddata", "canplay", "suspend"].forEach((e) =>
+                      el.addEventListener(e, play),
+                    );
+                    // iPhone fallback (e.g. Low Power Mode): start on first touch/scroll
+                    ["touchstart", "touchend", "click", "scroll"].forEach((e) =>
+                      window.addEventListener(e, play, { once: true, passive: true }),
+                    );
+                    document.addEventListener("visibilitychange", play);
                   }}
                   autoPlay
                   loop
                   muted
                   playsInline
+                  disablePictureInPicture
+                  disableRemotePlayback
+                  poster="/hero-poster-mobile.jpg"
                   preload="auto"
                   aria-hidden
                   className="pointer-events-none absolute inset-0 h-full w-full object-cover"
