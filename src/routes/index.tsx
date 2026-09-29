@@ -240,7 +240,7 @@ function HomePage() {
                     <motion.div
                       animate={{ scale: [1, 1.015, 1] }}
                       transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-                      className="pointer-events-auto relative w-[calc(100vw-2rem)] max-w-md overflow-hidden rounded-2xl border border-white/15 bg-black/50 px-5 py-4 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150"
+                      className="pointer-events-auto relative w-[calc(100vw-2rem)] max-w-md overflow-hidden rounded-2xl border border-white/15 bg-black/65 px-5 py-5 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150"
                     >
                       <motion.div
                         aria-hidden
@@ -255,24 +255,21 @@ function HomePage() {
                           WebkitMaskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
                         }}
                       >
-                        <motion.div
-                          className="flex w-max whitespace-nowrap"
-                          animate={{ x: ["0%", "-50%"] }}
-                          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-                        >
+                        <div className="sabc-marquee flex w-max whitespace-nowrap">
                           {[0, 1].map((copy) => (
                             <span
                               key={copy}
-                              className="pe-16 font-display text-xl font-bold leading-snug text-white"
+                              className="pe-16 font-display text-2xl font-bold leading-snug text-white"
                             >
                               Scorpion Kings Live, broadcasting on{" "}
                               <span className="text-gold">Saturday, 3 October 2026, at 20:00</span>{" "}
                               on SABC1 and SABC Plus.
                             </span>
                           ))}
-                        </motion.div>
+                        </div>
                       </div>
                     </motion.div>
+
                   </FadeIn>
                   <FadeIn>
                     <Link
