@@ -126,9 +126,8 @@ export function MobileTabBar() {
         className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-4 md:hidden"
       >
         <div
-          className={`pointer-events-auto relative flex h-11 items-center justify-center rounded-full border border-white/70 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            collapsed ? "w-auto px-2" : "w-full max-w-[22rem] justify-between px-2"
-          }`}
+          className="pointer-events-auto relative flex h-11 w-full max-w-[22rem] items-center justify-between rounded-full border border-white/70 px-2 backdrop-blur-2xl backdrop-saturate-150"
+
           style={{
             background:
               "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.85) 45%, rgba(210,210,215,0.85) 100%)",
@@ -153,11 +152,8 @@ export function MobileTabBar() {
                   ? pathname === "/" && hash === `#${tab.hash}`
                   : false;
 
-            const baseClassName = `group flex h-full items-center justify-center overflow-hidden transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95 ${
-              collapsed
-                ? "pointer-events-none w-0 scale-90 opacity-0 blur-[3px]"
-                : "w-full flex-1 scale-100 opacity-100 blur-0"
-            }`;
+            const baseClassName = "group flex h-full w-full flex-1 items-center justify-center overflow-hidden transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95 scale-100 opacity-100 blur-0";
+
 
             const iconClassName = `tabbar-icon ${isActive ? "is-active" : ""} flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
               isActive
