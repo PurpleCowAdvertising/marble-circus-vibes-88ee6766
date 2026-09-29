@@ -213,6 +213,24 @@ function HomePage() {
                   className="pointer-events-none absolute inset-0 h-full w-full object-cover"
                 />
 
+                {/* SABC1 broadcast banner */}
+                <div className="absolute inset-x-0 bottom-0 z-20 flex justify-center px-5 pb-[calc(5svh+3.5rem)] sm:px-6 md:pb-[calc(8vh+1.5rem)]">
+                  <FadeIn>
+                    <div className="pointer-events-auto flex flex-col items-center gap-3 rounded-3xl border border-white/15 bg-black/50 px-6 py-5 text-center shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150 md:flex-row md:gap-6 md:px-9 md:py-4">
+                      <p className="text-[10px] uppercase tracking-[0.4em] text-gold">TV Broadcast</p>
+                      <h2 className="font-display text-2xl font-bold leading-tight text-white md:text-3xl">
+                        Watch on SABC1 · 3 October 2026
+                      </h2>
+                      <Link
+                        to="/news"
+                        className="inline-flex items-center gap-2 rounded-full border border-gold/60 bg-gold/15 px-5 py-2 font-display text-xs font-bold uppercase tracking-widest text-gold transition-transform hover:scale-105 md:text-sm"
+                      >
+                        Read More
+                      </Link>
+                    </div>
+                  </FadeIn>
+                </div>
+
               </figure>
             </motion.div>
           </FadeIn>
