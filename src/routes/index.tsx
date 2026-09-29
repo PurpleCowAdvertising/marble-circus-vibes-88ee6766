@@ -8,7 +8,6 @@ import { Reveal, RevealGroup } from "@/components/site/Reveal";
 
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 
-import { PartnerShowcase } from "@/components/site/PartnerShowcase";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { ParkRideModal } from "@/components/site/ParkRideModal";
@@ -214,13 +213,6 @@ function HomePage() {
                   className="pointer-events-none absolute inset-0 h-full w-full object-cover"
                 />
 
-                <div className="absolute inset-0">
-                  <PartnerShowcase />
-                </div>
-
-                <figcaption className="sr-only">
-                  Official partners of Scorpion Kings Live.
-                </figcaption>
               </figure>
             </motion.div>
           </FadeIn>
