@@ -26,10 +26,10 @@ export function GallerySlider({ photos, onOpen }: { photos: GalleryPhoto[]; onOp
             const landscape = photo.width > photo.height;
             return (
               <li key={photo.id} className={`min-w-0 shrink-0 ${landscape ? "basis-[88vw] sm:basis-[68vw] lg:basis-[48vw]" : "basis-[66vw] sm:basis-[42vw] lg:basis-[25vw]"}`}>
-                <button type="button" onClick={() => onOpen?.(index)} className="group relative block w-full overflow-hidden rounded-lg border border-white/10 bg-black/50 text-left" style={{ aspectRatio: `${photo.width} / ${photo.height}` }} aria-label={`Open photo ${index + 1} of ${photos.length}`}>
+                <Button type="button" variant="ghost" onClick={() => onOpen?.(index)} className="group relative block h-auto w-full overflow-hidden rounded-lg border border-white/10 bg-black/50 p-0 text-left hover:bg-black/50" style={{ aspectRatio: `${photo.width} / ${photo.height}` }} aria-label={`Open photo ${index + 1} of ${photos.length}`}>
                   <img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
                   <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white backdrop-blur-md transition-colors group-hover:bg-gold group-hover:text-gold-foreground"><Expand size={15} /></span>
-                </button>
+                </Button>
               </li>
             );
           })}
@@ -49,12 +49,22 @@ export function GalleryGrid({ photos }: { photos: GalleryPhoto[] }) {
     <>
       <div className="columns-1 gap-3 sm:columns-2 md:gap-4 lg:columns-3">
         {photos.map((photo, index) => (
-          <button key={photo.id} type="button" onClick={() => setActiveIndex(index)} className="group relative mb-3 block w-full break-inside-avoid overflow-hidden rounded-lg border border-white/10 bg-black/40 text-left md:mb-4" aria-label={`Open photo ${index + 1} of ${photos.length}`}>
+          <Button key={photo.id} type="button" variant="ghost" onClick={() => setActiveIndex(index)} className="group relative mb-3 block h-auto w-full break-inside-avoid overflow-hidden rounded-lg border border-white/10 bg-black/40 p-0 text-left hover:bg-black/40 md:mb-4" aria-label={`Open photo ${index + 1} of ${photos.length}`}>
             <img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} loading={index < 3 ? "eager" : "lazy"} className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
             <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white backdrop-blur-md transition-colors group-hover:bg-gold group-hover:text-gold-foreground"><Expand size={15} /></span>
-          </button>
+          </Button>
         ))}
       </div>
+      <GalleryLightbox photos={photos} activeIndex={activeIndex} onClose={() => setActiveIndex(null)} onChange={setActiveIndex} />
+    </>
+  );
+}
+
+export function GalleryPreview({ photos }: { photos: GalleryPhoto[] }) {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  return (
+    <>
+      <GallerySlider photos={photos} onOpen={setActiveIndex} />
       <GalleryLightbox photos={photos} activeIndex={activeIndex} onClose={() => setActiveIndex(null)} onChange={setActiveIndex} />
     </>
   );

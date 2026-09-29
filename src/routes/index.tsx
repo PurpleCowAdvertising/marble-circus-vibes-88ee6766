@@ -12,10 +12,12 @@ import { PartnerShowcase } from "@/components/site/PartnerShowcase";
 
 import { TicketModal, type TicketTier } from "@/components/site/TicketModal";
 import { ParkRideModal } from "@/components/site/ParkRideModal";
+import { GalleryPreview } from "@/components/site/EventGallery";
 
 import { ShopifyCollection } from "@/components/ShopifyCollection";
 import { SPONSORS } from "@/config/sponsors";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { GALLERY_PHOTOS } from "@/config/gallery";
 
 import heroVideoAsset from "@/assets/hero-video-finale.webm.asset.json";
 const heroVideoMobileAsset = heroVideoAsset;
@@ -72,34 +74,9 @@ const SCORPION_KINGS = [
 
 import parkRideShuttle from "@/assets/park-ride-shuttle.webp";
 
-import pastFanPhone from "@/assets/past-event/fan-phone.webp";
-import pastDrummerFire from "@/assets/past-event/drummer-fire.webp";
 import pastStageWalk from "@/assets/past-event/stage-walk.webp";
 import pastRedVocalist from "@/assets/past-event/red-vocalist.webp";
 import pastStadiumFire from "@/assets/past-event/stadium-fire.webp";
-
-const PAST_EVENT_PHOTOS: { src: string; alt: string }[] = [
-  {
-    src: pastStadiumFire,
-    alt: "FNB Stadium with pyrotechnics during the last Scorpion Kings Live show",
-  },
-  {
-    src: pastDrummerFire,
-    alt: "Traditional drummer on stage framed by flames",
-  },
-  {
-    src: pastRedVocalist,
-    alt: "Vocalist in red performing under stadium lights",
-  },
-  {
-    src: pastStageWalk,
-    alt: "Artist walking the main stage in a cream jacket",
-  },
-  {
-    src: pastFanPhone,
-    alt: "Fan smiling in the stands at FNB Stadium",
-  },
-];
 
 type Headliner = {
   name: string;
@@ -175,6 +152,8 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Home of the artists, the events and the culture.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "preconnect", href: "https://sdks.shopifycdn.com" },
@@ -348,49 +327,26 @@ function HomePage() {
       </VisibilityGate>
 
       <VisibilityGate keyName="section:home.past-photos">
-      <div className="relative isolate z-20 bg-orange-rich">
-        <Section className="!pb-10 !pt-4 text-foreground md:!pb-14 md:!pt-8">
+      <div id="gallery" className="relative isolate z-20 scroll-mt-24 bg-orange-rich">
+        <Section className="!pb-10 !pt-5 text-foreground md:!pb-16 md:!pt-10">
           <RevealGroup>
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">From the last show</p>
-                <h2 className="mt-2 font-display text-2xl font-bold text-white md:text-4xl">
-                  A taste of what is coming.
+                <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">Inside the moment</p>
+                <h2 className="mt-2 font-display text-3xl font-bold text-white md:text-6xl">
+                  The energy lives here.
                 </h2>
               </div>
-
-              <p className="max-w-xs text-xs text-white/80 md:text-sm">
-                Moments from the previous Scorpion Kings Live at FNB Stadium.
-              </p>
+              <Link to="/gallery" className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:text-gold">
+                View all photos
+                <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </Reveal>
-
-          <div className="-mx-4 mt-6 overflow-x-auto md:-mx-8">
-              <ul className="flex gap-3 px-4 md:gap-4 md:px-8">
-                {PAST_EVENT_PHOTOS.map((photo, index) => (
-                  <Reveal
-                    as="li"
-                    key={photo.src}
-                    delay={index * 100}
-                    className="group relative shrink-0 overflow-hidden rounded-lg bg-black/40"
-                    style={{
-                      width: index === 0 ? "clamp(220px, 36vw, 360px)" : "clamp(160px, 24vw, 260px)",
-                      aspectRatio: "3 / 4",
-                    }}
-                  >
-                    <Reveal delay={index * 100 + 150} className="h-full w-full">
-                      <img
-                        src={photo.src}
-                        alt={photo.alt}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-                      />
-                    </Reveal>
-                  </Reveal>
-                ))}
-              </ul>
-            </div>
+          <Reveal className="-mx-5 mt-7 px-5 sm:-mx-6 sm:px-6 md:-mx-10 md:mt-10 md:px-10">
+            <GalleryPreview photos={GALLERY_PHOTOS} />
+          </Reveal>
           </RevealGroup>
 
         </Section>
