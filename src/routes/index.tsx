@@ -307,11 +307,7 @@ function HomePage() {
                           WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
                         }}
                       >
-                        <motion.div
-                          className="flex w-max whitespace-nowrap"
-                          animate={{ x: ["0%", "-50%"] }}
-                          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-                        >
+                        <div className="sabc-marquee flex w-max whitespace-nowrap">
                           {[0, 1].map((copy) => (
                             <span
                               key={copy}
@@ -322,7 +318,8 @@ function HomePage() {
                               on SABC1 and SABC Plus.
                             </span>
                           ))}
-                        </motion.div>
+                        </div>
+
                       </div>
                       <Link
                         to="/news"
