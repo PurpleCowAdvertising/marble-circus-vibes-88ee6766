@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { FadeIn, Section } from "@/components/site/Section";
+import { FeedbackForm } from "@/components/site/FeedbackForm";
 import { Reveal, RevealGroup } from "@/components/site/Reveal";
 
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
