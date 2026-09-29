@@ -36,7 +36,7 @@ export function GallerySlider({ photos, onOpen }: { photos: GalleryPhoto[]; onOp
           })}
         </ul>
       </div>
-      <div className="mt-5 flex items-center justify-end gap-2">
+      <div className="mt-5 hidden items-center justify-end gap-2 md:flex">
         <Button variant="outline" size="icon" onClick={previous} aria-label="Previous photos" className="rounded-full border-white/20 bg-white/[0.06] text-white hover:bg-gold hover:text-gold-foreground"><ArrowLeft /></Button>
         <Button variant="outline" size="icon" onClick={next} aria-label="Next photos" className="rounded-full border-white/20 bg-white/[0.06] text-white hover:bg-gold hover:text-gold-foreground"><ArrowRight /></Button>
       </div>
