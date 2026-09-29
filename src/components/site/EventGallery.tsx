@@ -44,22 +44,50 @@ export function GallerySlider({ photos, onOpen }: { photos: GalleryPhoto[]; onOp
   );
 }
 
-export function GalleryGrid({ photos }: { photos: GalleryPhoto[] }) {
+export function GalleryStrip({ photos }: { photos: GalleryPhoto[] }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [viewportRef, api] = useEmblaCarousel({ loop: true, align: "start", dragFree: true });
+  const previous = useCallback(() => api?.scrollPrev(), [api]);
+  const next = useCallback(() => api?.scrollNext(), [api]);
+
   return (
-    <>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
-        {photos.map((photo, index) => (
-          <Button key={photo.id} type="button" variant="ghost" onClick={() => setActiveIndex(index)} className="group relative block aspect-[4/5] h-auto w-full overflow-hidden rounded-xl border border-white/10 bg-black/40 p-0 text-left hover:bg-black/40" aria-label={`Open photo ${index + 1} of ${photos.length}`}>
-            <img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} loading={index < 4 ? "eager" : "lazy"} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
-            <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white backdrop-blur-md transition-colors group-hover:bg-gold group-hover:text-gold-foreground"><Expand size={15} /></span>
-          </Button>
-        ))}
+    <div>
+      <div ref={viewportRef} className="overflow-hidden">
+        <ul className="flex touch-pan-y items-stretch gap-3 md:gap-4">
+          {photos.map((photo, index) => (
+            <li key={photo.id} className="min-w-0 shrink-0 basis-[54vw] sm:basis-[32vw] lg:basis-[21vw]">
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={() => setActiveIndex(index)}
+                className="group relative block h-44 w-full overflow-hidden rounded-xl border border-white/10 bg-black/40 p-0 text-left hover:bg-black/40 sm:h-56 lg:h-64"
+                aria-label={`Open photo ${index + 1} of ${photos.length}`}
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={photo.width}
+                  height={photo.height}
+                  loading={index < 6 ? "eager" : "lazy"}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
+                <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white backdrop-blur-md transition-colors group-hover:bg-gold group-hover:text-gold-foreground">
+                  <Expand size={15} />
+                </span>
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="mt-4 hidden items-center justify-end gap-2 md:flex">
+        <Button variant="outline" size="icon" onClick={previous} aria-label={`Scroll ${photos.length} photos backward`} className="rounded-full border-white/20 bg-white/[0.06] text-white hover:bg-gold hover:text-gold-foreground"><ArrowLeft /></Button>
+        <Button variant="outline" size="icon" onClick={next} aria-label={`Scroll ${photos.length} photos forward`} className="rounded-full border-white/20 bg-white/[0.06] text-white hover:bg-gold hover:text-gold-foreground"><ArrowRight /></Button>
       </div>
       <GalleryLightbox photos={photos} activeIndex={activeIndex} onClose={() => setActiveIndex(null)} onChange={setActiveIndex} />
-    </>
+    </div>
   );
 }
+
 
 export function GalleryPreview({ photos }: { photos: GalleryPhoto[] }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
