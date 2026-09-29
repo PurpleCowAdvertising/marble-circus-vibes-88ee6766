@@ -8,7 +8,7 @@ import { HOSPITALITY_PACKAGES_VISIBLE, TICKET_SALES_VISIBLE } from "@/config/sit
 
 
 type NavItem =
-  | { kind: "route"; to: "/" | "/feed" | "/news" | "/merchandise" | "/contact" | "/partners" | "/faqs"; label: string }
+  | { kind: "route"; to: "/" | "/feed" | "/gallery" | "/news" | "/merchandise" | "/contact" | "/partners" | "/faqs"; label: string }
   | { kind: "scroll"; hash: string; label: string }
   | { kind: "external"; href: string; label: string };
 
@@ -19,6 +19,7 @@ const NAV: readonly NavItem[] = [
   { kind: "route", to: "/partners", label: "Partners" },
   { kind: "route", to: "/news", label: "News" },
   { kind: "route", to: "/feed", label: "Feed" },
+  { kind: "route", to: "/gallery", label: "Gallery" },
   { kind: "route", to: "/merchandise", label: "Merch" },
   { kind: "route", to: "/faqs", label: "FAQs" },
 ] as const;
