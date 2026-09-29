@@ -216,12 +216,12 @@ function HomePage() {
                 />
 
                 {/* SABC1 broadcast banner */}
-                <div className="absolute inset-x-0 bottom-0 z-20 flex justify-center px-5 pb-[calc(5svh+3.5rem)] sm:px-6 md:pb-[calc(8vh+1.5rem)]">
+                <div className="absolute inset-x-0 top-1/2 z-20 flex -translate-y-1/2 justify-center px-4 md:top-auto md:bottom-0 md:translate-y-0 md:px-6 md:pb-[calc(8vh+1.5rem)]">
                   <FadeIn>
                     <motion.div
                       animate={{ scale: [1, 1.015, 1] }}
                       transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-                      className="pointer-events-auto relative flex items-center gap-4 overflow-hidden rounded-3xl border border-white/15 bg-black/50 px-5 py-4 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150 md:gap-6 md:px-8 md:py-4"
+                      className="pointer-events-auto relative flex w-[calc(100vw-2rem)] max-w-md flex-col gap-3 overflow-hidden rounded-3xl border border-white/15 bg-black/50 px-5 py-5 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:gap-4 md:gap-6 md:px-8 md:py-4"
                     >
                       <motion.div
                         aria-hidden
@@ -229,38 +229,40 @@ function HomePage() {
                         animate={{ x: ["-120%", "420%"] }}
                         transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.6 }}
                       />
-                      <img
-                        src={sabc1Logo.url}
-                        alt="SABC1"
-                        className="relative h-7 w-auto shrink-0 object-contain md:h-10"
-                      />
-                      <div
-                        className="relative w-60 min-w-0 overflow-hidden sm:w-72 md:w-96 lg:w-[30rem]"
-                        style={{
-                          maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-                          WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-                        }}
-                      >
-                        <motion.div
-                          className="flex w-max whitespace-nowrap"
-                          animate={{ x: ["0%", "-50%"] }}
-                          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+                      <div className="relative flex min-w-0 items-center gap-3 md:gap-4">
+                        <img
+                          src={sabc1Logo.url}
+                          alt="SABC1"
+                          className="relative h-8 w-auto shrink-0 object-contain md:h-10"
+                        />
+                        <div
+                          className="relative min-w-0 flex-1 overflow-hidden sm:w-72 sm:flex-none md:w-96 lg:w-[30rem]"
+                          style={{
+                            maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                            WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                          }}
                         >
-                          {[0, 1].map((copy) => (
-                            <span
-                              key={copy}
-                              className="pe-16 font-display text-lg font-bold leading-snug text-white sm:text-xl md:text-2xl"
-                            >
-                              Scorpion Kings Live, broadcasting on{" "}
-                              <span className="text-gold">Saturday, 3 October 2026, at 20:00</span>{" "}
-                              on SABC1 and SABC Plus.
-                            </span>
-                          ))}
-                        </motion.div>
+                          <motion.div
+                            className="flex w-max whitespace-nowrap"
+                            animate={{ x: ["0%", "-50%"] }}
+                            transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+                          >
+                            {[0, 1].map((copy) => (
+                              <span
+                                key={copy}
+                                className="pe-16 font-display text-xl font-bold leading-snug text-white md:text-2xl"
+                              >
+                                Scorpion Kings Live, broadcasting on{" "}
+                                <span className="text-gold">Saturday, 3 October 2026, at 20:00</span>{" "}
+                                on SABC1 and SABC Plus.
+                              </span>
+                            ))}
+                          </motion.div>
+                        </div>
                       </div>
                       <Link
                         to="/news"
-                        className="relative inline-flex shrink-0 items-center gap-2 rounded-full border border-gold/60 bg-gold/15 px-4 py-2 font-display text-xs font-bold uppercase tracking-widest text-gold transition-transform hover:scale-105 md:px-5 md:text-sm"
+                        className="relative inline-flex shrink-0 self-start items-center gap-2 rounded-full border border-gold/60 bg-gold/15 px-4 py-2 font-display text-xs font-bold uppercase tracking-widest text-gold transition-transform hover:scale-105 sm:self-auto md:px-5 md:text-sm"
                       >
                         Read More
                       </Link>
