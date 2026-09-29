@@ -72,7 +72,7 @@ export function Footer() {
             )}
 
             <p className="mt-5 max-w-md text-sm leading-relaxed text-black/70">
-              Drops, lineup reveals, ticket waves and exclusive behind-the-scenes updates.
+              Relive the moments, the music and the culture — and be first to know what's next.
             </p>
 
           </Reveal>
