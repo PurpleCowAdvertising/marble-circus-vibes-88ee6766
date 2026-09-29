@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { GalleryGrid } from "@/components/site/EventGallery";
+import { GalleryStrip } from "@/components/site/EventGallery";
 import { FadeIn, Section } from "@/components/site/Section";
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
 import { GALLERY_YEARS, photosByYear } from "@/config/gallery";
@@ -39,10 +39,13 @@ function GalleryPage() {
                 <FadeIn key={year} className="mt-12 md:mt-16" bubble={false}>
                   <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3 border-b border-white/10 pb-4">
                     <h2 className="font-display text-3xl font-bold text-white md:text-5xl">{year}.</h2>
-                    <p className="text-[10px] uppercase tracking-[0.4em] text-gold sm:text-xs">Scorpion Kings Live {year}</p>
+                    <p className="text-[10px] uppercase tracking-[0.4em] text-gold sm:text-xs">
+                      {photos.length} {photos.length === 1 ? "photo" : "photos"} · Scorpion Kings Live {year}
+                    </p>
                   </div>
-                  <GalleryGrid photos={photos} />
+                  <GalleryStrip photos={photos} />
                 </FadeIn>
+
               );
             })}
           </Section>
