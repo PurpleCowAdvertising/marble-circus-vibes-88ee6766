@@ -20,13 +20,25 @@ export function FeedbackPopup() {
       return;
     }
 
-    const timer = window.setTimeout(() => {
+    // Never stack on top of the Sony subscribe popup — wait until it's gone.
+    const tryOpen = (attempt: number) => {
+      const subscribeOpen = !!document.querySelector("[data-subscribe-popup]");
+      if (subscribeOpen && attempt < 45) {
+        window.setTimeout(() => tryOpen(attempt + 1), 1000);
+        return;
+      }
       sessionStorage.setItem(SEEN_KEY, "1");
       setIsOpen(true);
       setPillVisible(true);
+    };
+
+    const timer = window.setTimeout(() => {
+      setPillVisible(true);
+      tryOpen(0);
     }, 9000);
 
     return () => window.clearTimeout(timer);
+
   }, []);
 
   const close = () => setIsOpen(false);
