@@ -26,8 +26,9 @@ export function GallerySlider({ photos, onOpen }: { photos: GalleryPhoto[]; onOp
             const landscape = photo.width > photo.height;
             return (
               <li key={photo.id} className={`min-w-0 shrink-0 ${landscape ? "basis-[72vw] sm:basis-[46vw] lg:basis-[30vw]" : "basis-[52vw] sm:basis-[30vw] lg:basis-[19vw]"}`}>
-                <Button type="button" variant="ghost" onClick={() => onOpen?.(index)} className="group relative block h-56 w-full overflow-hidden rounded-xl border border-white/10 bg-black/50 p-0 text-left hover:bg-black/50 sm:h-64 lg:h-72" aria-label={`Open photo ${index + 1} of ${photos.length}`}>
+                <Button type="button" variant="ghost" onClick={() => onOpen?.(index)} className="group relative block h-56 w-full overflow-hidden rounded-xl border border-white/10 bg-black/50 p-0 text-left hover:bg-black/50 sm:h-64 lg:h-72" aria-label={`Open photo ${index + 1} of ${photos.length} from ${photo.year}`}>
                   <img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
+                  <span className="absolute left-3 top-3 rounded-full border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-gold backdrop-blur-md">{photo.year}</span>
                   <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white backdrop-blur-md transition-colors group-hover:bg-gold group-hover:text-gold-foreground"><Expand size={15} /></span>
                 </Button>
               </li>
