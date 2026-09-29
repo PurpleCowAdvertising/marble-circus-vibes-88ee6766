@@ -215,20 +215,32 @@ function HomePage() {
                   className="pointer-events-none absolute inset-0 h-full w-full object-cover"
                 />
 
+                <style>{`
+                  @keyframes sabc-marquee {
+                    from { transform: translateX(0); }
+                    to { transform: translateX(-50%); }
+                  }
+                  .sabc-marquee {
+                    animation: sabc-marquee 18s linear infinite;
+                    will-change: transform;
+                  }
+                `}</style>
+
                 {/* SABC1 broadcast banner — mobile: lower third, scrolling line, Read More underneath */}
                 <div className="absolute inset-x-0 bottom-[4.5rem] z-20 flex flex-col items-center gap-3 px-4 md:hidden">
                   <FadeIn>
                     <img
                       src={sabc1Logo.url}
                       alt="SABC1"
-                      className="h-8 w-auto object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.85)]"
+                      className="h-10 w-auto object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.85)]"
                     />
                   </FadeIn>
+
                   <FadeIn>
                     <motion.div
                       animate={{ scale: [1, 1.015, 1] }}
                       transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-                      className="pointer-events-auto relative w-[calc(100vw-2rem)] max-w-md overflow-hidden rounded-2xl border border-white/15 bg-black/50 px-5 py-4 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150"
+                      className="pointer-events-auto relative w-[calc(100vw-2rem)] max-w-md overflow-hidden rounded-2xl border border-white/15 bg-black/65 px-5 py-5 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150"
                     >
                       <motion.div
                         aria-hidden
@@ -243,24 +255,21 @@ function HomePage() {
                           WebkitMaskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
                         }}
                       >
-                        <motion.div
-                          className="flex w-max whitespace-nowrap"
-                          animate={{ x: ["0%", "-50%"] }}
-                          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-                        >
+                        <div className="sabc-marquee flex w-max whitespace-nowrap">
                           {[0, 1].map((copy) => (
                             <span
                               key={copy}
-                              className="pe-16 font-display text-xl font-bold leading-snug text-white"
+                              className="pe-16 font-display text-2xl font-bold leading-snug text-white"
                             >
                               Scorpion Kings Live, broadcasting on{" "}
                               <span className="text-gold">Saturday, 3 October 2026, at 20:00</span>{" "}
                               on SABC1 and SABC Plus.
                             </span>
                           ))}
-                        </motion.div>
+                        </div>
                       </div>
                     </motion.div>
+
                   </FadeIn>
                   <FadeIn>
                     <Link
@@ -298,11 +307,7 @@ function HomePage() {
                           WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
                         }}
                       >
-                        <motion.div
-                          className="flex w-max whitespace-nowrap"
-                          animate={{ x: ["0%", "-50%"] }}
-                          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-                        >
+                        <div className="sabc-marquee flex w-max whitespace-nowrap">
                           {[0, 1].map((copy) => (
                             <span
                               key={copy}
@@ -313,7 +318,8 @@ function HomePage() {
                               on SABC1 and SABC Plus.
                             </span>
                           ))}
-                        </motion.div>
+                        </div>
+
                       </div>
                       <Link
                         to="/news"
