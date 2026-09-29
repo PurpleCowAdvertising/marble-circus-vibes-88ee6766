@@ -266,7 +266,7 @@ function HomePage() {
                 </div>
 
                 {/* SABC1 broadcast banner — desktop */}
-                <div className="absolute inset-x-0 bottom-0 z-20 hidden justify-center px-6 pb-[calc(8vh+1.5rem)] md:flex">
+                <div className="absolute inset-x-0 bottom-0 z-20 hidden transform-gpu justify-center px-6 pb-[calc(8vh+1.5rem)] md:flex">
                   <FadeIn>
                     <motion.div
                       animate={{ scale: [1, 1.015, 1] }}
