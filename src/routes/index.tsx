@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { FadeIn, Section } from "@/components/site/Section";
-import { FeedbackForm } from "@/components/site/FeedbackForm";
+import { FeedbackPopup } from "@/components/site/FeedbackPopup";
 import { Reveal, RevealGroup } from "@/components/site/Reveal";
 
 import { PageGate, VisibilityGate } from "@/components/site/visibility";
@@ -966,7 +966,9 @@ function HomePage() {
 
 
 
+      <FeedbackPopup />
       <TicketModal tier={activeTier} onClose={() => setActiveTier(null)} />
+
       <ParkRideModal open={parkRideOpen} onClose={() => setParkRideOpen(false)} />
     </PageGate>
   );
