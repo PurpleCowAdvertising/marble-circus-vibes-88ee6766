@@ -69,13 +69,13 @@ export function FeedbackPopup() {
 
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[95] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
+          <div className="fixed inset-0 z-[95] flex items-center justify-center bg-black/80 p-4 pt-24 backdrop-blur-sm md:pt-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 12 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 12 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-3xl border border-white/15 bg-zinc-950 p-6 shadow-2xl md:p-8"
+              className="relative max-h-[74vh] w-full max-w-md overflow-y-auto rounded-3xl border border-white/15 bg-zinc-950 p-5 shadow-2xl md:max-h-[90vh] md:max-w-lg md:p-8"
             >
               <button
                 type="button"
