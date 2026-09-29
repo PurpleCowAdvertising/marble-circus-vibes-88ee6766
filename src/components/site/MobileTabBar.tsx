@@ -63,44 +63,10 @@ function useScrollDim() {
   return dim;
 }
 
-const BUY_ACTIONS = [
-  { label: "Buy Merch", hash: "merchandise" },
-] as const;
-
-function useCollapsed() {
-  const [collapsed, setCollapsed] = useState(false);
-
-  useEffect(() => {
-    let ticking = false;
-    let lastY = window.scrollY;
-
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        const y = window.scrollY;
-        if (y < 140) setCollapsed(false);
-        else if (y > lastY + 4) setCollapsed(true);
-        else if (y < lastY - 6) setCollapsed(false);
-        lastY = y;
-        ticking = false;
-      });
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return collapsed;
-}
-
 export function MobileTabBar() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const hash = useRouterState({ select: (state) => state.location.hash });
   const dim = useScrollDim();
-  const collapsed = useCollapsed();
-  const [buyIndex, setBuyIndex] = useState(0);
   const [drawKey, setDrawKey] = useState(0);
   const visibleRoutes = useVisiblePageRoutes();
   const tabs = useMemo(
@@ -108,11 +74,6 @@ export function MobileTabBar() {
     [visibleRoutes],
   );
 
-  useEffect(() => {
-    if (!collapsed) return;
-    const id = window.setInterval(() => setBuyIndex((i) => (i + 1) % BUY_ACTIONS.length), 6400);
-    return () => window.clearInterval(id);
-  }, [collapsed]);
 
   const handleScrollTab = (sectionHash: string) => {
     vibrate();
@@ -165,9 +126,8 @@ export function MobileTabBar() {
         className="pointer-events-none fixed inset-x-0 z-50 flex justify-center px-4 md:hidden"
       >
         <div
-          className={`pointer-events-auto relative flex h-11 items-center justify-center rounded-full border border-white/70 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            collapsed ? "w-auto px-2" : "w-full max-w-[22rem] justify-between px-2"
-          }`}
+          className="pointer-events-auto relative flex h-11 w-full max-w-[22rem] items-center justify-between rounded-full border border-white/70 px-2 backdrop-blur-2xl backdrop-saturate-150"
+
           style={{
             background:
               "linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.85) 45%, rgba(210,210,215,0.85) 100%)",
@@ -192,11 +152,8 @@ export function MobileTabBar() {
                   ? pathname === "/" && hash === `#${tab.hash}`
                   : false;
 
-            const baseClassName = `group flex h-full items-center justify-center overflow-hidden transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95 ${
-              collapsed
-                ? "pointer-events-none w-0 scale-90 opacity-0 blur-[3px]"
-                : "w-full flex-1 scale-100 opacity-100 blur-0"
-            }`;
+            const baseClassName = "group flex h-full w-full flex-1 items-center justify-center overflow-hidden transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95 scale-100 opacity-100 blur-0";
+
 
             const iconClassName = `tabbar-icon ${isActive ? "is-active" : ""} flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
               isActive
@@ -212,7 +169,8 @@ export function MobileTabBar() {
                   key={tab.hash}
                   type="button"
                   aria-label={tab.label}
-                  tabIndex={collapsed ? -1 : 0}
+                  tabIndex={0}
+
                   onClick={() => handleScrollTab(tab.hash)}
                   className={baseClassName}
                 >
@@ -235,7 +193,7 @@ export function MobileTabBar() {
                   setDrawKey((k) => k + 1);
                 }}
                 aria-label={tab.label}
-                tabIndex={collapsed ? -1 : 0}
+                tabIndex={0}
                 className={baseClassName}
               >
                 <span className={iconClassName} key={iconKey} style={iconStyle}>
@@ -244,33 +202,8 @@ export function MobileTabBar() {
               </Link>
             );
           })}
-
-          {/* Buy action that emerges as the bar retracts on scroll */}
-          <button
-            type="button"
-            aria-hidden={!collapsed}
-            tabIndex={collapsed ? 0 : -1}
-            onClick={() => handleScrollTab(BUY_ACTIONS[buyIndex].hash)}
-            className={`relative flex items-center justify-center overflow-hidden whitespace-nowrap rounded-full bg-[#f8a52d] text-[12px] font-bold tracking-tight text-black shadow-[0_8px_22px_-8px_rgba(248,165,45,0.8)] transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              collapsed
-                ? "pointer-events-auto max-w-[220px] scale-100 px-5 py-2 opacity-100 blur-0"
-                : "pointer-events-none max-w-0 scale-95 px-0 py-2 opacity-0 blur-[3px]"
-            }`}
-          >
-            <span className="relative block h-[16px] w-[88px] text-center">
-              {BUY_ACTIONS.map((action, index) => (
-                <span
-                  key={action.hash}
-                  className={`absolute inset-0 flex items-center justify-center leading-4 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                    index === buyIndex ? "translate-y-0 opacity-100 blur-0" : "-translate-y-1.5 opacity-0 blur-[2px]"
-                  }`}
-                >
-                  {action.label}
-                </span>
-              ))}
-            </span>
-          </button>
         </div>
+
 
       </nav>
     </>
