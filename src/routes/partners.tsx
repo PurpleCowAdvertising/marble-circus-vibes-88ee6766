@@ -50,7 +50,7 @@ function PartnersPage() {
     <PageGate keyName="page:partners">
       <PageHero
         eyebrow="Our partners"
-        title="Powered by the bold."
+        title="thank you to our 2026 partners"
         description="The brands and partners standing with Scorpion Kings Live."
       />
 
