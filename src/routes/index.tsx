@@ -886,7 +886,7 @@ function HomePage() {
               <div className="flex flex-wrap items-end justify-between gap-6">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Merchandise</p>
-                  <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl">Official merch.</h2>
+                  <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl">Official merch still available.</h2>
                 </div>
               </div>
             </FadeIn>
