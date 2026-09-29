@@ -1,8 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
-import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
-import heroVideoMobileAsset from "@/assets/hero-video-mobile.mp4.asset.json";
+import heroVideoAsset from "@/assets/hero-video-finale.webm.asset.json";
 import { TICKET_SALES_VISIBLE } from "@/config/site-campaign";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -81,7 +80,7 @@ export function HeroVideo({ overlay }: { overlay?: ReactNode }) {
             <motion.video
               ref={videoRef}
               key={isMobile ? "mobile" : "desktop"}
-              src={isMobile ? heroVideoMobileAsset.url : heroVideoAsset.url}
+              src={heroVideoAsset.url}
               poster={isMobile ? "/hero-poster-mobile.jpg" : "/hero-poster.jpg"}
               autoPlay
               loop
