@@ -216,7 +216,14 @@ function HomePage() {
                 />
 
                 {/* SABC1 broadcast banner — mobile: lower third, scrolling line, Read More underneath */}
-                <div className="absolute inset-x-0 top-[63%] z-20 flex flex-col items-center gap-3 px-4 md:hidden">
+                <div className="absolute inset-x-0 bottom-[4.5rem] z-20 flex flex-col items-center gap-3 px-4 md:hidden">
+                  <FadeIn>
+                    <img
+                      src={sabc1Logo.url}
+                      alt="SABC1"
+                      className="h-8 w-auto object-contain drop-shadow-[0_4px_14px_rgba(0,0,0,0.85)]"
+                    />
+                  </FadeIn>
                   <FadeIn>
                     <motion.div
                       animate={{ scale: [1, 1.015, 1] }}
