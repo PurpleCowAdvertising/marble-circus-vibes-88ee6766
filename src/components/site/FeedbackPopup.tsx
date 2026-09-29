@@ -53,7 +53,7 @@ export function FeedbackPopup() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
-            className="fixed bottom-5 left-5 z-40 flex items-center gap-2.5 rounded-full border border-gold/50 bg-black/70 py-3 pe-5 ps-4 text-xs font-bold uppercase tracking-widest text-gold shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-transform hover:scale-105 md:bottom-6 md:left-6"
+            className="fixed inset-x-0 bottom-5 z-40 mx-auto flex w-fit items-center gap-2.5 rounded-full border border-gold/50 bg-black/70 py-3 pe-5 ps-4 text-xs font-bold uppercase tracking-widest text-gold shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-transform hover:scale-105 md:bottom-6"
           >
             <motion.span
               aria-hidden
