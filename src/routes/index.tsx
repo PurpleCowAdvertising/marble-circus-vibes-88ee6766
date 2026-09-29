@@ -20,6 +20,7 @@ import { GALLERY_SLIDER_PHOTOS } from "@/config/gallery";
 
 import heroVideoAsset from "@/assets/hero-video-finale.webm.asset.json";
 const heroVideoMobileAsset = heroVideoAsset;
+import sabc1Logo from "@/assets/sponsors/6-sabc1-transparent.png.asset.json";
 
 const HOME_PARTNER_NAMES = [
   "SABC 1",
