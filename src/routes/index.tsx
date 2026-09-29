@@ -200,7 +200,7 @@ function HomePage() {
         </h1>
 
         <div className="w-full">
-          <FadeIn>
+          <div>
             <motion.div style={{ y, opacity }} className="relative">
               <figure className="relative h-[100svh] w-full overflow-hidden bg-black md:h-[85vh] md:max-h-[820px] md:min-h-[420px]">
                 <video
