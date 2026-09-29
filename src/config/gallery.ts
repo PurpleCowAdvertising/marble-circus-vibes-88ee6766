@@ -78,3 +78,6 @@ export const GALLERY_YEARS = [2026, 2025] as const;
 export function photosByYear(year: 2025 | 2026): GalleryPhoto[] {
   return GALLERY_PHOTOS.filter((photo) => photo.year === year);
 }
+
+/** Homepage slider order — the latest edition first, then the archive. */
+export const GALLERY_SLIDER_PHOTOS: GalleryPhoto[] = [...photosByYear(2026), ...photosByYear(2025)];
