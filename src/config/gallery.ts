@@ -18,6 +18,16 @@ import sk9934 from "@/assets/gallery/SK-9934.jpg.asset.json";
 import sk9978 from "@/assets/gallery/SK-9978.jpg.asset.json";
 import sk3010078 from "@/assets/gallery/SK3-010078.jpg.asset.json";
 import sk3019538 from "@/assets/gallery/SK3-019538.jpg.asset.json";
+import raw0001g from "@/assets/gallery/RAW0001OFFGRIDZA.jpg.asset.json";
+import raw0032g from "@/assets/gallery/RAW0032OFFGRIDZA.jpg.asset.json";
+import raw0039g from "@/assets/gallery/RAW0039OFFGRIDZA.jpg.asset.json";
+import raw0049g from "@/assets/gallery/RAW0049OFFGRIDZA.jpg.asset.json";
+import raw2132g from "@/assets/gallery/RAW2132OFFGRIDZA.jpg.asset.json";
+import raw9809g from "@/assets/gallery/RAW9809OFFGRIDZA.jpg.asset.json";
+import raw9856g from "@/assets/gallery/RAW9856OFFGRIDZA.jpg.asset.json";
+import raw9889g from "@/assets/gallery/RAW9889OFFGRIDZA.jpg.asset.json";
+import raw9976g from "@/assets/gallery/RAW9976OFFGRIDZA.jpg.asset.json";
+import raw9999g from "@/assets/gallery/RAW9999OFFGRIDZA.jpg.asset.json";
 
 export type GalleryPhoto = {
   id: string;
@@ -48,4 +58,14 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
   { id: "pyro-finale", src: sk9978.url, alt: "Pyrotechnics erupting above the stage", width: 1920, height: 1280 },
   { id: "red-suit-runway", src: sk3010078.url, alt: "Performer in a red suit working the stage runway", width: 1920, height: 1280 },
   { id: "puffer-jacket", src: sk3019538.url, alt: "Performer carrying a colourful puffer jacket across the stage", width: 1920, height: 1280 },
+  { id: "seated-sk-stage", src: raw0001g.url, alt: "Scorpion King performing seated on the stage steps with a dancer behind", width: 1280, height: 1920 },
+  { id: "performer-crutch", src: raw0032g.url, alt: "Guest performer singing in front of the SK stage set", width: 1280, height: 1920 },
+  { id: "shirtless-light-trails", src: raw0039g.url, alt: "Performer on stage framed by swirling blue light trails", width: 1280, height: 1920 },
+  { id: "beige-light-sweep", src: raw0049g.url, alt: "Performer in beige striding across the stage through light streaks", width: 1280, height: 1920 },
+  { id: "red-carpet-trio", src: raw2132g.url, alt: "Three guests on the Scorpion Kings Live red carpet", width: 1280, height: 1920 },
+  { id: "red-car-portrait", src: raw9809g.url, alt: "Guest seated in the doorway of a red classic car", width: 1280, height: 1920 },
+  { id: "crowd-selfie", src: raw9856g.url, alt: "Fan taking a selfie with the lit-up stadium crowd behind", width: 1280, height: 1920 },
+  { id: "yellow-feathers", src: raw9889g.url, alt: "Vocalist in yellow feathers performing in front of the SK stage", width: 1280, height: 1920 },
+  { id: "hosts-on-stage", src: raw9976g.url, alt: "Hosts addressing the crowd in front of a red raised-fist screen", width: 1280, height: 1920 },
+  { id: "seated-sk-dancer", src: raw9999g.url, alt: "Scorpion King seated on stage while a dancer performs behind", width: 1280, height: 1920 },
 ];
