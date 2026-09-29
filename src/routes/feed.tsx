@@ -35,6 +35,10 @@ export const Route = createFileRoute("/feed")({
 
 const VIDEOS = [
   {
+    id: "7agbbE6i75o",
+    title: "Scorpion Kings Live featured video",
+  },
+  {
     id: "809nBZ8Gch0",
     title: "Scorpion Kings Live announcement",
   },
