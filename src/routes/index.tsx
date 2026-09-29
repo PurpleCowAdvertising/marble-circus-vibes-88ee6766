@@ -211,7 +211,7 @@ function HomePage() {
                   playsInline
                   preload="metadata"
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 h-full w-full object-contain md:object-cover"
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover"
                 />
 
                 <div className="absolute inset-0">
