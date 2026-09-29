@@ -383,7 +383,7 @@ function HomePage() {
               <div>
                 <p className="text-[10px] uppercase tracking-[0.4em] text-white/70">Inside the moment</p>
                 <h2 className="mt-2 font-display text-3xl font-bold text-white md:text-6xl">
-                  The energy lives here.
+                  2026 Gallery
                 </h2>
               </div>
               <Link to="/gallery" className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:text-gold">
