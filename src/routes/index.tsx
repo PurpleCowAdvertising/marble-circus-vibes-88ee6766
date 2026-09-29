@@ -320,7 +320,7 @@ function HomePage() {
 
               </figure>
             </motion.div>
-          </FadeIn>
+          </div>
         </div>
       </section>
       </VisibilityGate>
