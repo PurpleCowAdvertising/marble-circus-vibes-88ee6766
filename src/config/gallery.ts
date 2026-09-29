@@ -28,6 +28,17 @@ import raw9856g from "@/assets/gallery/RAW9856OFFGRIDZA.jpg.asset.json";
 import raw9889g from "@/assets/gallery/RAW9889OFFGRIDZA.jpg.asset.json";
 import raw9976g from "@/assets/gallery/RAW9976OFFGRIDZA.jpg.asset.json";
 import raw9999g from "@/assets/gallery/RAW9999OFFGRIDZA.jpg.asset.json";
+import raw9878g from "@/assets/gallery/RAW9878OFFGRIDZA.jpg.asset.json";
+import raw9913g from "@/assets/gallery/RAW9913OFFGRIDZA.jpg.asset.json";
+import raw9924g from "@/assets/gallery/RAW9924OFFGRIDZA.jpg.asset.json";
+import raw9930g from "@/assets/gallery/RAW9930OFFGRIDZA.jpg.asset.json";
+import raw9940g from "@/assets/gallery/RAW9940OFFGRIDZA.jpg.asset.json";
+import raw9951g from "@/assets/gallery/RAW9951OFFGRIDZA.jpg.asset.json";
+import raw9955g from "@/assets/gallery/RAW9955OFFGRIDZA.jpg.asset.json";
+import raw9978g from "@/assets/gallery/RAW9978OFFGRIDZA.jpg.asset.json";
+import asr03283g from "@/assets/gallery/ASR03283_OFFGRIDZA.jpg.asset.json";
+import asr03298g from "@/assets/gallery/ASR03298_OFFGRIDZA.jpg.asset.json";
+
 
 export type GalleryPhoto = {
   id: string;
@@ -70,7 +81,18 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
   { id: "yellow-feathers", src: raw9889g.url, alt: "Vocalist in yellow feathers performing in front of the SK stage", width: 1280, height: 1920, year: 2026 },
   { id: "hosts-on-stage", src: raw9976g.url, alt: "Hosts addressing the crowd in front of a red raised-fist screen", width: 1280, height: 1920, year: 2026 },
   { id: "seated-sk-dancer", src: raw9999g.url, alt: "Scorpion King seated on stage while a dancer performs behind", width: 1280, height: 1920, year: 2026 },
+  { id: "friends-crowd-carnival", src: raw9878g.url, alt: "Three friends posing in the carnival crowd under the stadium lights", width: 1280, height: 1920, year: 2026 },
+  { id: "sk-booth-crowd", src: raw9913g.url, alt: "Scorpion Kings behind the SK booth in front of the giant stage screen", width: 1280, height: 1920, year: 2026 },
+  { id: "sk-booth-beams", src: raw9924g.url, alt: "Scorpion Kings on the booth under sweeping beams of light", width: 1280, height: 1920, year: 2026 },
+  { id: "sk-booth-red-screen", src: raw9930g.url, alt: "Scorpion Kings at the SK booth in front of a red-hot screen", width: 1280, height: 1920, year: 2026 },
+  { id: "sk-wave-crowd", src: raw9940g.url, alt: "One Scorpion King waving to the crowd from the booth", width: 1280, height: 1920, year: 2026 },
+  { id: "studded-jacket-mic", src: raw9951g.url, alt: "Performer in a studded white jacket singing into the mic", width: 1280, height: 1920, year: 2026 },
+  { id: "white-jacket-stage", src: raw9955g.url, alt: "Performer in white belting a note across the neon stage", width: 1280, height: 1920, year: 2026 },
+  { id: "hosts-flame-screen", src: raw9978g.url, alt: "Hosts on stage in front of a flame-lit raised fist screen", width: 1280, height: 1920, year: 2026 },
+  { id: "backstage-interview", src: asr03283g.url, alt: "Media personality with sculpted hair interviewed backstage", width: 1280, height: 1920, year: 2026 },
+  { id: "backstage-portrait", src: asr03298g.url, alt: "Backstage portrait beside the road cases", width: 1280, height: 1920, year: 2026 },
 ];
+
 
 /** Year sections for the gallery page — newest edition first. */
 export const GALLERY_YEARS = [2026, 2025] as const;
