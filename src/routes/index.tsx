@@ -857,8 +857,8 @@ function HomePage() {
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Proudly partnered by</p>
-                <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl">Built with the right crew.</h2>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">PROUDLY PARTNERED WITH</p>
+                <h2 className="mt-2 font-display text-4xl font-bold md:text-6xl">Thank you to our 2026 partners.</h2>
               </div>
 
               <Link
