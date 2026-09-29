@@ -80,7 +80,7 @@ export function HeroVideo({ overlay }: { overlay?: ReactNode }) {
             <motion.video
               ref={videoRef}
               key={isMobile ? "mobile" : "desktop"}
-              src={isMobile ? heroVideoMobileAsset.url : heroVideoAsset.url}
+              src={heroVideoAsset.url}
               poster={isMobile ? "/hero-poster-mobile.jpg" : "/hero-poster.jpg"}
               autoPlay
               loop
