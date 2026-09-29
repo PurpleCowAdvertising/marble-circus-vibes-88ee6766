@@ -964,28 +964,6 @@ function HomePage() {
       </div>
       </VisibilityGate>
 
-      <VisibilityGate keyName="section:home.feedback">
-        <div id="feedback" className="relative isolate z-30 scroll-mt-24 bg-black text-white">
-          <Section className="!py-12 md:!py-16">
-            <FadeIn>
-              <div className="mx-auto max-w-2xl text-center">
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Your voice</p>
-                <h2 className="mt-2 font-display text-4xl font-bold leading-tight text-white md:text-6xl">
-                  We want to hear from you.
-                </h2>
-                <p className="mt-4 text-sm leading-relaxed text-white/65 md:text-base">
-                  Submit your thoughts, ideas and where should we take the show next.
-                </p>
-              </div>
-            </FadeIn>
-
-            <div className="mt-8">
-              <FeedbackForm />
-            </div>
-          </Section>
-        </div>
-      </VisibilityGate>
-
 
 
       <TicketModal tier={activeTier} onClose={() => setActiveTier(null)} />
