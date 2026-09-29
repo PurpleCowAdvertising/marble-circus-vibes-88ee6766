@@ -51,20 +51,11 @@ function PartnersPage() {
       <PageHero
         eyebrow="Our partners"
         title="thank you to our 2026 partners"
-        description="
-"
+        className="!pb-3 sm:!pb-4 md:!pb-6"
       />
 
       <VisibilityGate keyName="section:partners.confirmed">
-        <Section className="bg-black text-white !pb-24">
-          <FadeIn>
-            <p className="text-[10px] uppercase tracking-[0.4em] text-gold">
-</p>
-            <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
-
-            </h2>
-          </FadeIn>
-
+        <Section className="bg-black text-white !pb-24 !pt-4 sm:!pt-6 md:!pt-8">
           <FadeIn delay={0.1}>
             <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
               {tierA.map((sponsor) => {
