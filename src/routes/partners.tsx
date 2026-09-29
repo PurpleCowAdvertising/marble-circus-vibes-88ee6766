@@ -51,15 +51,17 @@ function PartnersPage() {
       <PageHero
         eyebrow="Our partners"
         title="thank you to our 2026 partners"
-        description="The brands and partners standing with Scorpion Kings Live."
+        description="
+"
       />
 
       <VisibilityGate keyName="section:partners.confirmed">
         <Section className="bg-black text-white !pb-24">
           <FadeIn>
-            <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Headline partners</p>
+            <p className="text-[10px] uppercase tracking-[0.4em] text-gold">
+</p>
             <h2 className="mt-3 font-display text-4xl font-bold leading-none text-white md:text-6xl">
-              Proudly partnered by.
+
             </h2>
           </FadeIn>
 
