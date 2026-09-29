@@ -19,6 +19,7 @@ export const VISIBILITY_REGISTRY: RegistryEntry[] = [
   { key: "page:music", kind: "page", label: "Line-Up (Music)", sortOrder: 30, route: "/music" },
   { key: "page:news", kind: "page", label: "News", sortOrder: 40, route: "/news" },
   { key: "page:feed", kind: "page", label: "Feed", sortOrder: 45, route: "/feed" },
+  { key: "page:gallery", kind: "page", label: "Gallery", sortOrder: 47, route: "/gallery" },
   { key: "page:tickets", kind: "page", label: "Tickets", sortOrder: 50, route: "/tickets" },
   { key: "page:partners", kind: "page", label: "Partners", sortOrder: 60, route: "/partners" },
   { key: "page:experience", kind: "page", label: "Hospitality", sortOrder: 70, route: "/experience" },
@@ -41,6 +42,9 @@ export const VISIBILITY_REGISTRY: RegistryEntry[] = [
   { key: "section:home.merchandise", kind: "section", label: "Home merchandise preview", parentKey: "page:home", sortOrder: 85 },
   { key: "section:home.partners", kind: "section", label: "Partners row", parentKey: "page:home", sortOrder: 90 },
   { key: "section:home.social", kind: "section", label: "Social feed", parentKey: "page:home", sortOrder: 95 },
+
+  // -------- Gallery sections --------
+  { key: "section:gallery.photos", kind: "section", label: "Photo gallery", parentKey: "page:gallery", sortOrder: 10 },
 
   // -------- About sections --------
   { key: "section:about.story", kind: "section", label: "Our story", parentKey: "page:about", sortOrder: 10 },
