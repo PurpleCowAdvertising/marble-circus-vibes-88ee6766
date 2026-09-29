@@ -20,6 +20,7 @@ import { GALLERY_SLIDER_PHOTOS } from "@/config/gallery";
 
 import heroVideoAsset from "@/assets/hero-video-finale.webm.asset.json";
 const heroVideoMobileAsset = heroVideoAsset;
+import sabc1Logo from "@/assets/sponsors/6-sabc1-transparent.png.asset.json";
 
 const HOME_PARTNER_NAMES = [
   "SABC 1",
@@ -219,31 +220,46 @@ function HomePage() {
                     <motion.div
                       animate={{ scale: [1, 1.015, 1] }}
                       transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-                      className="pointer-events-auto relative flex flex-col items-center gap-3 overflow-hidden rounded-3xl border border-white/15 bg-black/50 px-6 py-5 text-center shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150 md:flex-row md:gap-6 md:px-9 md:py-4"
+                      className="pointer-events-auto relative flex items-center gap-4 overflow-hidden rounded-3xl border border-white/15 bg-black/50 px-5 py-4 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-xl backdrop-saturate-150 md:gap-6 md:px-8 md:py-4"
                     >
                       <motion.div
                         aria-hidden
-                        className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/15 to-transparent"
+                        className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent"
                         animate={{ x: ["-120%", "420%"] }}
                         transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.6 }}
                       />
-                      <p className="relative flex items-center gap-2 text-[10px] uppercase tracking-[0.4em] text-gold">
-                        <motion.span
-                          aria-hidden
-                          className="inline-block h-1.5 w-1.5 rounded-full bg-gold"
-                          animate={{ opacity: [1, 0.2, 1], scale: [1, 0.75, 1] }}
-                          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-                        />
-                        TV Broadcast
-                      </p>
-                      <h2 className="relative max-w-xl font-display text-base font-bold leading-snug text-white sm:text-lg md:text-xl">
-                        Scorpion Kings Live, broadcasting on{" "}
-                        <span className="text-gold">Saturday, 3 October 2026, at 20:00</span>{" "}
-                        on SABC1 and SABC Plus.
-                      </h2>
+                      <img
+                        src={sabc1Logo.url}
+                        alt="SABC1"
+                        className="relative h-7 w-auto shrink-0 object-contain md:h-10"
+                      />
+                      <div
+                        className="relative w-60 min-w-0 overflow-hidden sm:w-72 md:w-96 lg:w-[30rem]"
+                        style={{
+                          maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                          WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                        }}
+                      >
+                        <motion.div
+                          className="flex w-max whitespace-nowrap"
+                          animate={{ x: ["0%", "-50%"] }}
+                          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+                        >
+                          {[0, 1].map((copy) => (
+                            <span
+                              key={copy}
+                              className="pe-16 font-display text-lg font-bold leading-snug text-white sm:text-xl md:text-2xl"
+                            >
+                              Scorpion Kings Live, broadcasting on{" "}
+                              <span className="text-gold">Saturday, 3 October 2026, at 20:00</span>{" "}
+                              on SABC1 and SABC Plus.
+                            </span>
+                          ))}
+                        </motion.div>
+                      </div>
                       <Link
                         to="/news"
-                        className="relative inline-flex items-center gap-2 rounded-full border border-gold/60 bg-gold/15 px-5 py-2 font-display text-xs font-bold uppercase tracking-widest text-gold transition-transform hover:scale-105 md:text-sm"
+                        className="relative inline-flex shrink-0 items-center gap-2 rounded-full border border-gold/60 bg-gold/15 px-4 py-2 font-display text-xs font-bold uppercase tracking-widest text-gold transition-transform hover:scale-105 md:px-5 md:text-sm"
                       >
                         Read More
                       </Link>
