@@ -1,0 +1,1 @@
+Gallery images are defined once in `src/config/gallery.ts` and reused by the homepage and gallery route so future additions stay consistent.
