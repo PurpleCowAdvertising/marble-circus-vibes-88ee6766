@@ -63,7 +63,7 @@ export function FeedbackForm() {
   };
 
   const inputClassName =
-    "w-full rounded-xl border border-white/15 bg-black/40 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-gold";
+    "w-full rounded-xl border border-white/15 bg-black/40 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/80 focus:border-gold";
 
   return (
     <FadeIn>
@@ -93,7 +93,7 @@ export function FeedbackForm() {
           <div className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="mb-2 block text-xs uppercase tracking-widest text-white/50">Name *</label>
+                <label className="mb-2 block text-xs uppercase tracking-widest text-white">Name *</label>
                 <input
                   required
                   value={form.firstName}
@@ -105,7 +105,7 @@ export function FeedbackForm() {
               </div>
 
               <div>
-                <label className="mb-2 block text-xs uppercase tracking-widest text-white/50">Surname *</label>
+                <label className="mb-2 block text-xs uppercase tracking-widest text-white">Surname *</label>
                 <input
                   required
                   value={form.lastName}
@@ -118,7 +118,7 @@ export function FeedbackForm() {
             </div>
 
             <div>
-              <label className="mb-2 block text-xs uppercase tracking-widest text-white/50">Email address *</label>
+              <label className="mb-2 block text-xs uppercase tracking-widest text-white">Email address *</label>
               <input
                 required
                 type="email"
@@ -131,7 +131,7 @@ export function FeedbackForm() {
             </div>
 
             <div>
-              <label className="mb-2 block text-xs uppercase tracking-widest text-white/50">
+              <label className="mb-2 block text-xs uppercase tracking-widest text-white">
                 WHERE SHOULD WE TAKE THE SHOW NEXT?
               </label>
               <textarea
