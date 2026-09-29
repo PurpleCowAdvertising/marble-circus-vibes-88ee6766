@@ -77,6 +77,7 @@ import parkRideShuttle from "@/assets/park-ride-shuttle.webp";
 import pastStageWalk from "@/assets/past-event/stage-walk.webp";
 import pastRedVocalist from "@/assets/past-event/red-vocalist.webp";
 import pastStadiumFire from "@/assets/past-event/stadium-fire.webp";
+import pastFanPhone from "@/assets/past-event/fan-phone.webp";
 
 type Headliner = {
   name: string;
