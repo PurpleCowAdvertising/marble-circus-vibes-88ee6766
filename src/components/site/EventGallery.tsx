@@ -1,7 +1,7 @@
 import useEmblaCarousel from "embla-carousel-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Expand, X } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import type { GalleryPhoto } from "@/config/gallery";
@@ -45,48 +45,70 @@ export function GallerySlider({ photos, onOpen }: { photos: GalleryPhoto[]; onOp
 }
 
 export function GalleryStrip({ photos }: { photos: GalleryPhoto[] }) {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [viewportRef, api] = useEmblaCarousel({ loop: true, align: "start", dragFree: true });
-  const previous = useCallback(() => api?.scrollPrev(), [api]);
-  const next = useCallback(() => api?.scrollNext(), [api]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const previous = useCallback(() => setActiveIndex((i) => (i - 1 + photos.length) % photos.length), [photos.length]);
+  const next = useCallback(() => setActiveIndex((i) => (i + 1) % photos.length), [photos.length]);
+  const featured = photos[activeIndex];
+  const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  useEffect(() => {
+    thumbRefs.current[activeIndex]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [activeIndex]);
 
   return (
     <div>
-      <div ref={viewportRef} className="overflow-hidden">
-        <ul className="flex touch-pan-y items-stretch gap-3 md:gap-4">
+      <div className="relative">
+        <Button
+          type="button"
+          variant="ghost"
+          onClick={() => setLightboxIndex(activeIndex)}
+          className="group relative block aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-0 text-left hover:bg-black/40 sm:aspect-[2/1]"
+          aria-label={`Open photo ${activeIndex + 1} of ${photos.length}`}
+        >
+          {featured && (
+            <img
+              key={featured.id}
+              src={featured.src}
+              alt={featured.alt}
+              width={featured.width}
+              height={featured.height}
+              className="h-full w-full object-cover"
+            />
+          )}
+          <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white backdrop-blur-md transition-colors group-hover:bg-gold group-hover:text-gold-foreground">
+            <Expand size={15} />
+          </span>
+          <span className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] font-semibold tabular-nums tracking-[0.2em] text-gold backdrop-blur-md">
+            {activeIndex + 1} / {photos.length}
+          </span>
+        </Button>
+        <Button variant="outline" size="icon" onClick={previous} aria-label="Previous photo" className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border-white/20 bg-black/60 text-white hover:bg-gold hover:text-gold-foreground"><ArrowLeft /></Button>
+        <Button variant="outline" size="icon" onClick={next} aria-label="Next photo" className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border-white/20 bg-black/60 text-white hover:bg-gold hover:text-gold-foreground"><ArrowRight /></Button>
+      </div>
+      <div className="mt-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <ul className="flex w-max touch-pan-x items-stretch gap-2">
           {photos.map((photo, index) => (
-            <li key={photo.id} className="min-w-0 shrink-0 basis-[54vw] sm:basis-[32vw] lg:basis-[21vw]">
-              <Button
+            <li key={photo.id} className="min-w-0 shrink-0">
+              <button
+                ref={(el) => { thumbRefs.current[index] = el; }}
                 type="button"
-                variant="ghost"
                 onClick={() => setActiveIndex(index)}
-                className="group relative block h-44 w-full overflow-hidden rounded-xl border border-white/10 bg-black/40 p-0 text-left hover:bg-black/40 sm:h-56 lg:h-64"
-                aria-label={`Open photo ${index + 1} of ${photos.length}`}
+                className={`block h-14 w-[4.5rem] overflow-hidden rounded-lg border p-0 transition-all duration-200 sm:h-16 sm:w-20 ${index === activeIndex ? "border-gold ring-2 ring-gold/40" : "border-white/15 opacity-55 hover:opacity-90"}`}
+                aria-label={`Show photo ${index + 1} of ${photos.length}`}
+                aria-current={index === activeIndex}
               >
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={photo.width}
-                  height={photo.height}
-                  loading={index < 6 ? "eager" : "lazy"}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                />
-                <span className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white backdrop-blur-md transition-colors group-hover:bg-gold group-hover:text-gold-foreground">
-                  <Expand size={15} />
-                </span>
-              </Button>
+                <img src={photo.src} alt="" loading="lazy" className="h-full w-full object-cover" />
+              </button>
             </li>
           ))}
         </ul>
       </div>
-      <div className="mt-4 hidden items-center justify-end gap-2 md:flex">
-        <Button variant="outline" size="icon" onClick={previous} aria-label={`Scroll ${photos.length} photos backward`} className="rounded-full border-white/20 bg-white/[0.06] text-white hover:bg-gold hover:text-gold-foreground"><ArrowLeft /></Button>
-        <Button variant="outline" size="icon" onClick={next} aria-label={`Scroll ${photos.length} photos forward`} className="rounded-full border-white/20 bg-white/[0.06] text-white hover:bg-gold hover:text-gold-foreground"><ArrowRight /></Button>
-      </div>
-      <GalleryLightbox photos={photos} activeIndex={activeIndex} onClose={() => setActiveIndex(null)} onChange={setActiveIndex} />
+      <GalleryLightbox photos={photos} activeIndex={lightboxIndex} onClose={() => setLightboxIndex(null)} onChange={setLightboxIndex} />
     </div>
   );
 }
+
 
 
 export function GalleryPreview({ photos }: { photos: GalleryPhoto[] }) {
